@@ -1,34 +1,36 @@
 <?php
 
 return [
-    "Dashboards" => "Dashboards",
-        "Administrative" => "Administrative",
-        "Operation" => "Operation",
+    "Dashboards" => "Tableros",
+        "Administrative" => "Adminsitrativo",
+        "Operation" => "Operacion",
 
-    "Apps" => "Apps",
-        "Todo" => "Todo",
-        "Calendar" => "Calendar",
-        "Invoice" => "Invoice",
-        "User" => "User",
+    "Apps" => "Aplicaciones",
+        "Todo" => "Tareas",
+        "Calendar" => "Calendario",
+        "Invoice" => "Facturas",
+        "User" => "Usuario",
 
     "CWS" => "CWS",
     "CWS USA" => "CWS USA",
     "KU3" => "KU3",
 
-        "Water Treatment" => "Water Treatment",
+        "Water Treatment" => "Tratamiento de aguas",
             "SWRO" => "SWRO",
             "BWRO" => "BWRO",
 
-    "Add" => "Add",
+    "Add" => "Agregar",
     "List" => "Lista",
     "View" => "Ver",
     "Edit" => "Editar",
-    "Preview" => "Preview",
+    "Preview" => "Previsualizacion",
 
-    
+
     "Forms & Tables" => "Forms & Tables",
     "Pages" => "Pages",
     "Charts & Maps" => "Charts & Maps",
+    "1 column" => "1 column",
+    "2 columns" => "2 columns",
     "Fixed navbar" => "Fixed navbar",
     "Floating navbar" => "Floating navbar",
     "Fixed layout" => "Fixed layout",
@@ -114,7 +116,6 @@ return [
     "FAQ" => "FAQ",
     "Knowledge Base" => "Knowledge Base",
     "Search" => "Search",
-
     "Charts" => "Charts",
     "Apex" => "Apex",
     "Chartjs" => "Chartjs",
@@ -141,6 +142,7 @@ return [
     "Miscellaneous" => "Miscellaneous",
     "Extensions" => "Extensions",
     "Media Player" => "Media Player",
+
     "Account Settings" => "Account Settings",
     "Error 404" => "Error 404",
     "Error 405" => "Error 405",

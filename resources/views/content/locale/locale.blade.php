@@ -23,17 +23,9 @@
                 <i class="flag-icon flag-icon-us mr-50"></i>
                 <span>English</span>
               </a>
-              <a class="dropdown-item" href="{{url('lang/fr')}}" data-language="fr">
-                <i class="flag-icon flag-icon-fr mr-50"></i>
-                <span>French</span>
-              </a>
-              <a class="dropdown-item" href="{{url('lang/de')}}" data-language="de">
-                <i class="flag-icon flag-icon-de mr-50"></i>
-                <span>German</span>
-              </a>
-              <a class="dropdown-item" href="{{url('lang/pt')}}" data-language="pt">
-                <i class="flag-icon flag-icon-pt mr-50"></i>
-                <span>Portuguese</span>
+              <a class="dropdown-item" href="{{url('lang/es')}}" data-language="es">
+                <i class="flag-icon flag-icon-es mr-50"></i>
+                <span>Spanish</span>
               </a>
             </div>
           </div>
