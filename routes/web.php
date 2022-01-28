@@ -31,7 +31,6 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {
-
     Route::get('todo', [AppsController::class, 'todoApp'])->name('app-todo');
 
     Route::get('calendar', [AppsController::class, 'calendarApp'])->name('app-calendar');
