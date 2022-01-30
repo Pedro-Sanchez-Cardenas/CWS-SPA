@@ -1,198 +1,255 @@
 {
-  "menu": [
-    {
-      "name": "Dashboards",
-      "badge": "2",
-      "badgeClass": "badge badge-light-warning rounded-pill ms-auto me-1",
-      "icon": "home",
-      "slug": "",
-      "submenu": [
+    "menu": [
         {
-          "url": "dashboard/analytics",
-          "name": "Administrative",
-          "icon": "circle",
-          "slug": "dashboard-analytics"
+            "name": "Dashboards",
+            "icon": "home",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "submenu": [
+                {
+                    "url": "/",
+                    "name": "Administrative",
+                    "icon": "circle",
+                    "slug": "dashboard-ecommerce",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "dashboard/analytics",
+                    "name": "Operation",
+                    "icon": "circle",
+                    "slug": "dashboard-analytics",
+                    "roles": "Operator"
+                }
+            ]
+        },
+
+        {
+            "navheader": "Apps",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
         },
         {
-          "url": "/",
-          "name": "Operation",
-          "icon": "circle",
-          "slug": "dashboard-ecommerce"
+            "url": "app/todo",
+            "name": "Todo",
+            "icon": "check-square",
+            "slug": "app-todo",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+        },
+        {
+            "url": "app/calendar",
+            "name": "Calendar",
+            "icon": "calendar",
+            "slug": "app-calendar",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+        },
+        {
+            "name": "Invoice",
+            "icon": "file-text",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "submenu": [
+                {
+                    "url": "app/invoice/list",
+                    "name": "List",
+                    "icon": "circle",
+                    "slug": "app-invoice-list",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "app/invoice/preview",
+                    "name": "Preview",
+                    "icon": "circle",
+                    "slug": "app-invoice-preview",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "app/invoice/edit",
+                    "name": "Edit",
+                    "icon": "circle",
+                    "slug": "app-invoice-edit",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "app/invoice/add",
+                    "name": "Add",
+                    "icon": "circle",
+                    "slug": "app-invoice-add",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "icon": "user",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "submenu": [
+                {
+                    "url": "app/user/list",
+                    "name": "List",
+                    "icon": "circle",
+                    "slug": "app-user-list",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "name": "View",
+                    "icon": "circle",
+                    "slug": "",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+                    "submenu": [
+                        {
+                            "url": "app/user/view/account",
+                            "name": "Account",
+                            "slug": "app-user-view-account",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        },
+                        {
+                            "url": "app/user/view/security",
+                            "name": "Security",
+                            "slug": "app-user-view-security",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        },
+                        {
+                            "url": "app/user/view/billing",
+                            "name": "Billings & Plans",
+                            "slug": "app-user-view-billing",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        },
+                        {
+                            "url": "app/user/view/notifications",
+                            "name": "Notifications",
+                            "slug": "app-user-view-notifications",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        },
+                        {
+                            "url": "app/user/view/connections",
+                            "name": "Connections",
+                            "slug": "app-user-view-connections",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "navheader": "Operation",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
+        },
+
+        {
+            "name": "CWS",
+            "icon": "credit-card",
+            "badge": "New",
+            "slug": "",
+            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "submenu": [
+                {
+                    "name": "Water Treatment",
+                    "icon": "circle",
+                    "badge": "New",
+                    "slug": "",
+                    "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+                    "submenu": [
+                        {
+                            "url": "operation/plants",
+                            "name": "RO",
+                            "icon": "circle",
+                            "slug": "plants.index",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "KU3",
+            "icon": "credit-card",
+            "badge": "New",
+            "slug": "",
+            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "submenu": [
+                {
+                    "name": "Water Treatment",
+                    "icon": "circle",
+                    "badge": "New",
+                    "slug": "",
+                    "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+                    "submenu": [
+                        {
+                            "url": "operation/plants",
+                            "name": "RO",
+                            "icon": "circle",
+                            "slug": "",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "navheader": "Administration",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+        },
+        {
+            "name": "CWS",
+            "icon": "credit-card",
+            "badge": "New",
+            "slug": "",
+            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "submenu": [
+                {
+                    "name": "Water Treatment",
+                    "icon": "circle",
+                    "badge": "New",
+                    "slug": "",
+                    "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+                    "submenu": [
+                        {
+                            "url": "operation/plants",
+                            "name": "RO",
+                            "icon": "circle",
+                            "slug": "",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "KU3",
+            "icon": "credit-card",
+            "badge": "New",
+            "slug": "",
+            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "submenu": [
+                {
+                    "name": "Water Treatment",
+                    "icon": "circle",
+                    "badge": "New",
+                    "slug": "",
+                    "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+                    "submenu": [
+                        {
+                            "url": "operation/plants",
+                            "name": "RO",
+                            "icon": "circle",
+                            "slug": "",
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
-    },
-
-    {
-      "navheader": "Apps",
-      "slug": ""
-    },
-    {
-      "url": "app/todo",
-      "name": "Todo",
-      "icon": "check-square",
-      "slug": "app-todo"
-    },
-    {
-      "url": "app/calendar",
-      "name": "Calendar",
-      "icon": "calendar",
-      "slug": "app-calendar"
-    },
-    {
-      "name": "Invoice",
-      "icon": "file-text",
-      "slug": "",
-      "submenu": [
-        {
-          "url": "app/invoice/list",
-          "name": "List",
-          "icon": "circle",
-          "slug": "app-invoice-list"
-        },
-        {
-          "url": "app/invoice/preview",
-          "name": "Preview",
-          "icon": "circle",
-          "slug": "app-invoice-preview"
-        },
-        {
-          "url": "app/invoice/edit",
-          "name": "Edit",
-          "icon": "circle",
-          "slug": "app-invoice-edit"
-        },
-        {
-          "url": "app/invoice/add",
-          "name": "Add",
-          "icon": "circle",
-          "slug": "app-invoice-add"
-        }
-      ]
-    },
-    {
-      "name": "User",
-      "icon": "user",
-      "slug": "",
-      "submenu": [
-        {
-          "url": "app/user/list",
-          "name": "List",
-          "icon": "circle",
-          "slug": "app-user-list"
-        },
-        {
-          "name": "View",
-          "icon": "circle",
-          "slug": "",
-          "submenu": [
-            {
-              "url": "app/user/view/account",
-              "name": "Account",
-              "slug": "app-user-view-account"
-            },
-            {
-              "url": "app/user/view/security",
-              "name": "Security",
-              "slug": "app-user-view-security"
-            },
-            {
-              "url": "app/user/view/billing",
-              "name": "Billings & Plans",
-              "slug": "app-user-view-billing"
-            },
-            {
-              "url": "app/user/view/notifications",
-              "name": "Notifications",
-              "slug": "app-user-view-notifications"
-            },
-            {
-              "url": "app/user/view/connections",
-              "name": "Connections",
-              "slug": "app-user-view-connections"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "navheader": "CWS",
-      "slug": ""
-    },
-
-    {
-        "name": "Water Treatment",
-        "icon": "credit-card",
-        "badge": "New",
-        "slug": "",
-        "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-        "submenu": [
-            {
-                "url": "card/basic",
-                "name": "SWRO",
-                "icon": "circle",
-                "slug": "card-basic"
-            },
-            {
-                "url": "card/advance",
-                "name": "BWRO",
-                "icon": "circle",
-                "slug": "card-advance"
-            }
-        ]
-    },
-
-    {
-        "navheader": "CWS USA",
-        "slug": ""
-    },
-
-    {
-        "name": "Water Treatment",
-        "icon": "credit-card",
-        "badge": "New",
-        "slug": "",
-        "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-        "submenu": [
-            {
-                "url": "card/basic",
-                "name": "SWRO",
-                "icon": "circle",
-                "slug": "card-basic"
-            },
-            {
-                "url": "card/advance",
-                "name": "BWRO",
-                "icon": "circle",
-                "slug": "card-advance"
-            }
-        ]
-    },
-
-    {
-        "navheader": "KU3",
-        "slug": ""
-    },
-
-    {
-        "name": "Water Treatment",
-        "icon": "credit-card",
-        "badge": "New",
-        "slug": "",
-        "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-        "submenu": [
-            {
-                "url": "card/basic",
-                "name": "SWRO",
-                "icon": "circle",
-                "slug": "card-basic"
-            },
-            {
-                "url": "card/advance",
-                "name": "BWRO",
-                "icon": "circle",
-                "slug": "card-advance"
-            }
-        ]
-    }
-  ]
+    ]
 }

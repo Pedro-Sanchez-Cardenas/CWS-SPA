@@ -222,11 +222,15 @@
             @if (Auth::check())
               {{ Auth::user()->name }}
             @else
-              John Doe
+              Username
             @endif
           </span>
           <span class="user-status">
-            Admin
+            @if (Auth::check())
+              {{ Auth::user()->getRoleNames()['0'] }}
+            @else
+              Role
+            @endif
           </span>
         </div>
         <span class="avatar">

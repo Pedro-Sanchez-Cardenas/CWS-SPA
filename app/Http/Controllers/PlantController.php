@@ -30,7 +30,7 @@ class PlantController extends Controller
     {
         $plants = Plant::all();
 
-        return view('plants.index', compact('plants'));
+        return view('content.plants.index', compact('plants'));
     }
 
     /**

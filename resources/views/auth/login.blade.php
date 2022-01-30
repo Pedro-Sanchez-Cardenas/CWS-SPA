@@ -1,6 +1,6 @@
 @extends('layouts/fullLayoutMaster')
 
-@section('title', 'Login')
+@section('title', 'Sign in')
 
 @section('page-style')
   {{-- Page Css files --}}
@@ -47,10 +47,10 @@
                 </g>
               </g>
             </svg>
-            <h2 class="brand-text text-primary ms-1">Vuexy</h2>
+            <h2 class="brand-text text-primary ms-1">{{ env('APP_NAME') }}</h2>
           </a>
 
-          <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>
+          <h4 class="card-title mb-1">Welcome to {{ env('APP_NAME') }}! 👋</h4>
           <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
           @if (session('status'))
@@ -66,7 +66,7 @@
             <div class="mb-1">
               <label for="login-email" class="form-label">Email</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email"
-                placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus
+                placeholder="example@cwsmexico.mx" aria-describedby="login-email" tabindex="1" autofocus
                 value="{{ old('email') }}" />
               @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -105,12 +105,12 @@
             <span>New on our platform?</span>
             @if (Route::has('register'))
               <a href="{{ route('register') }}">
-                <span>Create an account</span>
+                <span>Request your account</span>
               </a>
             @endif
           </p>
 
-          <div class="divider my-2">
+          {{--<div class="divider my-2">
             <div class="divider-text">or</div>
           </div>
 
@@ -127,7 +127,7 @@
             <a href="#" class="btn btn-github">
               <i data-feather="github"></i>
             </a>
-          </div>
+          </div>--}}
         </div>
       </div>
       <!-- /Login basic -->

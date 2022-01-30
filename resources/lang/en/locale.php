@@ -11,13 +11,13 @@ return [
         "Invoice" => "Invoice",
         "User" => "User",
 
-    "CWS" => "CWS",
-    "CWS USA" => "CWS USA",
-    "KU3" => "KU3",
+    "Operation" => "Operation",
+    "Administration" => "Administration",
+        "CWS" => "CWS",
+        "KU3" => "KU3",
 
-        "Water Treatment" => "Water Treatment",
-            "SWRO" => "SWRO",
-            "BWRO" => "BWRO",
+            "Water Treatment" => "Water Treatment",
+                "RO" => "RO",
 
     "Add" => "Add",
     "List" => "Lista",
@@ -25,7 +25,7 @@ return [
     "Edit" => "Editar",
     "Preview" => "Preview",
 
-    
+
     "Forms & Tables" => "Forms & Tables",
     "Pages" => "Pages",
     "Charts & Maps" => "Charts & Maps",

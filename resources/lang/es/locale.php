@@ -11,13 +11,13 @@ return [
         "Invoice" => "Facturas",
         "User" => "Usuario",
 
-    "CWS" => "CWS",
-    "CWS USA" => "CWS USA",
-    "KU3" => "KU3",
+    "Operation" => "Operation",
+    "Administration" => "Administration",
+        "CWS" => "CWS",
+        "KU3" => "KU3",
 
-        "Water Treatment" => "Tratamiento de aguas",
-            "SWRO" => "SWRO",
-            "BWRO" => "BWRO",
+            "Water Treatment" => "Tratamiento de aguas",
+                "RO" => "RO",
 
     "Add" => "Agregar",
     "List" => "Lista",
