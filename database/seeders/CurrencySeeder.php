@@ -17,25 +17,22 @@ class CurrencySeeder extends Seeder
         Currency::create([
             'name' => 'Peso Mexicano',
             'abbreviation' => 'MXN',
-            'value' => '0.050',
-            'main_currency' => '0',
-            'user_created_at' => '1',
+            'value' => '20.81',
+            'main_currency' => '0'
         ]);
 
         Currency::create([
             'name' => 'Dólar Estadounidense',
             'abbreviation' => 'USD',
-            'value' => '20.17',
-            'main_currency' => '1',
-            'user_created_at' => '1',
+            'value' => '1.0',
+            'main_currency' => '1'
         ]);
 
         Currency::create([
             'name' => 'Dólar Jamaicano',
             'abbreviation' => 'JMD',
-            'value' => '0.14',
-            'main_currency' => '0',
-            'user_created_at' => '1',
+            'value' => '156.23',
+            'main_currency' => '0'
         ]);
     }
 }

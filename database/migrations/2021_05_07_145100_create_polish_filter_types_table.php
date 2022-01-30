@@ -20,7 +20,6 @@ class CreatePolishFilterTypesTable extends Migration
             $table->foreignId('user_created_at')->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

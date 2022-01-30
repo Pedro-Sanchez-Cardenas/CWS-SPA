@@ -17,9 +17,7 @@ class Country extends Model
     protected $fillable = [
         'name',
         'taxes',
-        'currencies_id',
-        'user_created_at',
-        'user_updated_at'
+        'currencies_id'
     ];
 
     // Relations

@@ -20,7 +20,6 @@ class CreateMultimediaFiltersTable extends Migration
             $table->double('in');
             $table->double('out');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

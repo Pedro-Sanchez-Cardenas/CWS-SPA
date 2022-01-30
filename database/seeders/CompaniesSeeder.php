@@ -15,15 +15,21 @@ class CompaniesSeeder extends Seeder
     public function run()
     {
         Company::create([
-            'name' => 'CWS'
+            'name' => 'CWS',
+            'currencies_id' => '1',
+            'countries_id' => '1'
         ]);
 
         Company::create([
-            'name' => 'KU3'
+            'name' => 'CWS USA',
+            'currencies_id' => '2',
+            'countries_id' => '2'
         ]);
 
         Company::create([
-            'name' => 'CWSS'
+            'name' => 'KU3',
+            'currencies_id' => '3',
+            'countries_id' => '3'
         ]);
     }
 }

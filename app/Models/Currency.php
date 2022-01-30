@@ -18,9 +18,7 @@ class Currency extends Model
         'name',
         'abbreviation',
         'value',
-        'main_currency',
-        'user_created_at',
-        'user_updated_at'
+        'main_currency'
     ];
 
     // Relations

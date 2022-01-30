@@ -21,7 +21,6 @@ class CreatePolishFiltersTable extends Migration
             $table->double('out');
             $table->timestamp('filter_change')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

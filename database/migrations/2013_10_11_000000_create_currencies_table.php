@@ -19,8 +19,6 @@ class CreateCurrenciesTable extends Migration
             $table->string('abbreviation');
             $table->double('value');
             $table->boolean('main_currency');
-            $table->foreignId('user_created_at')->constrained('users');
-            $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -20,7 +20,6 @@ class CreateCisternsTable extends Migration
             $table->double('capacity')->nullable();
             $table->enum('status', ['Enabled', 'Disabled'])->default('Enabled');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

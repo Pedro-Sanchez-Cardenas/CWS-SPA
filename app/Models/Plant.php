@@ -18,8 +18,9 @@ class Plant extends Model
     protected $fillable = [
         'name',
         'location',
-        'countries_id',
         'currencies_id',
+        'countries_id',
+        'companies_id',
         'cover_path', // nullable
         'installed_capacity',
         'cisterns_quantity',
@@ -34,7 +35,6 @@ class Plant extends Model
         'boosterc',
         'feed',
         'reject',
-        'companies_id',
 
         'attendant', //nullable
         'manager', // nullable
