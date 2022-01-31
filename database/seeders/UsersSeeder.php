@@ -24,7 +24,16 @@ class UsersSeeder extends Seeder
                 'phone' => '9999708319',
                 //'phone2' => '',
                 'companies_id' => '1',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('Pedro41217'),
+            ])->assignRole('Super-Admin');
+
+            User::create([
+                'name' => 'Eduardo Cardenas',
+                'email' => 'ti2'. $domain,
+                'phone' => '9992462785',
+                //'phone2' => '',
+                'companies_id' => '1',
+                'password' => Hash::make('Eduardo41316'),
             ])->assignRole('Super-Admin');
         /* Super-Admin */
 
