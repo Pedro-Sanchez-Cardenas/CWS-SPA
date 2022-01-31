@@ -87,5 +87,29 @@ class PlantsSeeder extends Seeder
             'user_created_at'  => '1',
             //'user_updated_at' // NULLABLE
         ]);
+
+        Plant::create([
+            'name' => 'TEST',
+            'location' => 'Ocho Ríos',
+            'countries_id' => '3',
+            'currencies_id' => '2',
+            //'cover_path', // nullable
+            //'installed_capacity',
+            'plant_types_id' => '1',
+            //'design_limit',
+
+            'irrigation' => 'yes', // DEFAULT
+            'sdi' => 'yes', // DEFAULT
+            'chloride' => 'yes', // DEFAULT
+            'well_pump' => 'yes', // DEFAULT
+            'feed_pump' => 'yes', // DEFAULT
+            //'boosterc', // DEFAULT
+            'companies_id' => '1',
+
+            'attendant' => '6',
+            'manager' => '4',
+            'user_created_at'  => '1',
+            //'user_updated_at' // NULLABLE
+        ]);
     }
 }
