@@ -17,8 +17,8 @@ class CreatePlantsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('location');
-            $table->foreignId('countries_id')->constrained();
             $table->foreignId('currencies_id')->constrained();
+            $table->foreignId('countries_id')->constrained();
             $table->string('cover_path')->nullable();
             $table->double('installed_capacity')->nullable();
             $table->integer('cisterns_quantity')->default('0');

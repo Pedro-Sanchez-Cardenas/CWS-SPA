@@ -31,7 +31,7 @@ class PlantsSeeder extends Seeder
             //'well_pump', // DEFAULT
             //'feed_pump', // DEFAULT
             'boosterc' => 'yes',
-            'companies_id' => '1',
+            'companies_id' => '3',
 
             'attendant' => '5',
             'manager' => '4',
@@ -41,7 +41,7 @@ class PlantsSeeder extends Seeder
 
         Plant::create([
             'name' => 'SECRETS',
-            'location' => 'Playa del Carmen, Quintana Roo',
+            'location' => 'Playa del Carmen',
             'countries_id' => '1',
             'currencies_id' => '2',
             //'cover_path', // nullable
@@ -56,7 +56,7 @@ class PlantsSeeder extends Seeder
             'well_pump' => 'yes', // DEFAULT
             //'feed_pump', // DEFAULT
             //'boosterc', // DEFAULT
-            'companies_id' => '2',
+            'companies_id' => '1',
 
             'attendant' => '7',
             //'manager' => '4',
@@ -80,31 +80,7 @@ class PlantsSeeder extends Seeder
             'well_pump' => 'yes', // DEFAULT
             'feed_pump' => 'yes', // DEFAULT
             //'boosterc', // DEFAULT
-            'companies_id' => '1',
-
-            'attendant' => '6',
-            'manager' => '4',
-            'user_created_at'  => '1',
-            //'user_updated_at' // NULLABLE
-        ]);
-
-        Plant::create([
-            'name' => 'TEST',
-            'location' => 'Ocho Ríos',
-            'countries_id' => '3',
-            'currencies_id' => '2',
-            //'cover_path', // nullable
-            //'installed_capacity',
-            'plant_types_id' => '1',
-            //'design_limit',
-
-            'irrigation' => 'yes', // DEFAULT
-            'sdi' => 'yes', // DEFAULT
-            'chloride' => 'yes', // DEFAULT
-            'well_pump' => 'yes', // DEFAULT
-            'feed_pump' => 'yes', // DEFAULT
-            //'boosterc', // DEFAULT
-            'companies_id' => '1',
+            'companies_id' => '3',
 
             'attendant' => '6',
             'manager' => '4',

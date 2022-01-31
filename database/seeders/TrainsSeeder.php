@@ -138,47 +138,5 @@ class TrainsSeeder extends Seeder
             'type' => 'Municipal',
             'user_created_at' => '1'
         ]);
-
-        // Planta 4
-        Train::create([
-            'plants_id' => '4',
-            'capacity' => '700',
-            'multimedia_filter_quantity' => '3',
-            'polish_filters_quantity' => '4',
-            'polish_filters_types_id' => '10',
-            'tds' => '12000',
-            'booster_quantity' => '0',
-            // status => 'Enable',
-            'membrane_active_area' => '1',
-            'membrane_elements' => '42',
-            'user_created_at' => '1'
-        ]);
-
-        Train::create([
-            'plants_id' => '4',
-            'capacity' => '700',
-            'multimedia_filter_quantity' => '3',
-            'polish_filters_quantity' => '4',
-            'polish_filters_types_id' => '10',
-            'tds' => '12000',
-            'booster_quantity' => '0',
-            // status => 'Enable',
-            'membrane_active_area' => '1',
-            'membrane_elements' => '42',
-            'user_created_at' => '1'
-        ]);
-
-        Train::create([
-            'plants_id' => '4',
-            /*'capacity' => '700',
-            'multimedia_filter_quantity' => '3',
-            'polish_filters_types_id' => '10',
-            'polish_filters_quantity' => '6',
-            'tds' => '36000',
-            'booster_quantity' => '2',
-            // status => 'Enable',*/
-            'type' => 'Municipal',
-            'user_created_at' => '1'
-        ]);
     }
 }

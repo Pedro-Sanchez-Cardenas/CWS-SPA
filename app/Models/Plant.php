@@ -57,8 +57,16 @@ class Plant extends Model
         return $this->hasMany(Train::class, 'plants_id', 'id');
     }
 
+    public function currency(){
+        return $this->belongsTo(Currency::class, 'currencies_id', 'id');
+    }
+
     public function country(){
         return $this->belongsTo(Country::class, 'countries_id', 'id');
+    }
+
+    public function company(){
+        return $this->belongsTo(Company::class, 'companies_id', 'id');
     }
 
     public function pretreatments(){
