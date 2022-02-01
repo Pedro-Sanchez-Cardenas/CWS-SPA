@@ -33,8 +33,8 @@ class PlantsSeeder extends Seeder
             'boosterc' => 'yes',
             'companies_id' => '3',
 
-            'attendant' => '5',
-            'manager' => '4',
+            'attendant' => '8',
+            'manager' => '7',
             'user_created_at'  => '1',
             //'user_updated_at' // NULLABLE
         ]);
@@ -58,7 +58,7 @@ class PlantsSeeder extends Seeder
             //'boosterc', // DEFAULT
             'companies_id' => '1',
 
-            'attendant' => '7',
+            'attendant' => '10',
             //'manager' => '4',
             'user_created_at'  => '1',
             //'user_updated_at' // NULLABLE
@@ -82,8 +82,8 @@ class PlantsSeeder extends Seeder
             //'boosterc', // DEFAULT
             'companies_id' => '3',
 
-            'attendant' => '6',
-            'manager' => '4',
+            'attendant' => '9',
+            'manager' => '7',
             'user_created_at'  => '1',
             //'user_updated_at' // NULLABLE
         ]);
