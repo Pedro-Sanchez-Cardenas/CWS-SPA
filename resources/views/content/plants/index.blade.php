@@ -70,7 +70,19 @@
 
                             <div class="row">
                                 <div class="col text-center">
-                                    <h2>{{ $plant->installed_capacity }} IC <i class="fas fa-tint"></i></h2>
+                                    @if ($plant->installed_capacity)
+                                        <h2>{{ $plant->installed_capacity }} IC <i class="fas fa-tint"></i></h2>
+                                    @else
+                                        <h2 class="text-muted">N/A <i class="fas fa-tint"></i></h2>
+                                    @endif
+                                </div>
+
+                                <div class="col text-center">
+                                    @if ($plant->design_limit)
+                                        <h2>{{ $plant->design_limit }} DL <i class="fas fa-tint"></i></h2>
+                                    @else
+                                        <h2 class="text-muted">N/A <i class="fas fa-tint"></i></h2>
+                                    @endif
                                 </div>
                             </div>
 
@@ -90,16 +102,16 @@
                                 </thead>
                                 <tbody>
                                     <tr class="text-center">
-                                        <td><i class="fas fa-hard-hat"></i> {{ $plant->attendantUser->name }} <br>
-                                            <i class="fas fa-phone-square-alt"></i> {{ $plant->attendantUser->phone }}
+                                        <td><i class="fas fa-hard-hat"></i>{{ $plant->attendantUser->name }} <br>
+                                            <i class="fas fa-phone-square-alt"></i>{{ $plant->attendantUser->phone }}
                                         </td>
 
                                         <td>
                                             @if ($plant->Manager)
-                                                <i class="fas fa-user-circle"></i> {{ $plant->Manager->name }} <br>
-                                                <i class="fas fa-phone-square-alt"></i> {{ $plant->Manager->phone }}
+                                                <i class="fas fa-user-circle"></i>{{ $plant->Manager->name }} <br>
+                                                <i class="fas fa-phone-square-alt"></i>{{ $plant->Manager->phone }}
                                             @else
-                                                <span class="text-danger">N/A</span>
+                                                <span class="text-muted">N/A</span>
                                             @endif
                                         </td>
                                     </tr>

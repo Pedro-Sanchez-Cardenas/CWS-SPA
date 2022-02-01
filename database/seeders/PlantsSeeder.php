@@ -71,6 +71,7 @@ class PlantsSeeder extends Seeder
             'currencies_id' => '2',
             //'cover_path', // nullable
             //'installed_capacity',
+            'cisterns_quantity' => '2',
             'plant_types_id' => '1',
             //'design_limit',
 
