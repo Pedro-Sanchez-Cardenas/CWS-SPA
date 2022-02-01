@@ -51,7 +51,7 @@ class PlantController extends Controller
         $membranesActiveArea = MembraneActiveArea::all();
         $companies = Company::all();
 
-        return view('plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'billings', 'membranesActiveArea', 'companies'));
+        return view('content.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'billings', 'membranesActiveArea', 'companies'));
 
     }
 
