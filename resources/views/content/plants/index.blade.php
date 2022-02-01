@@ -1,10 +1,13 @@
 <!--
     ******************************************************************
-    * Author Init: Pedro Adrian Sanchez Cardenas.
-    * Date init: 31 de Enero del 2022
-    * Date Finish: -------
-    * Date Update: -------
-    * Author Update: --------
+    * Author: Pedro Adrian Sanchez Cardenas.
+    * Start Date: 31 de Enero del 2022
+    * Finish Date: -------
+
+    * Update Author: --------
+    * Update Start Date: -------
+    * Update Finish Date: -------
+
     * Description: --------
     ******************************************************************
  -->
