@@ -12,6 +12,9 @@
 <!-- custome scripts file for user -->
 <script src="{{ asset(mix('js/core/scripts.js')) }}"></script>
 
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/cfddfaee26.js" crossorigin="anonymous"></script>
+
 @if($configData['blankPage'] === false)
 <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
 @endif
