@@ -35,13 +35,15 @@
             @foreach ($plants as $plant)
                 <div class="col-sm-1 col-md-6 col-lg-4">
                     <div class="card">
-                        <div class="d-flex btn-group justify-content-end plant-acctions">
-                            <button class="btn btn-icon btn-flat-info"><i class="fas fa-eye"></i></button>
+                        @hasanyrole('Super-Admin|Operations-Manager|Administrative-Manager')
+                            <div class="d-flex btn-group justify-content-end plant-acctions">
+                                <button class="btn btn-icon btn-flat-info"><i class="fas fa-eye"></i></button>
 
-                            <button class="btn btn-icon btn-flat-warning"><i class="fas fa-pen"></i></button>
+                                <button class="btn btn-icon btn-flat-warning"><i class="fas fa-pen"></i></button>
 
-                            <button class="btn btn-icon btn-flat-danger"><i class="fas fa-trash-alt"></i></button>
-                        </div>
+                                <button class="btn btn-icon btn-flat-danger"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        @endhasanyrole
                         <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg" class="card-img-top" alt="error img plant">
 
                         <div class="card-body">
