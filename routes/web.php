@@ -5,6 +5,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppsController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ParametersController;
 use App\Http\Controllers\PlantController;
 
 /*
@@ -51,30 +52,18 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'],function(){
     });
     /* Route Apps */
 
-    /* Route Authentication Pages */
-    Route::group(['prefix' => 'auth'], function () {
-        Route::get('login-basic', [AuthenticationController::class, 'login_basic'])->name('auth-login-basic');
-        Route::get('login-cover', [AuthenticationController::class, 'login_cover'])->name('auth-login-cover');
-        Route::get('register-basic', [AuthenticationController::class, 'register_basic'])->name('auth-register-basic');
-        Route::get('register-cover', [AuthenticationController::class, 'register_cover'])->name('auth-register-cover');
-        Route::get('forgot-password-basic', [AuthenticationController::class, 'forgot_password_basic'])->name('auth-forgot-password-basic');
-        Route::get('forgot-password-cover', [AuthenticationController::class, 'forgot_password_cover'])->name('auth-forgot-password-cover');
-        Route::get('reset-password-basic', [AuthenticationController::class, 'reset_password_basic'])->name('auth-reset-password-basic');
-        Route::get('reset-password-cover', [AuthenticationController::class, 'reset_password_cover'])->name('auth-reset-password-cover');
-        Route::get('verify-email-basic', [AuthenticationController::class, 'verify_email_basic'])->name('auth-verify-email-basic');
-        Route::get('verify-email-cover', [AuthenticationController::class, 'verify_email_cover'])->name('auth-verify-email-cover');
-        Route::get('two-steps-basic', [AuthenticationController::class, 'two_steps_basic'])->name('auth-two-steps-basic');
-        Route::get('two-steps-cover', [AuthenticationController::class, 'two_steps_cover'])->name('auth-two-steps-cover');
-        Route::get('register-multisteps', [AuthenticationController::class, 'register_multi_steps'])->name('auth-register-multisteps');
-        Route::get('lock-screen', [AuthenticationController::class, 'lock_screen'])->name('auth-lock_screen');
-    });
-    /* Route Authentication Pages */
-
     /* Route Operation */
     Route::group(['prefix' => 'operation'], function () {
         Route::resource('plants', PlantController::class);
     });
     /* Route Operation */
+
+    /* Route Parameters */
+    Route::group(['prefix' => 'operation'], function () {
+        Route::get('parameters/{id}/create', [ParametersController::class, 'create'])->name('parameters.create');
+        Route::resource('parameters', ParametersController::class)->except('index', 'create');
+    });
+    /* Route Parameters */
 
     // locale Route
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
