@@ -30,7 +30,7 @@ class PlantController extends Controller
     {
         $plants = Plant::all();
 
-        return view('content.plants.index', compact('plants'));
+        return view('content.operations.plants.index', compact('plants'));
     }
 
     /**
@@ -51,7 +51,7 @@ class PlantController extends Controller
         $membranesActiveArea = MembraneActiveArea::all();
         $companies = Company::all();
 
-        return view('content.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'billings', 'membranesActiveArea', 'companies'));
+        return view('content.operations.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'billings', 'membranesActiveArea', 'companies'));
     }
 
     /**
