@@ -186,8 +186,8 @@ class PlantRequest extends FormRequest
                 'integer'
             ],
             'trains.mArea.*' => [
-              'required',
-              'integer'
+                'required',
+                'integer'
             ],
             'trains.mElements.*' => [
                 'required',

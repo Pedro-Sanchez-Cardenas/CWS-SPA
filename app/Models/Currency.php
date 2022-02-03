@@ -22,7 +22,8 @@ class Currency extends Model
     ];
 
     // Relations
-    public function country(){
+    public function country()
+    {
         return $this->hasOne(Country::class, 'currency_id', 'id');
     }
 }

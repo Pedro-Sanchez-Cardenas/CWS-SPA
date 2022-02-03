@@ -15,7 +15,7 @@ class AddTdsToTrains extends Migration
     public function up()
     {
         Schema::table('trains', function (Blueprint $table) {
-            $table->addColumn('double','tds')->after('polish_filters_quantity')->nullable();
+            $table->addColumn('double', 'tds')->after('polish_filters_quantity')->nullable();
         });
     }
 

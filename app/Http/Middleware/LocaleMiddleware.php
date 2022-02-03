@@ -16,11 +16,11 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-         // available language in template array
-        $availLocale=['en'=>'en', 'es'=>'es'];
+        // available language in template array
+        $availLocale = ['en' => 'en', 'es' => 'es'];
 
-         // Locale is enabled and allowed to be change
-        if(session()->has('locale') && array_key_exists(session()->get('locale'),$availLocale)){
+        // Locale is enabled and allowed to be change
+        if (session()->has('locale') && array_key_exists(session()->get('locale'), $availLocale)) {
             // Set the Laravel locale
             app()->setLocale(session()->get('locale'));
         }

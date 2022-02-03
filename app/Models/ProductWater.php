@@ -31,19 +31,23 @@ class ProductWater extends Model
         'user_updated_at'
     ];
 
-    public function plant(){
+    public function plant()
+    {
         return $this->belongsTo(Plant::class, 'id', 'plants_id');
     }
 
-    public function assignedBy(){
+    public function assignedBy()
+    {
         return $this->hasOne(User::class, 'id', 'user_created_at');
     }
 
-    public function readings(){
+    public function readings()
+    {
         return $this->hasMany(ProductionReading::class, 'product_waters_id', 'id');
     }
 
-    public function chemical(){
+    public function chemical()
+    {
         return $this->hasOne(Chemical::class, 'product_waters_id', 'id');
     }
 }

@@ -21,11 +21,11 @@ use Illuminate\Support\Facades\DB;
 
 class ParametersController extends Controller
 {
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('role:Super-Admin|Operations-Manager|Administrative-Manager|Manager|Operator', ['only' => ['index', 'create', 'store', 'show']]);
         $this->middleware('role:Super-Admin|Operations-Manager', ['only' => ['edit', 'update', 'destroy']]);
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -33,10 +33,16 @@ class ParametersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     /**
-      *  Esta funcion fue deshabilitada ya que se mejoró la vista de plantas index con el fin de mantener la practisidad.
-    */
-    public function index()
+    /**
+     *  Esta funcion fue deshabilitada ya que se mejoró la vista de plantas index con el fin de mantener la practisidad.
+     */
+
+    /*********************************************************
+     * Posible eliminación del sistema ya que no hay un uso fundamental en el sistema por el momento
+     *********************************************************
+     */
+
+    /*public function index()
     {
         if ((auth()->user()->getRoleNames()[0] == 'Super-Admin') || (auth()->user()->getRoleNames()[0] == 'Director') || (auth()->user()->getRoleNames()[0] == 'Operations-Manager') || (auth()->user()->getRoleNames()[0] == 'Administrative-Manager')) {
 
@@ -51,8 +57,8 @@ class ParametersController extends Controller
             $plants = Plant::where('attendant', Auth::id())->get();
 
         }
-        return view('parameters.index', compact('plants'));
-    }
+        return view('content.operations.parameters.index');
+    }*/
 
     /**
      * Show the form for creating a new resource.
@@ -73,8 +79,7 @@ class ParametersController extends Controller
             }
         } else {
 
-            return view('parameters.create', compact('plant', 'typeUser'));
-
+            return view('content.operations.parameters.create', compact('plant', 'typeUser'));
         }
     }
 
@@ -94,7 +99,7 @@ class ParametersController extends Controller
                 $plant = Plant::find($request->plant_id);
 
                 $contadorM = 0;
-                foreach($trains as $tr => $train){
+                foreach ($trains as $tr => $train) {
                     Pretreatment::create([
                         'plants_id' => $request->plant_id,
                         'trains_id' => $train->id,
@@ -109,7 +114,7 @@ class ParametersController extends Controller
 
                     $pretreatment = Pretreatment::latest('id')->first();
 
-                    for($mf = 0; $mf < $train->multimedia_filter_quantity; $mf++){
+                    for ($mf = 0; $mf < $train->multimedia_filter_quantity; $mf++) {
                         MultimediaFilter::create([
                             'pretreatments_id' => $pretreatment->id,
                             'trains_id' => $train->id,
@@ -119,13 +124,13 @@ class ParametersController extends Controller
                         $contadorM++;
                     }
 
-                    for($pf = 0; $pf < $train->polish_filters_quantity; $pf++){
+                    for ($pf = 0; $pf < $train->polish_filters_quantity; $pf++) {
                         PolishFilter::create([
                             'pretreatments_id' => $pretreatment->id,
                             'trains_id' => $train->id,
                             'in' => $request->pf['in'][$tr],
                             'out' => $request->pf['out'][$tr],
-                            'filter_change' => $request->filtros[$pf] == 'yes'? Carbon::now()->toDateTimeString() : null
+                            'filter_change' => $request->filtros[$pf] == 'yes' ? Carbon::now()->toDateTimeString() : null
                         ]);
                     }
 
@@ -151,7 +156,7 @@ class ParametersController extends Controller
 
                     $operation = Operation::latest('id')->first();
 
-                    for($bo = 0; $bo < $train->booster_quantity; $bo++){
+                    for ($bo = 0; $bo < $train->booster_quantity; $bo++) {
                         Booster::create([
                             'operations_id' => $operation->id,
                             'trains_id' => $train->id,
@@ -178,24 +183,24 @@ class ParametersController extends Controller
 
                 $product_water = ProductWater::latest('id')->first();
 
-                if($request->typeUser == 'Operator'){
-                    foreach($trains as $tr => $train){
+                if ($request->typeUser == 'Operator') {
+                    foreach ($trains as $tr => $train) {
                         ProductionReading::where('product_waters_id', null)->update([
                             'product_waters_id' => $product_water->id,
                         ]);
                     }
-                }else{
-                    foreach($request->reading as $tr => $train){
+                } else {
+                    foreach ($request->reading as $tr => $train) {
                         ProductionReading::create([
                             'product_waters_id' => $product_water->id,
                             'trains_id' => $trains[$tr]->id,
                             'reading' => $request->reading[$tr],
                             'production' => $trains[$tr]->productRea->last() != null ? ($request->reading[$tr] - $trains[$tr]->productRea->first()->reading) : $request->reading[$tr],
-                            'type' => 'Train #' . ($tr+1)
+                            'type' => 'Train #' . ($tr + 1)
                         ]);
                     }
 
-                    if($plant->irrigation == 'yes'){
+                    if ($plant->irrigation == 'yes') {
                         /**
                          * Irrigation
                          */
@@ -232,7 +237,7 @@ class ParametersController extends Controller
                     'kl2' => $request->kl2
                 ]);
 
-                for($t = 0; $t < $plant->cisterns_quantity; $t++){
+                for ($t = 0; $t < $plant->cisterns_quantity; $t++) {
                     Cistern::create([
                         'product_waters_id' => $product_water->id,
                         'plants_id' => $request->plant_id,

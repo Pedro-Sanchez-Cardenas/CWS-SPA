@@ -22,29 +22,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole(['Super-Admin', 'Director'])){
+        if (Auth::user()->hasRole(['Super-Admin', 'Director'])) {
 
             $users = User::role(['Operator', 'Manager'])->count();
             $plants = Plant::all()->count();
 
             return view('dashboards.direction', compact('users', 'plants'));
-
-        } else if(Auth::user()->hasRole(['Operations-Manager'])){
+        } else if (Auth::user()->hasRole(['Operations-Manager'])) {
 
             return view('dashboards.operations_manager');
-
         } else if (Auth::user()->hasRole(['Manager'])) {
 
             return view('dashboards.manager');
-
         } else if (Auth::user()->hasRole(['Administrative-Manager'])) {
 
             return view('dashboards.administrative_manager');
-
-        } else if((Auth::user()->hasRole(['Manager'])) ){
+        } else if ((Auth::user()->hasRole(['Manager']))) {
 
             return view('dashboards.manager');
-
         } else if (Auth::user()->hasRole(['Operator'])) {
             $asistencia = UserAssistance::where('user_id', Auth::id())->whereDate('created_at', Carbon::now()->toDateString())->get();
 
@@ -57,7 +52,6 @@ class DashboardController extends Controller
             $plant = Plant::where('attendant', Auth::id())->get()->first();
 
             return view('dashboards.operator', compact('plant', 'asis'));
-
         }
     }
 
@@ -94,7 +88,7 @@ class DashboardController extends Controller
                         'trains_id' => $plant->trains[$ite]->id,
                         'reading' => $request->reading[$ite],
                         'production' => $plant->trains[$ite]->productRea->first() != null ? ($request->reading[$ite] - $plant->trains[$ite]->productRea->first()->reading) : $request->reading[$ite],
-                        'type' => 'Train #' . ($ite+1)
+                        'type' => 'Train #' . ($ite + 1)
                     ]);
                 }
 

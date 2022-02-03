@@ -14,7 +14,7 @@ class AddMultimediaFilterQuantityToTrains extends Migration
     public function up()
     {
         Schema::table('trains', function (Blueprint $table) {
-            $table->addColumn('integer','multimedia_filter_quantity')->after('capacity')->nullable();
+            $table->addColumn('integer', 'multimedia_filter_quantity')->after('capacity')->nullable();
         });
     }
 

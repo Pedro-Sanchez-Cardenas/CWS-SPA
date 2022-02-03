@@ -14,8 +14,8 @@ class AddFrecuenciesToPretreatmentsTable extends Migration
     public function up()
     {
         Schema::table('pretreatments', function (Blueprint $table) {
-            $table->addColumn('double','frecuencies_well_pump')->after('feed_pump')->nullable();
-            $table->addColumn('double','frecuencies_feed_pump')->after('frecuencies_well_pump')->nullable();
+            $table->addColumn('double', 'frecuencies_well_pump')->after('feed_pump')->nullable();
+            $table->addColumn('double', 'frecuencies_feed_pump')->after('frecuencies_well_pump')->nullable();
         });
     }
 

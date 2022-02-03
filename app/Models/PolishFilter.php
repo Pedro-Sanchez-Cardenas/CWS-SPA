@@ -22,7 +22,8 @@ class PolishFilter extends Model
         'filter_change',
     ];
 
-    public function pretreatment(){
+    public function pretreatment()
+    {
         return $this->belongsTo(Pretreatment::class, 'id', 'pretreatments_id');
     }
 }

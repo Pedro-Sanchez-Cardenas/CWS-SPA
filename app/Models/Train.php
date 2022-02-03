@@ -31,27 +31,33 @@ class Train extends Model
         'user_updated_at'
     ];
 
-    public function plant() {
+    public function plant()
+    {
         return $this->belongsTo(Plant::class, 'plants_id', 'id');
     }
 
-    public function polish_filters_type(){
+    public function polish_filters_type()
+    {
         return $this->hasOne(PolishFilterType::class, 'id', 'polish_filters_types_id');
     }
 
-    public function multimediaFilters(){
+    public function multimediaFilters()
+    {
         return $this->hasMany(MultimediaFilter::class, 'trains_id', 'id');
     }
 
-    public function pretreatments(){
+    public function pretreatments()
+    {
         return $this->hasMany(Pretreatment::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
     }
 
-    public function operations(){
+    public function operations()
+    {
         return $this->hasMany(Operation::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
     }
 
-    public function productRea(){
+    public function productRea()
+    {
         return $this->hasMany(ProductionReading::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
     }
 }

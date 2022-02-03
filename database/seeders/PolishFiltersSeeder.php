@@ -15,7 +15,7 @@ class PolishFiltersSeeder extends Seeder
     public function run()
     {
         // Cartridge
-        for($i = 1; $i<6; $i++){
+        for ($i = 1; $i < 6; $i++) {
             PolishFilterType::create([
                 'type_name' => 'Cartridge',
                 'microns' => $i,
@@ -24,7 +24,7 @@ class PolishFiltersSeeder extends Seeder
         }
 
         // Bags
-        for($j = 1; $j<6; $j++){
+        for ($j = 1; $j < 6; $j++) {
             PolishFilterType::create([
                 'type_name' => 'Bags',
                 'microns' => $j,

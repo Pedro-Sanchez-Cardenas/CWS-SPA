@@ -15,7 +15,7 @@ class AddPolishFiltersToTrains extends Migration
     {
         Schema::table('trains', function (Blueprint $table) {
             $table->foreignId('polish_filters_types_id')->after('multimedia_filter_quantity')->nullable()->constrained('polish_filter_types');
-            $table->addColumn('integer','polish_filters_quantity')->after('polish_filters_types_id')->nullable();
+            $table->addColumn('integer', 'polish_filters_quantity')->after('polish_filters_types_id')->nullable();
         });
     }
 

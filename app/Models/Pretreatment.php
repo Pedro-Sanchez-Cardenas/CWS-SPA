@@ -31,19 +31,23 @@ class Pretreatment extends Model
         'user_updated_at' // nullable
     ];
 
-    public function trains(){
+    public function trains()
+    {
         return $this->belongsTo(Train::class, 'id', 'trains_id');
     }
 
-    public function assignedBy(){
+    public function assignedBy()
+    {
         return $this->hasOne(User::class, 'id', 'user_created_at');
     }
 
-    public function multimedias(){
+    public function multimedias()
+    {
         return $this->hasMany(MultimediaFilter::class, 'pretreatments_id', 'id');
     }
 
-    public function polish(){
+    public function polish()
+    {
         return $this->hasMany(PolishFilter::class, 'pretreatments_id', 'id');
     }
 }

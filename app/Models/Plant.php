@@ -53,35 +53,43 @@ class Plant extends Model
         return $this->hasOne(User::class, 'id', 'manager');
     }
 
-    public function trains(){
+    public function trains()
+    {
         return $this->hasMany(Train::class, 'plants_id', 'id');
     }
 
-    public function currency(){
+    public function currency()
+    {
         return $this->belongsTo(Currency::class, 'currencies_id', 'id');
     }
 
-    public function country(){
+    public function country()
+    {
         return $this->belongsTo(Country::class, 'countries_id', 'id');
     }
 
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class, 'companies_id', 'id');
     }
 
-    public function pretreatments(){
+    public function pretreatments()
+    {
         return $this->hasMany(Pretreatment::class, 'plants_id', 'id');
     }
 
-    public function operations(){
+    public function operations()
+    {
         return $this->hasMany(Operation::class, 'plants_id', 'id');
     }
 
-    public function productWaters(){
+    public function productWaters()
+    {
         return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
     }
 
-    public function contract(){
+    public function contract()
+    {
         return $this->hasOne(PlantContract::class, 'plants_id', 'id');
     }
 }

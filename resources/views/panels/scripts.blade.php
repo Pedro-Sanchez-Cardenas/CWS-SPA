@@ -2,7 +2,7 @@
 <script src="{{ asset(mix('vendors/js/vendors.min.js')) }}"></script>
 <!-- BEGIN Vendor JS-->
 <!-- BEGIN: Page Vendor JS-->
-<script src="{{asset(mix('vendors/js/ui/jquery.sticky.js'))}}"></script>
+<script src="{{ asset(mix('vendors/js/ui/jquery.sticky.js')) }}"></script>
 @yield('vendor-script')
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->
@@ -15,8 +15,8 @@
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/cfddfaee26.js" crossorigin="anonymous"></script>
 
-@if($configData['blankPage'] === false)
-<script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
+@if ($configData['blankPage'] === false)
+    <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
 @endif
 <!-- END: Theme JS-->
 <!-- BEGIN: Page JS-->

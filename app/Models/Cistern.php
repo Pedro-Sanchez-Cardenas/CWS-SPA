@@ -23,7 +23,8 @@ class Cistern extends Model
         'status'
     ];
 
-    public function plant(){
+    public function plant()
+    {
         return $this->belongsTo(Plant::class, 'id', 'plants_id');
     }
 }

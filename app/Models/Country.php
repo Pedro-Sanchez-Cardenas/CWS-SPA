@@ -21,11 +21,13 @@ class Country extends Model
     ];
 
     // Relations
-    public function currency(){
+    public function currency()
+    {
         return $this->hasOne(Currency::class, 'id', 'currencies_id');
     }
 
-    public function plants(){
+    public function plants()
+    {
         return $this->hasMany(Plant::class, 'country_id', 'id');
     }
 }

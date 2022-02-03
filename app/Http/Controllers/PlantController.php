@@ -52,7 +52,6 @@ class PlantController extends Controller
         $companies = Company::all();
 
         return view('content.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'billings', 'membranesActiveArea', 'companies'));
-
     }
 
     /**
@@ -134,7 +133,7 @@ class PlantController extends Controller
                 }
 
                 // Add Irrigation train
-                if($request->riego){
+                if ($request->riego) {
                     Train::create([
                         'plants_id' => $plantId->id,
                         //'capacity' => $train,
@@ -223,7 +222,7 @@ class PlantController extends Controller
             'user_created_at' => auth()->user()->id
         ]);
 
-        foreach($request->trains as $iteration) {
+        foreach ($request->trains as $iteration) {
             Train::where('id', $id)->update([
                 'plant_id' => $id,
                 'capacity' => $iteration,

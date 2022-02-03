@@ -42,15 +42,18 @@ class Operation extends Model
         'user_updated_at'
     ];
 
-    public function train(){
+    public function train()
+    {
         return $this->belongsTo(Train::class, 'id', 'trains_id');
     }
 
-    public function assignedBy(){
+    public function assignedBy()
+    {
         return $this->hasOne(User::class, 'id', 'user_created_at');
     }
 
-    public function boos(){
+    public function boos()
+    {
         return $this->hasMany(Booster::class, 'operations_id', 'id');
     }
 }

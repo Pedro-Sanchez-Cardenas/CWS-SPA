@@ -16,7 +16,6 @@ class Chemical extends Model
      */
     protected $fillable = [
         'product_waters_id',
-
         'calciumChloride',
         'sodiumCarbonate',
         'sodiumHypochlorite',
@@ -27,7 +26,8 @@ class Chemical extends Model
         'kl2'
     ];
 
-    public function productWater(){
+    public function productWater()
+    {
         return $this->belongsTo(ProductWater::class, 'id', 'product_waters_id');
     }
 }

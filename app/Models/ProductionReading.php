@@ -22,7 +22,8 @@ class ProductionReading extends Model
         'type'
     ];
 
-    public function train(){
+    public function train()
+    {
         return $this->belongsTo(Train::class, 'id', 'trains_id');
     }
 }

@@ -33,3 +33,4 @@ class CreateCisternsTable extends Migration
         Schema::dropIfExists('cisterns');
     }
 }
+‰
