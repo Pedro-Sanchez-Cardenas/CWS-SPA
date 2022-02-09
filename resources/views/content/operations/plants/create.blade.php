@@ -6,7 +6,7 @@
 
     * Update Author: --------
     * Update Start Date: -------
-    * Update Finish Date: -------
+    * Update Finish Date: 8 de febrero del 2021
 
     * Description: --------
     ******************************************************************
@@ -17,20 +17,22 @@
 
 @section('vendor-style')
     <!-- vendor css files -->
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
 @endsection
 
 @section('page-style')
     <!-- Page css files -->
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
 @endsection
 
 @section('content')
-    <!-- Dashboard Analytics Start -->
-    <section id="createPlant">
-        <!-- Example of a form that Dropzone can take over -->
-
-        <!-- Example of a form that Dropzone can take over -->
-
-        <form>
+    <form>
+        <section id="createPlant">
+            <!-- single file upload starts -->
             <div class="row">
                 <div class="col-md-6">
                     <label for="plantName" class="form-label">Plant name</label>
@@ -43,8 +45,8 @@
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" name="plantName" placeholder="Plant Name..." aria-label="Plant Name..."
-                            aria-describedby="plantNameicon">
+                        <input type="text" class="form-control" name="plantName" placeholder="Plant Name..."
+                            aria-label="Plant Name..." aria-describedby="plantNameicon">
                     </div>
                 </div>
 
@@ -178,8 +180,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3 col-sm-6 col-12 mb-2 mb-md-0">
+                                <div class="col-md-12 col-sm-6 col-12 mb-2 mb-md-0">
                                     <div class="d-flex flex-row">
+                                        <p>The fields can be left empty, but it is necesary that they exist to add the
+                                            number of thaks.</p>
                                     </div>
                                 </div>
 
@@ -203,7 +207,7 @@
 
                                 <div class="col-md">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <label>Irrigation: </label>
+                                        <label>Well pump: </label>
                                         <div class="form-check form-check-primary form-switch">
                                             <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
                                         </div>
@@ -212,7 +216,7 @@
 
                                 <div class="col-md">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <label>Irrigation: </label>
+                                        <label>Feed pump: </label>
                                         <div class="form-check form-check-primary form-switch">
                                             <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
                                         </div>
@@ -221,7 +225,7 @@
 
                                 <div class="col-md">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <label>Irrigation: </label>
+                                        <label>SDI: </label>
                                         <div class="form-check form-check-primary form-switch">
                                             <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
                                         </div>
@@ -230,31 +234,433 @@
 
                                 <div class="col-md">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <label>Irrigation: </label>
+                                        <label>Chloride: </label>
                                         <div class="form-check form-check-primary form-switch">
                                             <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
                                         </div>
                                     </div>
+                                </div>
+
+                                <br><br>
+                                <p>Remember that in this section, you will be able to customise the way in awhich the
+                                    operator of this new piant will display the form to add parameters .</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Costs</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-1 row">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">BOT (M3)</label>
+                                <div class="col-md">
+                                    <!-- Custom checkbox -->
+                                    <div class="input-group input-group-merge mb-2">
+                                        <span class="input-group-text">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                    id="colorRadio1">
+                                                <label class="form-check-label" for="colorRadio1"></label>
+                                            </div>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="0.00"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">USD/M3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1 row">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">BOT (Fixed)</label>
+                                <div class="col-md">
+                                    <!-- Custom checkbox -->
+                                    <div class="input-group input-group-merge mb-2">
+                                        <span class="input-group-text">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                    id="colorRadio1">
+                                                <label class="form-check-label" for="colorRadio1"></label>
+                                            </div>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="0.00"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">USD/Month</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1 row">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">O&M (m3)</label>
+                                <div class="col-md">
+                                    <!-- Custom checkbox -->
+                                    <div class="input-group input-group-merge mb-2">
+                                        <span class="input-group-text">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                    id="colorRadio1">
+                                                <label class="form-check-label" for="colorRadio1"></label>
+                                            </div>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="0.00"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">USD/M3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1 row">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">O&M (Fixed)</label>
+                                <div class="col-md">
+                                    <!-- Custom checkbox -->
+                                    <div class="input-group input-group-merge mb-2">
+                                        <span class="input-group-text">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                    id="colorRadio1">
+                                                <label class="form-check-label" for="colorRadio1"></label>
+                                            </div>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="0.00"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">USD/Month</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1 row">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">Remineralisation (m3)</label>
+                                <div class="col-md">
+                                    <!-- Custom checkbox -->
+                                    <div class="input-group input-group-merge mb-2">
+                                        <span class="input-group-text">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                    id="colorRadio1">
+                                                <label class="form-check-label" for="colorRadio1"></label>
+                                            </div>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="0.00"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">USD/M3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-6">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-1 row">
+
+                            <div class="col-md-12">
+                                <label for="validationDefault04" class="form-label">Years of contract</label>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon-search1"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                            <path
+                                                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                            <path
+                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>
+                                    </span>
+                                    <select class="form-select" id="basicSelect">
+                                        <option value="">SELECT YEARS</option>
+                                        @foreach ($plantTypes as $type)
+                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-1">
+                                    <label class="form-label" for="fp-default">From</label>
+                                    <input type="text" id="fp-default" class="form-control flatpickr-basic"
+                                        placeholder="YYYY-MM-DD" />
+                                </div>
+
+                                <div class="col-md-6 mb-1">
+                                    <label class="form-label" for="fp-default">Till</label>
+                                    <input type="text" id="fp-default" class="form-control flatpickr-basic"
+                                        placeholder="YYYY-MM-DD" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="validationDefault04" class="form-label">Billing Day</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addon-search1"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                                <path
+                                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                            </svg>
+                                        </span>
+                                        <select class="form-select" id="basicSelect">
+                                            <option value="">SELECT TYPE</option>
+                                            @foreach ($plantTypes as $type)
+                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDefault04" class="form-label">Billing period</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addon-search1"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                                <path
+                                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                            </svg>
+                                        </span>
+                                        <select class="form-select" id="basicSelect">
+                                            <option value="">SELECT TYPE</option>
+                                            @foreach ($plantTypes as $type)
+                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="validationDefault04" class="form-label">Minimum Consumption</label>
+                                    <div class="input-group input-group-merge mb-2">
+                                        <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                height="16" fill="currentColor" class="bi bi-wallet" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
+                                            </svg></span>
+                                        <input type="text" class="form-control" placeholder="0.00"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <span class="input-group-text">M3/MONTH</span>
+                                    </div>
+                                    <label>*This field can be left empty</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="#" class="dropzone dropzone-area" id="dpz-multiple-files">
+
+                                </form>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Single File Upload</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="#" class="dropzone dropzone-area" id="dpz-single-file">
+                                            <div class="dz-message">Drop files here or click to upload.</div>
+                                        </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </section>
+        </section>
 
+        <section class="form-control-repeater">
+            <div class="row">
+                <!-- Invoice repeater -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Train #1</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="#" class="invoice-repeater">
+                                <div data-repeater-list="invoice">
+                                    <div data-repeater-item>
+                                        <div class="row d-flex align-items-end">
+                                            <div class="row">
+                                                <div class="col-md">
+                                                    <label for="validationDefault04"
+                                                        class="form-label">Capacity</label>
+                                                    <div class="input-group input-group-merge mb-2">
+                                                        <span class="input-group-text"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-window"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                                                                <path
+                                                                    d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1H2z" />
+                                                            </svg></span>
+                                                        <input type="text" class="form-control" placeholder="0.00"
+                                                            aria-label="Amount (to the nearest dollar)">
+                                                    </div>
+                                                </div>
 
+                                                <div class="col-md">
+                                                    <label for="validationDefault04" class="form-label">TDS</label>
+                                                    <div class="input-group input-group-merge mb-2">
+                                                        <span class="input-group-text"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-wallet"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
+                                                            </svg></span>
+                                                        <input type="text" class="form-control" placeholder="0.00"
+                                                            aria-label="Amount (to the nearest dollar)">
+                                                        <span class="input-group-text">ppm</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md">
+                                                    <label for="validationDefault04" class="form-label">Booster &
+                                                        PX</label>
+                                                    <div class="input-group mb-2">
+                                                        <span class="input-group-text" id="basic-addon-search1"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-speedometer"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z" />
+                                                                <path fill-rule="evenodd"
+                                                                    d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z" />
+                                                            </svg>
+                                                        </span>
+                                                        <select class="form-select" id="basicSelect">
+                                                            <option value="">0</option>
+                                                            @foreach ($plantTypes as $type)
+                                                                <option value="{{ $type->id }}">{{ $type->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <label for="validationDefault04" class="form-label">Multimedia
+                                                    Filsters</label>
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text" id="basic-addon-search1"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                                        </svg>
+                                                    </span>
+                                                    <select class="form-select" id="basicSelect">
+                                                        <option value="">SELECT</option>
+                                                        @foreach ($plantTypes as $type)
+                                                            <option value="{{ $type->id }}">{{ $type->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <label for="validationDefault04" class="form-label">Polish Filters
+                                                    Type</label>
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text" id="basic-addon-search1"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                                                        </svg>
+                                                    </span>
+                                                    <select class="form-select" id="basicSelect">
+                                                        <option value="">SELECT TYPE</option>
+                                                        @foreach ($plantTypes as $type)
+                                                            <option value="{{ $type->id }}">{{ $type->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <label for="validationDefault04" class="form-label">Polish Filters
+                                                    quantity</label>
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text" id="basic-addon-search1"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                                        </svg>
+                                                    </span>
+                                                    <select class="form-select" id="basicSelect">
+                                                        <option value="">SELECT QUANTITY</option>
+                                                        @foreach ($plantTypes as $type)
+                                                            <option value="{{ $type->id }}">{{ $type->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
 
-    <!-- Dashboard Analytics end -->
+                                            <div class="col-md-2 col-12 mb-50">
+                                                <div class="mb-1">
+                                                    <button class="btn btn-outline-danger text-nowrap px-1"
+                                                        data-repeater-delete type="button">
+                                                        <i data-feather="x" class="me-25"></i>
+                                                        <span>Delete</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
+                                            <i data-feather="plus" class="me-25"></i>
+                                            <span>Add Train</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success col-12 waves-effect waves-float waves-light">
+                        CREATE PLANT
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- /Invoice repeater -->
+        </section>
+    </form>
 @endsection
 
 @section('vendor-script')
     <!-- vendor files -->
-
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/file-uploaders/dropzone.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
     <!-- Page js files -->
-
+    <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/form-file-uploader.js')) }}"></script>
 @endsection
