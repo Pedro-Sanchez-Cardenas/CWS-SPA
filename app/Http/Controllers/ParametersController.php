@@ -266,7 +266,7 @@ class ParametersController extends Controller
         $pMax = Train::where('plants_id', $id)->max('polish_filters_quantity');
         $booster = Train::where('plants_id', $id)->max('booster_quantity');
 
-        return view('parameters.show', compact('plant', 'mMax', 'pMax', 'booster'));
+        return view('content.operations.parameters.show', compact('plant', 'mMax', 'pMax', 'booster'));
     }
 
     /**
