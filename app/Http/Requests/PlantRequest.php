@@ -43,14 +43,14 @@ class PlantRequest extends FormRequest
                 'image',
                 'mimes:jpg,jpeg,png'
             ],
-            'name' => [
+            'plantName' => [
                 'required',
                 'string',
                 'min:1',
                 'max:300',
                 Rule::unique('plants', 'name')
             ],
-            'type' => [
+            'plantType' => [
                 'required',
                 'integer',
                 Rule::exists('plant_types', 'id')
@@ -66,22 +66,22 @@ class PlantRequest extends FormRequest
                 'integer',
                 Rule::exists('companies', 'id')
             ],
-            'country' => [
+            'plantCountry' => [
                 'required',
                 'integer',
                 Rule::exists('countries', 'id')
             ],
-            'currency' => [
+            'plantCorrency' => [
                 'required',
                 'integer',
                 Rule::exists('currencies', 'id')
             ],
-            'attendant' => [
+            'plantOperator' => [
                 'required',
                 'integer',
                 Rule::exists('users', 'id')
             ],
-            'manager' => [
+            'plantManager' => [
                 'required',
                 'integer',
                 Rule::exists('users', 'id')
@@ -112,27 +112,28 @@ class PlantRequest extends FormRequest
             ],
 
             // Plant Contract
-            'botm3' => [
+            'botM3' => [
                 'nullable',
                 'numeric'
             ],
-            'botfixed' => [
+            'botFixed' => [
                 'nullable',
                 'numeric'
             ],
-            'OMm3' => [
+            'o&mM3' => [
                 'nullable',
                 'numeric'
             ],
-            'OMfixed' => [
+            'o&mFixed' => [
                 'nullable',
                 'numeric'
             ],
-            'remineralisation' => [
+            'remineralisationM3' => [
                 'nullable',
                 'numeric'
             ],
-            'years' => [
+
+            'yearsOfContract' => [
                 'required',
                 'integer',
                 'between:1,16'
@@ -153,7 +154,7 @@ class PlantRequest extends FormRequest
                 'integer',
                 Rule::exists('billing_periods', 'id')
             ],
-            'minimun' => [
+            'minimumConsumption' => [
                 'nullable',
                 'numeric'
             ],
@@ -161,27 +162,27 @@ class PlantRequest extends FormRequest
 
             'trains' => 'required|min:1|array:capacity,tds,booster,mf,pft,pfq,mArea,mElements', // We validate the array
 
-            'trains.capacity.*' => [
+            'trainCapacity' => [
                 'required',
                 'integer'
             ],
-            'trains.tds.*' => [
+            'trainTds' => [
                 'required',
                 'integer'
             ],
-            'trains.booster.*' => [
+            'trainBooster' => [
                 'required',
                 'integer'
             ],
-            'trains.mf.*' => [
+            'multimediaFilsters' => [
                 'required',
                 'integer'
             ],
-            'trains.pft.*' => [
+            'polishFilters' => [
                 'required',
                 'integer'
             ],
-            'trains.pfq.*' => [
+            'polishQuantity' => [
                 'required',
                 'integer'
             ],
