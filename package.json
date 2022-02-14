@@ -8,8 +8,7 @@
     "production": "mix --production"
   },
   "dependencies": {
-    "bootstrap": "~5.1.0",
-    "dropzone": "^6.0.0-beta.2"
+    "bootstrap": "~5.1.0"
   },
   "devDependencies": {
     "axios": "^0.21",
