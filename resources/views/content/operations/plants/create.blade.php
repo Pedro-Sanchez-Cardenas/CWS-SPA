@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
+
 @endsection
 
 @section('content')
@@ -53,7 +54,7 @@
                 <div class="col-md-6">
                     <label for="validationDefault04" class="form-label">Location</label>
                     <div class="input-group mb-2">
-                        <span class="input-group-text" id="plantNameicon">
+                        <span class="input-group-text" id="Locationicon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-geo-alt" viewBox="0 0 16 16">
                                 <path
@@ -61,8 +62,8 @@
                                 <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Location..." aria-label="Location..."
-                            aria-describedby="plantNameicon">
+                        <input type="text" class="form-control" name="location" placeholder="Location..."
+                            aria-label="Location..." aria-describedby="Locationcon">
                     </div>
                 </div>
             </div>
@@ -80,7 +81,7 @@
                                     d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z" />
                             </svg>
                         </span>
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" name="plantType" id="basicSelect">
                             <option value="">SELECT TYPE</option>
                             @foreach ($plantTypes as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -100,10 +101,10 @@
                                     d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
                             </svg>
                         </span>
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" name="plantCountry" id="basicSelect">
                             <option value="">SELECT COUNTRY</option>
-                            @foreach ($plantTypes as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -119,10 +120,11 @@
                                     d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z" />
                             </svg>
                         </span>
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" name="plantCorrency" id="basicSelect">
                             <option value="">SELECT CORRENCY</option>
-                            @foreach ($plantTypes as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @foreach ($currencies as $currency)
+                                <option value="{{ $currency->id }}">{{ $currency->name }} -
+                                    {{ $currency->abbreviation }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -138,10 +140,10 @@
                                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg>
                         </span>
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" name="plantOperator" id="basicSelect">
                             <option value="">SELECT OPERATOR</option>
-                            @foreach ($plantTypes as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @foreach ($attendants as $attendant)
+                                <option value="{{ $attendant->id }}">{{ $attendant->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -157,10 +159,10 @@
                                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg>
                         </span>
-                        <select class="form-select" id="basicSelect">
+                        <select class="form-select" name="plantManager" id="basicSelect">
                             <option value="">SELECT MANAGER</option>
-                            @foreach ($plantTypes as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @foreach ($managers as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -200,7 +202,8 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <label>Irrigation: </label>
                                         <div class="form-check form-check-primary form-switch">
-                                            <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
+                                            <input type="checkbox" name="irrigation" class="form-check-input"
+                                                id="customSwitch3">
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +212,8 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <label>Well pump: </label>
                                         <div class="form-check form-check-primary form-switch">
-                                            <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
+                                            <input type="checkbox" name="wellPump" class="form-check-input"
+                                                id="customSwitch3">
                                         </div>
                                     </div>
                                 </div>
@@ -218,7 +222,8 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <label>Feed pump: </label>
                                         <div class="form-check form-check-primary form-switch">
-                                            <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
+                                            <input type="checkbox" name="feedPump" class="form-check-input"
+                                                id="customSwitch3">
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +232,7 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <label>SDI: </label>
                                         <div class="form-check form-check-primary form-switch">
-                                            <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
+                                            <input type="checkbox" name="sdi" class="form-check-input" id="customSwitch3">
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +241,8 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <label>Chloride: </label>
                                         <div class="form-check form-check-primary form-switch">
-                                            <input type="checkbox" checked="" class="form-check-input" id="customSwitch3">
+                                            <input type="checkbox" name="chloride" class="form-check-input"
+                                                id="customSwitch3">
                                         </div>
                                     </div>
                                 </div>
@@ -264,12 +270,11 @@
                                     <div class="input-group input-group-merge mb-2">
                                         <span class="input-group-text">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" name="customRadio"
-                                                    id="colorRadio1">
+                                                <input type="radio" name="botM3" class="form-check-input" id="colorRadio1">
                                                 <label class="form-check-label" for="colorRadio1"></label>
                                             </div>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00"
+                                        <input type="text" name="" class="form-control" placeholder="0.00"
                                             aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">USD/M3</span>
                                     </div>
@@ -282,12 +287,12 @@
                                     <div class="input-group input-group-merge mb-2">
                                         <span class="input-group-text">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                <input type="radio" name="botFixed" class="form-check-input"
                                                     id="colorRadio1">
                                                 <label class="form-check-label" for="colorRadio1"></label>
                                             </div>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00"
+                                        <input type="text" name="" class="form-control" placeholder="0.00"
                                             aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">USD/Month</span>
                                     </div>
@@ -300,12 +305,11 @@
                                     <div class="input-group input-group-merge mb-2">
                                         <span class="input-group-text">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" name="customRadio"
-                                                    id="colorRadio1">
+                                                <input type="radio" name="o&mM3" class="form-check-input" id="colorRadio1">
                                                 <label class="form-check-label" for="colorRadio1"></label>
                                             </div>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00"
+                                        <input type="text" name="" class="form-control" placeholder="0.00"
                                             aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">USD/M3</span>
                                     </div>
@@ -318,12 +322,12 @@
                                     <div class="input-group input-group-merge mb-2">
                                         <span class="input-group-text">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                <input type="radio" name="o&mFixed" class="form-check-input"
                                                     id="colorRadio1">
                                                 <label class="form-check-label" for="colorRadio1"></label>
                                             </div>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00"
+                                        <input type="text" name="" class="form-control" placeholder="0.00"
                                             aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">USD/Month</span>
                                     </div>
@@ -336,12 +340,12 @@
                                     <div class="input-group input-group-merge mb-2">
                                         <span class="input-group-text">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" name="customRadio"
+                                                <input type="radio" class="form-check-input" name="remineralisationM3"
                                                     id="colorRadio1">
                                                 <label class="form-check-label" for="colorRadio1"></label>
                                             </div>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="0.00"
+                                        <input type="text" name="" class="form-control" placeholder="0.00"
                                             aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">USD/M3</span>
                                     </div>
@@ -369,24 +373,24 @@
                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                         </svg>
                                     </span>
-                                    <select class="form-select" id="basicSelect">
+                                    <select class="form-select" name="yearsOfContract" id="basicSelect">
                                         <option value="">SELECT YEARS</option>
-                                        @foreach ($plantTypes as $type)
-                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                        @endforeach
+                                        @for ($i = 1; $i < 17; $i++)
+                                            <option valie="{{ $i }}">{{ $i }}</option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-1">
                                     <label class="form-label" for="fp-default">From</label>
-                                    <input type="text" id="fp-default" class="form-control flatpickr-basic"
+                                    <input type="text" id="fp-default" name="from" class="form-control flatpickr-basic"
                                         placeholder="YYYY-MM-DD" />
                                 </div>
 
                                 <div class="col-md-6 mb-1">
                                     <label class="form-label" for="fp-default">Till</label>
-                                    <input type="text" id="fp-default" class="form-control flatpickr-basic"
+                                    <input type="text" id="fp-default" name="till" class="form-control flatpickr-basic"
                                         placeholder="YYYY-MM-DD" />
                                 </div>
                             </div>
@@ -403,11 +407,11 @@
                                                     d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                             </svg>
                                         </span>
-                                        <select class="form-select" id="basicSelect">
-                                            <option value="">SELECT TYPE</option>
-                                            @foreach ($plantTypes as $type)
-                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                            @endforeach
+                                        <select class="form-select" id="basicSelect" name="billingDay">
+                                            <option value="">SELECT BILLING DAY</option>
+                                            @for ($i = 1; $i < 32; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>
@@ -423,11 +427,13 @@
                                                     d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                             </svg>
                                         </span>
-                                        <select class="form-select" id="basicSelect">
-                                            <option value="">SELECT TYPE</option>
-                                            @foreach ($plantTypes as $type)
-                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                            @endforeach
+                                        <select class="form-select" id="basicSelect" name="billingPeriod">
+                                            <option value="">SELECT BILLING PERIOD</option>
+                                            <option value="1">Monthly</option>
+                                            <option value="2">Bimonthly</option>
+                                            <option value="3">Quarterly</option>}
+                                            <option value="4">Biannual</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -440,7 +446,7 @@
                                                     d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
                                             </svg></span>
                                         <input type="text" class="form-control" placeholder="0.00"
-                                            aria-label="Amount (to the nearest dollar)">
+                                            name="minimumConsumption" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">M3/MONTH</span>
                                     </div>
                                     <label>*This field can be left empty</label>
@@ -449,201 +455,271 @@
                         </div>
                     </div>
                 </div>
+                <form action="#" class="dropzone dropzone-area" id="dpz-single-file">
+                    <div class="dz-message"></div>
+                </form>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Plant image</h4>
+                            </div>
                             <div class="card-body">
-                                <form action="#" class="dropzone dropzone-area" id="dpz-multiple-files">
-
+                                <form action="#" class="dropzone dropzone-area" id="dpz-single-file">
+                                    <div class="dz-message">Select image</div>
                                 </form>
                             </div>
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Single File Upload</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="#" class="dropzone dropzone-area" id="dpz-single-file">
-                                            <div class="dz-message">Drop files here or click to upload.</div>
-                                        </form>
-                                    </div>
-
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Handbook</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="#" class="dropzone dropzone-area" id="dpz-multiple-files">
+                                    <div class="dz-message">PDF up to 40MB.</div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                <section class="form-control-repeater">
+                    <div class="row">
+                        <!-- Invoice repeater -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Train #1</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="#" class="invoice-repeater">
+                                        <div data-repeater-list="invoice">
+                                            <div data-repeater-item>
+                                                <div class="row d-flex align-items-end">
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <label for="validationDefault04"
+                                                                class="form-label">Capacity</label>
+                                                            <div class="input-group input-group-merge mb-2">
+                                                                <span class="input-group-text"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-basket" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z" />
+                                                                    </svg></span>
+                                                                <input type="text" class="form-control"
+                                                                    name="trainCapacity" placeholder="0.00"
+                                                                    aria-label="Amount (to the nearest dollar)">
+                                                            </div>
+                                                        </div>
 
-        <section class="form-control-repeater">
-            <div class="row">
-                <!-- Invoice repeater -->
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Train #1</h4>
-                        </div>
-                        <div class="card-body">
-                            <form action="#" class="invoice-repeater">
-                                <div data-repeater-list="invoice">
-                                    <div data-repeater-item>
-                                        <div class="row d-flex align-items-end">
-                                            <div class="row">
-                                                <div class="col-md">
-                                                    <label for="validationDefault04"
-                                                        class="form-label">Capacity</label>
-                                                    <div class="input-group input-group-merge mb-2">
-                                                        <span class="input-group-text"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                fill="currentColor" class="bi bi-window"
-                                                                viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
-                                                                <path
-                                                                    d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1H2z" />
-                                                            </svg></span>
-                                                        <input type="text" class="form-control" placeholder="0.00"
-                                                            aria-label="Amount (to the nearest dollar)">
+                                                        <div class="col-md">
+                                                            <label for="validationDefault04"
+                                                                class="form-label">TDS</label>
+                                                            <div class="input-group input-group-merge mb-2">
+                                                                <span class="input-group-text"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-wallet" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
+                                                                    </svg></span>
+                                                                <input type="text" name="trainTds" class="form-control"
+                                                                    placeholder="0.00"
+                                                                    aria-label="Amount (to the nearest dollar)">
+                                                                <span class="input-group-text">ppm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md">
+                                                            <label for="validationDefault04" class="form-label">Booster
+                                                                &
+                                                                PX</label>
+                                                            <div class="input-group mb-2">
+                                                                <span class="input-group-text"
+                                                                    id="basic-addon-search1"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-speedometer" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z" />
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z" />
+                                                                    </svg>
+                                                                </span>
+                                                                <select class="form-select" id="basicSelect"
+                                                                    name="trainBooster">
+                                                                    <option value="">0</option>
+                                                                    @for ($i = 1; $i < 7; $i++)
+                                                                        <option value="{{ $i }}">
+                                                                            {{ $i }}
+                                                                        </option>
+                                                                    @endfor
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for="validationDefault04"
+                                                                class="form-label">#Menbrane elements</label>
+                                                            <div class="input-group input-group-merge mb-2">
+                                                                <span class="input-group-text"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-boxes" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
+                                                                    </svg></span>
+                                                                <input type="text" class="form-control" name="meabrane"
+                                                                    placeholder="0.00"
+                                                                    aria-label="Amount (to the nearest dollar)">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="validationDefault04"
+                                                                class="form-label">Menbrane active area
+                                                            </label>
+                                                            <div class="input-group mb-2">
+                                                                <span class="input-group-text"
+                                                                    id="basic-addon-search1"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-bullseye" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                        <path
+                                                                            d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+                                                                        <path
+                                                                            d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+                                                                        <path
+                                                                            d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                                                    </svg>
+                                                                </span>
+                                                                <select class="form-select" id="basicSelect"
+                                                                    name="membranesActiveArea">
+                                                                    <option value="">SELECT TYPE</option>
+                                                                    @foreach ($membranesActiveArea as $ActiveArea)
+                                                                        <option value="{{ $ActiveArea->id }}">
+                                                                            {{ $ActiveArea->ft2 }} Ft2
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md">
+                                                        <label for="validationDefault04" class="form-label">Multimedia
+                                                            Filters</label>
+                                                        <div class="input-group mb-2">
+                                                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-list-ul"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                                                </svg>
+                                                            </span>
+                                                            <select class="form-select" id="basicSelect"
+                                                                name="multimediaFilsters">
+                                                                <option value="">SELECT</option>
+                                                                @for ($i = 1; $i < 7; $i++)
+                                                                    <option value="{{ $i }}">
+                                                                        {{ $i }}
+                                                                    </option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md">
+                                                        <label for="validationDefault04" class="form-label">Polish
+                                                            Filters
+                                                            Type</label>
+                                                        <div class="input-group mb-2">
+                                                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-list"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                                                                </svg>
+                                                            </span>
+                                                            <select class="form-select" id="basicSelect"
+                                                                name="polishFilters">
+                                                                <option value="">SELECT TYPE</option>
+                                                                @foreach ($polishFilterTypes as $PolishFilterType)
+                                                                    <option value="{{ $PolishFilterType->id }}">
+                                                                        {{ $PolishFilterType->microns }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md">
+                                                        <label for="validationDefault04" class="form-label">Polish
+                                                            Filters
+                                                            quantity</label>
+                                                        <div class="input-group mb-2">
+                                                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-list-ul"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                                                </svg>
+                                                            </span>
+                                                            <select class="form-select" id="basicSelect"
+                                                                name="polishQuantity">
+                                                                <option value="">SELECT QUANTITY</option>
+                                                                @for ($i = 1; $i < 7; $i++)
+                                                                    <option value="{{ $i }}">
+                                                                        {{ $i }}
+                                                                    </option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2 col-12 mb-50">
+                                                        <div class="mb-1">
+                                                            <button class="btn btn-outline-danger text-nowrap px-1"
+                                                                data-repeater-delete type="button">
+                                                                <i data-feather="x" class="me-25"></i>
+                                                                <span>Delete</span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md">
-                                                    <label for="validationDefault04" class="form-label">TDS</label>
-                                                    <div class="input-group input-group-merge mb-2">
-                                                        <span class="input-group-text"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                fill="currentColor" class="bi bi-wallet"
-                                                                viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
-                                                            </svg></span>
-                                                        <input type="text" class="form-control" placeholder="0.00"
-                                                            aria-label="Amount (to the nearest dollar)">
-                                                        <span class="input-group-text">ppm</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="validationDefault04" class="form-label">Booster &
-                                                        PX</label>
-                                                    <div class="input-group mb-2">
-                                                        <span class="input-group-text" id="basic-addon-search1"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                fill="currentColor" class="bi bi-speedometer"
-                                                                viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z" />
-                                                                <path fill-rule="evenodd"
-                                                                    d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z" />
-                                                            </svg>
-                                                        </span>
-                                                        <select class="form-select" id="basicSelect">
-                                                            <option value="">0</option>
-                                                            @foreach ($plantTypes as $type)
-                                                                <option value="{{ $type->id }}">{{ $type->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <label for="validationDefault04" class="form-label">Multimedia
-                                                    Filsters</label>
-                                                <div class="input-group mb-2">
-                                                    <span class="input-group-text" id="basic-addon-search1"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                                        </svg>
-                                                    </span>
-                                                    <select class="form-select" id="basicSelect">
-                                                        <option value="">SELECT</option>
-                                                        @foreach ($plantTypes as $type)
-                                                            <option value="{{ $type->id }}">{{ $type->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <label for="validationDefault04" class="form-label">Polish Filters
-                                                    Type</label>
-                                                <div class="input-group mb-2">
-                                                    <span class="input-group-text" id="basic-addon-search1"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                                                        </svg>
-                                                    </span>
-                                                    <select class="form-select" id="basicSelect">
-                                                        <option value="">SELECT TYPE</option>
-                                                        @foreach ($plantTypes as $type)
-                                                            <option value="{{ $type->id }}">{{ $type->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <label for="validationDefault04" class="form-label">Polish Filters
-                                                    quantity</label>
-                                                <div class="input-group mb-2">
-                                                    <span class="input-group-text" id="basic-addon-search1"><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                                        </svg>
-                                                    </span>
-                                                    <select class="form-select" id="basicSelect">
-                                                        <option value="">SELECT QUANTITY</option>
-                                                        @foreach ($plantTypes as $type)
-                                                            <option value="{{ $type->id }}">{{ $type->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2 col-12 mb-50">
-                                                <div class="mb-1">
-                                                    <button class="btn btn-outline-danger text-nowrap px-1"
-                                                        data-repeater-delete type="button">
-                                                        <i data-feather="x" class="me-25"></i>
-                                                        <span>Delete</span>
-                                                    </button>
-                                                </div>
+                                                <hr />
                                             </div>
                                         </div>
-                                        <hr />
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button class="btn btn-icon btn-primary" type="button"
+                                                    data-repeater-create>
+                                                    <i data-feather="plus" class="me-25"></i>
+                                                    <span>Add Train</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
-                                            <i data-feather="plus" class="me-25"></i>
-                                            <span>Add Train</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
+                            <button type="submit" class="btn btn-success col-12 waves-effect waves-float waves-light">
+                                CREATE PLANT
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success col-12 waves-effect waves-float waves-light">
-                        CREATE PLANT
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <!-- /Invoice repeater -->
-        </section>
+                    <!-- /Invoice repeater -->
+                </section>
     </form>
 @endsection
 
