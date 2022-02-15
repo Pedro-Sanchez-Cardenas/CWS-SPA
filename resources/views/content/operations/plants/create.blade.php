@@ -308,7 +308,7 @@
                                         </div>
                                     </span>
                                     <input type="number" @keyup="sumarM3()" disabled name="botM3" id="botM3"
-                                        class="form-control" placeholder="0.00"
+                                        class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/M3</span>
                                 </div>
@@ -327,7 +327,7 @@
                                         </div>
                                     </span>
                                     <input type="number" @keyup="sumarMonth()" disabled name="botFixed" id="botFixed"
-                                        class="form-control" placeholder="0.00"
+                                        class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/Month</span>
                                 </div>
@@ -346,7 +346,7 @@
                                         </div>
                                     </span>
                                     <input type="number" @keyup="sumarM3()" disabled name="o&mM3" id="o&mM3"
-                                        class="form-control" placeholder="0.00"
+                                        class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/M3</span>
                                 </div>
@@ -365,7 +365,7 @@
                                         </div>
                                     </span>
                                     <input type="number" @keyup="sumarMonth()" disabled name="o&mFixed" id="o&mFixed"
-                                        class="form-control" placeholder="0.00"
+                                        class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/Month</span>
                                 </div>
@@ -384,7 +384,7 @@
                                         </div>
                                     </span>
                                     <input type="number" @keyup="sumarM3()" disabled name="remi" id="remi"
-                                        class="form-control" placeholder="0.00"
+                                        class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/M3</span>
                                 </div>
@@ -817,12 +817,16 @@
                     }
                 },
                 add() {
-                    //Agregar nuevo form input
-                    this.cisterns.push({
-                        id: this.cantidad++,
-                        value: null,
-                        validation: null
-                    });
+                    if (this.cantidad < 10) {
+                        //Agregar nuevo form input
+                        this.cisterns.push({
+                            id: this.cantidad++,
+                            value: null,
+                            validation: null
+                        });
+                    } else {
+                        alert("No se puede agregar mas cisternas");
+                    }
                 },
                 remove(eliminarRegistro) {
                     if (this.cantidad > 0) {
