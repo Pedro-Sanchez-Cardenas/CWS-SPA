@@ -68,7 +68,8 @@
                                             <circle cx="11" cy="11" r="8"></circle>
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                         </svg></span>
-                                    <input type="text" class="form-control" wire:model="wellPump" placeholder="0.0 A">
+                                    <input type="number" class="form-control" wire:model="wellPump"
+                                        placeholder="0.0 A">
                                 </div>
                             </div>
                         @endif
@@ -85,7 +86,8 @@
                                             <circle cx="11" cy="11" r="8"></circle>
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                         </svg></span>
-                                    <input type="text" class="form-control" wire:model="feedPump" placeholder="0.0 A">
+                                    <input type="number" class="form-control" wire:model="feedPump"
+                                        placeholder="0.0 A">
                                 </div>
                             </div>
                         @endif
@@ -93,7 +95,7 @@
                 @endif
 
                 @if ($plant->well_pump == 'yes' || $plant->feed_pump == 'yes')
-                    <label class="h5">FREQUENCIES</label>
+                    <label class="h5 mt-1">FREQUENCIES</label>
                     <div class="row">
                         @if ($plant->well_pump == 'yes')
                             <div class="col-md-6">
@@ -107,7 +109,7 @@
                                             <circle cx="11" cy="11" r="8"></circle>
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                         </svg></span>
-                                    <input type="text" class="form-control" wire:model="wellPump"
+                                    <input type="number" class="form-control" wire:model="wellPump"
                                         placeholder="0.0 Hz">
                                 </div>
                             </div>
@@ -125,7 +127,7 @@
                                             <circle cx="11" cy="11" r="8"></circle>
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                         </svg></span>
-                                    <input type="text" class="form-control" wire:model="feedPump"
+                                    <input type="number" class="form-control" wire:model="feedPump"
                                         placeholder="0.0 Hz">
                                 </div>
                             </div>
@@ -133,7 +135,7 @@
                     </div>
                 @endif
 
-                <label class="h5">MULTIMEDIA FILTERS</label>
+                <label class="h5 mt-1">MULTIMEDIA FILTERS</label>
                 <template
                     x-for="(i in {{ $plant->trains->where('type', 'Train')->first()->multimedia_filter_quantity }}">
                     <div class="row">
@@ -147,7 +149,7 @@
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                     </svg></span>
-                                <input type="text" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
+                                <input type="number" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -160,14 +162,14 @@
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                     </svg></span>
-                                <input type="text" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
+                                <input type="number" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
                             </div>
                         </div>
                     </div>
                 </template>
 
                 <label class="form-label">BACKWASH</label>
-                <div class="input-group mb-2">
+                <div class="input-group mb-1">
                     <span class="input-group-text" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg"
                             width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -175,10 +177,10 @@
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg></span>
-                    <input type="text" class="form-control" wire:model="backwash" placeholder="0.0 min">
+                    <input type="number" class="form-control" wire:model="backwash" placeholder="0.0 min">
                 </div>
 
-                <label class="h5">POLISH FILTERS</label>
+                <label class="h5 mt-1">POLISH FILTERS</label>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="form-label">IN</label>
@@ -190,7 +192,7 @@
                                     <circle cx="11" cy="11" r="8"></circle>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg></span>
-                            <input type="text" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
+                            <input type="number" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
                         </div>
                     </div>
 
@@ -204,7 +206,7 @@
                                     <circle cx="11" cy="11" r="8"></circle>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg></span>
-                            <input type="text" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
+                            <input type="number" class="form-control" wire:model="wellPump" placeholder="0.0 psi">
                         </div>
                     </div>
                 </div>
@@ -248,16 +250,16 @@
                             </template>
                         </tbody>
                     </table>
+                </div>
 
-                    <div class="mt-3">
-                        <div class="form-floating mb-0">
-                            <textarea data-length="350" class="form-control char-textarea" id="observaciones" rows="5"
-                                placeholder="Observations" style="height: 100px"></textarea>
-                            <label for="textarea-counter">Observations</label>
-                        </div>
-                        <small class="textarea-counter-value float-end"><span class="char-count">0</span> / 350
-                        </small>
+                <div class="mt-2">
+                    <div class="form-floating mb-0">
+                        <textarea data-length="350" class="form-control char-textarea" id="observations" rows="5"
+                            placeholder="Observations" style="height: 100px"></textarea>
+                        <label for="observations">Observations</label>
                     </div>
+                    <small class="textarea-counter-value float-end"><span class="char-count">0</span> / 350
+                    </small>
                 </div>
             </div>
             {{-- /* Pretreatment Section */ --}}
@@ -276,7 +278,7 @@
                                     <circle cx="11" cy="11" r="8"></circle>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg></span>
-                            <input type="text" class="form-control" wire:model="hp" placeholder="0.0 A">
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 A">
                         </div>
                     </div>
 
@@ -291,26 +293,548 @@
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                     </svg></span>
-                                <input type="text" class="form-control" wire:model="hp" placeholder="0.0 A">
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 A">
                             </div>
                         </div>
                     </template>
+                </div>
+
+                <label class="h5 mt-1">FREQUENCIES</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">H.P.</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Hz">
+                        </div>
+                    </div>
+
+                    <template x-for="i in {{ $plant->trains->first()->booster_quantity }}">
+                        <div class="col-md-6">
+                            <label class="form-label">Booster #<span x-text="i"></span></label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Hz">
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <label class="h5 mt-1">FEED</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">pH</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 u. pH">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Temperature</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ºC">
+                        </div>
+                    </div>
+                </div>
+
+                <label class="h5 mt-1">TDS CONCENTRATION</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Feed</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 u. pH">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Permeate</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ppm TDS">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Rejection</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ppm TDS">
+                        </div>
+                    </div>
+                </div>
+
+                <label class="h5 mt-1">FLOW</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Feed</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 gpm">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Permeate</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 gpm">
+                        </div>
+                    </div>
+
+                    @if ($plant->boosterc == 'yes')
+                        <div class="col-md-4">
+                            <label class="form-label">Booster @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++) {{ $i > 0 ? '+' : '' }} {{ $i + 1 }}@endfor Out</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 gpm">
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+                <label class="h5 mt-1">PRESSURES</label>
+                <div class="row">
+                    <div class="col-md">
+                        <label class="form-label">H.P. in</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 psi">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">H.P. out</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 psi">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">Rejec</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 psi">
+                        </div>
+                    </div>
+
+                    @if ($plant->boosterc == 'yes')
+                        <div class="col-md">
+                            <label class="form-label">Booster @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++) {{ $i > 0 ? '+' : '' }} {{ $i + 1 }}@endfor Out</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 psi">
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="col-md">
+                        <div class="row">
+                            <template x-for="i in {{ $plant->trains->first()->booster_quantity }}">
+                                <div>
+                                    <label class="form-label">px #<span x-text="i"></span> Out</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addon-search1"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-search">
+                                                <circle cx="11" cy="11" r="8"></circle>
+                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                            </svg></span>
+                                        <input type="number" class="form-control" wire:model="hp"
+                                            placeholder="0.0 A">
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <div class="form-floating mb-0">
+                        <textarea data-length="350" class="form-control char-textarea" id="observations" rows="5"
+                            placeholder="Observations" style="height: 100px"></textarea>
+                        <label for="observations">Observations</label>
+                    </div>
+                    <small class="textarea-counter-value float-end"><span class="char-count">0</span> / 350
+                    </small>
                 </div>
             </div>
             {{-- /* Operation Section */ --}}
 
             {{-- /* Product Water Section */ --}}
             <div class="card-body" x-show="$wire.step === $wire.totalStep">
-                <div class="input-group mb-2">
-                    <span class="input-group-text" id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-search">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg></span>
-                    <input type="text" class="form-control" wire:model="name" placeholder="Final..."
-                        aria-label="Búsqueda..." aria-describedby="basic-addon-search1">
+                <label class="h5">FEED LINE TO HOTEL SUPPLY</label>
+                <div class="row">
+                    <div class="col-md">
+                        <label class="form-label">pH</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 u. pH">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">Hardness</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ppm">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">TDS</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ppm">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">H2S</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ppm">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label class="form-label">Free Chlorine</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 u. pH">
+                        </div>
+                    </div>
+
+                    @if ($plant->chloride == 'yes')
+                        <div class="col-md-6">
+                            <label class="form-label">Chloride</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 ppm">
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+                <label class="h5 mt-1">PRODUCTION READINGS</label>
+                <div class="row">
+                    <template x-for="i in {{ $plant->trains->where('type', 'Train')->count() }}">
+                        <div class="col-md">
+                            <label class="form-label">Train #<span x-text="i"></span></label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 m3">
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="row">
+                    @if ($plant->irrigation == 'yes')
+                        <div class="col-md-6">
+                            <label class="form-label">Irrigation</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 m3">
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="col-md-6">
+                        <label class="form-label">Municipal</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 m3">
+                        </div>
+                    </div>
+                </div>
+
+                <label class="h5 mt-1">TANK LEVELS</label>
+                <div class="row">
+                    <template x-for="i in {{ $plant->cisterns_quantity }}">
+                        <div class="col-md">
+                            <label class="form-label">Tank #<span x-text="i"></span></label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon-search1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg></span>
+                                <input type="number" class="form-control" wire:model="hp" placeholder="0.0 m3">
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <label class="h5 mt-1">DAILY CHEMICAL SUPPLY</label>
+                <div class="row">
+                    <div class="col-md">
+                        <label class="form-label">Calcium chloride</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 u. Kg">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">Sodium carbonate</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Kg">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">Sodium hypochloride</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Kg">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">Antiscalant</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Kg">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label class="form-label">Sodium hydroxide</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 u. Kg">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">Hydrochloric acid</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Kg">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">KL-1</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Kg">
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <label class="form-label">KL-2</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-search">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg></span>
+                            <input type="number" class="form-control" wire:model="hp" placeholder="0.0 Kg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <div class="form-floating mb-0">
+                        <textarea data-length="350" class="form-control char-textarea" id="observations" rows="5"
+                            placeholder="Observations" style="height: 100px"></textarea>
+                        <label for="observations">Observations</label>
+                    </div>
+                    <small class="textarea-counter-value float-end"><span class="char-count">0</span> / 350
+                    </small>
                 </div>
             </div>
             {{-- /* Product Water Section */ --}}
