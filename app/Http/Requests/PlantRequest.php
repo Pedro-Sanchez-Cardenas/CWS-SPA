@@ -96,7 +96,7 @@ class PlantRequest extends FormRequest
             ],
 
             // Personalization
-            'riego' => 'sometimes',
+            'Irrigate' => 'sometimes',
             'sdi' => 'sometimes',
             'chloride' => 'sometimes',
             'wellPump' => 'sometimes',
