@@ -36,7 +36,9 @@
     </section>
 
     <section id="body">
-        <livewire:operation.plants.create-plants :plantTypes="$plantTypes" :countries="$countries" :currencies="$currencies" :attendants="$attendants" :managers="$managers" :membranesActiveArea="$membranesActiveArea" :polishFilterTypes="$polishFilterTypes" :companies="$companies"/>
+        <livewire:operation.plants.create-plants :plantTypes="$plantTypes" :countries="$countries" :currencies="$currencies"
+            :attendants="$attendants" :managers="$managers" :membranesActiveArea="$membranesActiveArea"
+            :polishFilterTypes="$polishFilterTypes" :companies="$companies" />
     </section>
 @endsection
 
@@ -107,51 +109,51 @@
                     switch ($type) {
                         case 'bot1':
                             // Deshabilitamos los campos
-                            document.getElementById("botM3").disabled = false;
-                            document.getElementById("botFixed").disabled = true;
+                            $("#botM3").prop('disabled', false);
+                            $("#botFixed").prop('disabled', true);
 
                             // Cambiamos el valor de los campos
-                            document.getElementById("botM3").value = document.getElementById("botFixed").value;
-                            document.getElementById("botFixed").value = "";
+                            $("#botM3").val($("#botFixed").val())
+                            $("#botFixed").val("")
                             break;
 
                         case 'bot2':
                             // Deshabilitamos los campos
-                            document.getElementById("botM3").disabled = true;
-                            document.getElementById("botFixed").disabled = false;
+                            $("#botM3").prop('disabled', true);
+                            $("#botFixed").prop('disabled', false);
 
                             // Cambiamos el valor de los campos
-                            document.getElementById("botFixed").value = document.getElementById("botM3").value;
-                            document.getElementById("botM3").value = "";
+                            $("#botFixed").val($("#botM3").val())
+                            $("#botM3").val("")
                             break;
 
                         case 'o&m1':
                             // Deshabilitamos los campos
-                            document.getElementById("o&mM3").disabled = false;
-                            document.getElementById("o&mFixed").disabled = true;
+                            $("#omM3").prop('disabled', false);
+                            $("#omFixed").prop('disabled', true);
 
                             // Cambiamos el valor de los campos
-                            document.getElementById("o&mM3").value = document.getElementById("o&mFixed").value;
-                            document.getElementById("o&mFixed").value = "";
+                            $("#omM3").val($("#omFixed").val())
+                            $("#omFixed").val("")
                             break;
 
                         case 'o&m2':
                             // Deshabilitamos los campos
-                            document.getElementById("o&mM3").disabled = true;
-                            document.getElementById("o&mFixed").disabled = false;
+                            $("#omM3").prop('disabled', true);
+                            $("#omFixed").prop('disabled', false);
 
                             // Cambiamos el valor de los campos
-                            document.getElementById("o&mFixed").value = document.getElementById("o&mM3").value;
-                            document.getElementById("o&mM3").value = "";
+                            $("#omFixed").val($("#omM3").val())
+                            $("#omM3").val("")
                             break;
 
                         case 'remi':
                             // Desabilitamos el campo
-                            if (document.getElementById("radioRemi").checked) {
-                                document.getElementById("remi").disabled = false;
+                            if ($("#radioRemi").prop('checked')) {
+                                $("#remi").prop('disabled', false);
                             } else {
-                                document.getElementById("remi").value = "";
-                                document.getElementById("remi").disabled = true;
+                                $("#remi").val("");
+                                $("#remi").prop('disabled', true);
                             }
                             break;
                         default:
@@ -160,17 +162,15 @@
                     }
                 },
                 sumarM3() {
-                    var v1 = document.getElementById('botM3').value != "" ? document.getElementById('botM3').value : 0;
-                    var v2 = document.getElementById('o&mM3').value != "" ? document.getElementById('o&mM3').value : 0;
-                    var v3 = document.getElementById('remi').value != "" ? document.getElementById('remi').value : 0;
+                    var v1 = $("#botM3").val() != "" ? $("#botM3").val() : 0;
+                    var v2 = $("#omM3").val() != "" ? $("#omM3").val() : 0;
+                    var v3 = $("#remi").val() != "" ? $("#remi").val() : 0;
 
                     this.sumM3 = parseFloat(v1) + parseFloat(v2) + parseFloat(v3);
                 },
                 sumarMonth() {
-                    var v1 = document.getElementById('botFixed').value != "" ? document.getElementById('botFixed').value :
-                        0;
-                    var v2 = document.getElementById('o&mFixed').value != "" ? document.getElementById('o&mFixed').value :
-                        0;
+                    var v1 = $("#botFixed").val() != "" ? $("#botFixed").val() : 0;
+                    var v2 = $("#omFixed").val() != "" ? $("#omFixed").val() : 0;
 
                     this.sumMonth = parseFloat(v1) + parseFloat(v2);
                 }
