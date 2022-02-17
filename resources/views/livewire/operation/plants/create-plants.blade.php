@@ -1,26 +1,4 @@
 <div>
-    <div class="card bg-light-danger col-12" wire:offline>
-        <div class="card-header">
-            <div>
-                <h2 class="fw-bolder mb-0">
-                    YOU HAVE NO INTERNET CONNECTION
-                </h2>
-                <p class="card-text">
-                    Please check your connection!
-                </p>
-            </div>
-            <div class="avatar bg-danger p-50 m-0">
-                <div class="avatar-content">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-wifi-off" viewBox="0 0 16 16">
-                        <path
-                            d="M10.706 3.294A12.545 12.545 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c.63 0 1.249.05 1.852.148l.854-.854zM8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065 8.448 8.448 0 0 1 3.51-1.27L8 6zm2.596 1.404.785-.785c.63.24 1.227.545 1.785.907a.482.482 0 0 1 .063.745.525.525 0 0 1-.652.065 8.462 8.462 0 0 0-1.98-.932zM8 10l.933-.933a6.455 6.455 0 0 1 2.013.637c.285.145.326.524.1.75l-.015.015a.532.532 0 0 1-.611.09A5.478 5.478 0 0 0 8 10zm4.905-4.905.747-.747c.59.3 1.153.645 1.685 1.03a.485.485 0 0 1 .047.737.518.518 0 0 1-.668.05 11.493 11.493 0 0 0-1.811-1.07zM9.02 11.78c.238.14.236.464.04.66l-.707.706a.5.5 0 0 1-.707 0l-.707-.707c-.195-.195-.197-.518.04-.66A1.99 1.99 0 0 1 8 11.5c.374 0 .723.102 1.021.28zm4.355-9.905a.53.53 0 0 1 .75.75l-10.75 10.75a.53.53 0 0 1-.75-.75l10.75-10.75z" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <form wire:submit.prevent="store">
         <section class="card">
             <div class="card-header">
@@ -28,6 +6,7 @@
             </div>
 
             <div class="card-body">
+
                 <div class="row">
                     <div class="col-md-6">
                         <label for="plantName" class="form-label">Plant name</label>
@@ -125,16 +104,35 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="company" class="form-label">Company</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon-search1"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-house-door" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                                </svg>
+                            </span>
+                            <select class="form-select" wire:model="company" id="">
+                                <option value="">SELECT MANAGER</option>
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="col-md">
                         <label for="plantOperator" class="form-label">Operador</label>
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="basic-addon-search1"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd"
-                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 </svg>
                             </span>
                             <select class="form-select" wire:model="plantOperator" id="plantOperator">
@@ -167,6 +165,8 @@
                     </div>
                 </div>
             </div>
+
+
         </section>
 
         <section class="row">
@@ -257,7 +257,7 @@
                             <div class="col-md-6">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" id="customSwitch1"
-                                        wire:model="Irrigation">
+                                        wire:model="irrigation">
                                     <label class="form-check-label" for="customSwitch1">Irrigation</label>
                                 </div>
 
@@ -299,11 +299,13 @@
                                     <label class="form-check-label" for="customSwitch1">Boosterc</label>
                                 </div><br>
                                 <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch1" wire:model="feed">
+                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
+                                        wire:model="feed">
                                     <label class="form-check-label" for="customSwitch1">Feed</label>
                                 </div><br>
                                 <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch1" wire:model="reject">
+                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
+                                        wire:model="reject">
                                     <label class="form-check-label" for="customSwitch1">Reject</label>
                                 </div>
                             </div>
@@ -357,8 +359,8 @@
                                             <label class="form-check-label" for="colorRadio1"></label>
                                         </div>
                                     </span>
-                                    <input type="number" @keyup="sumarMonth()" disabled name="botFixed" id="botFixed"
-                                        class="form-control ps-1" placeholder="0.00"
+                                    <input type="number" @keyup="sumarMonth()" disabled wire:model="botFixed"
+                                        id="botFixed" class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/Month</span>
                                 </div>
@@ -376,7 +378,7 @@
                                             <label class="form-check-label" for="colorRadio1"></label>
                                         </div>
                                     </span>
-                                    <input type="number" @keyup="sumarM3()" disabled name="o&mM3" id="o&mM3"
+                                    <input type="number" @keyup="sumarM3()" disabled wire:model="oymM3" id="o&mM3"
                                         class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/M3</span>
@@ -395,8 +397,8 @@
                                             <label class="form-check-label" for="colorRadio1"></label>
                                         </div>
                                     </span>
-                                    <input type="number" @keyup="sumarMonth()" disabled name="o&mFixed" id="o&mFixed"
-                                        class="form-control ps-1" placeholder="0.00"
+                                    <input type="number" @keyup="sumarMonth()" disabled wire:model="oymFixed"
+                                        id="o&mFixed" class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/Month</span>
                                 </div>
@@ -414,8 +416,8 @@
                                             <label class="form-check-label" for="colorRadio1"></label>
                                         </div>
                                     </span>
-                                    <input type="number" @keyup="sumarM3()" disabled name="remi" id="remi"
-                                        class="form-control ps-1" placeholder="0.00"
+                                    <input type="number" @keyup="sumarM3()" disabled wire:model="remineralisationM3"
+                                        id="remi" class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/M3</span>
                                 </div>
@@ -458,7 +460,7 @@
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                     </svg>
                                 </span>
-                                <select class="form-select" name="yearsOfContract" id="yearsOfContract">
+                                <select class="form-select" wire:model="yearsOfContract" id="yearsOfContract">
                                     <option value="">SELECT YEARS</option>
                                     @for ($i = 1; $i < 17; $i++)
                                         <option valie="{{ $i }}">{{ $i }}</option>
@@ -470,13 +472,13 @@
                         <div class="row mb-2">
                             <div class="col-6">
                                 <label class="form-label" for="from">From</label>
-                                <input type="text" id="from" name="from" class="form-control flatpickr-basic"
+                                <input type="text" id="from" wire:model="from" class="form-control flatpickr-basic"
                                     placeholder="YYYY-MM-DD" />
                             </div>
 
                             <div class="col-6">
                                 <label class="form-label" for="till">Till</label>
-                                <input type="text" id="till" name="till" class="form-control flatpickr-basic"
+                                <input type="text" id="till" wire:model="till" class="form-control flatpickr-basic"
                                     placeholder="YYYY-MM-DD" />
                             </div>
                         </div>
@@ -494,7 +496,7 @@
                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                         </svg>
                                     </span>
-                                    <select class="form-select" id="billingDay" name="billingDay">
+                                    <select class="form-select" id="billingDay" wire:model="billingDay">
                                         <option value="">SELECT BILLING DAY</option>
                                         @for ($i = 1; $i < 32; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -515,7 +517,7 @@
                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                         </svg>
                                     </span>
-                                    <select class="form-select" id="billingPeriod" name="billingPeriod">
+                                    <select class="form-select" id="billingPeriod" wire:model="billingPeriod">
                                         <option value="">SELECT BILLING PERIOD</option>
                                         <option value="1">Monthly</option>
                                         <option value="2">Bimonthly</option>
@@ -536,7 +538,7 @@
                                             d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
                                     </svg></span>
                                 <input type="number" class="form-control" placeholder="0.00" id="minimumConsumption"
-                                    name="minimumConsumption" aria-label="Amount (to the nearest dollar)">
+                                    wire:model="minimumConsumption" aria-label="Amount (to the nearest dollar)">
                                 <span class="input-group-text">M3/MONTH</span>
                             </div>
                             <label>*This field can be left empty</label>
@@ -554,9 +556,7 @@
                     </div>
 
                     <div class="card-body">
-                        <div action="#" class="dropzone dropzone-area" id="dpz-single-file">
-                            <div class="dz-message">Select image</div>
-                        </div>
+                        <input class="dropzone dropzone-area" type="file" wire:model="cover">
                     </div>
                 </div>
             </div>
@@ -602,7 +602,8 @@
                                                                     d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z" />
                                                             </svg></span>
                                                         <input type="number" class="form-control"
-                                                            name="trainCapacity" id="trainCapacity" placeholder="0.00"
+                                                            wire:model="trainCapacity" id="trainCapacity"
+                                                            placeholder="0.00"
                                                             aria-label="Amount (to the nearest dollar)">
                                                     </div>
                                                 </div>
@@ -617,8 +618,8 @@
                                                                 <path
                                                                     d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
                                                             </svg></span>
-                                                        <input type="number" name="trainTds" class="form-control"
-                                                            id="trainTds" placeholder="0.00"
+                                                        <input type="number" wire:model="trainTds"
+                                                            class="form-control" id="trainTds" placeholder="0.00"
                                                             aria-label="Amount (to the nearest dollar)">
                                                         <span class="input-group-text">ppm</span>
                                                     </div>
@@ -639,7 +640,7 @@
                                                             </svg>
                                                         </span>
                                                         <select class="form-select" id="trainBooster"
-                                                            name="trainBooster">
+                                                            wire:model="trainBooster">
                                                             <option value="">0</option>
                                                             @for ($i = 1; $i < 7; $i++)
                                                                 <option value="{{ $i }}">
@@ -663,8 +664,8 @@
                                                                 <path
                                                                     d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
                                                             </svg></span>
-                                                        <input type="number" class="form-control" name="meabrane"
-                                                            placeholder="0.00"
+                                                        <input type="number" class="form-control"
+                                                            wire:model="trainsElements" placeholder="0.00"
                                                             aria-label="Amount (to the nearest dollar)" id="meabrane">
                                                     </div>
                                                 </div>
@@ -686,8 +687,8 @@
                                                                 <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                                             </svg>
                                                         </span>
-                                                        <select class="form-select" id="membranesActiveArea"
-                                                            name="membranesActiveArea">
+                                                        <select class="form-select" id="trains.mArea"
+                                                            wire:model="membranesActiveAre">
                                                             <option value="">SELECT TYPE</option>
                                                             @foreach ($membranesActiveArea as $ActiveArea)
                                                                 <option value="{{ $ActiveArea->id }}">
@@ -712,7 +713,7 @@
                                                         </svg>
                                                     </span>
                                                     <select class="form-select" id="multimediaFilsters"
-                                                        name="multimediaFilsters">
+                                                        wire:model="multimediaFilsters">
                                                         <option value="">SELECT</option>
                                                         @for ($i = 1; $i < 7; $i++)
                                                             <option value="{{ $i }}">
@@ -736,7 +737,7 @@
                                                         </svg>
                                                     </span>
                                                     <select class="form-select" id="polishFilters"
-                                                        name="polishFilters">
+                                                        wire:model="polishFilters">
                                                         <option value="">SELECT TYPE</option>
                                                         @foreach ($polishFilterTypes as $PolishFilterType)
                                                             <option value="{{ $PolishFilterType->id }}">
@@ -760,7 +761,7 @@
                                                         </svg>
                                                     </span>
                                                     <select class="form-select" id="polishQuantity"
-                                                        name="polishQuantity">
+                                                        wire:model="polishQuantity">
                                                         <option value="">SELECT QUANTITY</option>
                                                         @for ($i = 1; $i < 7; $i++)
                                                             <option value="{{ $i }}">

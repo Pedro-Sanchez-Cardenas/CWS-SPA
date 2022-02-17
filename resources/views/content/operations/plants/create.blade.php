@@ -31,8 +31,12 @@
 @endsection
 
 @section('content')
+    <section id="alerts">
+        <livewire:wifi-alerts />
+    </section>
+
     <section id="body">
-        <livewire:operation.plants.create-plants :plantTypes="$plantTypes" :countries="$countries" :currencies="$currencies" :attendants="$attendants" :managers="$managers" :membranesActiveArea="$membranesActiveArea" :polishFilterTypes="$polishFilterTypes"/>
+        <livewire:operation.plants.create-plants :plantTypes="$plantTypes" :countries="$countries" :currencies="$currencies" :attendants="$attendants" :managers="$managers" :membranesActiveArea="$membranesActiveArea" :polishFilterTypes="$polishFilterTypes" :companies="$companies"/>
     </section>
 @endsection
 
