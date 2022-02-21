@@ -8,94 +8,113 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-2">
                         <label for="plantName" class="form-label">Plant name</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="">
+                        <div class="input-group">
+                            <span class="input-group-text @error('plantName') border border-danger @enderror" id="">
                                 <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14" height="14"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-search @error('plantName') text-danger @enderror">
                                     <circle cx="11" cy="11" r="8"></circle>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg>
                             </span>
-                            <input type="text" class="form-control" id="plantName" wire:model="plantName"
-                                placeholder="Plant Name..." aria-label="Plant Name..." aria-describedby="plantNameicon">
+                            <input type="text" class="form-control @error('plantName') border border-danger @enderror"
+                                id="plantName" wire:model="plantName" placeholder="Plant Name..."
+                                aria-label="Plant Name..." aria-describedby="plantNameicon">
                         </div>
+                        @error('plantName')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
                     <div class="col-md-6">
                         <label for="location" class="form-label">Location</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="Locationicon">
+                        <div class="input-group">
+                            <span class="input-group-text @error('location') border border-danger @enderror"
+                                id="Locationicon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                    class="bi bi-geo-alt @error('location') text-danger @enderror" viewBox="0 0 16 16">
                                     <path
                                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
                                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 </svg>
                             </span>
-                            <input type="text" class="form-control" wire:model="location" id="location"
-                                placeholder="Location..." aria-label="Location..." aria-describedby="Locationcon">
+                            <input type="text" class="form-control @error('location') border border-danger @enderror"
+                                wire:model="location" id="location" placeholder="Location..." aria-label="Location..."
+                                aria-describedby="Locationcon">
                         </div>
+                        @error('location')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
 
                 <div class="row">
-                    <div class="col-md">
+                    <div class="col-md mb-2">
                         <label for="plantType" class="form-label">Type</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="basic-addon-search1"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-stickies" viewBox="0 0 16 16">
+                        <div class="input-group">
+                            <span class="input-group-text @error('plantType') border border-danger @enderror"
+                                id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
                                     <path
                                         d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z" />
                                     <path
-                                        d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z" />
+                                        d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"
+                                        class="@error('plantType') text-danger @enderror" />
                                 </svg>
                             </span>
-                            <select class="form-select" wire:model="plantType" id="plantType">
+                            <select class="form-select @error('plantType') border border-danger @enderror"
+                                wire:model="plantType" id="plantType">
                                 <option value="">SELECT TYPE</option>
                                 @foreach ($plantTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @error('plantType')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
-                    <div class="col-md">
+                    <div class="col-md mb-2">
                         <label for="plantCountry" class="form-label">Country</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="basic-addon-search1"><svg
+                        <div class="input-group">
+                            <span class="input-group-text @error("plantCountry") border border-danger @enderror" id="basic-addon-search1"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-file-text" viewBox="0 0 16 16">
                                     <path
                                         d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
                                     <path
-                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" class="@error("plantCountry")text-danger @enderror" />
                                 </svg>
                             </span>
-                            <select class="form-select" wire:model="plantCountry" id="plantCountry">
+                            <select class="form-select @error("plantCountry") border border-danger @enderror" wire:model="plantCountry" id="plantCountry">
                                 <option value="">SELECT COUNTRY</option>
                                 @foreach ($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @error("plantCountry")
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                     </div>
 
-                    <div class="col-md">
-                        <label for="plantCorrency" class="form-label">Currency</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="basic-addon-search1"><svg
+                    <div class="col-md mb-2">
+                        <label for="plantCurrency" class="form-label">Currency</label>
+                        <div class="input-group">
+                            <span class="input-group-text @error("plantCurrency") border border-danger @enderror" id="basic-addon-search1"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-currency-exchange" viewBox="0 0 16 16">
                                     <path
-                                        d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z" />
+                                        d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z" class="@error("plantCurrency") text-danger @enderror" />
                                 </svg>
                             </span>
-                            <select class="form-select" wire:model="plantCorrency" id="plantCorrency">
+                            <select class="form-select @error("plantCurrency") border border-danger @enderror" wire:model="plantCurrency" id="plantCurrency">
                                 <option value="">SELECT CORRENCY</option>
                                 @foreach ($currencies as $currency)
                                     <option value="{{ $currency->id }}">{{ $currency->name }} -
@@ -103,65 +122,80 @@
                                 @endforeach
                             </select>
                         </div>
+                        @error("plantCurrency")
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                     </div>
+
                 </div>
                 <div class="row">
-                    <div class="col-md">
+                    <div class="col-md mb-2">
                         <label for="company" class="form-label">Company</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="basic-addon-search1"><svg
+                        <div class="input-group">
+                            <span class="input-group-text @error("company") border border-danger @enderror" id="basic-addon-search1"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-house-door" viewBox="0 0 16 16">
                                     <path
-                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" class="@error("company") text-danger @enderror" />
                                 </svg>
                             </span>
-                            <select class="form-select" wire:model="company" id="">
+                            <select class="form-select @error("company") border border-danger @enderror" wire:model="company" id="@error("plantCountry") border border-danger @enderror">
                                 <option value="">SELECT MANAGER</option>
                                 @foreach ($companies as $company)
                                     <option value="{{ $company->id }}">{{ $company->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @error("company")
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
 
-                    <div class="col-md">
+
+                    <div class="col-md mb-2">
                         <label for="plantOperator" class="form-label">Operador</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="basic-addon-search1"><svg
+                        <div class="input-group">
+                            <span class="input-group-text @error("plantOperator") border border-danger @enderror" id="basic-addon-search1"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"  class="@error("plantOperator") text-danger @enderror"/>
                                 </svg>
                             </span>
-                            <select class="form-select" wire:model="plantOperator" id="plantOperator">
+                            <select class="form-select @error("plantOperator") border border-danger @enderror" wire:model="plantOperator" id="plantOperator">
                                 <option value="">SELECT OPERATOR</option>
                                 @foreach ($attendants as $attendant)
                                     <option value="{{ $attendant->id }}">{{ $attendant->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @error("plantOperator")
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
 
-                    <div class="col-md">
+
+                    <div class="col-md mb-2">
                         <label for="plantManager" class="form-label">Manager</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text" id="basic-addon-search1"><svg
+                        <div class="input-group">
+                            <span class="input-group-text @error("plantManager") border border-danger @enderror" id="basic-addon-search1"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                     <path fill-rule="evenodd"
-                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" class="@error("plantManager") text-danger @enderror"/>
                                 </svg>
                             </span>
-                            <select class="form-select" wire:model="plantManager" id="plantManager">
+                            <select class="form-select @error("plantManager") border border-danger @enderror" wire:model="plantManager" id="plantManager">
                                 <option value="">SELECT MANAGER</option>
                                 @foreach ($managers as $manager)
                                     <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @error("plantManager")
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                     </div>
                 </div>
             </div>
@@ -225,6 +259,9 @@
                                             aria-describedby="plantNameicon">
                                     </div>
                                 </div>
+                                @error("cisterns.capacity")
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                 <div class="col ms-1">
                                     <button type="button" class="btn btn-outline-danger" x-on:click="remove(list.id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -293,21 +330,7 @@
 
                                 <br>
 
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
-                                        wire:model="boosterc">
-                                    <label class="form-check-label" for="customSwitch1">Boosterc</label>
-                                </div><br>
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
-                                        wire:model="feed">
-                                    <label class="form-check-label" for="customSwitch1">Feed</label>
-                                </div><br>
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch1"
-                                        wire:model="reject">
-                                    <label class="form-check-label" for="customSwitch1">Reject</label>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -556,7 +579,10 @@
                     </div>
 
                     <div class="card-body">
-                        <input class="dropzone dropzone-area" type="file" wire:model="cover">
+                        <div action="#" class="dropzone dropzone-area dz-clickable" id="dpz-single-file">
+                            <div class="dz-message">Drop files here or click to upload.</div>
+                        </div>
+
                     </div>
                 </div>
             </div>

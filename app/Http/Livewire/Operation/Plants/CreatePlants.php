@@ -16,12 +16,13 @@ class CreatePlants extends Component
     public $location;
     public $plantType;
     public $plantCountry;
-    public $plantCorrency;
+    public $plantCurrency;
     public $plantOperator;
     public $plantManager;
 
     public $cisterns;
     public $capacity;
+    public $pdf;
 
 
     public $cover;
@@ -82,7 +83,7 @@ class CreatePlants extends Component
             'location' => [
                 'required',
                 'string',
-                'min:1',
+                'min:10',
                 'max:100'
             ],
             'company' => [
@@ -95,7 +96,7 @@ class CreatePlants extends Component
                 'integer',
                 Rule::exists('countries', 'id')
             ],
-            'plantCorrency' => [
+            'plantCurrency' => [
                 'required',
                 'integer',
                 Rule::exists('currencies', 'id')
@@ -116,7 +117,8 @@ class CreatePlants extends Component
 
             'cisterns.capacity.*' => [
                 'nullable',
-                'numeric'
+                'numeric',
+                'min:1'
             ],
 
             // Personalization
