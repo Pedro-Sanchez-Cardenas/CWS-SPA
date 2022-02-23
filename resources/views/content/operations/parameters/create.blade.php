@@ -30,6 +30,10 @@
 
 @section('content')
     <!-- View parameters Create -->
+    <section id="alerts">
+        <livewire:wifi-alerts />
+    </section>
+
     <section id="header">
         <div class="row">
             <div class="col">
@@ -80,7 +84,7 @@
     </section>
 
     <section id="body">
-        <livewire:operation.parameters.create :plant="$plant" />
+        <livewire:operation.parameters.create-parameters :plant="$plant" />
     </section>
     <!-- View parameters Create -->
 @endsection
@@ -93,6 +97,33 @@
 
 @section('page-script')
     <!-- Page js files -->
+    <script>
+        function parameters() {
+            return {
+                step: 1,
+                totalStep: @json($plant->trains->where('type', 'Train')->count() * 2 + 1),
+                trains: @json($plant->trains->where('type', 'Train')->count()),
+                train: 1,
+                addStep() {
+                    if (this.step < this.totalStep) {
+                        this.step++;
 
+                        if ((this.step % 2) && (this.step < this.totalStep)) {
+                            this.train++;
+                        }
+                    }
+                },
+                removeStep() {
+                    if ((this.step > 1)) {
+                        this.step--;
+
+                        if (!(this.step % 2) && (this.step < (this.totalStep - 1))) {
+                            this.train--;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Page js files -->
 @endsection
