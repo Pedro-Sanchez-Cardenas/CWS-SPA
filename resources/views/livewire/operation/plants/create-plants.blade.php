@@ -399,7 +399,7 @@
                                             <label class="form-check-label" for="colorRadio1"></label>
                                         </div>
                                     </span>
-                                    <input type="number" @keyup="sumarM3()" disabled wire:model.lazy="oymM3" id="o&mM3"
+                                    <input type="number" @keyup="sumarM3()" disabled wire:model="oymM3" id="omM3"
                                         class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/M3</span>
@@ -418,8 +418,8 @@
                                             <label class="form-check-label" for="colorRadio1"></label>
                                         </div>
                                     </span>
-                                    <input type="number" @keyup="sumarMonth()" disabled wire:model.lazy="oymFixed"
-                                        id="o&mFixed" class="form-control ps-1" placeholder="0.00"
+                                    <input type="number" @keyup="sumarMonth()" disabled wire:model="oymFixed"
+                                        id="omFixed" class="form-control ps-1" placeholder="0.00"
                                         aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">USD/Month</span>
                                 </div>

@@ -1302,5 +1302,4 @@
     <!-- Page js files -->
     <script src="{{ asset(mix('js/scripts/pages/dashboard-ecommerce.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
-
 @endsection
