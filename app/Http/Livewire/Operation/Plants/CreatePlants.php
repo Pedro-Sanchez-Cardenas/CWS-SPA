@@ -182,7 +182,8 @@ class CreatePlants extends Component
             ],
             'minimumConsumption' => [
                 'nullable',
-                'numeric'
+                'numeric',
+                'min:0'
             ],
 
 
@@ -190,11 +191,13 @@ class CreatePlants extends Component
 
             'trainCapacity' => [
                 'required',
-                'integer'
+                'integer',
+                'min:0'
             ],
             'trainTds' => [
                 'required',
-                'integer'
+                'integer',
+                 'min:0'
             ],
             'trainBooster' => [
                 'required',
