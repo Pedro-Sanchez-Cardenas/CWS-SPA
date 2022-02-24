@@ -511,13 +511,13 @@
                             <div class="col-6">
                                 <label for="billingDay" class="form-label">Billing Day</label>
                                 <div class="input-group">
-                                    <span class="input-group-text @error("billingDay") border border-danger @enderror" id="basic-addon-search1"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="@error("billingDay") text-danger @enderror"
+                                    <span class="input-group-text @error("billingPeriod") border border-danger @enderror" id="basic-addon-search1"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
                                             <path
                                                 d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
                                             <path
-                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" class="@error("billingPeriod") border border-danger @enderror"/>
                                         </svg>
                                     </span>
                                     <select class="form-select @error("billingDay") border border-danger @enderror" id="billingDay" wire:model.lazy="billingDay">
@@ -533,12 +533,13 @@
                             </div>
 
 
+
                             <div class="col-6">
                                 <label for="billingPeriod" class="form-label">Billing period</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("billingPeriod") border border-danger @enderror" id="basic-addon-search1"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                            fill="currentColor" class="bi bi-calendar-week @error("billingPeriod") text-danger @enderror" viewBox="0 0 16 16">
                                             <path
                                                 d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" @error("billingPeriod") border border-danger @enderror" />
                                             <path
