@@ -64,32 +64,9 @@
 
 
         <div class="row match-height">
-            <div class="col-md-4">
-                <section id="body">
-                    <livewire:operation.parameters.producto-readings />
-                </section>
-            </div>
-
-            <!-- Company Table Card -->
-            <div class="col">
-                <section id="body">
-                    <livewire:operation.parameters.pretreatment />
-                </section>
-            </div>
-            <!--/ Company Table Card -->
-        </div>
-
-        <div class="row match-height">
-            <!-- Company Table Card -->
-            <div class="col-12">
-                <livewire:operation.parameters.product-waters />
-            </div>
-        </div>
-        <!--/ Company Table Card -->
-        <div>
-            <!-- Company Table Card -->
-            <livewire:operation.parameters.operation />
-            <!--/ Company Table Card -->
+            <section id="body">
+                <livewire:operation.parameters.view-parameters :plant="$plant" />
+            </section>
         </div>
     </section>
 @endsection
