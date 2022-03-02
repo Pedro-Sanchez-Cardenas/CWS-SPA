@@ -3,6 +3,19 @@
 namespace App\Http\Livewire\Operation\Plants;
 
 use Livewire\Component;
+
+use App\Models\BillingPeriod;
+use App\Models\Company;
+use App\Models\Country;
+use App\Models\Currency;
+use App\Models\MembraneActiveArea;
+use App\Models\Plant;
+use App\Models\PlantContract;
+use App\Models\PlantType;
+use App\Models\PolishFilterType;
+use App\Models\Train;
+use App\Models\User;
+
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 
@@ -10,219 +23,77 @@ class CreatePlants extends Component
 {
     use WithFileUploads;
 
-    public $plantTypes, $countries, $currencies, $attendants, $managers, $membranesActiveArea, $polishFilterTypes,$companies;
+    // variables conectadas a Alpinejs
+    public $trainIndex = [];
 
-    public $plantName;
-    public $location;
-    public $plantType;
-    public $plantCountry;
-    public $plantCurrency;
-    public $plantOperator;
-    public $plantManager;
-
+    // Arrays;
+    public $plants;
     public $cisterns;
-    public $capacity;
-    public $pdf;
+    public $personalitations;
+    public $contract;
+    public $trains;
 
-
-    public $cover;
-    public $company;
-
-    public $irrigation;
-    public $wellPump;
-    public $chloride;
-    public $feedPump;
-    public $sdi;
-    public $boosterc;
-    public $feed;
-    public $reject;
+    // Costs
     public $botM3;
     public $botFixed;
     public $oymM3;
     public $oymFixed;
     public $remineralisationM3;
-    public $yearsOfContract;
-    public $from;
-    public $till;
-    public $billingDay;
-    public $billingPeriod;
-    public $minimumConsumption;
-    public $trainCapacity;
-    public $trainTds;
-    public $trainBooster;
-
-    public $trains;
-    public $mElements;
-
-    public $membranesActiveAre;
-    public $multimediaFilsters;
-    public $polishFilters;
-    public $polishQuantity;
-
-
 
     protected function rules()
     {
         return [
-            'cover' => [
-                'image',
-                'mimes:jpg,jpeg,png'
-            ],
-            'plantName' => [
-                'required',
-                'string',
-                'min:1',
-                'max:300',
-                Rule::unique('plants', 'name')
-            ],
-            'plantType' => [
-                'required',
-                'integer',
-                Rule::exists('plant_types', 'id')
-            ],
-            'location' => [
-                'required',
-                'string',
-                'min:10',
-                'max:100'
-            ],
-            'company' => [
-                'required',
-                'integer',
-                Rule::exists('companies', 'id')
-            ],
-            'plantCountry' => [
-                'required',
-                'integer',
-                Rule::exists('countries', 'id')
-            ],
-            'plantCurrency' => [
-                'required',
-                'integer',
-                Rule::exists('currencies', 'id')
-            ],
-            'plantOperator' => [
-                'required',
-                'integer',
-                Rule::exists('users', 'id')
-            ],
-            'plantManager' => [
-                'required',
-                'integer',
-                Rule::exists('users', 'id')
-            ],
+            'plants' => 'nullable|min:0|max:1|array:cover,handbook,name,location,type,company,country,currency,operator,manager', // We validate the array
+            'plants.cover' => ['image', 'mimes:jpg,jpeg,png'],
+            'plants.pdf' => ['mimes:pdf'],
+            'plants.name' => ['required', 'string', 'min:1', 'max:100', Rule::unique('plants', 'name')],
+            'plants.type' => ['required', 'integer', Rule::exists('plant_types', 'id')],
+            'plants.location' => ['required', 'string', 'min:10', 'max:100'],
+            'plants.company' => ['required', 'integer', Rule::exists('companies', 'id')],
+            'plants.country' => ['required', 'integer', Rule::exists('countries', 'id')],
+            'plants.currency' => ['required', 'integer', Rule::exists('currencies', 'id')],
+            'plants.operator' => ['required', 'integer', Rule::exists('users', 'id')],
+            'plants.manager' => ['required', 'integer', Rule::exists('users', 'id')],
 
-
-            'cisterns' => 'nullable|min:0|max:30|array:capacity', // We validate the array
-
-            'cisterns.capacity.*' => [
-                'nullable',
-                'numeric',
-                'min:1'
-            ],
+            // 'cisterns' => 'nullable|min:0|max:5|array:capacity', // We validate the array
+            'cisterns.capacity.*' => ['nullable', 'numeric', 'min:0'],
 
             // Personalization
-            'irrigation' => 'sometimes',
-            'sdi' => 'sometimes',
-            'chloride' => 'sometimes',
-            'wellPump' => 'sometimes',
-            'feedPump' => 'sometimes',
-            'boosterc' => 'sometimes',
-            'feed' => 'sometimes',
-            'reject' => 'sometimes',
+            'personalitations' => ['nullable', 'min:0', 'min:1', 'array:irrigation,sdi,chloride,wellPump,feedPump'], // We validate the array
+            'personalitations.irrigation' => ['sometimes'],
+            'personalitations.wellPump' => ['sometimes'],
+            'personalitations.feedPump' => ['sometimes'],
+            'personalitations.chloride' => ['sometimes'],
+            'personalitations.sdi' => ['sometimes'],
 
-
-
-            'pdf' => [
-                'mimes:pdf'
-            ],
+            /*'personalitations.boosterc' => ['sometimes'],
+            'personalitations.feed' => ['sometimes'],
+            'personalitations.reject' => ['sometimes'],*/
 
             // Plant Contract
-            'botM3' => [
-                'nullable',
-                'numeric'
-            ],
-            'botFixed' => [
-                'nullable',
-                'numeric'
-            ],
-            'oymM3' => [
-                'nullable',
-                'numeric'
-            ],
-            'oymFixed' => [
-                'nullable',
-                'numeric'
-            ],
-            'remineralisationM3' => [
-                'nullable',
-                'numeric'
-            ],
+            'botM3' => ['sometimes', 'numeric', 'min:0'],
+            'botFixed' => ['sometimes', 'numeric', 'min:0'],
+            'oymM3' => ['sometimes', 'numeric', 'min:0'],
+            'oymFixed' => ['sometimes', 'numeric', 'min:0'],
+            'remineralisationM3' => ['sometimes', 'numeric', 'min:0'],
 
-            'yearsOfContract' => [
-                'required',
-                'integer',
-                'between:1,16'
-            ],
-            'from' => [
-                'date'
-            ],
-            'till' => [
-                'date',
-                'after_or_equal:from'
-            ],
-            'billingDay' => [
-                'integer',
-                'between:1,30'
-            ],
-            'billingPeriod' => [
-                'required',
-                'integer',
-                Rule::exists('billing_periods', 'id')
-            ],
-            'minimumConsumption' => [
-                'nullable',
-                'numeric',
-                'min:0'
-            ],
+            'contract' => ['min:1', 'max:1', 'array:yearsOfContract, from, till, billingDay, billingPeriod, minimumConsumption'], // We validate the array
+            'contract.yearsOfContract' => ['required', 'integer', 'between:1,16'],
+            'contract.from' => ['required', 'date'],
+            'contract.till' => ['required', 'date', 'after:contract.from'],
+            'contract.billingDay' => ['required', 'integer', 'between:1,31'],
+            'contract.billingPeriod' => ['required', 'integer', 'between:1,4', Rule::exists('billing_periods', 'id')],
+            'contract.minimumConsumption' => ['nullable', 'numeric', 'min:0'],
 
-
-            'trains' => 'required|min:1|array:capacity,tds,booster,mf,pft,pfq,mArea,mElements', // We validate the array
-
-            'trainCapacity' => [
-                'required',
-                'integer',
-                'min:0'
-            ],
-            'trainTds' => [
-                'required',
-                'integer',
-                 'min:0'
-            ],
-            'trainBooster' => [
-                'required',
-                'integer'
-            ],
-            'multimediaFilsters' => [
-                'required',
-                'integer'
-            ],
-            'polishFilters' => [
-                'required',
-                'integer'
-            ],
-            'polishQuantity' => [
-                'required',
-                'integer'
-            ],
-            'trains.mArea.*' => [
-                'required',
-                'integer'
-            ],
-            'trains.mElements.*' => [
-                'required',
-                'integer'
-            ]
+            'trains' => 'min:1|max:5|array:capacity,tds,booster,multimediaFilsters,polishFilters,polishQuantity,mArea,mElements', // We validate the array
+            'trains.capacity.*' => ['required', 'integer', 'min:0'],
+            'trains.tds.*' => ['required', 'integer', 'min:0'],
+            'trains.booster.*' => ['required', 'integer'],
+            'trains.multimediaFilsters.*' => ['required', 'integer'],
+            'trains.polishFilters.*' => ['required', 'integer'],
+            'trains.polishQuantity.*' => ['required', 'integer'],
+            'trains.mArea.*' => ['required', 'integer'],
+            'trains.mElements.*' => ['required', 'integer'],
         ];
     }
 
@@ -233,11 +104,21 @@ class CreatePlants extends Component
 
     public function store()
     {
-        $this->validate();
+        dd($this->trainIndex);
+        //$this->validate();
     }
 
     public function render()
     {
-        return view('livewire.operation.plants.create-plants');
+        return view('livewire.operation.plants.create-plants', [
+            'plantTypes' => PlantType::all(),
+            'countries' => Country::all(),
+            'currencies' => Currency::all(),
+            'attendants' => User::role('Operator')->get(),
+            'managers' => User::role('Manager')->get(),
+            'membranesActiveArea' => MembraneActiveArea::all(),
+            'polishFilterTypes' => PolishFilterType::all(),
+            'companies' => Company::all(),
+        ]);
     }
 }
