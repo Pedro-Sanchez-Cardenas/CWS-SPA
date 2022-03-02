@@ -33,7 +33,7 @@ class ProductWater extends Model
 
     public function plant()
     {
-        return $this->belongsTo(Plant::class, 'id', 'plants_id');
+        return $this->belongsTo(Plant::class, 'plants_id', 'id');
     }
 
     public function assignedBy()
