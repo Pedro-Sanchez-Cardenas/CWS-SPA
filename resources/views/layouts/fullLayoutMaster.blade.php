@@ -3,11 +3,11 @@
 @endisset
 
 <!DOCTYPE html>
-@php $configData = Helper::applClasses(); @endphp
+@php $DefaultData = Helper::applClasses(); @endphp
 
-<html class="loading {{ $configData['theme'] === 'light' ? '' : $configData['layoutTheme'] }}"
-    lang="@if (session()->has('locale')){{ session()->get('locale') }}@else{{ $configData['defaultLanguage'] }}@endif" data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}"
-    @if ($configData['theme'] === 'dark') data-layout="dark-layout"@endif>
+<html class="loading {{ $DefaultData['theme'] === 'light' ? '' : $DefaultData['layoutTheme'] }}"
+    lang="@if (session()->has('locale')){{ session()->get('locale') }}@else{{ $DefaultData['defaultLanguage'] }}@endif" data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}"
+    @if ($DefaultData['theme'] === 'dark') data-layout="dark-layout"@endif>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,12 +35,12 @@
 
 
 <body
-    class="vertical-layout vertical-menu-modern {{ $configData['bodyClass'] }} {{ $configData['theme'] === 'dark' ? 'dark-layout' : '' }} {{ $configData['blankPageClass'] }} blank-page"
+    class="vertical-layout vertical-menu-modern {{ $DefaultData['bodyClass'] }} {{ $DefaultData['theme'] === 'dark' ? 'dark-layout' : '' }} {{ $DefaultData['blankPageClass'] }} blank-page"
     data-menu="vertical-menu-modern" data-col="blank-page" data-framework="laravel"
     data-asset-path="{{ asset('/') }}">
 
     <!-- BEGIN: Content-->
-    <div class="app-content content {{ $configData['pageClass'] }}">
+    <div class="app-content content {{ $DefaultData['pageClass'] }}">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
 

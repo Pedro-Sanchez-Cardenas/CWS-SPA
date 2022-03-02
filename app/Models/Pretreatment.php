@@ -31,9 +31,14 @@ class Pretreatment extends Model
         'user_updated_at' // nullable
     ];
 
+    public function plants()
+    {
+        return $this->belongsTo(Plant::class, 'plants_id', 'id');
+    }
+
     public function trains()
     {
-        return $this->belongsTo(Train::class, 'id', 'trains_id');
+        return $this->belongsTo(Train::class, 'trains_id', 'id');
     }
 
     public function assignedBy()
