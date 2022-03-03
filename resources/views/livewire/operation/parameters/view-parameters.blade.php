@@ -84,8 +84,71 @@
                                 @foreach ($pretreatments as $pretreatment)
                                     <tr>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar rounded">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>PH</th>
+                                                        <th>HARDNESS</th>
+                                                        <th>TDS</th>
+                                                        <th>H25</th>
+                                                        <th>FREE CHLORIDE</th>
+                                                        <th>CHLORIDE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar rounded">
+                                                                    <div class="avatar-content">
+
+                                                                        <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                            alt="Toolbar svg" />
+                                                                        <span
+                                                                            class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div>
+                                                                    <div class="font-small-2 text-muted">
+                                                                        {{-- $pretreatment --}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        {{-- <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <span>{{ $productWater->created_at }}</span>
+                                                                        </div>
+                                                                    </td> --}}
+
+                                                        <td class="text-nowrap">
+                                                            <div class="d-flex flex-column">
+                                                                <span class="fw-bolder mb-25">23.4k</span>
+                                                                <span class="font-small-2 text-muted">in 24
+                                                                    hours</span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>$891.2</td>
+
+                                                        <td>$891.2</td>
+
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <span class="fw-bolder me-1">68%</span>
+                                                                <i data-feather="trending-down"
+                                                                    class="text-danger font-medium-1"></i>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>$891.2</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div>
+                                                <div>
                                                     @if ($pretreatment->created_at == 'Train')
                                                         <div class="row">
                                                             <img src="{{ asset('images/icons/toolbox.svg') }}"
@@ -97,78 +160,145 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div class="fw-bolder">
-                                                    {{ $pretreatment->well_pump }}
+                                        </td>
+
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar rounded">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>CACL2</th>
+                                                                <th>NACO3</th>
+                                                                <th>NACLO</th>
+                                                                <th>ANTIS</th>
+                                                                <th>NAOH</th>
+                                                                <th>HCL</th>
+                                                                <th>KL1</th>
+                                                                <th>KL2</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar rounded">
+                                                                            <div class="avatar-content">
+
+                                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                    alt="Toolbar svg" />
+                                                                                <span
+                                                                                    class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div>
+                                                                            <div class="font-small-2 text-muted">
+                                                                                {{-- $pretreatment --}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                                {{-- <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <span>{{ $productWater->created_at }}</span>
+                                                                        </div>
+                                                                    </td> --}}
+
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="fw-bolder mb-25">23.4k</span>
+                                                                        <span class="font-small-2 text-muted">in 24
+                                                                            hours</span>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>$891.2</td>
+
+                                                                <td>$891.2</td>
+
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <span class="fw-bolder me-1">68%</span>
+                                                                        <i data-feather="trending-down"
+                                                                            class="text-danger font-medium-1"></i>
+                                                                    </div>
+                                                                </td>
+                                                                <td>$891.2</td>
+                                                                <td>$891.2</td>
+                                                                <td>$891.2</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div>
+                                                        <div>
+                                                            @if ($pretreatment->created_at == 'Train')
+                                                                <div class="row">
+                                                                    <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                        alt="Toolbar svg" />
+                                                                    <span
+                                                                        class="text-black">{{ $pretreatment->created_at }}</span>
+                                                                </div>
+                                                            @else
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="font-small-2 text-muted">meguc@ruj.io</div>
                                             </div>
+                                        </td>
+
+                                        <td class="text-nowrap">
+                                            {{ $pretreatment->assignedBy->name }}
+                                        </td>
+
+                                        <td>
+                                            {{ $pretreatment->observations }}
+                                        </td>
+
+                                        <td>
+                                            {{ $pretreatment->created_at }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="avatar bg-light-primary me-1">
-                                <div class="avatar-content">
-                                    <i data-feather="monitor" class="font-medium-3"></i>
-                                </div>
-                            </div>
-                            <span>Technology</span>
-                        </div>
-                    </td>
-                    <td class="text-nowrap">
-                        <div class="d-flex flex-column">
-                            <span class="fw-bolder mb-25">23.4k</span>
-                            <span class="font-small-2 text-muted">in 24 hours</span>
-                        </div>
-                    </td>
-                    <td>$891.2</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <span class="fw-bolder me-1">68%</span>
-                            <i data-feather="trending-down" class="text-danger font-medium-1"></i>
-                        </div>
-                    </td>
-                    </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                    </table>
                 </div>
             </div>
         </div>
+        <!--/  TABLE PRETREATMENT -->
     </div>
-    <!--/  TABLE PRETREATMENT -->
-
-
 
     <!-- Table Product Waters -->
     <div class="row match-height">
         <!-- Company Table Card -->
-        <h4 class="mb-1">PRETREATMENT</h4>
         <div class="col-12">
+            <h4 class="mb-1">PRETREATMENT</h4>
             <div class="card card-company-table">
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <thead>
-                                    <tr>
-                                        <th>TRAIN</th>
-                                        @isset($plant->pretreatments->first()->well_pump)
-                                            @if ($plant->pretreatments->first()->well_pump != '')
-                                                <th>WATER PUMPS</th>
-                                            @endif
-                                        @endisset
-                                        <th>M.M # 1</th>
-                                        <th>M.M # 2</th>
-                                        <th>M.M # 3</th>
-                                        <th>BACKWASH</th>
-                                        <th>POLISH FILTERS</th>
-                                        <th>ASSIGNED BY</th>
-                                        <th>OBSERVATION</th>
-                                        <th>DATE/TIME</th>
-                                    </tr>
-                                </thead>
+                                <tr>
+                                    <th>TRAIN</th>
+                                    @isset($plant->pretreatments->first()->well_pump)
+                                        @if ($plant->pretreatments->first()->well_pump != '')
+                                            <th>WATER PUMPS</th>
+                                        @endif
+                                    @endisset
+                                    <th>M.M # 1</th>
+                                    <th>M.M # 2</th>
+                                    <th>M.M # 3</th>
+                                    <th>BACKWASH</th>
+                                    <th>POLISH FILTERS</th>
+                                    <th>ASSIGNED BY</th>
+                                    <th>OBSERVATION</th>
+                                    <th>DATE/TIME</th>
+                                </tr>
+                            </thead>
 
                             <tbody>
                                 @foreach ($pretreatments as $pretreatment)
@@ -179,12 +309,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>TRAIN</th>
-                                                            <th>WELL PUMP</th>
-                                                            <th>WELL PUMP FRECUENCY</th>
-                                                            <th>IN</th>
-                                                            <th>OUT</th>
-                                                            <th>IN</th>
-                                                            <th>OUT</th>
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -209,30 +334,146 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
+                                                            </tr>
+                                                        @endfor
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
 
-                                                                {{--<td>
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span>{{ $productWater->created_at }}</span>
-                                                                    </div>
-                                                                </td>--}}
+                                        <td>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>IN</th>
+                                                            <th>OUT</th>
 
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="fw-bolder mb-25">23.4k</span>
-                                                                        <span class="font-small-2 text-muted">in 24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
+                                                        </tr>
 
-                                                                <td>$891.2</td>
-
-                                                                <td>$891.2</td>
-
+                                                    </thead>
+                                                    <tbody>
+                                                        @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                            <tr>
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
-                                                                        <span class="fw-bolder me-1">68%</span>
-                                                                        <i data-feather="trending-down"
-                                                                            class="text-danger font-medium-1"></i>
+                                                                        <div class="avatar rounded">
+                                                                            <div class="avatar-content">
+
+                                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                    alt="Toolbar svg" />
+                                                                                <span
+                                                                                    class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <td class="text-nowrap">
+                                                                            <div class="d-flex flex-column">
+                                                                                <span class="fw-bolder mb-25">23.4k</span>
+                                                                                <span class="font-small-2 text-muted">in
+                                                                                    24
+                                                                                    hours</span>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <div>
+                                                                            <div class="font-small-2 text-muted">
+                                                                                {{-- $pretreatment --}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endfor
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>IN </th>
+                                                            <th>OUT</th>
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                        @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar rounded">
+                                                                            <div class="avatar-content">
+
+                                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                    alt="Toolbar svg" />
+                                                                                <span
+                                                                                    class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <td class="text-nowrap">
+                                                                            <div class="d-flex flex-column">
+                                                                                <span class="fw-bolder mb-25">23.4k</span>
+                                                                                <span class="font-small-2 text-muted">in
+                                                                                    24
+                                                                                    hours</span>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <div>
+                                                                            <div class="font-small-2 text-muted">
+                                                                                {{-- $pretreatment --}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endfor
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>IN </th>
+                                                            <th>OUT</th>
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                        @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar rounded">
+                                                                            <div class="avatar-content">
+
+                                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                    alt="Toolbar svg" />
+                                                                                <span
+                                                                                    class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <td class="text-nowrap">
+                                                                            <div class="d-flex flex-column">
+                                                                                <span class="fw-bolder mb-25">23.4k</span>
+                                                                                <span class="font-small-2 text-muted">in
+                                                                                    24
+                                                                                    hours</span>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <div>
+                                                                            <div class="font-small-2 text-muted">
+                                                                                {{-- $pretreatment --}}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -242,9 +483,6 @@
                                             </div>
                                         </td>
 
-                                        <td>
-
-                                        </td>
 
                                         <td>
                                             {{ $pretreatment->assignedBy->name }}
@@ -265,21 +503,20 @@
                 </div>
             </div>
         </div>
-
         <!--/ TABLE PRODUCT WATER -->
 
 
         <!-- TABLE OPERATION-->
-        <h4 class="mb-1">OPERATION</h4>
-        <div class="col-12">
+        <div class="col-md-12">
+            <h4 class="mb-1">OPERATION</h4>
             <div class="card card-company-table">
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th>AMPEREGE</th>
-                                    <th>FRECIENCIES</th>
+                                <tr class="text-center">
+                                    <th>AMPERAGE</th>
+                                    <th>FRECUENCIES</th>
                                     <th>FEED</th>
                                     <th>TDS CONCENTRATION</th>
                                     <th>FLOW</th>
@@ -290,50 +527,367 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    @foreach ($operations as $operation)
+                                @foreach ($pretreatments as $pretreatment)
+                                    <tr>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar rounded">
-                                                    <div class="avatar-content">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>H.P</th>
+                                                        <th>B1</th>
+                                                        <th>B2</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                        <tr>
 
-                                                    </div>
-                                                    <div>
-                                                        <div class="fw-bolder">Dixons
-                                                            {{ $operation->reading }}
-                                                        </div>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar rounded">
+                                                                        <div class="avatar-content">
+                                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                alt="Toolbar svg" />
+                                                                            <span
+                                                                                class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                        <div class="font-small-2 text-muted">meguc@ruj.io
-                                                            {{ $operation->reading }}
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                                    <div>
+                                                                        <div class="font-small-2 text-muted">
+                                                                            {{-- $pretreatment --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
+                                        </td>
+
+                                        <td>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>H.P</th>
+                                                        <th>B1</th>
+                                                        <th>B2</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar rounded">
+                                                                        <div class="avatar-content">
+                                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                alt="Toolbar svg" />
+                                                                            <span
+                                                                                class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <div class="font-small-2 text-muted">
+                                                                            {{-- $pretreatment --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
+                                        </td>
+
+                                        <td>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>P.H</th>
+                                                        <th>TEMPERATURE</th>
+                                                        <th>FEED</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar rounded">
+                                                                        <div class="avatar-content">
+                                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                alt="Toolbar svg" />
+                                                                            <span
+                                                                                class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <div class="font-small-2 text-muted">
+                                                                            {{-- $pretreatment --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
+                                        </td>
+
+                                        <td>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>PERMEATE</th>
+                                                        <th>REJECTION</th>
+                                                        <th>REJET</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar rounded">
+                                                                        <div class="avatar-content">
+                                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                alt="Toolbar svg" />
+                                                                            <span
+                                                                                class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <div class="font-small-2 text-muted">
+                                                                            {{-- $pretreatment --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
+                                        </td>
+
+
+                                        <td>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>REJET</th>
+                                                        <th>PERMEATE</th>
+                                                        <th>B1+2</th>
+                                                        <th>H.P.IN</th>
+                                                        <th>H.P.OUT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar rounded">
+                                                                        <div class="avatar-content">
+                                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                alt="Toolbar svg" />
+                                                                            <span
+                                                                                class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <div class="font-small-2 text-muted">
+                                                                            {{-- $pretreatment --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar bg-light-primary me-1">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="monitor" class="font-medium-3"></i>
-                                                    </div>
-                                                </div>
-                                                <span>{{ $operations->created_at }}</span>
-                                            </div>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>REJET</th>
+                                                        <th>B1+2</th>
+                                                        <th>PX#1</th>
+                                                        <th>PX#2</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for ($i = 0; $i < $pretreatment->plants->trains->where('type', 'Train')->count(); $i++)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar rounded">
+                                                                        <div class="avatar-content">
+                                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                alt="Toolbar svg" />
+                                                                            <span
+                                                                                class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <div class="font-small-2 text-muted">
+                                                                            {{-- $pretreatment --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-bolder mb-25">23.4k</span>
+                                                                    <span class="font-small-2 text-muted">in
+                                                                        24
+                                                                        hours</span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
                                         </td>
+
                                         <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span class="fw-bolder mb-25">23.4k</span>
-                                                <span class="font-small-2 text-muted">in 24 hours</span>
-                                            </div>
+                                            {{ $pretreatment->assignedBy->name }}
                                         </td>
-                                        <td>$891.2</td>
+
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="fw-bolder me-1">68%</span>
-                                                <i data-feather="trending-down" class="text-danger font-medium-1"></i>
-                                            </div>
+                                            {{ $pretreatment->observations }}
                                         </td>
-                                    @endforeach
-                                </tr>
+
+                                        <td>
+                                            {{ $pretreatment->created_at }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -341,5 +895,5 @@
             </div>
         </div>
     </div>
+    <!--/ ´TABLE OPERATION-->
 </div>
-<!--/ ´TABLE OPERATION-->
