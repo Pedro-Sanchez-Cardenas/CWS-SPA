@@ -19,30 +19,54 @@
                                 @foreach ($productionReadings as $productionReading)
                                     <tr>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar rounded">
-                                                    <div class="avatar-content">
-                                                        @if ($productionReading->type == 'Train')
-                                                            <div class="row">
-                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
-                                                                    alt="Toolbar svg" />
-                                                                <span
-                                                                    class="text-black">{{ $productionReading->type }}</span>
-                                                            </div>
-                                                        @else
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="fw-bolder">
-                                                        {{ $productionReading->reading }}
-                                                    </div>
-                                                    <div class="font-small-2 text-muted">Production:
-                                                        {{ $productionReading->production }}
-                                                    </div>
-                                                </div>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>IN</th>
+                                                            <th>IN</th>
+                                                            <th>IN</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @for ($i = 0; $i < 2; $i++)
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar rounded">
+                                                                            <div class="avatar-content">
+
+                                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                                    alt="Toolbar svg" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="fw-bolder mb-25">23.4k</span>
+                                                                        <span class="font-small-2 text-muted">in
+                                                                            24
+                                                                            hours</span>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="fw-bolder mb-25">23.4k</span>
+                                                                        <span class="font-small-2 text-muted">in
+                                                                            24
+                                                                            hours</span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endfor
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar bg-light-primary me-1">
