@@ -11,7 +11,7 @@ class Helper
     {
         // Demo
         $fullURL = request()->fullurl();
-        $data = "";
+        $data = [];
         if (App()->environment() === 'production') {
             for ($i = 1; $i < 7; $i++) {
                 $contains = Str::contains($fullURL, 'demo-' . $i);
@@ -26,7 +26,7 @@ class Helper
         // default data array
         $DefaultData = [
             'mainLayoutType' => 'vertical',
-            'theme' => 'light', // dark
+            'theme' => 'light',
             'sidebarCollapsed' => false,
             'navbarColor' => '',
             'horizontalMenuType' => 'floating',
