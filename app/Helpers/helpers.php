@@ -11,6 +11,7 @@ class Helper
     {
         // Demo
         $fullURL = request()->fullurl();
+        $data = [];
         if (App()->environment() === 'production') {
             for ($i = 1; $i < 7; $i++) {
                 $contains = Str::contains($fullURL, 'demo-' . $i);
