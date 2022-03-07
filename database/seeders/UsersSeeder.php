@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder
         /* Super-Admin */
         User::create([
             'name' => 'Pedro Sánchez Cárdenas',
-            'email' => 'ti' . $domain,
+            'email' => 'it' . $domain,
             'phone' => '9999708319',
             //'phone2' => '',
             'companies_id' => '1',
@@ -29,7 +29,7 @@ class UsersSeeder extends Seeder
 
         User::create([
             'name' => 'Eduardo Cardenas',
-            'email' => 'ti2' . $domain,
+            'email' => 'it_aux' . $domain,
             'phone' => '9992462785',
             //'phone2' => '',
             'companies_id' => '1',
