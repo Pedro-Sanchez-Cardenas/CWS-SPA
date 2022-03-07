@@ -116,7 +116,88 @@
                                                         <th>TDS</th>
                                                         <th>H25</th>
                                                         <th>FREE CHLORIDE</th>
-                                                        <th>CHLORIDE</th>
+                                                      
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar rounded">
+                                                                    <div class="avatar-content">
+
+                                                                        <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                            alt="Toolbar svg" />
+                                                                        <span
+                                                                            class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div>
+                                                                    <div class="font-small-2 text-muted">
+                                                                        {{-- $pretreatment --}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        {{-- <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <span>{{ $productWater->created_at }}</span>
+                                                                        </div>
+                                                                    </td> --}}
+
+                                                        <td class="text-nowrap">
+                                                            <div class="d-flex flex-column">
+                                                                <span class="fw-bolder mb-25">23.4k</span>
+                                                                <span class="font-small-2 text-muted">in 24
+                                                                    hours</span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>$891.2</td>
+
+                                                        <td>$891.2</td>
+
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <span class="fw-bolder me-1">68%</span>
+                                                                <i data-feather="trending-down"
+                                                                    class="text-danger font-medium-1"></i>
+                                                            </div>
+                                                        </td>
+
+                                                  
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div>
+                                                <div>
+                                                    @if ($pretreatment->created_at == 'Train')
+                                                        <div class="row">
+                                                            <img src="{{ asset('images/icons/toolbox.svg') }}"
+                                                                alt="Toolbar svg" />
+                                                            <span
+                                                                class="text-black">{{ $pretreatment->created_at }}</span>
+                                                        </div>
+                                                    @else
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>CALCL2</th>
+                                                        <th>NACO3</th>
+                                                        <th>NACLO</th>
+                                                        <th>ANTIS</th>
+                                                        <th>NAOH (NAOH)</th>
+                                                        <th>HCL</th>
+                                                        <th>KL1</th>
+                                                        <th>KL2</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -186,93 +267,6 @@
                                             </div>
                                         </td>
 
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar rounded">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>CACL2</th>
-                                                                <th>NACO3</th>
-                                                                <th>NACLO</th>
-                                                                <th>ANTIS</th>
-                                                                <th>NAOH</th>
-                                                                <th>HCL</th>
-                                                                <th>KL1</th>
-                                                                <th>KL2</th>
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="avatar rounded">
-                                                                            <div class="avatar-content">
-
-                                                                                <img src="{{ asset('images/icons/toolbox.svg') }}"
-                                                                                    alt="Toolbar svg" />
-                                                                                <span
-                                                                                    class="text-black">{{ $pretreatment->trains[$loop->index] }}</span>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div>
-                                                                            <div class="font-small-2 text-muted">
-                                                                                {{-- $pretreatment --}}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-
-                                                                {{-- <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <span>{{ $productWater->created_at }}</span>
-                                                                        </div>
-                                                                    </td> --}}
-
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="fw-bolder mb-25">23.4k</span>
-                                                                        <span class="font-small-2 text-muted">in 24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
-
-                                                                <td>$891.2</td>
-
-                                                                <td>$891.2</td>
-
-                                                                <td>
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="fw-bolder me-1">68%</span>
-                                                                        <i data-feather="trending-down"
-                                                                            class="text-danger font-medium-1"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td>$891.2</td>
-                                                                <td>$891.2</td>
-                                                                <td>$891.2</td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                    <div>
-                                                        <div>
-                                                            @if ($pretreatment->created_at == 'Train')
-                                                                <div class="row">
-                                                                    <img src="{{ asset('images/icons/toolbox.svg') }}"
-                                                                        alt="Toolbar svg" />
-                                                                    <span
-                                                                        class="text-black">{{ $pretreatment->created_at }}</span>
-                                                                </div>
-                                                            @else
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
 
                                         <td class="text-nowrap">
                                             {{ $pretreatment->assignedBy->name }}
