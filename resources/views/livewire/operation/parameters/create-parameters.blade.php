@@ -35,6 +35,8 @@
                         </h2>
                         <p class="card-text">
                             Please check your form!
+                            <br>
+                        <p class="text-danger">{{ $errors }}</p>
                         </p>
                     </div>
                     <div class="avatar bg-warning p-50 m-0">
@@ -321,7 +323,8 @@
                                             <td>
                                                 <div class="form-check form-switch form-check-success">
                                                     <input type="checkbox" class="form-check-input"
-                                                        wire:model.lazy="filtros.{{ $i }}">
+                                                        :id="$id('pretreatment', {{ $i }})"
+                                                        wire:model.lazy="filters.{{ $pre }}.{{ $i }}">
                                                     <label class="form-check-label">
                                                         <span class="switch-icon-left">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
@@ -355,14 +358,14 @@
                             <div class="form-floating mb-0">
                                 <textarea data-length="350" class="form-control char-textarea"
                                     :id="$id('pretreatment', 'observations')"
-                                    wire:model.lazy="observations.{{ $pre }}" rows="5"
+                                    wire:model.lazy="observations.pre.{{ $pre }}" rows="5"
                                     placeholder="Observations" style="height: 100px"></textarea>
                                 <label for="observations">Observations</label>
                             </div>
                             <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
                                 350
                             </small>
-                            @error("observations.$pre")
+                            @error("observations.pre.$pre")
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -405,23 +408,22 @@
                                         #{{ $i }}</label>
                                     <div class="input-group">
                                         <span
-                                            class="input-group-text @error("booster.amp.$pre") border border-danger @endif"
+                                            class="input-group-text @error("booster.amp.$pre.$i") border border-danger @endif"
                                             id="basic-addon-search1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor"
-                                                class="bi bi-asterisk @error("booster.amp.$pre") text-danger @endif"
+                                                class="bi bi-asterisk @error("booster.amp.$pre.$i") text-danger @endif"
                                                 viewBox="0 0 16 16">
                                                 <path
                                                     d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z" />
                                             </svg>
                                         </span>
                                         <input type="number"
-                                            class="form-control @error("booster.amp.$pre") border border-danger @endif"
-                                            wire:model.lazy="booster.amp.{{ $pre }}"
-                                            :id="$id('operation', 'booster-amp')"
-                                            wire:model.lazy="booster.amp.{{ $pre }}" placeholder="0.0 A">
+                                            class="form-control @error("booster.amp.$pre.$i") border border-danger @endif"
+                                            wire:model.lazy="booster.amp.{{ $pre }}.{{ $i }}"
+                                            :id="$id('operation', 'booster-amp')" placeholder="0.0 A">
                                     </div>
-                                    @error("booster.amp.$pre")
+                                    @error("booster.amp.$pre.$i")
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -461,11 +463,11 @@
                                         {{ $i }}</label>
                                     <div class="input-group">
                                         <span
-                                            class="input-group-text @error("booster.fre.$pre") border border-danger @endif"
+                                            class="input-group-text @error("booster.fre.$pre.$i") border border-danger @endif"
                                             id="basic-addon-search1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor"
-                                                class="bi bi-wrench-adjustable @error("booster.fre.$pre") text-danger @endif"
+                                                class="bi bi-wrench-adjustable @error("booster.fre.$pre.$i") text-danger @endif"
                                                 viewBox="0 0 16 16">
                                                 <path
                                                     d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
@@ -474,11 +476,12 @@
                                             </svg>
                                         </span>
                                         <input type="number"
-                                            class="form-control @error("booster.fre.$pre") border border-danger @endif"
+                                            class="form-control @error("booster.fre.$pre.$i") border border-danger @endif"
                                             :id="$id('operation', 'booster-fre')"
-                                            wire:model.lazy="booster.fre.{{ $pre }}" placeholder="0.0 Hz">
+                                            wire:model.lazy="booster.fre.{{ $pre }}.{{ $i }}"
+                                            placeholder="0.0 Hz">
                                     </div>
-                                    @error("booster.fre.$pre")
+                                    @error("booster.fre.$pre.$i")
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -817,18 +820,18 @@
 
                             <div class="col-md">
                                 <div class="col">
-                                    @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
+                                    @for ($i = 1; $i < $plant->trains->first()->booster_quantity; $i++)
                                         <div class="col-md mb-2">
                                             <label :for="$id('operation', 'px-{{ $i }}')"
                                                 class="form-label">px #
                                                 {{ $i }} Out</label>
                                             <div class="input-group">
                                                 <span
-                                                    class="input-group-text @error("px.$pre") border border-danger @endif"
+                                                    class="input-group-text @error("px.$pre.$i") border border-danger @endif"
                                                     id="basic-addon-search1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor"
-                                                        class="bi bi-wrench-adjustable @error("px.$pre") text-danger @endif"
+                                                        class="bi bi-wrench-adjustable @error("px.$pre.$i") text-danger @endif"
                                                         viewBox="0 0 16 16">
                                                         <path
                                                             d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
@@ -837,7 +840,7 @@
                                                     </svg>
                                                 </span>
                                                 <input type="number"
-                                                    class="form-control @error("px.$pre") border border-danger @endif"
+                                                    class="form-control @error("px.$pre.$i") border border-danger @endif"
                                                     :id="$id('operation', 'px-{{ $i }}')"
                                                     wire:model.lazy="px.{{ $pre }}.{{ $i }}"
                                                     placeholder="0.0 A">
@@ -855,14 +858,14 @@
                             <div class="form-floating mb-0">
                                 <textarea data-length="350" class="form-control char-textarea"
                                     :id="$id('operation', 'observations')"
-                                    wire:model.lazy="observations.{{ $pre }}" rows="5"
+                                    wire:model.lazy="observations.ope.{{ $pre }}" rows="5"
                                     placeholder="Observations" style="height: 100px"></textarea>
                                 <label for="observations">Observations</label>
                             </div>
                             <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
                                 350
                             </small>
-                            @error("observations.$pre")
+                            @error("observations.ope.$pre")
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -1301,14 +1304,14 @@
                     <div class="form-floating mb-0">
                         <textarea data-length="350" class="form-control char-textarea"
                             :id="$id('productWater', 'observations')"
-                            wire:model.lazy="observations.{{ $pre }}" rows="5" placeholder="Observations"
+                            wire:model.lazy="observations.prw" rows="5" placeholder="Observations"
                             style="height: 100px"></textarea>
                         <label for="observations">Observations</label>
                     </div>
                     <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
                         350
                     </small>
-                    @error("observations.$pre")
+                    @error("observations.prw")
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
