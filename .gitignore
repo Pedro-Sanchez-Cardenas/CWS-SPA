@@ -7,7 +7,7 @@
 #/public/js
 #/public/css
 /public/css-rtl
-/public/vendors
+#/public/vendors
 /storage/*.key
 /vendor
 .env

@@ -17,8 +17,9 @@ class ViewParameters extends Component
     {
         return view('livewire.operation.parameters.view-parameters', [
             'productionReadings' => ProductionReading::all(),
-            'pretreatments' => Pretreatment::all(),
             'productWaters' => ProductWater::all(),
+            'pretreatments' => Pretreatment::all(),
+           
             'operations' => Operation::all(),
 
 
