@@ -1303,15 +1303,14 @@
                 <div class="mt-2">
                     <div class="form-floating mb-0">
                         <textarea data-length="350" class="form-control char-textarea"
-                            :id="$id('productWater', 'observations')"
-                            wire:model.lazy="observations.prw" rows="5" placeholder="Observations"
-                            style="height: 100px"></textarea>
+                            :id="$id('productWater', 'observations')" wire:model.lazy="observations.prw" rows="5"
+                            placeholder="Observations" style="height: 100px"></textarea>
                         <label for="observations">Observations</label>
                     </div>
                     <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
                         350
                     </small>
-                    @error("observations.prw")
+                    @error('observations.prw')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -1347,9 +1346,10 @@
                             </div>
 
                             <div class="col" x-show="step == totalStep" x-transition>
-                                <button wire:offline.attr="disabled" type="submit"
+                                <button wire:offline.attr="disabled" type="button"
+                                    wire:click="$emit('confirmParameters')"
                                     class="btn d-flex col-12 btn-lg btn-success align-items-center justify-content-end">
-                                    Upload Parameters
+                                    Add Parameters
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-file-earmark-arrow-up ms-1" viewBox="0 0 16 16">
                                         <path
@@ -1365,4 +1365,30 @@
             </div>
         </form>
     </div>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.addEventListener('confirmParameters', event => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    @this.store()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+        });
+    </script>
 </div>
