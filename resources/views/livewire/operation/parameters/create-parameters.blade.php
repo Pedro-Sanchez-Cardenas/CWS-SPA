@@ -356,8 +356,7 @@
 
                         <div class="mt-3">
                             <div class="form-floating mb-0">
-                                <textarea data-length="350" class="form-control char-textarea"
-                                    :id="$id('pretreatment', 'observations')"
+                                <textarea data-length="350" class="form-control char-textarea" :id="$id('pretreatment', 'observations')"
                                     wire:model.lazy="observations.pre.{{ $pre }}" rows="5"
                                     placeholder="Observations" style="height: 100px"></textarea>
                                 <label for="observations">Observations</label>
@@ -856,8 +855,7 @@
 
                         <div class="mt-2">
                             <div class="form-floating mb-0">
-                                <textarea data-length="350" class="form-control char-textarea"
-                                    :id="$id('operation', 'observations')"
+                                <textarea data-length="350" class="form-control char-textarea" :id="$id('operation', 'observations')"
                                     wire:model.lazy="observations.ope.{{ $pre }}" rows="5"
                                     placeholder="Observations" style="height: 100px"></textarea>
                                 <label for="observations">Observations</label>
@@ -1302,9 +1300,9 @@
 
                 <div class="mt-2">
                     <div class="form-floating mb-0">
-                        <textarea data-length="350" class="form-control char-textarea"
-                            :id="$id('productWater', 'observations')" wire:model.lazy="observations.prw" rows="5"
-                            placeholder="Observations" style="height: 100px"></textarea>
+                        <textarea data-length="350" class="form-control char-textarea" :id="$id('productWater', 'observations')"
+                            wire:model.lazy="observations.prw" rows="5" placeholder="Observations"
+                            style="height: 100px"></textarea>
                         <label for="observations">Observations</label>
                     </div>
                     <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
@@ -1379,25 +1377,26 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, Save!'
             }).then((result) => {
-                    if (result.isConfirmed) {
-                        @this.store()
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Your parameters has been saved',
-                            showConfirmButton: false,
-                            timer: 5000
-                        })
-                    }
+                if (result.isConfirmed) {
+                    @this.store()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your parameters has been saved',
+                        showConfirmButton: false,
+                        timer: 5000
+                    })
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your imaginary file is safe :)',
-                        'error'
-                    )
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'The parameters were not saved',
+                        showConfirmButton: false,
+                        timer: 5000
+                    })
                 }
             })
         });

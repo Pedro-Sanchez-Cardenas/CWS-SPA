@@ -18,12 +18,15 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\URL;
 
 class CreateParameters extends Component
 {
     public Plant $plant;
 
     protected $listeners = ['confirmParameters'];
+
+    public $back;
 
     // Inputs
     // Pretreatment
@@ -56,6 +59,11 @@ class CreateParameters extends Component
     public $calcium_chloride, $sodium_carbonate, $sodium_hypochloride, $antiscalant, $sodium_hydroxide, $hydrochloric_acid, $kl1, $kl2;
 
     public $observations;
+
+    public function mount()
+    {
+        $this->back = URL::previous();
+    }
 
     protected function rules()
     {
@@ -378,8 +386,10 @@ class CreateParameters extends Component
             });
 
             // Success Save
-            return redirect()->back();
+            //return redirect()->back();
+            sleep(4);
 
+            return redirect($this->back);
         } catch (\Exception $e) {
             dd('ERROR TRY CATCH');
         }
