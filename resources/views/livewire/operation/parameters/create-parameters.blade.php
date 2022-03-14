@@ -1262,7 +1262,7 @@
                     </div>
 
                     <div class="col-md mb-2">
-                        <label :for="$id('productWater', 'kl1')" class="form-label">Kl1</label>
+                        <label :for="$id('productWater', 'kl1')" class="form-label">Kl-1</label>
                         <div class="input-group">
                             <span class="input-group-text @error('kl1') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1281,7 +1281,7 @@
                     </div>
 
                     <div class="col-md mb-2">
-                        <label :for="$id('productWater', 'kl2')" class="form-label">Kl2</label>
+                        <label :for="$id('productWater', 'kl2')" class="form-label">Kl-2</label>
                         <div class="input-group">
                             <span class="input-group-text @error('kl2') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1369,24 +1369,35 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         window.addEventListener('confirmParameters', event => {
+
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'The parameters are correct?',
+                text: "The parameters cannot be modified!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Save!'
             }).then((result) => {
-                if (result.isConfirmed) {
-                    @this.store()
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    if (result.isConfirmed) {
+                        @this.store()
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your parameters has been saved',
+                            showConfirmButton: false,
+                            timer: 5000
+                        })
+                    }
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
                 }
             })
         });

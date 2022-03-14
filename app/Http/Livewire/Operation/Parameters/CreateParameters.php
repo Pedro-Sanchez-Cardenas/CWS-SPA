@@ -188,14 +188,15 @@ class CreateParameters extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function confirmParameters(){
+    public function confirmParameters()
+    {
+        $this->validate();
+
         $this->dispatchBrowserEvent('confirmParameters');
     }
 
     public function store()
     {
-        $this->validate();
-
         try {
             DB::transaction(function () {
                 $trains = Train::where('plants_id', $this->plant->id)
@@ -377,8 +378,7 @@ class CreateParameters extends Component
             });
 
             // Success Save
-            //return redirect()->back();
-            $this->dispatchBrowserEvent('confirmParameters');
+            return redirect()->back();
 
         } catch (\Exception $e) {
             dd('ERROR TRY CATCH');
