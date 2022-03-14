@@ -41,11 +41,6 @@ class Train extends Model
         return $this->hasOne(PolishFilterType::class, 'id', 'polish_filters_types_id');
     }
 
-    public function multimediaFilters()
-    {
-        return $this->hasMany(MultimediaFilter::class, 'trains_id', 'id');
-    }
-
     public function pretreatments()
     {
         return $this->hasMany(Pretreatment::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
