@@ -133,7 +133,7 @@
                             <div class="btn-group col-12" role="group">
                                 <a href="{{ route('parameters.create', $plant->id) }}" class="btn btn-success"><i
                                         class="fas fa-plus"></i> Parameters</a>
-                                <a class="btn btn-info"><i class="far fa-eye"></i> Parameters</a>
+                                <a href="{{ route('parameters.show', $plant->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Parameters</a>
                             </div>
 
                             <table class="table table-bordered mt-2">

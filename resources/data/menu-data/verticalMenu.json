@@ -158,7 +158,7 @@
                             "name": "RO",
                             "icon": "circle",
                             "slug": "plants.index",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
                         }
                     ]
                 }
@@ -185,7 +185,7 @@
                             "name": "RO",
                             "icon": "circle",
                             "slug": "",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
                         }
                     ]
                 }
