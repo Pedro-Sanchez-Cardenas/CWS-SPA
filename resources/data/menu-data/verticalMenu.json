@@ -22,7 +22,6 @@
                 }
             ]
         },
-
         {
             "navheader": "Apps",
             "slug": "",
@@ -41,42 +40,6 @@
             "icon": "calendar",
             "slug": "app-calendar",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-        },
-        {
-            "name": "Invoice",
-            "icon": "file-text",
-            "slug": "",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
-            "submenu": [
-                {
-                    "url": "app/invoice/list",
-                    "name": "List",
-                    "icon": "circle",
-                    "slug": "app-invoice-list",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "url": "app/invoice/preview",
-                    "name": "Preview",
-                    "icon": "circle",
-                    "slug": "app-invoice-preview",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "url": "app/invoice/edit",
-                    "name": "Edit",
-                    "icon": "circle",
-                    "slug": "app-invoice-edit",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "url": "app/invoice/add",
-                    "name": "Add",
-                    "icon": "circle",
-                    "slug": "app-invoice-add",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                }
-            ]
         },
         {
             "name": "User",
@@ -136,7 +99,6 @@
             "slug": "",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
         },
-
         {
             "name": "CWS",
             "icon": "credit-card",
@@ -144,6 +106,7 @@
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "companies": "cws",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -171,6 +134,7 @@
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "companies": "ku3",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -191,11 +155,46 @@
                 }
             ]
         },
-
         {
             "navheader": "Administration",
             "slug": "",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+        },
+        {
+            "name": "Invoice",
+            "icon": "file-text",
+            "slug": "",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "submenu": [
+                {
+                    "url": "app/invoice/list",
+                    "name": "List",
+                    "icon": "circle",
+                    "slug": "app-invoice-list",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "app/invoice/preview",
+                    "name": "Preview",
+                    "icon": "circle",
+                    "slug": "app-invoice-preview",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "app/invoice/edit",
+                    "name": "Edit",
+                    "icon": "circle",
+                    "slug": "app-invoice-edit",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                },
+                {
+                    "url": "app/invoice/add",
+                    "name": "Add",
+                    "icon": "circle",
+                    "slug": "app-invoice-add",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                }
+            ]
         },
         {
             "name": "CWS",
