@@ -116,6 +116,7 @@ class CreateParameters extends Component
             'booster.fre.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
             'booster.co.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
             'booster.cp.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'booster.pre.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
 
             'px' => 'nullable|min:0|array',
             'px.*.*' => ['sometimes', 'numeric', 'min:0'],
