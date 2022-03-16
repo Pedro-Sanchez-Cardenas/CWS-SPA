@@ -710,7 +710,7 @@
 
                         <label class="h5 mt-1">PRESSURES</label>
                         <div class="row">
-                            <div class="col mb-2">
+                            <div class="col-4 mb-2">
                                 <label :for="$id('operation', 'hp-in')" class="form-label">H.P. In</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("hp.in.$pre") border border-danger @endif"
@@ -735,7 +735,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col mb-2">
+                            <div class="col-4 mb-2">
                                 <label :for="$id('operation', 'hp-out')" class="form-label">H.P. Out</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("hp.out.$pre") border border-danger @endif"
@@ -760,7 +760,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col mb-2">
+                            <div class="col-4 mb-2">
                                 <label :for="$id('operation', 'reject')" class="form-label">Reject</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("reject.$pre") border border-danger @endif"
@@ -818,38 +818,36 @@
                             @endif
 
                             <div class="col">
-                                <div class="col">
-                                    @for ($i = 1; $i < $plant->trains->first()->booster_quantity; $i++)
-                                        <div class="col-md mb-2">
-                                            <label :for="$id('operation', 'px-{{ $i }}')"
-                                                class="form-label">px #
-                                                {{ $i }} Out</label>
-                                            <div class="input-group">
-                                                <span
-                                                    class="input-group-text @error("px.$pre.$i") border border-danger @endif"
-                                                    id="basic-addon-search1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor"
-                                                        class="bi bi-wrench-adjustable @error("px.$pre.$i") text-danger @endif"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
-                                                        <path
-                                                            d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                                                    </svg>
-                                                </span>
-                                                <input type="number"
-                                                    class="form-control @error("px.$pre.$i") border border-danger @endif"
-                                                    :id="$id('operation', 'px-{{ $i }}')"
-                                                    wire:model.lazy="px.{{ $pre }}.{{ $i }}"
-                                                    placeholder="0.0 A">
-                                            </div>
-                                            @error("px.$pre.$i")
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                @for ($i = 1; $i < $plant->trains->first()->booster_quantity; $i++)
+                                    <div class="col-md mb-2">
+                                        <label :for="$id('operation', 'px-{{ $i }}')"
+                                            class="form-label">px #
+                                            {{ $i }} Out</label>
+                                        <div class="input-group">
+                                            <span
+                                                class="input-group-text @error("px.$pre.$i") border border-danger @endif"
+                                                id="basic-addon-search1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor"
+                                                    class="bi bi-wrench-adjustable @error("px.$pre.$i") text-danger @endif"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
+                                                    <path
+                                                        d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                                </svg>
+                                            </span>
+                                            <input type="number"
+                                                class="form-control @error("px.$pre.$i") border border-danger @endif"
+                                                :id="$id('operation', 'px-{{ $i }}')"
+                                                wire:model.lazy="px.{{ $pre }}.{{ $i }}"
+                                                placeholder="0.0 A">
                                         </div>
-                                    @endfor
-                                </div>
+                                        @error("px.$pre.$i")
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                @endfor
                             </div>
                         </div>
 
@@ -877,7 +875,7 @@
             <div class="card-body" x-show.transition.in="step === totalStep" x-id="['productWater']">
                 <label class="h5">FEED LINE TO HOTEL SUPPLY</label>
                 <div class="row">
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'ph-pro')" class="form-label">pH</label>
                         <div class="input-group">
                             <span class="input-group-text @error('ph.pro') border border-danger @endif"
@@ -899,7 +897,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'hardness')" class="form-label">Hardness</label>
                         <div class="input-group">
                             <span class="input-group-text @error('hardness') border border-danger @endif"
@@ -921,7 +919,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'tds')" class="form-label">TDS</label>
                         <div class="input-group">
                             <span class="input-group-text @error('tds') border border-danger @endif"
@@ -943,7 +941,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'h2s')" class="form-label">H2S</label>
                         <div class="input-group">
                             <span class="input-group-text @error('h2s') border border-danger @endif"
@@ -1021,7 +1019,7 @@
                 <label class="h5 mt-1">PRODUCTION READINGS</label>
                 <div class="row">
                     @for ($i = 1; $i <= $plant->trains->where('type', 'Train')->count(); $i++)
-                        <div class="col-4 mb-2">
+                        <div class="col mb-2">
                             <label :for="$id('productWater', 'reading-{{ $i }}')"
                                 class="form-label">Train #{{ $i }}</label>
                             <div class="input-group">
@@ -1094,7 +1092,7 @@
                 <label class="h5 mt-1">TANK LEVELS</label>
                 <div class="row">
                     @for ($i = 1; $i <= $plant->cisterns_quantity; $i++)
-                        <div class="col-4 mb-2">
+                        <div class="col mb-2">
                             <label :for="$id('productWater', 'tank-{{ $i }}')" class="form-label">Tank
                                 #{{ $i }}</label>
                             <div class="input-group">
@@ -1121,7 +1119,7 @@
 
                 <label class="h5 mt-1">DAILY CHEMICAL SUPPLY</label>
                 <div class="row">
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'calcium_chloride')" class="form-label">Calcium
                             Chloride</label>
                         <div class="input-group">
@@ -1144,7 +1142,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'sodium_carbonate')" class="form-label">Sodium
                             Carbonate</label>
                         <div class="input-group">
@@ -1167,7 +1165,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'sodium_hypochloride')" class="form-label">Sodium
                             Hypochloride</label>
                         <div class="input-group">
@@ -1190,7 +1188,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'antiscalant')" class="form-label">Antiscalant</label>
                         <div class="input-group">
                             <span class="input-group-text @error('antiscalant') border border-danger @endif"
@@ -1213,7 +1211,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'sodium_hydroxide')" class="form-label">Sodium
                             Hydroxide</label>
                         <div class="input-group">
@@ -1236,7 +1234,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'hydrochloric_acid')" class="form-label">Hydrochloric
                             Acid</label>
                         <div class="input-group">
@@ -1259,7 +1257,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'kl1')" class="form-label">Kl-1</label>
                         <div class="input-group">
                             <span class="input-group-text @error('kl1') border border-danger @endif"
@@ -1278,7 +1276,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-2">
+                    <div class="col-6 mb-2">
                         <label :for="$id('productWater', 'kl2')" class="form-label">Kl-2</label>
                         <div class="input-group">
                             <span class="input-group-text @error('kl2') border border-danger @endif"
