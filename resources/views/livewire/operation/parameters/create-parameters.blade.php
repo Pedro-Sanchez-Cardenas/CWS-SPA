@@ -66,7 +66,7 @@
                             <label class="h5">AMPERAGE</label>
                             <div class="row">
                                 @if ($plant->well_pump == 'yes')
-                                    <div class="col-sm-6 mb-2">
+                                    <div class="col-6 mb-2">
                                         <label :for="$id('pretreatment', 'wellPump-amp')" class="form-label">Well
                                             pump</label>
                                         <div class="input-group">
@@ -125,7 +125,7 @@
                             <label class="h5 mt-1">FREQUENCIES</label>
                             <div class="row">
                                 @if ($plant->well_pump == 'yes')
-                                    <div class="col-sm-6 mb-2">
+                                    <div class="col-6 mb-2">
                                         <label :for="$id('pretreatment', 'wellPump-fre')" class="form-label">Well
                                             pump</label>
                                         <div class="input-group">
@@ -152,7 +152,7 @@
                                 @endif
 
                                 @if ($plant->feed_pump == 'yes')
-                                    <div class="col-sm-6 mb-2">
+                                    <div class="col-6 mb-2">
                                         <label :for="$id('pretreatment', 'feedPump-fre')" class="form-label">Feed
                                             pump</label>
                                         <div class="input-group">
@@ -183,7 +183,7 @@
                         <label class="h5 mt-1">MULTIMEDIA FILTERS</label>
                         @for ($i = 1; $i <= $plant->trains->where('type', 'Train')->first()->multimedia_filter_quantity; $i++)
                             <div class="row">
-                                <div class="col-sm-6 mb-2">
+                                <div class="col-6 mb-2">
                                     <label :for="$id('pretreatment', 'mm-in-{{ $i }}')"
                                         class="form-label">IN #{{ $i }}</label>
                                     <div class="input-group">
@@ -209,7 +209,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-sm-6 mb-2">
+                                <div class="col-6 mb-2">
                                     <label :for="$id('pretreatment', 'mm-out-{{ $i }}')"
                                         class="form-label">OUT #{{ $i }}</label>
                                     <div class="input-group">
@@ -261,7 +261,7 @@
 
                         <label class="h5 mt-1">POLISH FILTERS</label>
                         <div class="row">
-                            <div class="col-sm-6 mb-2">
+                            <div class="col-6 mb-2">
                                 <label :for="$id('pretreatment', 'pf-in')" class="form-label">IN</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("pf.in.$pre") border border-danger @endif"
@@ -284,7 +284,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-sm-6 mb-2">
+                            <div class="col-6 mb-2">
                                 <label :for="$id('pretreatment', 'pf-out')" class="form-label">OUT</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("pf.out.$pre") border border-danger @endif"
