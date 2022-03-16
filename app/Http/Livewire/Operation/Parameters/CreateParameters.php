@@ -153,9 +153,9 @@ class CreateParameters extends Component
             'chloride' => ['nullable', 'numeric', 'min:0'],
 
             'observations' => 'nullable|array:pre,ope,prw', // We validate the array
-            'observations.pre.*' => ['nullable', 'string', 'min:30', 'max:350'],
-            'observations.ope.*' => ['nullable', 'string', 'min:30', 'max:350'],
-            'observations.prw' => ['nullable', 'string', 'min:30', 'max:350'],
+            'observations.pre.*' => ['nullable', 'string', 'min:5', 'max:350'],
+            'observations.ope.*' => ['nullable', 'string', 'min:5', 'max:350'],
+            'observations.prw' => ['nullable', 'string', 'min:5', 'max:350'],
 
             'reading' => 'required|min:1|array', // We validate the array
             'reading.*' => ['required', 'numeric', 'min:0'],
