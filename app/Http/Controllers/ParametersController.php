@@ -72,11 +72,14 @@ class ParametersController extends Controller
 
         if ($typeUser == 'Operator') {
             $asistencia = UserAssistance::where('user_id', Auth::id())->whereDate('created_at', Carbon::now()->toDateString())->get();
-            if ($asistencia->count() > 0) {
+
+            return view('parameters.create', compact('plant', 'typeUser'));
+
+            /* if ($asistencia->count() > 0) {
                 return view('parameters.create', compact('plant', 'typeUser'));
             } else {
                 return redirect()->route('index')->with('alert', 'first enter your attendance');
-            }
+            }*/
         } else {
 
             return view('content.operations.parameters.create', compact('plant', 'typeUser'));

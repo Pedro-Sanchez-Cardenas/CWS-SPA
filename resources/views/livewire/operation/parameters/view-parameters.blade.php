@@ -1,7 +1,7 @@
 <div>
-    {{-- Product Reading --}}
-    <!-- Company Table Card -->
+    {{ $data }}
     <div class="row match-height">
+        {{-- Product Reading --}}
         <div class="col-md-4">
             <h4 class="mb-1">PRODUCTO READINGS</h4>
             <div class="card card-company-table">
@@ -16,26 +16,24 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($productionReadings as $productionReading)
+                                {{-- @foreach ($productionReadings as $productionReading)
                                     <tr>
                                         <td>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>type</th>
-                                                            <th>reading</th>
+                                                            <th>Type</th>
+                                                            <th>Reading</th>
                                                             <th>Production</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($i = 0; $i < 2; $i++)
+                                                        @for ($r = 0; $r < $plant->trains->count(); $r++)
                                                             <tr>
-
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
                                                                         <span>{{ $productionReading->type }}</span>
-
                                                                     </div>
                                                                 </td>
 
@@ -74,18 +72,22 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
+
+                </div>
+                <div class="card-footer">
+                    {{-- $productionReadings->links() --}}
                 </div>
             </div>
         </div>
-        <!--/ Company Table Card -->
+        {{-- Production Reading end --}}
 
 
-        <!--/  TABLE PRODUCTO WATER-->
-        <div class="col-md-8">
+        {{-- Product Water --}}
+        {{--<div class="col-md-8">
             <h4 class="mb-1">PRODUCT WATER</h4>
             <div class="card card-company-table">
                 <div class="card-body p-0">
@@ -277,13 +279,12 @@
                 </div>
             </div>
         </div>
-        <!--/  TABLE PPODUCTION WATER -->
+        {{-- Product Water end --}}
     </div>
 
-    <!-- Table Product Waters -->
     <div class="row match-height">
-        <!-- Company Table Card -->
-        <div class="col-12">
+        {{-- Pretreatment --}}
+        {{--<div class="col-12">
             <h4 class="mb-1">PRETREATMENT</h4>
             <div class="card card-company-table">
                 <div class="card-body p-0">
@@ -333,11 +334,11 @@
                                                             </tr>
                                                         @endfor
                                                     </tbody>
-                                                </table>    
+                                                </table>
                                             </div>
                                         </td>
 
-                                        {{-- water pumps --}}
+                                        {{-- water pumps --}
                                         @if ($plant->well_pump != 'no')
                                             <td>
                                                 <div class="table-responsive">
@@ -345,8 +346,8 @@
                                                         <thead>
                                                             <tr>
                                                                 <div class="text-center">
-                                                                <th>well.pump</th>
-                                                                <th>Well.Pump.Fre</th>
+                                                                    <th>well.pump</th>
+                                                                    <th>Well.Pump.Fre</th>
                                                                 </div>
                                                             </tr>
                                                         </thead>
@@ -409,7 +410,7 @@
                                                 </div>
                                             </td>
                                         @endif
-                                        {{-- end water pumps --}}
+                                        {{-- end water pumps --}
 
                                         <td>
                                             <div class="table-responsive">
@@ -438,12 +439,12 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
-
                                                         @endfor
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="table-responsive">
                                                 <table class="table">
@@ -469,12 +470,13 @@
 
                                                                     </div>
                                                                 </td>
-                                                            </tr>                    
+                                                            </tr>
                                                         @endfor
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="table-responsive">
                                                 <table class="table">
@@ -499,20 +501,20 @@
 
                                                                     </div>
                                                                 </td>
-                                                            </tr>    
-                                                                            
+                                                            </tr>
                                                         @endfor
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
                                                             <th>IN</th>
-                                                          
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -524,13 +526,13 @@
                                                                         <span>{{ $pretreatment->backwash }}</span>
                                                                     </div>
                                                                 </td>
-                                                            </tr>    
-                                                                            
+                                                            </tr>
                                                         @endfor
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="table-responsive">
                                                 <table class="table">
@@ -562,14 +564,12 @@
 
                                                                     </div>
                                                                 </td>
-                                                            </tr>                    
+                                                            </tr>
                                                         @endfor
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </td>
-
-
 
                                         <td>
                                             {{ $pretreatment->assignedBy->name }}
@@ -589,12 +589,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--/ TABLE PRODUCT WATER -->
+        </div>--}}
+        {{-- Pretreatment end --}}
 
 
-        <!-- TABLE OPERATION-->
-        <div class="col-md-12">
+        {{-- Operation --}}
+        {{--<div class="col-md-12">
             <h4 class="mb-1">OPERATION</h4>
             <div class="card card-company-table">
                 <div class="card-body p-0">
@@ -926,7 +926,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
+        {{-- Operation end --}}
     </div>
-    <!--/ ´TABLE OPERATION-->
 </div>
