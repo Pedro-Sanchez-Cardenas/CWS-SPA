@@ -1,5 +1,4 @@
 <div>
-    {{$pretreatments}}
     <div class="row match-height">
         {{-- Product Reading --}}
         <div class="col-md-4">
@@ -9,7 +8,7 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr class="text-center">
+                                <tr class="text-center text-nowrap">
                                     <th>PRODUCTION</th>
                                     <th>DATE/TIME</th>
                                 </tr>
@@ -22,7 +21,7 @@
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
-                                                        <tr class="text-center">
+                                                        <tr class="text-center text-nowrap">
                                                             <th>Type</th>
                                                             <th>Reading</th>
                                                             <th>Production</th>
@@ -30,8 +29,8 @@
                                                     </thead>
                                                     <tbody>
                                                         @for ($r = 0; $r < $plant->trains->count(); $r++)
-                                                            <tr>
-                                                                <td class="text-nowrap text-center">
+                                                            <tr class="text-center">
+                                                                <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
                                                                         @if ($productWater->productionReadings[$r]->type == 'Train')
                                                                             <span>{{ $productWater->productionReadings[$r]->type }}
@@ -63,7 +62,7 @@
                                         </td>
 
                                         <td>
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center text-nowrap">
                                                 {{-- <div class="avatar bg-light-primary me-1">
                                                     <div class="avatar-content">
                                                         <i data-feather="monitor" class="font-medium-3"></i>
@@ -94,7 +93,7 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr class="text-center">
+                                <tr class="text-center text-nowrap">
                                     <th>FEED LINE TO HOTEL SUPPLY</th>
                                     <th>DAYLI CHEMICAL SUPPLY</th>
                                     <th>Cisterns</th>
@@ -105,7 +104,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($productWaters as $productWater)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>
                                             <div class="table-responsive">
                                                 <table class="table">
@@ -236,8 +235,8 @@
                                                     </thead>
                                                     <tbody>
                                                         @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
-                                                            <tr>
-                                                                <td class="text-nowrap text-center">
+                                                            <tr class="text-center">
+                                                                <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
                                                                         <span>{{ $productWater->cisterns[$c]->capacity }}/0
                                                                             L</span>
@@ -258,7 +257,7 @@
                                             {{ $productWater->observations }}
                                         </td>
 
-                                        <td>
+                                        <td class="text-nowrap">
                                             {{ $productWater->created_at }}
                                         </td>
                                     </tr>
@@ -281,7 +280,7 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr class="text-center">
+                                <tr class="text-center text-nowrap">
                                     <th>TRAIN</th>
                                     @isset($plant->well_pump)
                                         @if ($plant->well_pump != 'no' || $plant->feed_pump != 'no')
@@ -289,7 +288,8 @@
                                                 Water pumps</th>
                                         @endif
                                     @endisset
-                                    <th>M. Filters</th>
+                                    <th colspan="{{ $plant->trains->where('type', 'Train')->count() }}">M. Filters
+                                    </th>
                                     <th>BACKWASH</th>
                                     <th>POLISH FILTERS</th>
                                     <th>ASSIGNED</th>
@@ -301,59 +301,56 @@
                             <tbody>
                                 @foreach ($pretreatments as $pretreatment)
                                     <tr class="text-center">
-                                       {{--<td>
+                                        <td>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
-                                                        <tr>
-                                                            <div class="text-center">
-                                                                <th>#</th>
-                                                            </div>
+                                                        <tr class="text-center text-nowrap">
+                                                            <th>#</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                            <tr>
-                                                                <td class="text-nowrap">
+                                                        @foreach ($pretreatment as $ite)
+                                                            <tr class="text-nowrap">
+                                                                <td>
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $t + 1 }}</span>
+                                                                        <span>{{ $loop->iteration }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
-                                                        @endfor
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </td>--}}
+                                        </td>
+
                                         {{-- water pumps --}}
-                                        {{--@if ($plant->well_pump != 'no')
+                                        @if ($plant->well_pump != 'no')
                                             <td>
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <thead>
-                                                            <tr>
-                                                                <div class="text-center">
-                                                                    <th>well pump</th>
-                                                                    <th>Well Pump Fre.</th>
-                                                                </div>
+                                                            <tr class="text-center text-nowrap">
+                                                                <th>well pump</th>
+                                                                <th>Well Pump Fre.</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                                <tr>
-                                                                    <td class="text-nowrap">
+                                                            @foreach ($pretreatment as $ite)
+                                                                <tr class="text-nowrap">
+                                                                    <td>
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $pretreatment->well_pump }}</span>
+                                                                            <span>{{ $ite->well_pump }}</span>
                                                                         </div>
                                                                     </td>
 
-                                                                    <td class="text-nowrap">
+                                                                    <td>
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $pretreatment->frecuencies_well_pump }}</span>
+                                                                            <span>{{ $ite->frecuencies_well_pump }}</span>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                            @endfor
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -365,62 +362,150 @@
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <thead>
-                                                            <tr>
+                                                            <tr class="text-center text-nowrap">
                                                                 <th>Feed Pump</th>
                                                                 <th>Feed Pump Fre.</th>
-
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                                <tr>
-                                                                    <td class="text-nowrap">
+                                                            @foreach ($pretreatment as $ite)
+                                                                <tr class="text-nowrap">
+                                                                    <td>
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $pretreatment->feed_pump }}</span>
+                                                                            <span>{{ $ite->feed_pump }}</span>
 
                                                                         </div>
                                                                     </td>
 
-                                                                    <td class="text-nowrap">
+                                                                    <td>
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $pretreatment->frecuencies_feed_pump }}</span>
+                                                                            <span>{{ $ite->frecuencies_feed_pump }}</span>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                            @endfor
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </td>
-                                        @endif--}}
+                                        @endif
                                         {{-- end water pumps --}}
 
-                                        {{--<td>
+                                        @foreach ($pretreatment as $ite)
+                                            <td>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="text-center text-nowrap">
+                                                                <th>In</th>
+                                                                <th>Out</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($ite->multimedias as $mm)
+                                                                <tr class="text-nowrap">
+                                                                    <td>
+                                                                        <div class="d-flex flex-column">
+                                                                            <span>{{ $mm->in }}</span>
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <div class="d-flex flex-column">
+                                                                            <span>{{ $mm->out }}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        @endforeach
+
+                                        <td>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
-                                                        <tr class="text-center">
-                                                            <th>#</th>
-                                                            <th>In</th>
-                                                            <th>Out</th>
+                                                        <tr class="text-center text-nowrap">
+                                                            <th>min</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                            @isset($plant->pretreatments[$t]->multimedias)
-                                                                @for ($m = 0; $m < $plant->pretreatments->first()->multimedias->count(); $m++)
-                                                                    <tr class="text-center">
-                                                                        <td>M.M #{{ $m + 1 }}</td>
-                                                                        <td>{{ $pretreatment->multimedias[$m]->in }}</td>
-                                                                        <td>{{ $pretreatment->multimedias[$m]->out }}</td>
-                                                                    </tr>
-                                                                @endfor
-                                                            @endisset
-                                                        @endfor
+                                                        @foreach ($pretreatment as $ite)
+                                                            <tr class="text-center">
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $ite->backwash }}</span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </td>--}}
+                                        </td>
+
+                                        <td>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr class="text-center text-nowrap">
+                                                            <th>In</th>
+                                                            <th>Out</th>
+                                                            <th>Change</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($pretreatment as $ite)
+                                                            <tr class="text-center">
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $ite->polish->first()->in }}</span>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $ite->polish->first()->out }}</span>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="text-nowrap">
+                                                                    @foreach ($ite->polish as $polish)
+                                                                        @if ($polish->filter_change != null)
+                                                                            <div class="d-flex flex-column">
+                                                                                <span>yes</span>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="d-flex flex-column">
+                                                                                <span>no</span>
+                                                                            </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+
+                                        <td class="text-nowrap">
+                                            {{ $pretreatment->first()->userCreated->name }}
+                                        </td>
+
+                                        <td>
+                                            @foreach ($pretreatment as $ite)
+                                            <li>
+                                                {{ $ite->observations }}
+                                            </li>
+                                            @endforeach
+                                        </td>
+
+                                        <td class="text-nowrap">
+                                            {{ $ite->first()->created_at }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
