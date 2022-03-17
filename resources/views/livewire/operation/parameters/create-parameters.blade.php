@@ -403,7 +403,8 @@
 
                             @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
                                 <div class="col-6 mb-2">
-                                    <label :for="$id('operation', 'booster-amp')" class="form-label">Booster
+                                    <label :for="$id('operation', 'booster-amp.{{ $i }}')"
+                                        class="form-label">Booster
                                         #{{ $i }}</label>
                                     <div class="input-group">
                                         <span
@@ -420,7 +421,8 @@
                                         <input type="number"
                                             class="form-control @error("booster.amp.$pre.$i") border border-danger @endif"
                                             wire:model.lazy="booster.amp.{{ $pre }}.{{ $i }}"
-                                            :id="$id('operation', 'booster-amp')" placeholder="0.0 A">
+                                            :id="$id('operation', 'booster-amp.{{ $i }}')"
+                                            placeholder="0.0 A">
                                     </div>
                                     @error("booster.amp.$pre.$i")
                                         <span class="text-danger">{{ $message }}</span>
@@ -458,7 +460,8 @@
 
                             @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
                                 <div class="col-6 mb-2">
-                                    <label :for="$id('operation', 'booster-fre')" class="form-label">Booster #
+                                    <label :for="$id('operation', 'booster-fre.{{ $i }}')"
+                                        class="form-label">Booster #
                                         {{ $i }}</label>
                                     <div class="input-group">
                                         <span
@@ -474,7 +477,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("booster.fre.$pre.$i") border border-danger @endif"
-                                            :id="$id('operation', 'booster-fre')"
+                                            :id="$id('operation', 'booster-fre.{{ $i }}')"
                                             wire:model.lazy="booster.fre.{{ $pre }}.{{ $i }}"
                                             placeholder="0.0 Hz">
                                     </div>
