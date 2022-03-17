@@ -55,4 +55,8 @@ class Pretreatment extends Model
     {
         return $this->hasMany(PolishFilter::class, 'pretreatments_id', 'id');
     }
+
+    public function userCreated(){
+        return $this->belongsTo(User::class, 'user_created_at', 'id');
+    }
 }

@@ -72,6 +72,6 @@ class User extends Authenticatable
 
     public function productWaters()
     {
-        return $this->hasMany(ProductWater::class, 'user_created_at', 'id');
+        return $this->hasOne(ProductWater::class, 'user_created_at', 'id');
     }
 }
