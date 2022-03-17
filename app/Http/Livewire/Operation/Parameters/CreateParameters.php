@@ -60,11 +60,6 @@ class CreateParameters extends Component
 
     public $observations;
 
-    public function mount()
-    {
-        $this->back = URL::previous();
-    }
-
     protected function rules()
     {
         return [
@@ -296,9 +291,9 @@ class CreateParameters extends Component
                                     'trains_id' => $trains[$contTrains]->id,
                                     'amperage' => $this->booster['amp'][$t][$b],
                                     'frequency' => $this->booster['fre'][$t][$b],
-                                    'px' => 1,
+                                    'px' => $this->px[$t][$b],
                                     'boosterFlow' => $this->booster['co'][$t],
-                                    'boosterPressures' => $this->booster['pre'][$t],
+                                    'boosterPressures' => $this->booster['pre'][$t][$b],
                                     'boosterPressuresTotal' => $this->booster['cp'][$t]
                                 ]);
                             }
@@ -389,9 +384,9 @@ class CreateParameters extends Component
 
             // Success Save
             //return redirect()->back();
-            sleep(4);
+            sleep(2);
 
-            return redirect($this->back);
+            return redirect()->route('plants.index');
         } catch (\Exception $e) {
             dd('ERROR TRY CATCH');
         }
