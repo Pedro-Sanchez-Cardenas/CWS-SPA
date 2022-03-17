@@ -55,7 +55,7 @@
 
         <hr>
 
-        <form class="g-3 needs-validation" novalidate wire:submit.prevent="store">
+        <form class="g-3 needs-validation" wire:submit.prevent="store">
             {{-- Formulario que se repite segun el numero de trenes --}}
             @for ($pre = 1; $pre <= $plant->trains->where('type', 'Train')->count() * 2; $pre++)
                 @if ($pre % 2 != 0)
@@ -67,7 +67,7 @@
                             <div class="row">
                                 @if ($plant->well_pump == 'yes')
                                     <div class="col-6 mb-2">
-                                        <label :for="$id('pretreatment', 'wellPump-amp')" class="form-label">Well
+                                        <label class="form-label">Well
                                             pump</label>
                                         <div class="input-group">
                                             <span
@@ -83,8 +83,7 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error("pump.well.$pre") border border-danger @enderror"
-                                                :id="$id('pretreatment', 'wellPump-amp')"
-                                                wire:model.lazy="pump.well.{{ $pre }}" placeholder="0.0 A">
+                                                wire:model="pump.well.{{ $pre }}" placeholder="0.0 A">
                                         </div>
                                         @error("pump.well.$pre")
                                             <span class="text-danger">{{ $message }}</span>
@@ -94,7 +93,7 @@
 
                                 @if ($plant->feed_pump == 'yes')
                                     <div class="col-sm-6 mb-2">
-                                        <label :for="$id('pretreatment', 'feedPump-amp')" class="form-label">Feed
+                                        <label class="form-label">Feed
                                             pump</label>
                                         <div class="input-group">
                                             <span
@@ -110,8 +109,7 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error("pump.feed.$pre") border border-danger @enderror"
-                                                :id="$id('pretreatment', 'feedPump-amp')"
-                                                wire:model.lazy="pump.feed.{{ $pre }}" placeholder="0.0 A">
+                                                wire:model="pump.feed.{{ $pre }}" placeholder="0.0 A">
                                         </div>
                                         @error("pump.feed.$pre")
                                             <span class="text-danger">{{ $message }}</span>
@@ -126,7 +124,7 @@
                             <div class="row">
                                 @if ($plant->well_pump == 'yes')
                                     <div class="col-6 mb-2">
-                                        <label :for="$id('pretreatment', 'wellPump-fre')" class="form-label">Well
+                                        <label class="form-label">Well
                                             pump</label>
                                         <div class="input-group">
                                             <span
@@ -142,8 +140,7 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error("pump.wellf.$pre") border border-danger @enderror"
-                                                :id="$id('pretreatment', 'wellPump-fre')"
-                                                wire:model.lazy="pump.wellf.{{ $pre }}" placeholder="0.0 Hz">
+                                                wire:model="pump.wellf.{{ $pre }}" placeholder="0.0 Hz">
                                         </div>
                                         @error("pump.wellf.$pre")
                                             <span class="text-danger">{{ $message }}</span>
@@ -153,7 +150,7 @@
 
                                 @if ($plant->feed_pump == 'yes')
                                     <div class="col-6 mb-2">
-                                        <label :for="$id('pretreatment', 'feedPump-fre')" class="form-label">Feed
+                                        <label class="form-label">Feed
                                             pump</label>
                                         <div class="input-group">
                                             <span
@@ -169,8 +166,7 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error("pump.feedf.$pre") border border-danger @enderror"
-                                                :id="$id('pretreatment', 'feedPump-fre')"
-                                                wire:model.lazy="pump.feedf.{{ $pre }}" placeholder="0.0 Hz">
+                                                wire:model="pump.feedf.{{ $pre }}" placeholder="0.0 Hz">
                                         </div>
                                         @error("pump.feedf.$pre")
                                             <span class="text-danger">{{ $message }}</span>
@@ -184,8 +180,7 @@
                         @for ($i = 1; $i <= $plant->trains->where('type', 'Train')->first()->multimedia_filter_quantity; $i++)
                             <div class="row">
                                 <div class="col-6 mb-2">
-                                    <label :for="$id('pretreatment', 'mm-in-{{ $i }}')"
-                                        class="form-label">IN #{{ $i }}</label>
+                                    <label class="form-label">IN #{{ $i }}</label>
                                     <div class="input-group">
                                         <span
                                             class="input-group-text @error("mm.in.$pre.$i") border border-danger @endif"
@@ -200,8 +195,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("mm.in.$pre.$i") border border-danger @endif"
-                                            :id="$id('pretreatment', 'mm-in-{{ $i }}')"
-                                            wire:model.lazy="mm.in.{{ $pre }}.{{ $i }}"
+                                            wire:model="mm.in.{{ $pre }}.{{ $i }}"
                                             placeholder="0.0 psi">
                                     </div>
                                     @error("mm.in.$pre.$i")
@@ -210,8 +204,7 @@
                                 </div>
 
                                 <div class="col-6 mb-2">
-                                    <label :for="$id('pretreatment', 'mm-out-{{ $i }}')"
-                                        class="form-label">OUT #{{ $i }}</label>
+                                    <label class="form-label">OUT #{{ $i }}</label>
                                     <div class="input-group">
                                         <span
                                             class="input-group-text @error("mm.out.$pre.$i") border border-danger @endif"
@@ -226,8 +219,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("mm.out.$pre.$i") border border-danger @endif"
-                                            :id="$id('pretreatment', 'mm-out-{{ $i }}')"
-                                            wire:model.lazy="mm.out.{{ $pre }}.{{ $i }}"
+                                            wire:model="mm.out.{{ $pre }}.{{ $i }}"
                                             placeholder="0.0 psi">
                                     </div>
                                     @error("mm.out.$pre.$i")
@@ -237,7 +229,7 @@
                             </div>
                         @endfor
 
-                        <label :for="$id('pretreatment', 'backwash')" class="form-label">BACKWASH</label>
+                        <label class="form-label">BACKWASH</label>
                         <div class="mb-1">
                             <div class="input-group">
                                 <span class="input-group-text @error("backwash.$pre") border border-danger @endif"
@@ -251,8 +243,7 @@
                                 </span>
                                 <input type="number"
                                     class="form-control @error("backwash.$pre") border border-danger @endif"
-                                    :id="$id('pretreatment', 'backwash')"
-                                    wire:model.lazy="backwash.{{ $pre }}" placeholder="0.0 min">
+                                    wire:model="backwash.{{ $pre }}" placeholder="0.0 min">
                             </div>
                             @error("backwash.$pre")
                                 <span class="text-danger">{{ $message }}</span>
@@ -262,7 +253,7 @@
                         <label class="h5 mt-1">POLISH FILTERS</label>
                         <div class="row">
                             <div class="col-6 mb-2">
-                                <label :for="$id('pretreatment', 'pf-in')" class="form-label">IN</label>
+                                <label class="form-label">IN</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("pf.in.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -276,8 +267,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("pf.in.$pre") border border-danger @endif"
-                                        :id="$id('pretreatment', 'pf-in')" wire:model.lazy="pf.in.{{ $pre }}"
-                                        placeholder="0.0 psi">
+                                        wire:model="pf.in.{{ $pre }}" placeholder="0.0 psi">
                                 </div>
                                 @error("pf.in.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -285,7 +275,7 @@
                             </div>
 
                             <div class="col-6 mb-2">
-                                <label :for="$id('pretreatment', 'pf-out')" class="form-label">OUT</label>
+                                <label class="form-label">OUT</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("pf.out.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -299,8 +289,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("pf.out.$pre") border border-danger @endif"
-                                        :id="$id('pretreatment', 'pf-out')"
-                                        wire:model.lazy="pf.out.{{ $pre }}" placeholder="0.0 psi">
+                                        wire:model="pf.out.{{ $pre }}" placeholder="0.0 psi">
                                 </div>
                                 @error("pf.out.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -323,7 +312,6 @@
                                             <td>
                                                 <div class="form-check form-switch form-check-success">
                                                     <input type="checkbox" class="form-check-input"
-                                                        :id="$id('pretreatment', {{ $i }})"
                                                         wire:model.lazy="filters.{{ $pre }}.{{ $i }}">
                                                     <label class="form-check-label">
                                                         <span class="switch-icon-left">
@@ -356,9 +344,8 @@
 
                         <div class="mt-3">
                             <div class="form-floating mb-0">
-                                <textarea data-length="350" class="form-control char-textarea" :id="$id('pretreatment', 'observations')"
-                                    wire:model.lazy="observations.pre.{{ $pre }}" rows="5"
-                                    placeholder="Observations" style="height: 100px"></textarea>
+                                <textarea data-length="350" class="form-control char-textarea" wire:model="observations.pre.{{ $pre }}"
+                                    rows="5" placeholder="Observations" style="height: 100px"></textarea>
                                 <label for="observations">Observations</label>
                             </div>
                             <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
@@ -377,7 +364,7 @@
                         <label class="h5">AMPERAGE</label>
                         <div class="row">
                             <div class="col-6 mb-2">
-                                <label :for="$id('operation', 'hp-amp')" class="form-label">H.P.</label>
+                                <label class="form-label">H.P.</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("hp.amp.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -393,8 +380,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("hp.amp.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'hp-amp')" wire:model.lazy="hp.amp.{{ $pre }}"
-                                        placeholder="0.0 A">
+                                        wire:model="hp.amp.{{ $pre }}" placeholder="0.0 A">
                                 </div>
                                 @error("hp.amp.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -403,8 +389,7 @@
 
                             @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
                                 <div class="col-6 mb-2">
-                                    <label :for="$id('operation', 'booster-amp.{{ $i }}')"
-                                        class="form-label">Booster
+                                    <label class="form-label">Booster
                                         #{{ $i }}</label>
                                     <div class="input-group">
                                         <span
@@ -420,8 +405,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("booster.amp.$pre.$i") border border-danger @endif"
-                                            wire:model.lazy="booster.amp.{{ $pre }}.{{ $i }}"
-                                            :id="$id('operation', 'booster-amp.{{ $i }}')"
+                                            wire:model="booster.amp.{{ $pre }}.{{ $i }}"
                                             placeholder="0.0 A">
                                     </div>
                                     @error("booster.amp.$pre.$i")
@@ -434,7 +418,7 @@
                         <label class="h5 mt-1">FREQUENCIES</label>
                         <div class="row">
                             <div class="col-6 mb-2">
-                                <label :for="$id('operation', 'hp-fre')" class="form-label">H.P.</label>
+                                <label class="form-label">H.P.</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("hp.fre.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -450,8 +434,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("hp.fre.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'hp-fre')" wire:model.lazy="hp.fre.{{ $pre }}"
-                                        placeholder="0.0 Hz">
+                                        wire:model="hp.fre.{{ $pre }}" placeholder="0.0 Hz">
                                 </div>
                                 @error("hp.fre.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -460,8 +443,7 @@
 
                             @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
                                 <div class="col-6 mb-2">
-                                    <label :for="$id('operation', 'booster-fre.{{ $i }}')"
-                                        class="form-label">Booster #
+                                    <label class="form-label">Booster #
                                         {{ $i }}</label>
                                     <div class="input-group">
                                         <span
@@ -477,8 +459,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("booster.fre.$pre.$i") border border-danger @endif"
-                                            :id="$id('operation', 'booster-fre.{{ $i }}')"
-                                            wire:model.lazy="booster.fre.{{ $pre }}.{{ $i }}"
+                                            wire:model="booster.fre.{{ $pre }}.{{ $i }}"
                                             placeholder="0.0 Hz">
                                     </div>
                                     @error("booster.fre.$pre.$i")
@@ -491,7 +472,7 @@
                         <label class="h5 mt-1">FEED</label>
                         <div class="row">
                             <div class="col-6 mb-2">
-                                <label :for="$id('operation', 'ph-ope')" class="form-label">pH</label>
+                                <label class="form-label">pH</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("ph.ope.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -507,7 +488,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("ph.ope.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'ph-ope')" wire:model.lazy="ph.ope.{{ $pre }}"
+                                        :id="$id('operation', 'ph-ope')" wire:model="ph.ope.{{ $pre }}"
                                         placeholder="0.0 u. pH">
                                 </div>
                                 @error("ph.ope.$pre")
@@ -516,8 +497,7 @@
                             </div>
 
                             <div class="col-6 mb-2">
-                                <label :for="$id('operation', 'temperature')"
-                                    class="form-label">Temperature</label>
+                                <label class="form-label">Temperature</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error("temperature.$pre") border border-danger @endif"
@@ -534,8 +514,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("temperature.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'temperature')"
-                                        wire:model.lazy="temperature.{{ $pre }}" placeholder="0.0 ºC">
+                                        wire:model="temperature.{{ $pre }}" placeholder="0.0 ºC">
                                 </div>
                                 @error("temperature.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -546,7 +525,7 @@
                         <label class="h5 mt-1">TDS CONCENTRATION</label>
                         <div class="row">
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'feed-ope')" class="form-label">Feed</label>
+                                <label class="form-label">Feed</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("feed.ope.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -562,8 +541,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("feed.ope.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'feed-ope')"
-                                        wire:model.lazy="feed.ope.{{ $pre }}" placeholder="0.0 ppm TDS">
+                                        wire:model="feed.ope.{{ $pre }}" placeholder="0.0 ppm TDS">
                                 </div>
                                 @error("feed.ope.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -571,7 +549,7 @@
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'permeate-ope')" class="form-label">Permeate</label>
+                                <label class="form-label">Permeate</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error("permeate.ope.$pre") border border-danger @endif"
@@ -588,8 +566,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("permeate.ope.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'permeate-ope')"
-                                        wire:model.lazy="permeate.ope.{{ $pre }}" placeholder="0.0 ppm TDS">
+                                        wire:model="permeate.ope.{{ $pre }}" placeholder="0.0 ppm TDS">
                                 </div>
                                 @error("permeate.ope.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -597,7 +574,7 @@
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'rejection')" class="form-label">Rejection</label>
+                                <label class="form-label">Rejection</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error("rejection.$pre") border border-danger @endif"
@@ -614,8 +591,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("rejection.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'rejection')"
-                                        wire:model.lazy="rejection.{{ $pre }}" placeholder="0.0 ppm TDS">
+                                        wire:model="rejection.{{ $pre }}" placeholder="0.0 ppm TDS">
                                 </div>
                                 @error("rejection.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -626,7 +602,7 @@
                         <label class="h5 mt-1">FLOW</label>
                         <div class="row">
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'feed-flo')" class="form-label">Feed</label>
+                                <label class="form-label">Feed</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("feed.flo.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -642,8 +618,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("feed.flo.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'feed-flo')"
-                                        wire:model.lazy="feed.flo.{{ $pre }}" placeholder="0.0 gpm">
+                                        wire:model="feed.flo.{{ $pre }}" placeholder="0.0 gpm">
                                 </div>
                                 @error("feed.flo.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -651,7 +626,7 @@
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'permeate-flo')" class="form-label">Permeate</label>
+                                <label class="form-label">Permeate</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error("permeate.flo.$pre") border border-danger @endif"
@@ -668,8 +643,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("permeate.flo.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'permeate-flo')"
-                                        wire:model.lazy="permeate.flo.{{ $pre }}" placeholder="0.0 gpm">
+                                        wire:model="permeate.flo.{{ $pre }}" placeholder="0.0 gpm">
                                 </div>
                                 @error("permeate.flo.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -678,7 +652,7 @@
 
                             @if ($plant->boosterc == 'yes')
                                 <div class="col-4 mb-2">
-                                    <label :for="$id('operation', 'booster-co')" class="form-label">Booster
+                                    <label class="form-label">Booster
                                         @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++)
                                             {{ $i > 0 ? '+' : '' }} {{ $i + 1 }}
                                         @endfor Out
@@ -697,8 +671,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("booster.co.$pre") border border-danger @endif"
-                                            :id="$id('operation', 'booster-co')"
-                                            wire:model.lazy="booster.co.{{ $pre }}" placeholder="0.0 gpm">
+                                            wire:model="booster.co.{{ $pre }}" placeholder="0.0 gpm">
                                     </div>
                                     @error("booster.co.$pre")
                                         <span class="text-danger">{{ $message }}</span>
@@ -710,7 +683,7 @@
                         <label class="h5 mt-1">PRESSURES</label>
                         <div class="row">
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'hp-in')" class="form-label">H.P. In</label>
+                                <label class="form-label">H.P. In</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("hp.in.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -726,8 +699,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("hp.in.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'hp-in')" wire:model.lazy="hp.in.{{ $pre }}"
-                                        placeholder="0.0 psi">
+                                        wire:model="hp.in.{{ $pre }}" placeholder="0.0 psi">
                                 </div>
                                 @error("hp.in.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -735,7 +707,7 @@
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'hp-out')" class="form-label">H.P. Out</label>
+                                <label class="form-label">H.P. Out</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("hp.out.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -751,8 +723,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("hp.out.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'hp-out')" wire:model.lazy="hp.out.{{ $pre }}"
-                                        placeholder="0.0 psi">
+                                        wire:model="hp.out.{{ $pre }}" placeholder="0.0 psi">
                                 </div>
                                 @error("hp.out.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -760,7 +731,7 @@
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label :for="$id('operation', 'reject')" class="form-label">Reject</label>
+                                <label class="form-label">Reject</label>
                                 <div class="input-group">
                                     <span class="input-group-text @error("reject.$pre") border border-danger @endif"
                                         id="basic-addon-search1">
@@ -776,8 +747,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("reject.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'reject')" wire:model.lazy="reject.{{ $pre }}"
-                                        placeholder="0.0 psi">
+                                        wire:model="reject.{{ $pre }}" placeholder="0.0 psi">
                                 </div>
                                 @error("reject.$pre")
                                     <span class="text-danger">{{ $message }}</span>
@@ -786,7 +756,7 @@
 
                             @if ($plant->boosterc == 'yes')
                                 <div class="col mb-2">
-                                    <label :for="$id('operation', 'booster-cp')" class="form-label">Booster
+                                    <label class="form-label">Booster
                                         @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++)
                                             {{ $i > 0 ? '+' : '' }} {{ $i + 1 }}
                                         @endfor Out
@@ -805,8 +775,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error("booster.cp.$pre") border border-danger @endif"
-                                            :id="$id('operation', 'booster-cp')"
-                                            wire:model.lazy="booster.cp.{{ $pre }}" placeholder="0.0 psi">
+                                            wire:model="booster.cp.{{ $pre }}" placeholder="0.0 psi">
                                     </div>
                                     @error("booster.cp.$pre")
                                         <span class="text-danger">{{ $message }}</span>
@@ -817,8 +786,7 @@
                             <div class="col">
                                 @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
                                     <div class="col-md mb-2">
-                                        <label :for="$id('operation', 'booster-pre.{{ $i }}')"
-                                            class="form-label">Booster #
+                                        <label class="form-label">Booster #
                                             {{ $i }}</label>
                                         <div class="input-group">
                                             <span
@@ -834,8 +802,7 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error("booster.pre.$pre.$i") border border-danger @endif"
-                                                :id="$id('operation', 'booster-pre.{{ $i }}')"
-                                                wire:model.lazy="booster.pre.{{ $pre }}.{{ $i }}"
+                                                wire:model="booster.pre.{{ $pre }}.{{ $i }}"
                                                 placeholder="0.0 psi">
                                         </div>
                                         @error("booster.pre.$pre.$i")
@@ -848,8 +815,7 @@
                             <div class="col">
                                 @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
                                     <div class="col-md mb-2">
-                                        <label :for="$id('operation', 'px-{{ $i }}')"
-                                            class="form-label">px #
+                                        <label class="form-label">px #
                                             {{ $i }} Out</label>
                                         <div class="input-group">
                                             <span
@@ -867,8 +833,7 @@
                                             </span>
                                             <input type="number"
                                                 class="form-control @error("px.$pre.$i") border border-danger @endif"
-                                                :id="$id('operation', 'px-{{ $i }}')"
-                                                wire:model.lazy="px.{{ $pre }}.{{ $i }}"
+                                                wire:model="px.{{ $pre }}.{{ $i }}"
                                                 placeholder="0.0 psi">
                                         </div>
                                         @error("px.$pre.$i")
@@ -881,9 +846,8 @@
 
                         <div class="mt-2">
                             <div class="form-floating mb-0">
-                                <textarea data-length="350" class="form-control char-textarea" :id="$id('operation', 'observations')"
-                                    wire:model.lazy="observations.ope.{{ $pre }}" rows="5"
-                                    placeholder="Observations" style="height: 100px"></textarea>
+                                <textarea data-length="350" class="form-control char-textarea" wire:model="observations.ope.{{ $pre }}"
+                                    rows="5" placeholder="Observations" style="height: 100px"></textarea>
                                 <label for="observations">Observations</label>
                             </div>
                             <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
@@ -904,7 +868,7 @@
                 <label class="h5">FEED LINE TO HOTEL SUPPLY</label>
                 <div class="row">
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'ph-pro')" class="form-label">pH</label>
+                        <label class="form-label">pH</label>
                         <div class="input-group">
                             <span class="input-group-text @error('ph.pro') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -918,7 +882,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error('ph.pro') border border-danger @endif"
-                                :id="$id('productWater', 'ph-pro')" wire:model.lazy="ph.pro" placeholder="0.0 u. pH">
+                                wire:model="ph.pro" placeholder="0.0 u. pH">
                         </div>
                         @error('ph.pro')
                             <span class="text-danger">{{ $message }}</span>
@@ -926,7 +890,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'hardness')" class="form-label">Hardness</label>
+                        <label class="form-label">Hardness</label>
                         <div class="input-group">
                             <span class="input-group-text @error('hardness') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -940,7 +904,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error('hardness') border border-danger @endif"
-                                :id="$id('productWater', 'hardness')" wire:model.lazy="hardness" placeholder="0.0 ppm">
+                                wire:model="hardness" placeholder="0.0 ppm">
                         </div>
                         @error('hardness')
                             <span class="text-danger">{{ $message }}</span>
@@ -948,7 +912,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'tds')" class="form-label">TDS</label>
+                        <label class="form-label">TDS</label>
                         <div class="input-group">
                             <span class="input-group-text @error('tds') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -962,7 +926,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error('tds') border border-danger @endif"
-                                :id="$id('productWater', 'tds')" wire:model.lazy="tds" placeholder="0.0 ppm">
+                                wire:model="tds" placeholder="0.0 ppm">
                         </div>
                         @error('tds')
                             <span class="text-danger">{{ $message }}</span>
@@ -970,7 +934,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'h2s')" class="form-label">H2S</label>
+                        <label class="form-label">H2S</label>
                         <div class="input-group">
                             <span class="input-group-text @error('h2s') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -984,7 +948,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error("h2s.$pre") border border-danger @endif"
-                                :id="$id('productWater', 'h2s')" wire:model.lazy="h2s" placeholder="0.0 ppm">
+                                wire:model="h2s" placeholder="0.0 ppm">
                         </div>
                         @error('h2s')
                             <span class="text-danger">{{ $message }}</span>
@@ -994,7 +958,7 @@
 
                 <div class="row mt-1">
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'free_chlorine')" class="form-label">Free Chlorine</label>
+                        <label class="form-label">Free Chlorine</label>
                         <div class="input-group">
                             <span class="input-group-text @error('free_chlorine') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1009,8 +973,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('free_chlorine') border border-danger @endif"
-                                :id="$id('productWater', 'free_chlorine')" wire:model.lazy="free_chlorine"
-                                placeholder="0.0 u. pH">
+                                wire:model="free_chlorine" placeholder="0.0 u. pH">
                         </div>
                         @error('free_chlorine')
                             <span class="text-danger">{{ $message }}</span>
@@ -1019,7 +982,7 @@
 
                     @if ($plant->chloride == 'yes')
                         <div class="col-6 mb-2">
-                            <label :for="$id('productWater', 'chloride')" class="form-label">Chloride</label>
+                            <label class="form-label">Chloride</label>
                             <div class="input-group">
                                 <span class="input-group-text @error('chloride') border border-danger @endif"
                                     id="basic-addon-search1">
@@ -1034,8 +997,7 @@
                                 </span>
                                 <input type="number"
                                     class="form-control @error('chloride') border border-danger @endif"
-                                    :id="$id('productWater', 'chloride')" wire:model.lazy="chloride"
-                                    placeholder="0.0 ppm">
+                                    wire:model="chloride" placeholder="0.0 ppm">
                             </div>
                             @error('chloride')
                                 <span class="text-danger">{{ $message }}</span>
@@ -1048,8 +1010,7 @@
                 <div class="row">
                     @for ($i = 1; $i <= $plant->trains->where('type', 'Train')->count(); $i++)
                         <div class="col mb-2">
-                            <label :for="$id('productWater', 'reading-{{ $i }}')"
-                                class="form-label">Train #{{ $i }}</label>
+                            <label class="form-label">Train #{{ $i }}</label>
                             <div class="input-group">
                                 <span class="input-group-text @error("reading.$i") border border-danger @endif"
                                     id="basic-addon-search1">
@@ -1062,8 +1023,7 @@
                                 </span>
                                 <input type="number"
                                     class="form-control @error("reading.$i") border border-danger @endif"
-                                    :id="$id('productWater', 'reading-{{ $i }}')"
-                                    wire:model.lazy="reading.{{ $i }}" placeholder="0.0 m3">
+                                    wire:model="reading.{{ $i }}" placeholder="0.0 m3">
                             </div>
                             @error("reading.$i")
                                 <span class="text-danger">{{ $message }}</span>
@@ -1075,7 +1035,7 @@
                 <div class="row">
                     @if ($plant->irrigation == 'yes')
                         <div class="col-6 mb-2">
-                            <label :for="$id('productWater', 'irrigation')" class="form-label">Irrigation</label>
+                            <label class="form-label">Irrigation</label>
                             <div class="input-group">
                                 <span class="input-group-text @error('irrigation') border border-danger @endif"
                                     id="basic-addon-search1">
@@ -1088,8 +1048,7 @@
                                 </span>
                                 <input type="number"
                                     class="form-control @error('irrigation') border border-danger @endif"
-                                    :id="$id('productWater', 'irrigation')" wire:model.lazy="irrigation"
-                                    placeholder="0.0 m3">
+                                    wire:model="irrigation" placeholder="0.0 m3">
                             </div>
                             @error('irrigation')
                                 <span class="text-danger">{{ $message }}</span>
@@ -1098,7 +1057,7 @@
                     @endif
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'municipal')" class="form-label">Municipal</label>
+                        <label class="form-label">Municipal</label>
                         <div class="input-group">
                             <span class="input-group-text @error('municipal') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1109,7 +1068,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error('municipal') border border-danger @endif"
-                                :id="$id('productWater', 'municipal')" wire:model.lazy="municipal" placeholder="0.0 m3">
+                                wire:model="municipal" placeholder="0.0 m3">
                         </div>
                         @error('municipal')
                             <span class="text-danger">{{ $message }}</span>
@@ -1121,7 +1080,7 @@
                 <div class="row">
                     @for ($i = 1; $i <= $plant->cisterns_quantity; $i++)
                         <div class="col mb-2">
-                            <label :for="$id('productWater', 'tank-{{ $i }}')" class="form-label">Tank
+                            <label class="form-label">Tank
                                 #{{ $i }}</label>
                             <div class="input-group">
                                 <span class="input-group-text @error("tank.$i") border border-danger @endif"
@@ -1135,8 +1094,7 @@
                                 </span>
                                 <input type="number"
                                     class="form-control @error("tank.$i") border border-danger @endif"
-                                    :id="$id('productWater', 'tank-{{ $i }}')"
-                                    wire:model.lazy="tank.{{ $i }}" placeholder="0.0 m3">
+                                    wire:model="tank.{{ $i }}" placeholder="0.0 m3">
                             </div>
                             @error("tank.$i")
                                 <span class="text-danger">{{ $message }}</span>
@@ -1148,7 +1106,7 @@
                 <label class="h5 mt-1">DAILY CHEMICAL SUPPLY</label>
                 <div class="row">
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'calcium_chloride')" class="form-label">Calcium
+                        <label class="form-label">Calcium
                             Chloride</label>
                         <div class="input-group">
                             <span class="input-group-text @error('calcium_chloride') border border-danger @endif"
@@ -1162,8 +1120,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('calcium_chloride') border border-danger @endif"
-                                :id="$id('productWater', 'calcium_chloride')" wire:model.lazy="calcium_chloride"
-                                placeholder="0.0 Kg">
+                                wire:model="calcium_chloride" placeholder="0.0 Kg">
                         </div>
                         @error('calcium_chloride')
                             <span class="text-danger">{{ $message }}</span>
@@ -1171,7 +1128,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'sodium_carbonate')" class="form-label">Sodium
+                        <label class="form-label">Sodium
                             Carbonate</label>
                         <div class="input-group">
                             <span class="input-group-text @error('sodium_carbonate') border border-danger @endif"
@@ -1185,8 +1142,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('sodium_carbonate') border border-danger @endif"
-                                :id="$id('productWater', 'sodium_carbonate')" wire:model.lazy="sodium_carbonate"
-                                placeholder="0.0 Kg">
+                                wire:model="sodium_carbonate" placeholder="0.0 Kg">
                         </div>
                         @error('sodium_carbonate')
                             <span class="text-danger">{{ $message }}</span>
@@ -1194,7 +1150,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'sodium_hypochloride')" class="form-label">Sodium
+                        <label class="form-label">Sodium
                             Hypochloride</label>
                         <div class="input-group">
                             <span class="input-group-text @error('sodium_hypochloride') border border-danger @endif"
@@ -1208,8 +1164,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('sodium_hypochloride') border border-danger @endif"
-                                :id="$id('productWater', 'sodium_hypochloride')" wire:model.lazy="sodium_hypochloride"
-                                placeholder="0.0 Kg">
+                                wire:model="sodium_hypochloride" placeholder="0.0 Kg">
                         </div>
                         @error('sodium_hypochloride')
                             <span class="text-danger">{{ $message }}</span>
@@ -1217,7 +1172,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'antiscalant')" class="form-label">Antiscalant</label>
+                        <label class="form-label">Antiscalant</label>
                         <div class="input-group">
                             <span class="input-group-text @error('antiscalant') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1229,8 +1184,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('antiscalant') border border-danger @endif"
-                                :id="$id('productWater', 'antiscalant')" wire:model.lazy="antiscalant"
-                                placeholder="0.0 L">
+                                wire:model="antiscalant" placeholder="0.0 L">
                         </div>
                         @error('antiscalant')
                             <span class="text-danger">{{ $message }}</span>
@@ -1240,7 +1194,7 @@
 
                 <div class="row">
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'sodium_hydroxide')" class="form-label">Sodium
+                        <label class="form-label">Sodium
                             Hydroxide</label>
                         <div class="input-group">
                             <span class="input-group-text @error('sodium_hydroxide') border border-danger @endif"
@@ -1254,8 +1208,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('sodium_hydroxide') border border-danger @endif"
-                                :id="$id('productWater', 'sodium_hydroxide')" wire:model.lazy="sodium_hydroxide"
-                                placeholder="0.0 Kg">
+                                wire:model="sodium_hydroxide" placeholder="0.0 Kg">
                         </div>
                         @error('sodium_hydroxide')
                             <span class="text-danger">{{ $message }}</span>
@@ -1263,7 +1216,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'hydrochloric_acid')" class="form-label">Hydrochloric
+                        <label class="form-label">Hydrochloric
                             Acid</label>
                         <div class="input-group">
                             <span class="input-group-text @error('hydrochloric_acid') border border-danger @endif"
@@ -1277,8 +1230,7 @@
                             </span>
                             <input type="number"
                                 class="form-control @error('hydrochloric_acid') border border-danger @endif"
-                                :id="$id('productWater', 'hydrochloric_acid')" wire:model.lazy="hydrochloric_acid"
-                                placeholder="0.0 Kg">
+                                wire:model="hydrochloric_acid" placeholder="0.0 Kg">
                         </div>
                         @error('hydrochloric_acid')
                             <span class="text-danger">{{ $message }}</span>
@@ -1286,7 +1238,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'kl1')" class="form-label">Kl-1</label>
+                        <label class="form-label">Kl-1</label>
                         <div class="input-group">
                             <span class="input-group-text @error('kl1') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1297,7 +1249,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error('kl1') border border-danger @endif"
-                                :id="$id('productWater', 'kl1')" wire:model.lazy="kl1" placeholder="0.0 Kg">
+                                wire:model="kl1" placeholder="0.0 Kg">
                         </div>
                         @error('kl1')
                             <span class="text-danger">{{ $message }}</span>
@@ -1305,7 +1257,7 @@
                     </div>
 
                     <div class="col-6 mb-2">
-                        <label :for="$id('productWater', 'kl2')" class="form-label">Kl-2</label>
+                        <label class="form-label">Kl-2</label>
                         <div class="input-group">
                             <span class="input-group-text @error('kl2') border border-danger @endif"
                                 id="basic-addon-search1">
@@ -1316,7 +1268,7 @@
                                 </svg>
                             </span>
                             <input type="number" class="form-control @error('kl2') border border-danger @endif"
-                                :id="$id('productWater', 'kl2')" wire:model.lazy="kl2" placeholder="0.0 Kg">
+                                wire:model="kl2" placeholder="0.0 Kg">
                         </div>
                         @error('kl2')
                             <span class="text-danger">{{ $message }}</span>
@@ -1326,9 +1278,8 @@
 
                 <div class="mt-2">
                     <div class="form-floating mb-0">
-                        <textarea data-length="350" class="form-control char-textarea" :id="$id('productWater', 'observations')"
-                            wire:model.lazy="observations.prw" rows="5" placeholder="Observations"
-                            style="height: 100px"></textarea>
+                        <textarea data-length="350" class="form-control char-textarea" wire:model="observations.prw" rows="5"
+                            placeholder="Observations" style="height: 100px"></textarea>
                         <label for="observations">Observations</label>
                     </div>
                     <small class="textarea-counter-value float-end"><span class="char-count">0</span> /
