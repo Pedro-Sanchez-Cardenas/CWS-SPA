@@ -101,8 +101,8 @@ class TrainsSeeder extends Seeder
         Train::create([
             'plants_id' => '3',
             'capacity' => '700',
-            'multimedia_filter_quantity' => '3',
-            'polish_filters_quantity' => '4',
+            'multimedia_filter_quantity' => '2',
+            'polish_filters_quantity' => '3',
             'polish_filters_types_id' => '10',
             'tds' => '12000',
             'booster_quantity' => '0',
@@ -115,8 +115,8 @@ class TrainsSeeder extends Seeder
         Train::create([
             'plants_id' => '3',
             'capacity' => '700',
-            'multimedia_filter_quantity' => '3',
-            'polish_filters_quantity' => '4',
+            'multimedia_filter_quantity' => '2',
+            'polish_filters_quantity' => '3',
             'polish_filters_types_id' => '10',
             'tds' => '12000',
             'booster_quantity' => '0',

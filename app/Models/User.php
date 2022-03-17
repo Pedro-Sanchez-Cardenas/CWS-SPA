@@ -58,4 +58,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Relations
+    public function pretreatments()
+    {
+        return $this->hasMany(Pretreatment::class, 'user_created_at', 'id');
+    }
+
+    public function operations()
+    {
+        return $this->hasMany(Operation::class, 'user_created_at', 'id');
+    }
+
+    public function productWaters()
+    {
+        return $this->hasMany(ProductWater::class, 'user_created_at', 'id');
+    }
 }

@@ -80,7 +80,7 @@ class Plant extends Model
 
     public function operations()
     {
-        return $this->hasMany(Operation::class, 'plants_id', 'id');
+        return $this->hasMany(Operation::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
     }
 
     public function productWaters()

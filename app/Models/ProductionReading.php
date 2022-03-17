@@ -26,4 +26,9 @@ class ProductionReading extends Model
     {
         return $this->belongsTo(Train::class, 'id', 'trains_id');
     }
+
+    public function productWater()
+    {
+        return $this->belongsTo(ProductWater::class, 'id', 'product_waters_id');
+    }
 }

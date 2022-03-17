@@ -22,6 +22,7 @@ class CreateBoostersTable extends Migration
             $table->double('px');
             $table->double('boosterFlow')->nullable();
             $table->double('boosterPressures')->nullable();
+            $table->double('boosterPressuresTotal')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
