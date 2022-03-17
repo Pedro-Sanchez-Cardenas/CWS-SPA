@@ -41,13 +41,18 @@ class ProductWater extends Model
         return $this->hasOne(User::class, 'id', 'user_created_at');
     }
 
-    public function readings()
+    public function cisterns()
     {
-        return $this->hasMany(ProductionReading::class, 'product_waters_id', 'id');
+        return $this->hasMany(Cistern::class, 'product_waters_id', 'id');
     }
 
     public function chemical()
     {
         return $this->hasOne(Chemical::class, 'product_waters_id', 'id');
+    }
+
+    public function productionReadings()
+    {
+        return $this->hasMany(ProductionReading::class, 'product_waters_id', 'id');
     }
 }

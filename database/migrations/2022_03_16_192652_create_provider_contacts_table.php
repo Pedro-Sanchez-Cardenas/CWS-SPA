@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvidersIdTable extends Migration
+class CreateProviderContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProvidersIdTable extends Migration
      */
     public function up()
     {
-        Schema::create('providers_id', function (Blueprint $table) {
+        Schema::create('provider_contacts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('providers_id');
             $table->string('names');
@@ -30,6 +30,6 @@ class CreateProvidersIdTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('providers_id');
+        Schema::dropIfExists('provider_contacts');
     }
 }

@@ -298,7 +298,8 @@ class CreateParameters extends Component
                                     'frequency' => $this->booster['fre'][$t][$b],
                                     'px' => 1,
                                     'boosterFlow' => $this->booster['co'][$t],
-                                    'boosterPressures' => $this->booster['cp'][$t]
+                                    'boosterPressures' => $this->booster['pre'][$t],
+                                    'boosterPressuresTotal' => $this->booster['cp'][$t]
                                 ]);
                             }
                         }

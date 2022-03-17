@@ -42,6 +42,11 @@ class Operation extends Model
         'user_updated_at'
     ];
 
+    public function plant()
+    {
+        return $this->belongsTo(Plant::class, 'plants_id', 'id');
+    }
+
     public function train()
     {
         return $this->belongsTo(Train::class, 'id', 'trains_id');
@@ -49,7 +54,7 @@ class Operation extends Model
 
     public function assignedBy()
     {
-        return $this->hasOne(User::class, 'id', 'user_created_at');
+        return $this->belongsTo(User::class, 'id', 'user_created_at');
     }
 
     public function boos()

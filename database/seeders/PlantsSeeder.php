@@ -77,9 +77,9 @@ class PlantsSeeder extends Seeder
 
             'irrigation' => 'yes', // DEFAULT
             'sdi' => 'yes', // DEFAULT
-            'chloride' => 'yes', // DEFAULT
+            //'chloride' => 'yes', // DEFAULT
             'well_pump' => 'yes', // DEFAULT
-            'feed_pump' => 'yes', // DEFAULT
+            //'feed_pump' => 'yes', // DEFAULT
             //'boosterc', // DEFAULT
             'companies_id' => '3',
 

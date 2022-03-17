@@ -21,6 +21,13 @@ class Booster extends Model
         'frequency',
         'px',
         'boosterFlow',
-        'boosterPressures'
+        'boosterPressures',
+        'boosterPressuresTotal'
     ];
+
+    // Relations
+    public function operation()
+    {
+        return $this->belongsTo(Operation::class, 'id', 'operations_id');
+    }
 }

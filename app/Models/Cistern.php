@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Cistern extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -26,5 +25,10 @@ class Cistern extends Model
     public function plant()
     {
         return $this->belongsTo(Plant::class, 'id', 'plants_id');
+    }
+
+    public function productWater()
+    {
+        return $this->belongsTo(ProductWater::class, 'id', 'product_waters_id');
     }
 }
