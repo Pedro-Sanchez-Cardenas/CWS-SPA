@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('phone2')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('companies_id')->nullable()->constrained();
             $table->string('password');
             $table->rememberToken();
             //$table->foreignId('current_team_id')->nullable();

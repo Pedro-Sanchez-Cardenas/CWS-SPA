@@ -23,6 +23,6 @@ class Company extends Model
     // Relations
     public function users()
     {
-        return $this->hasMany(User::class, 'id', 'companies_id');
+        return $this->belongsToMany(User::class);
     }
 }

@@ -23,7 +23,6 @@ class UsersSeeder extends Seeder
             'email' => 'it' . $domain,
             'phone' => '9999708319',
             //'phone2' => '',
-            'companies_id' => '1',
             'password' => Hash::make('Pedro41217'),
         ])->assignRole('Super-Admin');
 
@@ -32,7 +31,6 @@ class UsersSeeder extends Seeder
             'email' => 'it_aux' . $domain,
             'phone' => '9992462785',
             //'phone2' => '',
-            'companies_id' => '1',
             'password' => Hash::make('Eduardo41316'),
         ])->assignRole('Super-Admin');
         /* Super-Admin */
@@ -43,7 +41,6 @@ class UsersSeeder extends Seeder
             'email' => 'fub' . $domain,
             'phone' => '9991633524',
             //'phone2' => '',
-            //'companies_id' => '1',
             'password' => Hash::make('Flavio0412'),
         ])->assignRole('Director');
 
@@ -52,7 +49,6 @@ class UsersSeeder extends Seeder
             'email' => 'bmk' . $domain,
             'phone' => '9992714245',
             //'phone2' => '',
-            //'companies_id' => '1',
             'password' => Hash::make('Bernhard0435'),
         ])->assignRole('Director');
         /* Directors */
@@ -63,7 +59,6 @@ class UsersSeeder extends Seeder
             'email' => 'elr' . $domain,
             'phone' => '9992172904',
             //'phone2' => '',
-            'companies_id' => '1',
             'password' => Hash::make('admin12'),
         ])->assignRole('Operations-Manager');
 
@@ -72,7 +67,6 @@ class UsersSeeder extends Seeder
             'email' => 'admon' . $domain,
             'phone' => '9993337523',
             //'phone2' => '',
-            'companies_id' => '1',
             'password' => Hash::make('admin13'),
         ])->assignRole('Administrative-Manager');
         /* Administrations */
@@ -83,7 +77,6 @@ class UsersSeeder extends Seeder
             'email' => 'epina' . $domain,
             'phone' => '9981157757',
             //'phone2' => '',
-            'companies_id' => '3',
             'password' => Hash::make('Laf01741'),
         ])->assignRole('Manager');
         /* Managers */
@@ -94,7 +87,6 @@ class UsersSeeder extends Seeder
             'email' => 'gprince' . $domain,
             'phone' => '876 386 1520',
             //'phone2' => '',
-            'companies_id' => '3',
             'password' => Hash::make('gPrice4012'),
         ])->assignRole('Operator');
 
@@ -103,7 +95,6 @@ class UsersSeeder extends Seeder
             'email' => 'cdennis' . $domain,
             'phone' => '876 403 0222',
             //'phone2' => '',
-            'companies_id' => '3',
             'password' => Hash::make('cDennis1950'),
         ])->assignRole('Operator');
 
@@ -112,7 +103,6 @@ class UsersSeeder extends Seeder
             'email' => 'rcaamal' . $domain,
             'phone' => '9983995987',
             //'phone2' => '',
-            'companies_id' => '1',
             'password' => Hash::make('Rcaam4035'),
         ])->assignRole('Operator');
         /* Operators */
