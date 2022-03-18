@@ -16,7 +16,6 @@ class CreateProvidersTable extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
             $table->string('names');
-            $table->string('bank_data'); 
             $table->timestamps();
         });
     }
