@@ -19,4 +19,10 @@ class Company extends Model
         'currencies_id',
         'countries_id'
     ];
+
+    // Relations
+    public function users()
+    {
+        return $this->hasMany(User::class, 'id', 'companies_id');
+    }
 }

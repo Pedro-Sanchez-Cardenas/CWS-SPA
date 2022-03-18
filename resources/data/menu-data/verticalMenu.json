@@ -5,99 +5,31 @@
             "icon": "home",
             "slug": "",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "companies": "CWS|KU3",
             "submenu": [
                 {
-                    "url": "/",
+                    "url": "dashboard",
                     "name": "Administrative",
                     "icon": "circle",
                     "slug": "dashboard-ecommerce",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+                    "companies": "CWS|KU3"
                 },
                 {
-                    "url": "dashboard/analytics",
+                    "url": "dashboard",
                     "name": "Operation",
                     "icon": "circle",
                     "slug": "dashboard-analytics",
-                    "roles": "Operator"
-                }
-            ]
-        },
-        {
-            "navheader": "Apps",
-            "slug": "",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-        },
-        {
-            "url": "app/todo",
-            "name": "Todo",
-            "icon": "check-square",
-            "slug": "app-todo",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-        },
-        {
-            "url": "app/calendar",
-            "name": "Calendar",
-            "icon": "calendar",
-            "slug": "app-calendar",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-        },
-        {
-            "name": "User",
-            "icon": "user",
-            "slug": "",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
-            "submenu": [
-                {
-                    "url": "app/user/list",
-                    "name": "List",
-                    "icon": "circle",
-                    "slug": "app-user-list",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "name": "View",
-                    "icon": "circle",
-                    "slug": "",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
-                    "submenu": [
-                        {
-                            "url": "app/user/view/account",
-                            "name": "Account",
-                            "slug": "app-user-view-account",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                        },
-                        {
-                            "url": "app/user/view/security",
-                            "name": "Security",
-                            "slug": "app-user-view-security",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                        },
-                        {
-                            "url": "app/user/view/billing",
-                            "name": "Billings & Plans",
-                            "slug": "app-user-view-billing",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                        },
-                        {
-                            "url": "app/user/view/notifications",
-                            "name": "Notifications",
-                            "slug": "app-user-view-notifications",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                        },
-                        {
-                            "url": "app/user/view/connections",
-                            "name": "Connections",
-                            "slug": "app-user-view-connections",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                        }
-                    ]
+                    "roles": "Manager|Operator",
+                    "companies": "CWS|KU3"
                 }
             ]
         },
         {
             "navheader": "Operation",
             "slug": "",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+            "companies": "CWS|KU3"
         },
         {
             "name": "CWS",
@@ -106,7 +38,7 @@
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-            "companies": "cws",
+            "companies": "CWS",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -115,13 +47,15 @@
                     "slug": "",
                     "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+                    "companies": "CWS",
                     "submenu": [
                         {
-                            "url": "operation/plants",
+                            "url": "plants.index",
                             "name": "RO",
                             "icon": "circle",
                             "slug": "plants.index",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+                            "companies": "CWS"
                         }
                     ]
                 }
@@ -134,7 +68,7 @@
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-            "companies": "ku3",
+            "companies": "KU3",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -143,13 +77,15 @@
                     "slug": "",
                     "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+                    "companies": "KU3",
                     "submenu": [
                         {
-                            "url": "operation/plants",
+                            "url": "plants.index",
                             "name": "RO",
                             "icon": "circle",
                             "slug": "",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator"
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
+                            "companies": "KU3"
                         }
                     ]
                 }
@@ -158,43 +94,8 @@
         {
             "navheader": "Administration",
             "slug": "",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-        },
-        {
-            "name": "Invoice",
-            "icon": "file-text",
-            "slug": "",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
-            "submenu": [
-                {
-                    "url": "app/invoice/list",
-                    "name": "List",
-                    "icon": "circle",
-                    "slug": "app-invoice-list",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "url": "app/invoice/preview",
-                    "name": "Preview",
-                    "icon": "circle",
-                    "slug": "app-invoice-preview",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "url": "app/invoice/edit",
-                    "name": "Edit",
-                    "icon": "circle",
-                    "slug": "app-invoice-edit",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                },
-                {
-                    "url": "app/invoice/add",
-                    "name": "Add",
-                    "icon": "circle",
-                    "slug": "app-invoice-add",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
-                }
-            ]
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+            "companies": "CWS|KU3"
         },
         {
             "name": "CWS",
@@ -202,7 +103,8 @@
             "badge": "New",
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+            "companies": "CWS",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -211,13 +113,15 @@
                     "slug": "",
                     "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+                    "companies": "CWS",
                     "submenu": [
                         {
-                            "url": "operation/plants",
+                            "url": "plants.index",
                             "name": "RO",
                             "icon": "circle",
                             "slug": "",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+                            "companies": "CWS"
                         }
                     ]
                 }
@@ -229,7 +133,8 @@
             "badge": "New",
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+            "companies": "KU3",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -237,14 +142,16 @@
                     "badge": "New",
                     "slug": "",
                     "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
+                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+                    "companies": "KU3",
                     "submenu": [
                         {
-                            "url": "operation/plants",
+                            "url": "plants.index",
                             "name": "RO",
                             "icon": "circle",
                             "slug": "",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager"
+                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
+                            "companies": "KU3"
                         }
                     ]
                 }
