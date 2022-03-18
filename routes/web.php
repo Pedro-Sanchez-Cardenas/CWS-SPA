@@ -20,7 +20,7 @@ use App\Http\Controllers\PlantController;
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     /* Main Page Route */
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/{company?}', [DashboardController::class, 'index'])->name('dashboard');
     /* Main Page Route */
 
     /* Route Apps */
