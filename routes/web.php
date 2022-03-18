@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppsController;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ParametersController;
 use App\Http\Controllers\PlantController;
 
@@ -18,7 +17,8 @@ use App\Http\Controllers\PlantController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth:sanctum', 'verified'],function(){
+
+Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     /* Main Page Route */
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     /* Main Page Route */
@@ -50,17 +50,12 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'],function(){
     Route::group(['prefix' => 'operation'], function () {
         Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
         Route::resource('plants', PlantController::class)->except('index');
-    });
-    /* Route Operation */
 
-    /* Route Parameters */
-    Route::group(['prefix' => 'operation'], function () {
         Route::get('parameters/{id}/create', [ParametersController::class, 'create'])->name('parameters.create');
         Route::resource('parameters', ParametersController::class)->except('index', 'create');
     });
-    /* Route Parameters */
+    /* Route Operation */
 
     // locale Route
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
-
 });
