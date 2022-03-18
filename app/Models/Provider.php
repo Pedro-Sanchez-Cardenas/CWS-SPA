@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Services extends Model
+class Provider extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,6 @@ class Services extends Model
      */
     protected $fillable = [
         'name',
-        'user_created_at',
-        'user_updated_at',
+
     ];
 }
