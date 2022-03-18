@@ -30,7 +30,8 @@
                                             @endif
                                         </li>
                                     @endif
-                                @else
+                                @endif
+                                @if (Auth::user()->getRoleNames()['0'] == 'Super-Admin' || Auth::user()->getRoleNames()['0'] == 'Director')
                                     <li @if ($submenu->slug === Route::currentRouteName()) class="active" @endif>
                                         <a href="{{ isset($submenu->url) ? route($submenu->url, $com) : 'javascript:void(0)' }}"
                                             class="d-flex align-items-center"

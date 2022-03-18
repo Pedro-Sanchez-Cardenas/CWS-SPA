@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             TrainsSeeder::class,
             BillingPeriodSeeder::class,
             PlantContractSeeder::class,
-            MembraneSeeder::class
+            MembraneSeeder::class,
+            ServicesSeeder::class
         ]);
     }
 }

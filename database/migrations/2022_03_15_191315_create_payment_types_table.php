@@ -17,7 +17,7 @@ class CreatePaymentTypesTable extends Migration
             $table->id();
             $table->string('type');
             $table->foreignId('user_created_at')->constrained("users");
-            $table->foreignId('user_updated_at')->constrained("users");
+            $table->foreignId('user_updated_at')->nullable()->constrained("users");
             $table->timestamps();
             $table->softDeletes();
         });

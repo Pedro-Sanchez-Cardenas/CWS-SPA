@@ -111,7 +111,8 @@ $configData = Helper::applClasses();
                                                     </li>
                                                 @endif
                                             @endif
-                                        @else
+                                        @endif
+                                        @if (Auth::user()->getRoleNames()['0'] == 'Super-Admin' || Auth::user()->getRoleNames()['0'] == 'Director')
                                             @if (isset($menu->navheader))
                                                 <li class="navigation-header">
                                                     <span>{{ __('locale.' . $menu->navheader) }}</span>
