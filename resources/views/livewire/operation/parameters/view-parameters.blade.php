@@ -497,9 +497,9 @@
 
                                         <td>
                                             @foreach ($pretreatment as $ite)
-                                            <li>
-                                                {{ $ite->observations }}
-                                            </li>
+                                                <li>
+                                                    {{ $ite->observations }}
+                                                </li>
                                             @endforeach
                                         </td>
 

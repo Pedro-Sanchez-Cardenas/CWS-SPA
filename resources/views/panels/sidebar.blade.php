@@ -65,46 +65,55 @@ $configData = Helper::applClasses();
             @if (isset($menuData[0]))
                 @foreach ($menuData[0]->menu as $menu)
                     @if (isset($menu->roles))
-                        @php
-                            $roles = explode('|', $menu->roles);
-                        @endphp
-                        @foreach ($roles as $role)
-                            @if ($role == Auth::user()->getRoleNames()['0'])
-                                @if (isset($menu->navheader))
-                                    <li class="navigation-header">
-                                        <span>{{ __('locale.' . $menu->navheader) }}</span>
-                                        <i data-feather="more-horizontal"></i>
-                                    </li>
-                                @else
-                                    {{-- Add Custom Class with nav-item --}}
-                                    @php
-                                        $custom_classes = '';
-                                        if (isset($menu->classlist)) {
-                                            $custom_classes = $menu->classlist;
-                                        }
-                                    @endphp
-                                    <li
-                                        class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
-                                        <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}"
-                                            class="d-flex align-items-center"
-                                            target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
-                                            <i data-feather="{{ $menu->icon }}"></i>
-                                            <span
-                                                class="menu-title text-truncate">{{ __('locale.' . $menu->name) }}</span>
+                        @if (isset($menu->companies))
+                            @php
+                                $roles = explode('|', $menu->roles);
+                                $company = explode('|', $menu->companies);
+                            @endphp
+                            @foreach ($roles as $role)
+                                @if ('Operator' == Auth::user()->getRoleNames()['0'])
+                                    @foreach ($company as $com)
+                                        @if ($com == Auth::user()->company->name)
+                                            @if (isset($menu->navheader))
+                                                <li class="navigation-header">
+                                                    <span>{{ __('locale.' . $menu->navheader) }}</span>
+                                                    <i data-feather="more-horizontal"></i>
+                                                </li>
+                                            @else
+                                                {{-- Add Custom Class with nav-item --}}
+                                                @php
+                                                    $custom_classes = '';
+                                                    if (isset($menu->classlist)) {
+                                                        $custom_classes = $menu->classlist;
+                                                    }
+                                                @endphp
+                                                <li
+                                                    class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
+                                                    <a href="{{ isset($menu->url) ? route($menu->url, $com) : 'javascript:void(0)' }}"
+                                                        {{-- <a href="{{ isset($menu->url) ? url($menu->url, ['company' => $com]) : 'javascript:void(0)' }}" --}} class="d-flex align-items-center"
+                                                        target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
+                                                        <i data-feather="{{ $menu->icon }}"></i>
+                                                        <span
+                                                            class="menu-title text-truncate">{{ __('locale.' . $menu->name) }}</span>
 
-                                            @if (isset($menu->badge))
-                                                <?php $badgeClasses = 'badge rounded-pill badge-light-primary ms-auto me-1'; ?>
-                                                <span
-                                                    class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }}">{{ $menu->badge }}</span>
+                                                        @if (isset($menu->badge))
+                                                            <?php $badgeClasses = 'badge rounded-pill badge-light-primary ms-auto me-1'; ?>
+                                                            <span
+                                                                class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }}">{{ $menu->badge }}</span>
+                                                        @endif
+                                                    </a>
+                                                    @if (isset($menu->submenu))
+                                                        @include('panels/submenu', [
+                                                            'menu' => $menu->submenu,
+                                                        ])
+                                                    @endif
+                                                </li>
                                             @endif
-                                        </a>
-                                        @if (isset($menu->submenu))
-                                            @include('panels/submenu', ['menu' => $menu->submenu])
                                         @endif
-                                    </li>
+                                    @endforeach
                                 @endif
-                            @endif
-                        @endforeach
+                            @endforeach
+                        @endif
                     @endif
                 @endforeach
             @endif

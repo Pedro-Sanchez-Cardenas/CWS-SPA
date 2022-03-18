@@ -26,9 +26,20 @@ class PlantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($company)
     {
-        $plants = Plant::all();
+        if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
+
+            $company = Company::where('name', $company)->first();
+
+            $plants = Plant::where('companies_id', $company->id)->get();
+        } else if (Auth::user()->getRoleNames()->first() == 'Manager') {
+
+            $plants = Plant::where('manager', Auth::id())->get();
+        } else if (Auth::user()->getRoleNames()->first() == 'Operator') {
+
+            $plants = Plant::where('attendant', Auth::id())->get();
+        }
 
         return view('content.operations.plants.index', compact('plants'));
     }

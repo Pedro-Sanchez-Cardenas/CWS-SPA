@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(ProductWater::class, 'user_created_at', 'id');
     }
+
+    public function company()
+    {
+        return $this->belongsTo(company::class, 'companies_id', 'id');
+    }
 }

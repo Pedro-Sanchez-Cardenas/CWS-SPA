@@ -20,41 +20,36 @@ use App\Http\Controllers\PlantController;
 */
 Route::group(['middleware' => 'auth:sanctum', 'verified'],function(){
     /* Main Page Route */
-    Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     /* Main Page Route */
-
-    /* Route Dashboards */
-    Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('analytics', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard-analytics');
-    });
-    /* Route Dashboards */
 
     /* Route Apps */
     Route::group(['prefix' => 'app'], function () {
-        Route::get('todo', [AppsController::class, 'todoApp'])->name('app-todo');
+        Route::get('todo', [AppsController::class, 'todoApp'])->name('app.todo');
 
-        Route::get('calendar', [AppsController::class, 'calendarApp'])->name('app-calendar');
+        Route::get('calendar', [AppsController::class, 'calendarApp'])->name('app.calendar');
 
-        Route::get('invoice/list', [AppsController::class, 'invoice_list'])->name('app-invoice-list');
-        Route::get('invoice/preview', [AppsController::class, 'invoice_preview'])->name('app-invoice-preview');
-        Route::get('invoice/edit', [AppsController::class, 'invoice_edit'])->name('app-invoice-edit');
-        Route::get('invoice/add', [AppsController::class, 'invoice_add'])->name('app-invoice-add');
-        Route::get('invoice/print', [AppsController::class, 'invoice_print'])->name('app-invoice-print');
+        Route::get('invoice/list', [AppsController::class, 'invoice_list'])->name('app.invoice-list');
+        Route::get('invoice/preview', [AppsController::class, 'invoice_preview'])->name('app.invoice-preview');
+        Route::get('invoice/edit', [AppsController::class, 'invoice_edit'])->name('app.invoice-edit');
+        Route::get('invoice/add', [AppsController::class, 'invoice_add'])->name('app.invoice-add');
+        Route::get('invoice/print', [AppsController::class, 'invoice_print'])->name('app.invoice-print');
 
-        Route::get('file-manager', [AppsController::class, 'file_manager'])->name('app-file-manager');
+        Route::get('file-manager', [AppsController::class, 'file_manager'])->name('app.file-manager');
 
-        Route::get('user/list', [AppsController::class, 'user_list'])->name('app-user-list');
-        Route::get('user/view/account', [AppsController::class, 'user_view_account'])->name('app-user-view-account');
-        Route::get('user/view/security', [AppsController::class, 'user_view_security'])->name('app-user-view-security');
-        Route::get('user/view/billing', [AppsController::class, 'user_view_billing'])->name('app-user-view-billing');
-        Route::get('user/view/notifications', [AppsController::class, 'user_view_notifications'])->name('app-user-view-notifications');
-        Route::get('user/view/connections', [AppsController::class, 'user_view_connections'])->name('app-user-view-connections');
+        Route::get('user/list', [AppsController::class, 'user_list'])->name('app.user-list');
+        Route::get('user/view/account', [AppsController::class, 'user_view_account'])->name('app.user-view-account');
+        Route::get('user/view/security', [AppsController::class, 'user_view_security'])->name('app.user-view-security');
+        Route::get('user/view/billing', [AppsController::class, 'user_view_billing'])->name('app.user-view-billing');
+        Route::get('user/view/notifications', [AppsController::class, 'user_view_notifications'])->name('app.user-view-notifications');
+        Route::get('user/view/connections', [AppsController::class, 'user_view_connections'])->name('app.user-view-connections');
     });
     /* Route Apps */
 
     /* Route Operation */
     Route::group(['prefix' => 'operation'], function () {
-        Route::resource('plants', PlantController::class);
+        Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
+        Route::resource('plants', PlantController::class)->except('index');
     });
     /* Route Operation */
 
