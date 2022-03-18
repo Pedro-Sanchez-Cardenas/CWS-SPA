@@ -16,7 +16,8 @@ class CreateCategoryConcepsTable extends Migration
         Schema::create('category_conceps', function (Blueprint $table) {
             $table->id();
             $table->string('category');
-            $table->foreignId('user_created_at');
+            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_updated_at')->constrained('users');
             $table->timestamps();
         });
     }
