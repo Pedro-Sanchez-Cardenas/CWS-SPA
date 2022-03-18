@@ -15,12 +15,9 @@ class CreateProvidersTypeTable extends Migration
     {
         Schema::create('providers_type', function (Blueprint $table) {
             $table->id();
-            $string->string('type');
-            $table->string('names');
-            $table->string('phones')->unique()->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('type');
             $table->foreignId('user_created_at')->constrained("users");
-            $table->foreignId('user_updated_at')->constrained("users");
+            $table->foreignId('user_updated_at')->nullable()->constrained("users");
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Services;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
 class ServicesSeeder extends Seeder
@@ -14,7 +14,7 @@ class ServicesSeeder extends Seeder
      */
     public function run()
     {
-        Services::create([
+        Service::create([
             'name' => 'Water Treatment',
             'user_created_at' => 1,
             //'user_updated_at' => 1,

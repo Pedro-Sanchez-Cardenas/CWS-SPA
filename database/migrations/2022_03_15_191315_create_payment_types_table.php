@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentStatusTable extends Migration
+class CreatePaymentTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreatePaymentStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_status', function (Blueprint $table) {
+        Schema::create('payment_types', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['foo', 'bar'])->nullable()->default(['foo', 'bar']);('status');
-            $table->softDeletes();
+            $table->string('type');
+            $table->foreignId('user_created_at')->constrained("users");
+            $table->foreignId('user_updated_at')->nullable()->constrained("users");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +30,6 @@ class CreatePaymentStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_status');
+        Schema::dropIfExists('payment_types');
     }
 }
