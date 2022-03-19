@@ -1,5 +1,5 @@
 <div>
-{{$plant->pretreatments}}
+{{$pretreatments}}
     <div class="row match-height">
         {{-- Product Reading --}}
         <div class="col-md-4">
