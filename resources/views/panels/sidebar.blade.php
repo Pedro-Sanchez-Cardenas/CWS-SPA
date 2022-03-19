@@ -8,7 +8,6 @@ $configData = Helper::applClasses();
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <span class="brand-logo">
-                        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px"
                             viewBox="0 0 270 271" enable-background="new 0 0 270 271" xml:space="preserve">
@@ -224,7 +223,6 @@ $configData = Helper::applClasses();
                                 AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA3LTIzVDIwOjUyOjIyKzAzOjAwjuAUmAAAAABJRU5E
                                 rkJggg==" />
                         </svg>
-
                     </span>
                     <h2 class="brand-text text-info">
                         @foreach (Auth::user()->companies as $company)
