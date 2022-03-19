@@ -201,8 +201,8 @@ class CreateParameters extends Component
 
     public function store()
     {
-        try {
-            DB::transaction(function () {
+        /*try {
+            DB::transaction(function () {*/
                 $trains = Train::where('plants_id', $this->plant->id)
                     ->where('type', 'Train')
                     ->get();
@@ -380,16 +380,16 @@ class CreateParameters extends Component
                 ]);
                 // Chemicals end
                 // Product Water end
-            });
+            //});
 
             // Success Save
             //return redirect()->back();
             sleep(2);
 
-            return redirect()->route('plants.index');
-        } catch (\Exception $e) {
+            return redirect()->route('plants.index', Auth::user()->companies->first()->name);
+        /*} catch (\Exception $e) {
             dd('ERROR TRY CATCH');
-        }
+        }*/
     }
 
     public function render()
