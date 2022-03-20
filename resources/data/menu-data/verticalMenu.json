@@ -3,7 +3,7 @@
         {
             "name": "Dashboards",
             "icon": "home",
-            "slug": "",
+            "slug": "dashboard",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
             "companies": "CWS|KU3",
             "submenu": [
@@ -11,7 +11,7 @@
                     "url": "dashboard",
                     "name": "Administrative",
                     "icon": "circle",
-                    "slug": "dashboard-ecommerce",
+                    "slug": "dashboard",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
                     "companies": "CWS|KU3"
                 },
@@ -19,7 +19,7 @@
                     "url": "dashboard",
                     "name": "Operation",
                     "icon": "circle",
-                    "slug": "dashboard-analytics",
+                    "slug": "dashboard",
                     "roles": "Manager|Operator",
                     "companies": "CWS|KU3"
                 }
@@ -35,7 +35,7 @@
             "name": "CWS",
             "icon": "credit-card",
             "badge": "New",
-            "slug": "",
+            "slug": "plants.index",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
             "companies": "CWS",
@@ -65,7 +65,7 @@
             "name": "KU3",
             "icon": "credit-card",
             "badge": "New",
-            "slug": "",
+            "slug": "plants.index",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
             "companies": "KU3",
@@ -83,7 +83,7 @@
                             "url": "plants.index",
                             "name": "RO",
                             "icon": "circle",
-                            "slug": "",
+                            "slug": "plants.index",
                             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
                             "companies": "KU3"
                         }

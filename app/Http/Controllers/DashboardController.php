@@ -10,7 +10,7 @@ class DashboardController extends Controller
     // Dashboard - Analytics
     public function index()
     {
-        if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
+        if ((Auth::user()->getRoleNames()->first() == 'Super-Admin') || (Auth::user()->getRoleNames()->first() == 'Director') || (Auth::user()->getRoleNames()->first() == 'Operations-Manager') || (Auth::user()->getRoleNames()->first() == 'Administrative-Manager')) {
 
             $pageConfigs = ['pageHeader' => false];
             return view('/content/dashboard/dashboard-ecommerce', ['pageConfigs' => $pageConfigs]);
