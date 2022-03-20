@@ -13,15 +13,15 @@ class DashboardController extends Controller
         if ((Auth::user()->getRoleNames()->first() == 'Super-Admin') || (Auth::user()->getRoleNames()->first() == 'Director') || (Auth::user()->getRoleNames()->first() == 'Operations-Manager') || (Auth::user()->getRoleNames()->first() == 'Administrative-Manager')) {
 
             $pageConfigs = ['pageHeader' => false];
-            return view('/content/dashboard/dashboard-ecommerce', ['pageConfigs' => $pageConfigs]);
+            return view('/content/dashboard/dashboard-administrative', ['pageConfigs' => $pageConfigs]);
         } else if (Auth::user()->getRoleNames()->first() == 'Manager') {
 
             $pageConfigs = ['pageHeader' => false];
-            return view('/content/dashboard/dashboard-analytics', ['pageConfigs' => $pageConfigs]);
+            return view('/content/dashboard/dashboard-operation', ['pageConfigs' => $pageConfigs]);
         } else if (Auth::user()->getRoleNames()->first() == 'Operator') {
 
             $pageConfigs = ['pageHeader' => false];
-            return view('/content/dashboard/dashboard-analytics', ['pageConfigs' => $pageConfigs]);
+            return view('/content/dashboard/dashboard-operation', ['pageConfigs' => $pageConfigs]);
         }
     }
 
