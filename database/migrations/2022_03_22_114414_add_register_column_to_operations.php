@@ -14,7 +14,7 @@ class AddRegisterColumnToOperations extends Migration
     public function up()
     {
         Schema::table('operations', function (Blueprint $table) {
-            $table->addColumn('integer', 'register')->after('trains_id');
+            $table->addColumn('integer', 'register')->nullable()->after('trains_id');
         });
     }
 
