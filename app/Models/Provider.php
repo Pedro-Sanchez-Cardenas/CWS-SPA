@@ -18,4 +18,16 @@ class Provider extends Model
         'name',
 
     ];
+    public function payments()
+    {
+      return $this->belongsToMany(Payment::class);
+    }
+    public function ProviderContact()
+    {
+      return $this->belongsToMany(ProviderContact::class);
+    }
+    public function ProviderType()
+    {
+        return $this->belongsTo(ProviderType::class, 'id', 'users_id');
+    }
 }

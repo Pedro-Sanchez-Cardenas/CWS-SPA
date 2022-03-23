@@ -19,6 +19,11 @@ class Product extends Model
         'price'
 
     ];
+    public function providers()
+    {
+        return $this->hasMany(privider::class, 'providers_id', 'id');
+
+    }
 }
 
 

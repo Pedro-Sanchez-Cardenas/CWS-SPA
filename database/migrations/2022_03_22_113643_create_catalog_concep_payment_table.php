@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsTable extends Migration
+class CreateCatalogConcepPaymentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('catalog_concep_payment', function (Blueprint $table) {
             $table->id();
-            $table->double('amount');
-            $table->date('pay_day');
             $table->foreignId('catalog_conceps_id')->constrained();
-            $table->foreignId('payment_status_id')->constrained('payment_status');
-            $table->foreignId('billing_periods_id')->constrained();
-            $table->foreignId('providers_id')->constrained();
-            $table->string('invoice_path');
+            $table->foreignId('payment_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,5 +26,8 @@ class CreatePaymentsTable extends Migration
      *
      * @return void
      */
-  
+    public function down()
+    {
+        Schema::dropIfExists('catalog_concep_payment');
+    }
 }

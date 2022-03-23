@@ -60,7 +60,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     /* Route Administration */
     Route::group(['prefix' => 'administration'], function () {
         Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
-        Route::resource('billing', BillingController::class);
+        Route::get('billing/{id}', [BillingController::class, 'index'])->name('billing.index');
+        Route::resource('billing', BillingController::class)->except('index');
     });
     /* Route Administration */
 
