@@ -421,7 +421,7 @@
                                             </td>
                                         @endfor
 
-                                        {{--<td>
+                                        <td>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
@@ -434,7 +434,7 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $parameters->pretreatments[$t]->backwash }}</span>
+                                                                        <span>{{ $pretreatment[$t]->backwash }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -459,18 +459,18 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $parameters->pretreatments[$t]->polish->first()->in }}</span>
+                                                                        <span>{{ $pretreatment[$t]->polish->first()->in }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $parameters->pretreatments[$t]->polish->first()->out }}</span>
+                                                                        <span>{{ $pretreatment[$t]->polish->first()->out }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
-                                                                    @foreach ($parameters->pretreatments[$t]->polish as $polish)
+                                                                    @foreach ($pretreatment[$t]->polish as $polish)
                                                                         @if ($polish->filter_change != null)
                                                                             <div class="d-flex flex-column">
                                                                                 <span>yes</span>
@@ -494,7 +494,7 @@
                                         </td>
 
                                         <td>
-                                            @foreach ($parameters->pretreatments as $ite)
+                                            @foreach ($pretreatment as $ite)
                                                 <li>
                                                     {{ $ite->observations }}
                                                 </li>
@@ -502,8 +502,8 @@
                                         </td>
 
                                         <td class="text-nowrap">
-                                            {{ $ite->first()->created_at }}
-                                        </td>--}}
+                                            {{ $pretreatment->last()->created_at }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
