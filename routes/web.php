@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppsController;
 use App\Http\Controllers\ParametersController;
 use App\Http\Controllers\PlantController;
+use App\Http\Controllers\BillingController;
 
 /*
 |--------------------------------------------------------------------------
