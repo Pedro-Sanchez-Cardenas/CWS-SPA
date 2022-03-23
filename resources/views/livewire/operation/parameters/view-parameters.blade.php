@@ -356,7 +356,7 @@
                                             </td>
                                         @endif
 
-                                        {{-- @if ($plant->feed_pump == 'yes')
+                                        @if ($plant->feed_pump == 'yes')
                                             <td>
                                                 <div class="table-responsive">
                                                     <table class="table">
@@ -387,7 +387,7 @@
                                                     </table>
                                                 </div>
                                             </td>
-                                        @endif --}}
+                                        @endif
 
                                         @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
                                             <td>
