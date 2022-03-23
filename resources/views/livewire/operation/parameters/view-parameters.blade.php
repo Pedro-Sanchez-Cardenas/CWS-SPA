@@ -552,8 +552,7 @@
                                                     </thead>
                                                     <tbody>
                                                         @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                            <tr>
-
+                                                            <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
                                                                         <span>{{ $t + 1 }}</span>
@@ -566,50 +565,52 @@
                                                                     </div>
                                                                 </td>
 
-                                                                <td class="text-nowrap">
-
-                                                                    <div class="d-flex flex-column">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table">
-                                                                                <thead>
-                                                                                    <tr class="text-center">
-                                                                                        <th>#</th>
-                                                                                        <th>booster</th>
-                                                                                        <th>PX</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                                                        <tr>
-
-                                                                                            <td class="text-nowrap">
-                                                                                                <div
-                                                                                                    class="d-flex flex-column">
-                                                                                                    <span>{{ $t + 1 }}</span>
-                                                                                                </div>
-                                                                                            </td>
-
-                                                                                            <td class="text-nowrap">
-                                                                                                <div
-                                                                                                    class="d-flex flex-column">
-                                                                                                    <span>{{ $operation[$t]->boosters[$b]->amperage }}</span>
-                                                                                                </div>
-                                                                                            </td>
-
-                                                                                            <td class="text-nowrap">
-                                                                                                $operation[$t]->boosters->count()
-                                                                                                <div
-                                                                                                    class="d-flex flex-column">
-
-                                                                                                </div>
-                                                                                            </td>
+                                                                @if ($plant->boosterc == 'yes')
+                                                                    <td class="text-nowrap">
+                                                                        <div class="d-flex flex-column">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr class="text-center">
+                                                                                            <th>#</th>
+                                                                                            <th>booster</th>
+                                                                                            <th>PX</th>
                                                                                         </tr>
-                                                                                    @endfor
-                                                                                </tbody>
-                                                                            </table>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                                                            <tr class="text-center">
+                                                                                                <td
+                                                                                                    class="text-nowrap">
+                                                                                                    <div
+                                                                                                        class="d-flex flex-column">
+                                                                                                        <span>{{ $t + 1 }}</span>
+                                                                                                    </div>
+                                                                                                </td>
+
+                                                                                                <td
+                                                                                                    class="text-nowrap">
+                                                                                                    <div
+                                                                                                        class="d-flex flex-column">
+                                                                                                        <span>{{ $operation[$t]->boosters[$b]->amperage }}</span>
+                                                                                                    </div>
+                                                                                                </td>
+
+                                                                                                <td
+                                                                                                    class="text-nowrap">
+                                                                                                    <div
+                                                                                                        class="d-flex flex-column">
+                                                                                                        {{ $operation[$t]->boosters[$b]->frequency }}
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endfor
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </td>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endfor
                                                     </tbody>
@@ -617,44 +618,64 @@
                                             </div>
                                         </td>
 
-                                        {{-- <td>
+                                        <td>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
-                                                        <tr>
+                                                        <tr class="text-center">
                                                             <th>H.P</th>
-                                                            <th>B1</th>
-                                                            <th>B2</th>
+                                                            @if ($plant->boosterc == 'yes')
+                                                                <th>Boosters</th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($i = 0; $i < 2; $i++)
-                                                            <tr>
-
+                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                            <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->type }}</span>
-
+                                                                        <span>{{ $operation[$t]->hpF }}</span>
                                                                     </div>
                                                                 </td>
 
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->reading }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
+                                                                @if ($plant->boosterc == 'yes')
+                                                                    <td class="text-nowrap">
+                                                                        <div class="d-flex flex-column">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr class="text-center">
+                                                                                            <th>#</th>
+                                                                                            <th>booster</th>
+                                                                                            <th>PX</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                                                            <tr>
+                                                                                                <td
+                                                                                                    class="text-nowrap">
+                                                                                                    <div
+                                                                                                        class="d-flex flex-column">
+                                                                                                        <span>{{ $t + 1 }}</span>
+                                                                                                    </div>
+                                                                                                </td>
 
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
+                                                                                                <td
+                                                                                                    class="text-nowrap">
+                                                                                                    <div
+                                                                                                        class="d-flex flex-column">
+                                                                                                        <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endfor
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endfor
                                                     </tbody>
@@ -667,37 +688,22 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>H.P</th>
+                                                            <th>PH</th>
                                                             <th>TEMPERATURE</th>
-                                                            <th>FEED</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($i = 0; $i < 2; $i++)
-                                                            <tr>
-
+                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                            <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->type }}</span>
-
+                                                                        <span>{{ $operation[$t]->ph }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->reading }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
-
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
+                                                                        <span>{{ $operation[$t]->temperature }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -712,37 +718,29 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
+                                                            <th>FEED</th>
                                                             <th>PERMEATE</th>
                                                             <th>REJECTION</th>
-                                                            <th>REJET</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($i = 0; $i < 2; $i++)
-                                                            <tr>
-
+                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                            <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->type }}</span>
-
+                                                                        <span>{{ $operation[$t]->feed }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->reading }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
+                                                                        <span>{{ $operation[$t]->permeated }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
+                                                                        <span>{{ $operation[$t]->rejection }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -759,55 +757,33 @@
                                                         <tr>
                                                             <th>REJET</th>
                                                             <th>PERMEATE</th>
-                                                            <th>B1+2</th>
-                                                            <th>H.P.IN</th>
-                                                            <th>H.P.OUT</th>
+                                                            @if ($plant->boosterc == 'yes')
+                                                                <th>B1+2</th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($i = 0; $i < 2; $i++)
-                                                            <tr>
-
+                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                            <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->type }}</span>
-
+                                                                        <span>{{ $operation[$t]->rejectFlow }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->reading }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
+                                                                        <span>{{ $operation[$t]->permeateFlow }}</span>
                                                                     </div>
                                                                 </td>
 
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
+                                                                @if ($plant->boosterc == 'yes')
+                                                                    <td class="text-nowrap">
+                                                                        <div class="d-flex flex-column">
+                                                                            <span>{{ $operation[$t]->boosters[$t] }}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endfor
                                                     </tbody>
@@ -820,48 +796,56 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
+                                                            <th>H.P. IN</th>
+                                                            <th>H.P. OUT</th>
                                                             <th>REJET</th>
-                                                            <th>B1+2</th>
-                                                            <th>PX#1</th>
-                                                            <th>PX#2</th>
+                                                            @if ($plant->boosterc == 'yes')
+                                                                <th>B1+2</th>
+                                                                <th>PX#1</th>
+                                                                <th>PX#2</th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for ($i = 0; $i < 2; $i++)
-                                                            <tr>
-
+                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                            <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->type }}</span>
-
+                                                                        <span>{{ $operation[$t]->hpIn }}</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $operation[$t]->hpOut }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->reading }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
+                                                                        <span>{{ $operation[$t]->reject }}</span>
+
                                                                     </div>
                                                                 </td>
 
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $productionReading->production }}</span>
-                                                                        <span class="font-small-2 text-muted">in
-                                                                            24
-                                                                            hours</span>
-                                                                    </div>
-                                                                </td>
+                                                                @if ($plant->boosterc == 'yes')
+                                                                    <td class="text-nowrap">
+                                                                        <div class="d-flex flex-column">
+                                                                            <span>{{ $operation[$t]->boosters }}</span>
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <td class="text-nowrap">
+                                                                        <div class="d-flex flex-column">
+                                                                            <span>{{ $productionReading->production }}</span>
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <td class="text-nowrap">
+                                                                        <div class="d-flex flex-column">
+                                                                            <span>{{ $productionReading->production }}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endfor
                                                     </tbody>
@@ -870,17 +854,21 @@
                                         </td>
 
                                         <td class="text-nowrap">
-                                            {{ $pretreatment->assignedBy->name }}
+                                            {{ $operation->last()->assignedBy->name }}
                                         </td>
 
                                         <td>
-                                            {{ $pretreatment->observations }}
+                                            @foreach ($operation as $ite)
+                                                <li>
+                                                    {{ $ite->observations }}
+                                                </li>
+                                            @endforeach
                                         </td>
 
                                         <td>
-                                            {{ $pretreatment->created_at }}
-                                        </td> --}
-                                    </tr> --}}
+                                            {{ $operation->last()->created_at }}
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
