@@ -75,7 +75,7 @@ class Plant extends Model
 
     public function pretreatments()
     {
-        return $this->hasMany(Pretreatment::class, 'plants_id', 'id');
+        return $this->hasMany(Pretreatment::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
     }
 
     public function operations()
