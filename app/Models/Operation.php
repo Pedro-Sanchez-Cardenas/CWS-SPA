@@ -55,7 +55,7 @@ class Operation extends Model
 
     public function assignedBy()
     {
-        return $this->belongsTo(User::class, 'id', 'user_created_at');
+        return $this->belongsTo(User::class, 'user_created_at', 'id');
     }
 
     public function boosters()

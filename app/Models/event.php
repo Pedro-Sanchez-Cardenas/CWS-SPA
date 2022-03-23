@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class payment_types extends Model
+class event extends Model
 {
     use HasFactory;
     /**
@@ -13,11 +13,15 @@ class payment_types extends Model
      *
      * @var array
      */
-   protected $fillable = [
-    'type',
-    'user_created_at',
-    'user_updated_at' 
-];
-
+    protected $fillable = [
+ 
+        'companies_id',
+        'event',
+        'start_date',
+        'finish_date',
+        'user_created_at',
+        'user_updated_at',
+        'description'
+         
+    ];
 }
-    

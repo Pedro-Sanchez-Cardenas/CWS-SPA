@@ -18,5 +18,9 @@ class ProviderContact extends Model
     'names',
     'phones',
     'email' ];
+    public function providers()
+    {
+      return $this->belongsToMany(provider::class);
+    }
     
 }

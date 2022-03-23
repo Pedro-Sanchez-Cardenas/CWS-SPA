@@ -22,5 +22,11 @@ class ProviderType extends Model
     'email',
     'user_created_at',
     'user_updated_at'  ];
+
+    public function providers()
+    {
+        return $this->hasMany(privider::class, 'providers_id', 'id');
+
+    }
    
 }
