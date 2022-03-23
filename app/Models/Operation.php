@@ -17,6 +17,7 @@ class Operation extends Model
     protected $fillable = [
         'plants_id',
         'trains_id',
+        'register',
 
         'hp',
         'hpF',
@@ -49,7 +50,7 @@ class Operation extends Model
 
     public function train()
     {
-        return $this->belongsTo(Train::class, 'id', 'trains_id');
+        return $this->belongsTo(Train::class, 'trains_id', 'id');
     }
 
     public function assignedBy()
@@ -57,7 +58,7 @@ class Operation extends Model
         return $this->belongsTo(User::class, 'id', 'user_created_at');
     }
 
-    public function boos()
+    public function boosters()
     {
         return $this->hasMany(Booster::class, 'operations_id', 'id');
     }

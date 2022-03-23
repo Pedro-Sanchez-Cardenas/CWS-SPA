@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\URL;
+use PHPUnit\Framework\Constraint\Operator;
 
 class CreateParameters extends Component
 {
@@ -208,192 +209,198 @@ class CreateParameters extends Component
     {
         /*try {
             DB::transaction(function () {*/
-        $trains = Train::where('plants_id', $this->plant->id)
-            ->where('type', 'Train')
-            ->get();
+                $trains = Train::where('plants_id', $this->plant->id)
+                    ->where('type', 'Train')
+                    ->get();
 
-        // Contador de trains sirve solo para acceder y almacenar el train.
-        $contTrains = 0;
-        for ($t = 1; $t <= (count($trains) * 2); $t++) {
-            // Pretreatment
-            if ($t % 2 != 0) {
-                Pretreatment::create([
-                    'plants_id' => $this->plant->id,
-                    'trains_id' => $trains[$contTrains]->id,
-                    'well_pump' => isset($this->pump['well'][$t]) ? $this->pump['well'][$t] : null,
-                    'feed_pump' => isset($this->pump['feed'][$t]) ? $this->pump['feed'][$t] : null,
-                    'frecuencies_well_pump' => isset($this->pump['wellf'][$t]) ? $this->pump['wellf'][$t] : null,
-                    'frecuencies_feed_pump' => isset($this->pump['feedf'][$t]) ? $this->pump['feedf'][$t] : null,
-                    'backwash' => isset($this->backwash[$t]) ? $this->backwash[$t] : null,
-                    'observations' => isset($this->observations['pre'][$t]) ? $this->observations['pre'][$t] : null,
-                    'user_created_at' => Auth::id(),
-                    'user_updated_at' => Auth::id(),
-                ]);
+                // Contador de trains sirve solo para acceder y almacenar el train.
+                $contTrains = 0;
 
-                $pretreatment = Pretreatment::latest('id')->first();
+                // Consultamos el ultimo id para que este mismo nos sirva para agrupar los registros
+                $registerPre = Pretreatment::latest('id')->first();
+                $registerOpe = Operation::latest('id')->first();
+                for ($t = 1; $t <= (count($trains) * 2); $t++) {
+                    // Pretreatment
+                    if ($t % 2 != 0) {
+                        Pretreatment::create([
+                            'plants_id' => $this->plant->id,
+                            'trains_id' => $trains[$contTrains]->id,
+                            'register' => $registerPre != null ? $registerPre->id + 1 : 1,
+                            'well_pump' => isset($this->pump['well'][$t]) ? $this->pump['well'][$t] : null,
+                            'feed_pump' => isset($this->pump['feed'][$t]) ? $this->pump['feed'][$t] : null,
+                            'frecuencies_well_pump' => isset($this->pump['wellf'][$t]) ? $this->pump['wellf'][$t] : null,
+                            'frecuencies_feed_pump' => isset($this->pump['feedf'][$t]) ? $this->pump['feedf'][$t] : null,
+                            'backwash' => isset($this->backwash[$t]) ? $this->backwash[$t] : null,
+                            'observations' => isset($this->observations['pre'][$t]) ? $this->observations['pre'][$t] : null,
+                            'user_created_at' => Auth::id(),
+                            'user_updated_at' => Auth::id(),
+                        ]);
 
-                // Multimedia Filters
-                for ($m = 1; $m <= $trains[$contTrains]->multimedia_filter_quantity; $m++) {
-                    MultimediaFilter::create([
-                        'pretreatments_id' => $pretreatment->id,
-                        'trains_id' => $trains[$contTrains]->id,
-                        'in' => $this->mm != '' ? $this->mm['in'][$t][$m] : 0,
-                        'out' => $this->mm != '' ? $this->mm['out'][$t][$m] : 0,
-                    ]);
+                        $pretreatment = Pretreatment::latest('id')->first();
+
+                        // Multimedia Filters
+                        for ($m = 1; $m <= $trains[$contTrains]->multimedia_filter_quantity; $m++) {
+                            MultimediaFilter::create([
+                                'pretreatments_id' => $pretreatment->id,
+                                'trains_id' => $trains[$contTrains]->id,
+                                'in' => $this->mm != '' ? $this->mm['in'][$t][$m] : 0,
+                                'out' => $this->mm != '' ? $this->mm['out'][$t][$m] : 0,
+                            ]);
+                        }
+                        // Multimedia Filters end
+
+                        // Polish Filters
+                        for ($p = 1; $p <= $trains[$contTrains]->polish_filters_quantity; $p++) {
+                            PolishFilter::create([
+                                'pretreatments_id' => $pretreatment->id,
+                                'trains_id' => $trains[$contTrains]->id,
+                                'in' => $this->pf != '' ? $this->pf['in'][$t] : null,
+                                'out' => $this->pf != '' ? $this->pf['out'][$t] : null,
+                                'filter_change' => isset($this->filters[$t][$p]) ? $this->filters[$t][$p] == 'yes' ? Carbon::now() : null : null
+                            ]);
+                        }
+                        // Polish Filters end
+                    } else {
+
+                        //Pretreatment end
+
+                        // Operation
+                        Operation::create([
+                            'plants_id' => $this->plant->id,
+                            'trains_id' => $trains[$contTrains]->id,
+                            'register' => $registerOpe != null ? $registerOpe->id + 1 : 1,
+
+                            'hp' => $this->hp['amp'][$t],
+                            'hpF' => $this->hp['fre'][$t],
+
+                            'sdi' => $this->sdi != '' ? $this->sdi[$t] : null,
+                            'ph' => $this->ph['ope'][$t],
+                            'temperature' => $this->temperature[$t],
+
+                            'feed' => $this->feed['ope'][$t],
+                            'permeated' => $this->permeate['ope'][$t],
+                            'rejection' => $this->rejection[$t],
+
+                            'feedFlow' => $this->feed['flo'][$t],
+                            'rejectFlow' => $this->reject[$t],
+                            'permeateFlow' => $this->permeate['flo'][$t],
+
+                            'hpIn' => $this->hp['in'][$t],
+                            'hpOut' => $this->hp['out'][$t],
+                            'reject' => $this->reject[$t],
+
+                            'observations' => isset($this->observations['ope']) ? $this->observations['ope'][$t] : null,
+                            'user_created_at' => Auth::id(),
+                            'user_updated_at' => Auth::id()
+                        ]);
+
+                        $operation = Operation::latest('id')->first();
+
+                        for ($b = 1; $b <= $trains[$contTrains]->booster_quantity; $b++) {
+                            if (isset($this->booster['amp'][$t][$b])) {
+                                Booster::create([
+                                    'operations_id' => $operation->id,
+                                    'trains_id' => $trains[$contTrains]->id,
+                                    'amperage' => $this->booster['amp'][$t][$b],
+                                    'frequency' => $this->booster['fre'][$t][$b],
+                                    'px' => $this->px[$t][$b],
+                                    'boosterFlow' => $this->booster['co'][$t],
+                                    'boosterPressures' => $this->booster['pre'][$t][$b],
+                                    'boosterPressuresTotal' => $this->booster['cp'][$t]
+                                ]);
+                            }
+                        }
+                        // Operation end
+
+                        $contTrains++; // Aumentamos el contador de trains
+                    }
                 }
-                // Multimedia Filters end
 
-                // Polish Filters
-                for ($p = 1; $p <= $trains[$contTrains]->polish_filters_quantity; $p++) {
-                    PolishFilter::create([
-                        'pretreatments_id' => $pretreatment->id,
-                        'trains_id' => $trains[$contTrains]->id,
-                        'in' => $this->pf != '' ? $this->pf['in'][$t] : null,
-                        'out' => $this->pf != '' ? $this->pf['out'][$t] : null,
-                        'filter_change' => isset($this->filters[$t][$p]) ? $this->filters[$t][$p] == 'yes' ? Carbon::now() : null : null
-                    ]);
-                }
-                // Polish Filters end
-            } else {
-
-                //Pretreatment end
-
-                // Operation
-                Operation::create([
+                // Product Water
+                ProductWater::create([
                     'plants_id' => $this->plant->id,
-                    'trains_id' => $trains[$contTrains]->id,
 
-                    'hp' => $this->hp['amp'][$t],
-                    'hpF' => $this->hp['fre'][$t],
+                    'ph' => $this->ph['pro'],
+                    'hardness' => $this->hardness,
+                    'tds' => $this->tds,
+                    'h2s' => $this->h2s,
 
-                    'sdi' => $this->sdi != '' ? $this->sdi[$t] : null,
-                    'ph' => $this->ph['ope'][$t],
-                    'temperature' => $this->temperature[$t],
+                    'freeChlorine' => $this->free_chlorine != '' ? $this->free_chlorine : null,
+                    'chloride' => $this->chloride != '' ? $this->chloride : null,
 
-                    'feed' => $this->feed['ope'][$t],
-                    'permeated' => $this->permeate['ope'][$t],
-                    'rejection' => $this->rejection[$t],
-
-                    'feedFlow' => $this->feed['flo'][$t],
-                    'rejectFlow' => $this->reject[$t],
-                    'permeateFlow' => $this->permeate['flo'][$t],
-
-                    'hpIn' => $this->hp['in'][$t],
-                    'hpOut' => $this->hp['out'][$t],
-                    'reject' => $this->reject[$t],
-
-                    'observations' => isset($this->observations['ope']) ? $this->observations['ope'][$t] : null,
+                    'observations' => isset($this->observations['prw']) ? $this->observations['prw'] : null,
                     'user_created_at' => Auth::id(),
                     'user_updated_at' => Auth::id()
                 ]);
 
-                $operation = Operation::latest('id')->first();
+                $productWater = ProductWater::latest('id')->first();
 
-                for ($b = 1; $b <= $trains[$contTrains]->booster_quantity; $b++) {
-                    if (isset($this->booster['amp'][$t][$b])) {
-                        Booster::create([
-                            'operations_id' => $operation->id,
-                            'trains_id' => $trains[$contTrains]->id,
-                            'amperage' => $this->booster['amp'][$t][$b],
-                            'frequency' => $this->booster['fre'][$t][$b],
-                            'px' => $this->px[$t][$b],
-                            'boosterFlow' => $this->booster['co'][$t],
-                            'boosterPressures' => $this->booster['pre'][$t][$b],
-                            'boosterPressuresTotal' => $this->booster['cp'][$t]
-                        ]);
-                    }
+                // Production Readings
+                for ($pro = 1; $pro <= count($trains); $pro++) {
+                    ProductionReading::create([
+                        'product_waters_id' => $productWater->id,
+                        'trains_id' => $trains[$pro - 1]->id,
+                        'reading' => $this->reading[$pro],
+                        'production' => 0,
+                        'type' => 'Train'
+                    ]);
                 }
-                // Operation end
 
-                $contTrains++; // Aumentamos el contador de trains
-            }
-        }
+                if ($this->irrigation != '') {
+                    ProductionReading::create([
+                        'product_waters_id' => $productWater->id,
+                        //'trains_id' => ,
+                        'reading' => $this->irrigation,
+                        'production' => 0,
+                        'type' => 'Irrigation'
+                    ]);
+                }
 
-        // Product Water
-        ProductWater::create([
-            'plants_id' => $this->plant->id,
+                if ($this->municipal != '') {
+                    ProductionReading::create([
+                        'product_waters_id' => $productWater->id,
+                        //'trains_id' => ,
+                        'reading' => $this->municipal,
+                        'production' => 0,
+                        'type' => 'Municipal'
+                    ]);
+                }
+                // Production Readings end
 
-            'ph' => $this->ph['pro'],
-            'hardness' => $this->hardness,
-            'tds' => $this->tds,
-            'h2s' => $this->h2s,
+                // Cisterns
+                for ($ci = 1; $ci <= $this->plant->cisterns_quantity; $ci++) {
+                    Cistern::create([
+                        'product_waters_id' => $productWater->id,
+                        'plants_id' => $this->plant->id,
+                        'capacity' => $this->tank[$ci],
+                        'status' => 'Enabled'
+                    ]);
+                }
+                // Cisterns end
 
-            'freeChlorine' => $this->free_chlorine != '' ? $this->free_chlorine : null,
-            'chloride' => $this->chloride != '' ? $this->chloride : null,
+                // Chemicals
+                Chemical::create([
+                    'product_waters_id' => $productWater->id,
+                    'calciumChloride' => $this->calcium_chloride,
+                    'sodiumCarbonate' => $this->sodium_carbonate,
+                    'sodiumHypochlorite' => $this->sodium_hypochloride,
+                    'antiscalant' => $this->antiscalant,
+                    'sodiumHydroxide' => $this->sodium_hydroxide,
+                    'hydrochloricAcid' => $this->hydrochloric_acid,
+                    'kl1' => $this->kl1,
+                    'kl2' => $this->kl2
+                ]);
+                // Chemicals end
+                // Product Water end
+            //});
 
-            'observations' => isset($this->observations['prw']) ? $this->observations['prw'] : null,
-            'user_created_at' => Auth::id(),
-            'user_updated_at' => Auth::id()
-        ]);
+            // Success Save
+            //return redirect()->back();
+            sleep(2);
 
-        $productWater = ProductWater::latest('id')->first();
+            $uri = explode('/', $this->back);
 
-        // Production Readings
-        for ($pro = 1; $pro <= count($trains); $pro++) {
-            ProductionReading::create([
-                'product_waters_id' => $productWater->id,
-                'trains_id' => $trains[$pro - 1]->id,
-                'reading' => $this->reading[$pro],
-                'production' => 0,
-                'type' => 'Train'
-            ]);
-        }
-
-        if ($this->irrigation != '') {
-            ProductionReading::create([
-                'product_waters_id' => $productWater->id,
-                //'trains_id' => ,
-                'reading' => $this->irrigation,
-                'production' => 0,
-                'type' => 'Irrigation'
-            ]);
-        }
-
-        if ($this->municipal != '') {
-            ProductionReading::create([
-                'product_waters_id' => $productWater->id,
-                //'trains_id' => ,
-                'reading' => $this->municipal,
-                'production' => 0,
-                'type' => 'Municipal'
-            ]);
-        }
-        // Production Readings end
-
-        // Cisterns
-        for ($ci = 1; $ci <= $this->plant->cisterns_quantity; $ci++) {
-            Cistern::create([
-                'product_waters_id' => $productWater->id,
-                'plants_id' => $this->plant->id,
-                'capacity' => $this->tank[$ci],
-                'status' => 'Enabled'
-            ]);
-        }
-        // Cisterns end
-
-        // Chemicals
-        Chemical::create([
-            'product_waters_id' => $productWater->id,
-            'calciumChloride' => $this->calcium_chloride,
-            'sodiumCarbonate' => $this->sodium_carbonate,
-            'sodiumHypochlorite' => $this->sodium_hypochloride,
-            'antiscalant' => $this->antiscalant,
-            'sodiumHydroxide' => $this->sodium_hydroxide,
-            'hydrochloricAcid' => $this->hydrochloric_acid,
-            'kl1' => $this->kl1,
-            'kl2' => $this->kl2
-        ]);
-        // Chemicals end
-        // Product Water end
-        //});
-
-        // Success Save
-        //return redirect()->back();
-        sleep(2);
-
-        $uri = explode('/', $this->back);
-
-        return redirect()->route('plants.index', end($uri));
+            return redirect()->route('plants.index', end($uri));
         /*} catch (\Exception $e) {
             dd('ERROR TRY CATCH');
         }*/

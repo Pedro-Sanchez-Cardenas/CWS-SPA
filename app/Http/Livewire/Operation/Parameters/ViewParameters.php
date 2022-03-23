@@ -17,8 +17,7 @@ class ViewParameters extends Component
     public function render()
     {
         return view('livewire.operation.parameters.view-parameters', [
-            'productWaters' => $this->plant->productWaters,
-            'pretreatments' => $this->plant->pretreatments->groupBy('plants_id')
+            'parameters' => Plant::where('id', $this->plant->id)->with('productWaters', 'pretreatments', 'operations')->get()->first(),
         ]);
     }
 }

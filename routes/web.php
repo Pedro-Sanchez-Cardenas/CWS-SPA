@@ -56,6 +56,13 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     });
     /* Route Operation */
 
+    /* Route Administration */
+    Route::group(['prefix' => 'administration'], function () {
+        Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
+        Route::resource('billing', BillingController::class);
+    });
+    /* Route Administration */
+
     // locale Route
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 });
