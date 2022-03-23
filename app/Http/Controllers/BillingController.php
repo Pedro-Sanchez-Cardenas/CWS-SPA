@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Plant;
+
+
 
 class BillingController extends Controller
 {
@@ -11,9 +14,10 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $plant = Plant::find($id);
+        return view('content.administration.billing.tableInvoice', compact('plant'));
     }
 
     /**

@@ -22,6 +22,10 @@ class Payroll extends Model
        'confirmation'
 
    ];
+   public function UserContract()
+    {
+        return $this->belongsTo(UserContract::class, 'id', 'users_id');
+    }
 }
 
 
