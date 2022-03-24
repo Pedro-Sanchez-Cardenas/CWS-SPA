@@ -836,13 +836,13 @@
 
                                                                     <td class="text-nowrap">
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $productionReading->production }}</span>
+                                                                            <span>{{ $operation[$t]->boosters }}</span>
                                                                         </div>
                                                                     </td>
 
                                                                     <td class="text-nowrap">
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $productionReading->production }}</span>
+                                                                            <span>{{ $operation[$t]->boosters }}</span>
                                                                         </div>
                                                                     </td>
                                                                 @endif
