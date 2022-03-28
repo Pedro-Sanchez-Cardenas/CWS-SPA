@@ -18,6 +18,7 @@
 @section('vendor-style')
     <!-- vendor css files -->
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
@@ -29,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/charts/chart-apex.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 @endsection
 
@@ -57,7 +59,7 @@
             </div>
 
             <!-- Statistics Card -->
-            <livewire:operation.parameters.data-filters />
+            <livewire:administration.billing.data />
 
             <!--/ Statistics Card -->
         </div>
@@ -75,62 +77,8 @@
                                         <th>DATE/TIME</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                    {{-- @foreach ($parameters->productWaters as $productWater)
-                                            <tr>
-                                                <td>
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr class="text-center text-nowrap">
-                                                                    <th>Type</th>
-                                                                    <th>Reading</th>
-                                                                    <th>Production</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @for ($r = 0; $r < $plant->trains->count(); $r++)
-                                                                    <tr class="text-center">
-                                                                        <td class="text-nowrap">
-                                                                            <div class="d-flex flex-column">
-                                                                                @if ($productWater->productionReadings[$r]->type == 'Train')
-                                                                                    <span>{{ $productWater->productionReadings[$r]->type }}
-                                                                                        # {{ $r + 1 }}</span>
-                                                                                @else
-                                                                                    {{ $productWater->productionReadings[$r]->type }}
-                                                                                @endif
-                                                                            </div>
-                                                                        </td>
-        
-                                                                        <td class="text-nowrap">
-                                                                            <div class="d-flex flex-column">
-                                                                                <span>{{ $productWater->productionReadings[$r]->reading }}</span>
-                                                                                <span class="font-small-2 text-muted">m3</span>
-                                                                            </div>
-                                                                        </td>
-        
-                                                                        <td class="text-nowrap">
-                                                                            <div class="d-flex flex-column">
-                                                                                <span>{{ $productWater->productionReadings[$r]->production }}</span>
-                                                                                <span class="font-small-2 text-muted">m3</span>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endfor
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </td>
-        
-                                                <td>
-                                                    <div class="d-flex align-items-center text-nowrap">
-                                            
-                                                        <span>{{ $productWater->created_at }}</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach --}}
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -163,9 +111,13 @@
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/file-uploaders/dropzone.min.js')) }}"></script>
+
 @endsection
 @section('page-script')
     <!-- Page js files -->
     <script src="{{ asset(mix('js/scripts/pages/dashboard-ecommerce.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/form-file-uploader.js')) }}"></script>
+
 @endsection
