@@ -33,6 +33,20 @@
                                 <span class="input-group-text">m³</span>
                             </div>
                         </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Mensaje">
+                            <div class="input-group-text">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" id="inputCheckbox">
+                                </div>
+                              </div>
+                          </div>
+                          <div class="col-md-12"><br>
+                            <div class="input-group">
+                                <span class="input-group-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Motivo</font></font></span>
+                                <textarea class="form-control" aria-label="con área de texto"></textarea>
+                              </div>
+                            </div>
                     </div>
                 @endfor
             </div>
