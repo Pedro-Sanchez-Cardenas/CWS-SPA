@@ -1,7 +1,7 @@
 <div class="col-xl-8 col-md-6 col-12">
     <div class="card card-statistics">
         <div class="card-header">
-            <h4 class="card-title">Statistics</h4>
+            <h4 class="card-title">INVOICE</h4>
             <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" tabindex="0"
                 aria-controls="DataTables_Table_0" type="button" aria-haspopup="true" aria-expanded="false"><span><svg
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="col-md mb-2">
-                        <label for="plants.operator" class="form-label">Operador</label>
+                        <label for="plants.operator" class="form-label">Invoice</label>
                         <div class="input-group">
                             <span class="input-group-text @error('plants.operator') border border-danger @enderror"
                                 id="basic-addon-search1">
@@ -35,7 +35,7 @@
                             </span>
                             <select class="form-select @error('plants.operator') border border-danger @enderror"
                                 wire:model="plants.operator" id="plants.operator">
-                                <option value="">SELECT OPERATOR</option>
+                                <option value="">Select invoice</option>
                             </select>
                         </div>
                         @error('plants.operator')
