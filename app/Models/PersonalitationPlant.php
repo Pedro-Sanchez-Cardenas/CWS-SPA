@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BillingPeriod extends Model
+class PersonalitationPlant extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,11 @@ class BillingPeriod extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'irrigation',
+        'sdi',
+        'chloride',
+        'well_pump',
+        'feed_pump',
+        'boosterc'
     ];
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCompanyToPlantsTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddCompanyToPlantsTable extends Migration
      */
     public function up()
     {
-        Schema::table('plants', function (Blueprint $table) {
-            $table->foreignId('companies_id')->after('location')->constrained();
+        Schema::create('services', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +28,6 @@ class AddCompanyToPlantsTable extends Migration
      */
     public function down()
     {
-        Schema::table('plants', function (Blueprint $table) {
-            $table->dropColumn('companies_id');
-        });
+        Schema::dropIfExists('services');
     }
 }

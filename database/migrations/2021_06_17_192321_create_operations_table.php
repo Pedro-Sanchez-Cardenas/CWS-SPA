@@ -16,7 +16,6 @@ class CreateOperationsTable extends Migration
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('plants_id')->constrained();
-            $table->foreignId('trains_id')->constrained();
 
             $table->double('hp');
             $table->double('hpF');
@@ -29,11 +28,11 @@ class CreateOperationsTable extends Migration
             $table->double('permeated');
             $table->double('rejection');
 
-            $table->double('feedFlow');
-            $table->double('permeateFlow');
+            $table->double('feed_flow');
+            $table->double('permeate_flow');
 
-            $table->double('hpIn');
-            $table->double('hpOut');
+            $table->double('hp_in');
+            $table->double('hp_out');
             $table->double('reject');
 
             $table->text('observations')->nullable();

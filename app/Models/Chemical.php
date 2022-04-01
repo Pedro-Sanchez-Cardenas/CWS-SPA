@@ -16,12 +16,12 @@ class Chemical extends Model
      */
     protected $fillable = [
         'product_waters_id',
-        'calciumChloride',
-        'sodiumCarbonate',
-        'sodiumHypochlorite',
+        'calcium_chloride',
+        'sodium_carbonate',
+        'sodium_hypochlorite',
         'antiscalant',
-        'sodiumHydroxide',
-        'hydrochloricAcid',
+        'sodium_hydroxide',
+        'hydrochloric_acid',
         'kl1',
         'kl2'
     ];

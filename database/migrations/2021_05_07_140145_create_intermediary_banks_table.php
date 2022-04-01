@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrainsTable extends Migration
+class CreateIntermediaryBanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateTrainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trains', function (Blueprint $table) {
+        Schema::create('intermediary_banks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plants_id')->constrained();
-            $table->double('capacity')->nullable();
-            $table->enum('status', ['Enabled', 'Disabled'])->default('Enabled');
-            $table->enum('type', ['Train', 'Irrigation', 'Municipal'])->default('Train');
+            $table->string('bank_name');
+            $table->string('swift');
+            $table->string('location');
+            $table->foreignId('countries_id')->constrained();
             $table->foreignId('user_created_at')->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -33,6 +32,6 @@ class CreateTrainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trains');
+        Schema::dropIfExists('intermediary_banks');
     }
 }

@@ -16,7 +16,8 @@ class Country extends Model
      */
     protected $fillable = [
         'name',
-        'taxes',
+        'abbreviation',
+        'vat',
         'currencies_id'
     ];
 

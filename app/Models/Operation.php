@@ -15,7 +15,6 @@ class Operation extends Model
      * @var array
      */
     protected $fillable = [
-        'plants_id',
         'trains_id',
         'register',
 
@@ -30,12 +29,11 @@ class Operation extends Model
         'permeated',
         'rejection',
 
-        'feedFlow',
-        'rejectFlow',
-        'permeateFlow',
+        'feed_flow',
+        'permeate_flow',
 
-        'hpIn',
-        'hpOut',
+        'hp_in',
+        'hp_out',
         'reject',
 
         'observations',

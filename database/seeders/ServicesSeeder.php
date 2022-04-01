@@ -16,7 +16,7 @@ class ServicesSeeder extends Seeder
     {
         Service::create([
             'name' => 'Water Treatment',
-            'user_created_at' => 1,
+            //'user_created_at' => 1,
             //'user_updated_at' => 1,
         ]);
     }

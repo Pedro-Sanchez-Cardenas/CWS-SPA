@@ -20,9 +20,9 @@ class Booster extends Model
         'amperage',
         'frequency',
         'px',
-        'boosterFlow',
-        'boosterPressures',
-        'boosterPressuresTotal'
+        'booster_flow',
+        'booster_pressures',
+        'booster_pressures_total'
     ];
 
     // Relations

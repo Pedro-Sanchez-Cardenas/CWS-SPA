@@ -16,7 +16,8 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('taxes');
+            $table->string('abbreviation');
+            $table->double('vat');
             $table->foreignId('currencies_id')->constrained();
             $table->timestamps();
             $table->softDeletes();

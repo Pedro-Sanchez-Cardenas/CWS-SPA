@@ -15,7 +15,8 @@ class MembraneSeeder extends Seeder
     public function run()
     {
         MembraneActiveArea::create([
-            'ft2' => '440'
+            'ft2' => '440',
+            'user_created_at' => '1'
         ]);
     }
 }

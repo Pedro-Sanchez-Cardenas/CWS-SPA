@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->date('pay_day');
             $table->foreignId('catalog_conceps_id')->constrained();
             $table->foreignId('payment_status_id')->constrained('payment_status');
-            $table->foreignId('billing_periods_id')->constrained();
+            //$table->foreignId('billing_periods_id')->constrained();
             $table->foreignId('providers_id')->constrained();
             $table->string('invoice_path');
             $table->timestamps();
@@ -31,5 +31,5 @@ class CreatePaymentsTable extends Migration
      *
      * @return void
      */
-  
+
 }

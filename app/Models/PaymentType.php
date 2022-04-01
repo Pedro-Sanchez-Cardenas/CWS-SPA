@@ -13,14 +13,14 @@ class payment_types extends Model
      *
      * @var array
      */
-   protected $fillable = [
-    'type',
-    'user_created_at',
-    'user_updated_at' 
-];
-public function UserContracts()
-{
-    return $this->hasMany(UserContract::class, 'payment_types_id', 'id');
+    protected $fillable = [
+        'type',
+        'user_created_at',
+        'user_updated_at'
+    ];
+
+    public function UserContracts()
+    {
+        return $this->hasMany(UserContract::class, 'payment_types_id', 'id');
+    }
 }
-}
-    

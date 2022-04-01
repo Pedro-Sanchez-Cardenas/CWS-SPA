@@ -15,6 +15,8 @@ class MembraneActiveArea extends Model
      * @var array
      */
     protected $fillable = [
-        'ft2'
+        'ft2',
+        'user_created_at',
+        'user_updated_at'
     ];
 }

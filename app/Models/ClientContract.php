@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductionInvoice extends Model
+class ClientContract extends Model
 {
     use HasFactory;
 
@@ -15,17 +15,10 @@ class ProductionInvoice extends Model
      * @var array
      */
     protected $fillable = [
-        'plants_id',
-        'invoice_start',
-        'invoice_end',
-        'plant_contracts_id',
-        'discount',
-        'production_trains',
-        'production_irrigation',
-        'production_municipal',
-        'vat',
-        'total',
-        'status',
+        'name',
+        'position',
+        'phone',
+        'email',
         'user_created_at',
         'user_updated_at'
     ];

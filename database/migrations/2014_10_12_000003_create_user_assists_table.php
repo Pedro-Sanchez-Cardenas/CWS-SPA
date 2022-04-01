@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use phpDocumentor\Reflection\Types\Nullable;
 
-class AddTdsToTrains extends Migration
+class CreateUserAssistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,11 @@ class AddTdsToTrains extends Migration
      */
     public function up()
     {
-        Schema::table('trains', function (Blueprint $table) {
-            $table->addColumn('double', 'tds')->after('polish_filters_quantity')->nullable();
+        Schema::create('user_assists', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('users_id')->constrained();
+            $table->string('location');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddTdsToTrains extends Migration
      */
     public function down()
     {
-        Schema::table('trains', function (Blueprint $table) {
-            $table->dropColumn('tds');
-        });
+        Schema::dropIfExists('user_assists');
     }
 }

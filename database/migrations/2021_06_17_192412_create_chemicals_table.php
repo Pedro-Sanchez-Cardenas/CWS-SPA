@@ -15,17 +15,16 @@ class CreateChemicalsTable extends Migration
     {
         Schema::create('chemicals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_waters_id')->constrained('product_waters');
+            $table->foreignId('product_waters_id')->constrained();
 
-            $table->double('calciumChloride');
-            $table->double('sodiumCarbonate');
-            $table->double('sodiumHypochlorite');
+            $table->double('calcium_chloride');
+            $table->double('sodium_carbonate');
+            $table->double('sodium_hypochlorite');
             $table->double('antiscalant');
-            $table->double('sodiumHydroxide');
-            $table->double('hydrochloricAcid');
+            $table->double('sodium_hydroxide');
+            $table->double('hydrochloric_acid');
             $table->double('kl1');
             $table->double('kl2');
-
             $table->timestamps();
         });
     }

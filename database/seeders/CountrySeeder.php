@@ -16,19 +16,22 @@ class CountrySeeder extends Seeder
     {
         Country::create([
             'name' => 'México',
-            'taxes' => '16',
+            'abbreviation' => 'MX',
+            'vat' => '16',
             'currencies_id' => '1'
         ]);
 
         Country::create([
             'name' => 'Estados Unidos',
-            'taxes' => '00',
+            'abbreviation' => 'US',
+            'vat' => '00',
             'currencies_id' => '2'
         ]);
 
         Country::create([
             'name' => 'Jamaica',
-            'taxes' => '15',
+            'abbreviation' => 'JM',
+            'vat' => '15',
             'currencies_id' => '3'
         ]);
     }

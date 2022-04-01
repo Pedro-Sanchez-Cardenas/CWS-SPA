@@ -17,7 +17,7 @@ class CreateCategoryConcepsTable extends Migration
             $table->id();
             $table->string('category');
             $table->foreignId('user_created_at')->constrained('users');
-            $table->foreignId('user_updated_at')->constrained('users');
+            $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

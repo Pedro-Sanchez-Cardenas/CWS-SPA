@@ -20,11 +20,10 @@ class CreateBoostersTable extends Migration
             $table->double('amperage');
             $table->double('frequency');
             $table->double('px');
-            $table->double('boosterFlow')->nullable();
-            $table->double('boosterPressures')->nullable();
-            $table->double('boosterPressuresTotal')->nullable();
+            $table->double('booster_flow')->nullable();
+            $table->double('booster_pressures')->nullable();
+            $table->double('booster_pressures_total')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

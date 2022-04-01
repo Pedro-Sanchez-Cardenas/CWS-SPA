@@ -18,25 +18,16 @@ class Plant extends Model
     protected $fillable = [
         'name',
         'location',
-        'currencies_id',
-        'countries_id',
-        'companies_id',
         'cover_path', // nullable
         'installed_capacity',
-        'cisterns_quantity',
-        'plant_types_id',
         'design_limit',
 
-        'irrigation',
-        'sdi',
-        'chloride',
-        'well_pump',
-        'feed_pump',
-        'boosterc',
-        'feed',
-        'reject',
-
-        'attendant', //nullable
+        'companies_id',
+        'clients_id',
+        'personalitation_plants_id',
+        'countries_id',
+        'plant_types_id',
+        'operator', //nullable
         'manager', // nullable
         'user_created_at',
         'user_updated_at' // nullable
