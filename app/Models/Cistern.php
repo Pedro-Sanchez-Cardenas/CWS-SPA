@@ -17,15 +17,9 @@ class Cistern extends Model
      */
     protected $fillable = [
         'product_waters_id',
-        'plants_id',
         'capacity',
         'status'
     ];
-
-    public function plant()
-    {
-        return $this->belongsTo(Plant::class, 'id', 'plants_id');
-    }
 
     public function productWater()
     {

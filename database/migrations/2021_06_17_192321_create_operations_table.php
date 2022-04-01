@@ -15,7 +15,8 @@ class CreateOperationsTable extends Migration
     {
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plants_id')->constrained();
+            $table->foreignId('trains_id')->constrained();
+            $table->integer('register');
 
             $table->double('hp');
             $table->double('hpF');

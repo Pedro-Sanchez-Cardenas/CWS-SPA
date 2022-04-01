@@ -21,6 +21,12 @@ class CreatePlantsTable extends Migration
             $table->double('installed_capacity')->nullable();
             $table->double('design_limit')->nullable();
 
+            $table->foreignId('polish_filter_types_id')->constrained();
+            $table->integer('polish_filters_quantity')->default('0');
+
+            $table->integer('multimedia_filters_quantity')->default('0');
+            $table->integer('cisterns_quantity');
+
             $table->foreignId('companies_id')->constrained();
             $table->foreignId('clients_id')->nullable()->constrained();
             $table->foreignId('operator')->constrained('users');

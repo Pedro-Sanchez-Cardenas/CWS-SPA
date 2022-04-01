@@ -16,7 +16,6 @@ class CreateCisternsTable extends Migration
         Schema::create('cisterns', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_waters_id')->constrained();
-            $table->foreignId('trains_id')->constrained();
             $table->integer('capacity')->nullable();
             $table->enum('status', ['Enabled', 'Disabled'])->default('Enabled');
             $table->timestamps();

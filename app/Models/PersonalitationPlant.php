@@ -22,4 +22,10 @@ class PersonalitationPlant extends Model
         'feed_pump',
         'boosterc'
     ];
+
+    // Relations
+    public function plant()
+    {
+        return $this->belongsTo(Plant::class, 'id', 'plants_id');
+    }
 }

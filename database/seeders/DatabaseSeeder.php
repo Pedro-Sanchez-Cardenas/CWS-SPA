@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             PlantTypeSeeder::class,
             PersonalitationPlantsSeeder::class,
-            PlantsSeeder::class,
             PolishFiltersSeeder::class,
+            PlantsSeeder::class,
             MembraneSeeder::class,
             TrainsSeeder::class
         ]);

@@ -38,7 +38,7 @@ class PlantController extends Controller
             $plants = Plant::where('manager', Auth::id())->get();
         } else if (Auth::user()->getRoleNames()->first() == 'Operator') {
 
-            $plants = Plant::where('attendant', Auth::id())->get();
+            $plants = Plant::where('operator', Auth::id())->get();
         }
 
         return view('content.operations.plants.index', compact('plants'));

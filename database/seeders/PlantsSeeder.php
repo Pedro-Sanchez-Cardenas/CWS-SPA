@@ -17,6 +17,10 @@ class PlantsSeeder extends Seeder
         Plant::create([
             'name' => 'IBEROSTAR ROSE HALL',
             'location' => 'Montego Bay',
+            'multimedia_filters_quantity' => '3',
+            'cisterns_quantity' => '2',
+            'polish_filters_quantity' => '6',
+            'polish_filter_types_id' => '10',
             'countries_id' => '3',
             //'cover_path', // nullable
             //'installed_capacity',
@@ -36,6 +40,10 @@ class PlantsSeeder extends Seeder
         Plant::create([
             'name' => 'SECRETS',
             'location' => 'Playa del Carmen',
+            'multimedia_filters_quantity' => '2',
+            'cisterns_quantity' => '1',
+            'polish_filters_quantity' => '1',
+            'polish_filter_types_id' => '5',
             //'cover_path', // nullable
             //'installed_capacity',
             // 'design_limit
@@ -55,6 +63,10 @@ class PlantsSeeder extends Seeder
         Plant::create([
             'name' => 'MOON PALACE JAMAICA',
             'location' => 'Ocho Ríos',
+            'multimedia_filters_quantity' => '2',
+            'cisterns_quantity' => '1',
+            'polish_filters_quantity' => '3',
+            'polish_filter_types_id' => '10',
             'countries_id' => '3',
             //'cover_path', // nullable
             //'installed_capacity',
