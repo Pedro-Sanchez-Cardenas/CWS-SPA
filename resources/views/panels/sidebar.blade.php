@@ -225,14 +225,7 @@ $configData = Helper::applClasses();
                         </svg>
                     </span>
                     <h2 class="brand-text text-info">
-                        @foreach (Auth::user()->companies as $company)
-                            @if ($loop->first)
-                                <span>{{ $company->name }}</span>
-                            @endif
-                            @if (!$loop->first)
-                                <span> | {{ $company->name }}</span>
-                            @endif
-                        @endforeach
+                        {{ Auth::user()->company->name }}
                     </h2>
                 </a>
             </li>

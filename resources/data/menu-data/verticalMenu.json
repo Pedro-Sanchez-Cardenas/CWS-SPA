@@ -5,7 +5,7 @@
             "icon": "home",
             "slug": "dashboard",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-            "companies": "CWS|KU3",
+            "companies": "CORP-CWS|CWS-MEX|CWS-USA|KU3",
             "submenu": [
                 {
                     "url": "dashboard",
@@ -13,7 +13,7 @@
                     "icon": "circle",
                     "slug": "dashboard",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-                    "companies": "CWS|KU3"
+                    "companies": "CORP-CWS"
                 },
                 {
                     "url": "dashboard",
@@ -21,7 +21,7 @@
                     "icon": "circle",
                     "slug": "dashboard",
                     "roles": "Manager|Operator",
-                    "companies": "CWS|KU3"
+                    "companies": "CWS-MEX|CWS-USA|KU3"
                 }
             ]
         },
@@ -29,7 +29,7 @@
             "navheader": "Operation",
             "slug": "",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-            "companies": "CWS|KU3"
+            "companies": "CWS-MEX|CWS-USA|KU3"
         },
         {
             "name": "CWS",
@@ -38,7 +38,7 @@
             "slug": "plants.index",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-            "companies": "CWS",
+            "companies": "CWS-MEX",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -47,7 +47,7 @@
                     "slug": "",
                     "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-                    "companies": "CWS",
+                    "companies": "CWS-MEX",
                     "submenu": [
                         {
                             "url": "plants.index",
@@ -55,7 +55,7 @@
                             "icon": "circle",
                             "slug": "plants.index",
                             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager|Operator",
-                            "companies": "CWS"
+                            "companies": "CWS-MEX"
                         }
                     ]
                 }
@@ -95,7 +95,7 @@
             "navheader": "Administration",
             "slug": "",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-            "companies": "CWS|KU3"
+            "companies": "CORP-CWS"
         },
         {
             "name": "CWS",
@@ -104,7 +104,7 @@
             "slug": "",
             "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-            "companies": "CWS",
+            "companies": "CORP-CWS",
             "submenu": [
                 {
                     "name": "Water Treatment",
@@ -113,7 +113,7 @@
                     "slug": "",
                     "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
                     "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager|Manager",
-                    "companies": "CWS",
+                    "companies": "CORP-CWS",
                     "submenu": [
                         {
                             "url": "plants.index",
@@ -121,37 +121,7 @@
                             "icon": "circle",
                             "slug": "",
                             "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-                            "companies": "CWS"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "KU3",
-            "icon": "credit-card",
-            "badge": "New",
-            "slug": "",
-            "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-            "companies": "KU3",
-            "submenu": [
-                {
-                    "name": "Water Treatment",
-                    "icon": "circle",
-                    "badge": "New",
-                    "slug": "",
-                    "badgeClass": "badge badge-light-success rounded-pill ms-auto me-1",
-                    "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-                    "companies": "KU3",
-                    "submenu": [
-                        {
-                            "url": "plants.index",
-                            "name": "RO",
-                            "icon": "circle",
-                            "slug": "",
-                            "roles": "Super-Admin|Director|Operations-Manager|Administrative-Manager",
-                            "companies": "KU3"
+                            "companies": "CORP-CWS"
                         }
                     ]
                 }
