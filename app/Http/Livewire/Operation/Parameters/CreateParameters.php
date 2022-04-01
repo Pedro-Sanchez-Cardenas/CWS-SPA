@@ -223,7 +223,6 @@ class CreateParameters extends Component
                     // Pretreatment
                     if ($t % 2 != 0) {
                         Pretreatment::create([
-                            'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
                             'register' => $registerPre != null ? $registerPre->id + 1 : 1,
                             'well_pump' => isset($this->pump['well'][$t]) ? $this->pump['well'][$t] : null,
@@ -233,7 +232,7 @@ class CreateParameters extends Component
                             'backwash' => isset($this->backwash[$t]) ? $this->backwash[$t] : null,
                             'observations' => isset($this->observations['pre'][$t]) ? $this->observations['pre'][$t] : null,
                             'user_created_at' => Auth::id(),
-                            'user_updated_at' => Auth::id(),
+                            //'user_updated_at' => Auth::id(),
                         ]);
 
                         $pretreatment = Pretreatment::latest('id')->first();
@@ -266,7 +265,6 @@ class CreateParameters extends Component
 
                         // Operation
                         Operation::create([
-                            'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
                             'register' => $registerOpe != null ? $registerOpe->id + 1 : 1,
 
@@ -281,17 +279,17 @@ class CreateParameters extends Component
                             'permeated' => $this->permeate['ope'][$t],
                             'rejection' => $this->rejection[$t],
 
-                            'feedFlow' => $this->feed['flo'][$t],
-                            'rejectFlow' => $this->reject[$t],
-                            'permeateFlow' => $this->permeate['flo'][$t],
+                            'feed_flow' => $this->feed['flo'][$t],
+                            'reject_flow' => $this->reject[$t],
+                            'permeate_flow' => $this->permeate['flo'][$t],
 
-                            'hpIn' => $this->hp['in'][$t],
-                            'hpOut' => $this->hp['out'][$t],
+                            'hp_in' => $this->hp['in'][$t],
+                            'hp_out' => $this->hp['out'][$t],
                             'reject' => $this->reject[$t],
 
                             'observations' => isset($this->observations['ope']) ? $this->observations['ope'][$t] : null,
                             'user_created_at' => Auth::id(),
-                            'user_updated_at' => Auth::id()
+                            //'user_updated_at' => Auth::id()
                         ]);
 
                         $operation = Operation::latest('id')->first();
@@ -304,9 +302,9 @@ class CreateParameters extends Component
                                     'amperage' => $this->booster['amp'][$t][$b],
                                     'frequency' => $this->booster['fre'][$t][$b],
                                     'px' => $this->px[$t][$b],
-                                    'boosterFlow' => $this->booster['co'][$t],
-                                    'boosterPressures' => $this->booster['pre'][$t][$b],
-                                    'boosterPressuresTotal' => $this->booster['cp'][$t]
+                                    'booster_flow' => $this->booster['co'][$t],
+                                    'booster_pressures' => $this->booster['pre'][$t][$b],
+                                    'booster_pressures_total' => $this->booster['cp'][$t]
                                 ]);
                             }
                         }
@@ -325,7 +323,7 @@ class CreateParameters extends Component
                     'tds' => $this->tds,
                     'h2s' => $this->h2s,
 
-                    'freeChlorine' => $this->free_chlorine != '' ? $this->free_chlorine : null,
+                    'free_chlorine' => $this->free_chlorine != '' ? $this->free_chlorine : null,
                     'chloride' => $this->chloride != '' ? $this->chloride : null,
 
                     'observations' => isset($this->observations['prw']) ? $this->observations['prw'] : null,
@@ -341,7 +339,6 @@ class CreateParameters extends Component
                         'product_waters_id' => $productWater->id,
                         'trains_id' => $trains[$pro - 1]->id,
                         'reading' => $this->reading[$pro],
-                        'production' => 0,
                         'type' => 'Train'
                     ]);
                 }
@@ -351,7 +348,6 @@ class CreateParameters extends Component
                         'product_waters_id' => $productWater->id,
                         //'trains_id' => ,
                         'reading' => $this->irrigation,
-                        'production' => 0,
                         'type' => 'Irrigation'
                     ]);
                 }
@@ -361,7 +357,6 @@ class CreateParameters extends Component
                         'product_waters_id' => $productWater->id,
                         //'trains_id' => ,
                         'reading' => $this->municipal,
-                        'production' => 0,
                         'type' => 'Municipal'
                     ]);
                 }
@@ -381,12 +376,12 @@ class CreateParameters extends Component
                 // Chemicals
                 Chemical::create([
                     'product_waters_id' => $productWater->id,
-                    'calciumChloride' => $this->calcium_chloride,
-                    'sodiumCarbonate' => $this->sodium_carbonate,
-                    'sodiumHypochlorite' => $this->sodium_hypochloride,
+                    'calcium_chloride' => $this->calcium_chloride,
+                    'sodium_carbonate' => $this->sodium_carbonate,
+                    'sodium_hypochlorite' => $this->sodium_hypochloride,
                     'antiscalant' => $this->antiscalant,
-                    'sodiumHydroxide' => $this->sodium_hydroxide,
-                    'hydrochloricAcid' => $this->hydrochloric_acid,
+                    'sodium_hydroxide' => $this->sodium_hydroxide,
+                    'hydrochloric_acid' => $this->hydrochloric_acid,
                     'kl1' => $this->kl1,
                     'kl2' => $this->kl2
                 ]);

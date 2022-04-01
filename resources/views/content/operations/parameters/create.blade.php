@@ -72,10 +72,10 @@
                             </div>
                         </div>
                         <h2 class="fw-bolder">
-                            {{ $plant->attendantUser->name }}
+                            {{ $plant->operator->name }}
                         </h2>
                         <p class="card-text">
-                            {{ $plant->attendantUser->phone }}
+                            {{ $plant->operator->phone }}
                         </p>
                     </div>
                 </div>

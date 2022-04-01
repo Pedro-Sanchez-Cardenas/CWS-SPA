@@ -34,9 +34,9 @@ class Plant extends Model
     ];
 
     // Relations
-    public function attendantUser()
+    public function Operator()
     {
-        return $this->hasOne(User::class, 'id', 'attendant');
+        return $this->hasOne(User::class, 'id', 'operator');
     }
 
     public function Manager()
