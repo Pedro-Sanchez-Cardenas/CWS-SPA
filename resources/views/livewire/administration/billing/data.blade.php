@@ -17,30 +17,65 @@
             <div class="card-body statistics-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <label class="form-label" for="fp-range">DATE/TIME</label>
-                        <input type="file" name="" id="">
+                        <label class="form-label" for="fp-range">select an invoice</label>
+                        <br>
+                        <div class="file-select" id="src-file2">
+                            <input type="file" name="src-file2" aria-label="Archivo">
+                        </div>
+
+                        <style type="text/css">
+                            .file-select {
+                                position: relative;
+                                display: inline-block;
+                            }
+
+                            .file-select::before {
+                                background-color: rgba(0, 0, 0, 0);
+                                ";
+                                color: white;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 4px;
+                                content: 'Seleccionar';
+                                /* testo por defecto */
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                top: 0;
+                                bottom: 0;
+                                border: white 0.5px solid;
+                            }
+
+                            .file-select input[type="file"] {
+                                opacity: 0;
+                                width: 250px;
+                                height: 38px;
+                                display: inline-block;
+                            }
+
+                            #src-file2::before {
+                                content: 'Seleccionar Archivo';
+                            }
+
+                        </style>
+
                     </div>
 
                     <div class="col-md mb-2">
                         <label for="plants.operator" class="form-label">Invoice</label>
                         <div class="input-group">
-                            <span class="input-group-text @error('plants.operator') border border-danger @enderror"
-                                id="basic-addon-search1">
+                            <span class="input-group-text" id="basic-addon-search1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-person-fill @error('plants.operator') text-danger @enderror"
-                                    viewBox="0 0 16 16">
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 </svg>
                             </span>
-                            <select class="form-select @error('plants.operator') border border-danger @enderror"
-                                wire:model="plants.operator" id="plants.operator">
+                            <select class="form-select " wire:model="plants.operator" id="plants.operator">
                                 <option value="">Select invoice</option>
                             </select>
                         </div>
-                        @error('plants.operator')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
 
