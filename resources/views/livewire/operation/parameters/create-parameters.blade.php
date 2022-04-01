@@ -26,6 +26,7 @@
                 <div>Barra de progreso...</div>
             </div>
         </div>
+
         @if ($errors->any())
             <div class="card bg-light-warning mx-3">
                 <div class="card-header">
@@ -62,10 +63,10 @@
                     {{-- /* Pretreatment Section */ --}}
                     <div class="card-body" x-show.transition.in="step === {{ $pre }}"
                         x-id="['pretreatment']">
-                        @if ($plant->well_pump == 'yes' || $plant->feed_pump == 'yes')
+                        @if ($plant->personalitation_plant->well_pump == 'yes' || $plant->personalitation_plant->feed_pump == 'yes')
                             <label class="h5">AMPERAGE</label>
                             <div class="row">
-                                @if ($plant->well_pump == 'yes')
+                                @if ($plant->personalitation_plant->well_pump == 'yes')
                                     <div class="col-6 mb-2">
                                         <label class="form-label">Well
                                             pump</label>
@@ -91,7 +92,7 @@
                                     </div>
                                 @endif
 
-                                @if ($plant->feed_pump == 'yes')
+                                @if ($plant->personalitation_plant->feed_pump == 'yes')
                                     <div class="col-sm-6 mb-2">
                                         <label class="form-label">Feed
                                             pump</label>
@@ -119,10 +120,10 @@
                             </div>
                         @endif
 
-                        @if ($plant->well_pump == 'yes' || $plant->feed_pump == 'yes')
+                        @if ($plant->personalitation_plant->well_pump == 'yes' || $plant->personalitation_plant->feed_pump == 'yes')
                             <label class="h5 mt-1">FREQUENCIES</label>
                             <div class="row">
-                                @if ($plant->well_pump == 'yes')
+                                @if ($plant->personalitation_plant->well_pump == 'yes')
                                     <div class="col-6 mb-2">
                                         <label class="form-label">Well
                                             pump</label>
@@ -148,7 +149,7 @@
                                     </div>
                                 @endif
 
-                                @if ($plant->feed_pump == 'yes')
+                                @if ($plant->personalitation_plant->feed_pump == 'yes')
                                     <div class="col-6 mb-2">
                                         <label class="form-label">Feed
                                             pump</label>
@@ -177,7 +178,7 @@
                         @endif
 
                         <label class="h5 mt-1">MULTIMEDIA FILTERS</label>
-                        @for ($i = 1; $i <= $plant->trains->where('type', 'Train')->first()->multimedia_filter_quantity; $i++)
+                        @for ($i = 1; $i <= $plant->multimedia_filters_quantity; $i++)
                             <div class="row">
                                 <div class="col-6 mb-2">
                                     <label class="form-label">IN #{{ $i }}</label>
@@ -306,7 +307,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    @for ($i = 1; $i <= $plant->trains->where('type', 'Train')->first()->polish_filters_quantity; $i++)
+                                    @for ($i = 1; $i <= $plant->polish_filters_quantity; $i++)
                                         <tr>
                                             <td>Filter # {{ $i }}</td>
                                             <td>
@@ -359,8 +360,7 @@
                     {{-- /* Pretreatment Section */ --}}
                 @else
                     {{-- /* Operation Section */ --}}
-                    <div class="card-body" x-show.transition.in="step === {{ $pre }}"
-                        x-id="['operation']">
+                    <div class="card-body" x-show.transition.in="step === {{ $pre }}">
                         <label class="h5">AMPERAGE</label>
                         <div class="row">
                             <div class="col-6 mb-2">
@@ -488,8 +488,7 @@
                                     </span>
                                     <input type="number"
                                         class="form-control @error("ph.ope.$pre") border border-danger @endif"
-                                        :id="$id('operation', 'ph-ope')" wire:model="ph.ope.{{ $pre }}"
-                                        placeholder="0.0 u. pH">
+                                        wire:model="ph.ope.{{ $pre }}" placeholder="0.0 u. pH">
                                 </div>
                                 @error("ph.ope.$pre")
                                     <span class="text-danger">{{ $message }}</span>

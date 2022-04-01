@@ -22,7 +22,7 @@ class ProductWater extends Model
         'tds',
         'h2s',
 
-        'freeChlorine',
+        'free_chlorine',
         'chloride',
 
         'observations',

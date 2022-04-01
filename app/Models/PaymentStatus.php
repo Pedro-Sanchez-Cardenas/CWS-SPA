@@ -13,12 +13,7 @@ class payment_status extends Model
      *
      * @var array
      */
-   protected $fillable = [
-    
-    'status'
-
-
-
-
+    protected $fillable = [
+        'status'
     ];
 }

@@ -15,11 +15,14 @@ class CreatePretreatmentsTable extends Migration
     {
         Schema::create('pretreatments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plants_id')->constrained();
             $table->foreignId('trains_id')->constrained();
+            $table->integer('register');
 
             $table->double('well_pump')->nullable();
             $table->double('feed_pump')->nullable();
+
+            $table->double('frecuencies_well_pump')->nullable();
+            $table->double('frecuencies_feed_pump')->nullable();
 
             $table->double('backwash');
             $table->text('observations')->nullable();

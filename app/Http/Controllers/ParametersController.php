@@ -71,7 +71,7 @@ class ParametersController extends Controller
         $typeUser = auth()->user()->getRoleNames()->first();
 
         if ($typeUser == 'Operator') {
-            $asistencia = UserAssistance::where('user_id', Auth::id())->whereDate('created_at', Carbon::now()->toDateString())->get();
+            //$asistencia = UserAssistance::where('user_id', Auth::id())->whereDate('created_at', Carbon::now()->toDateString())->get();
 
             return view('content.operations.parameters.create', compact('plant', 'typeUser'));
 

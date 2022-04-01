@@ -16,8 +16,9 @@ class Company extends Model
      */
     protected $fillable = [
         'name',
-        'currencies_id',
-        'countries_id'
+        'countries_id',
+        'services_id',
+        'currencies_id'
     ];
 
     // Relations

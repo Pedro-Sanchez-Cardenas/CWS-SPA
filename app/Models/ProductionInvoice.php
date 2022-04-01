@@ -16,11 +16,16 @@ class ProductionInvoice extends Model
      */
     protected $fillable = [
         'plants_id',
-        'trains_id',
-        'current_reading',
-        'previous_reading',
-        'discounts',
-        'discount_type',
+        'invoice_start',
+        'invoice_end',
+        'plant_contracts_id',
+        'discount',
+        'production_trains',
+        'production_irrigation',
+        'production_municipal',
+        'vat',
+        'total',
+        'status',
         'user_created_at',
         'user_updated_at'
     ];

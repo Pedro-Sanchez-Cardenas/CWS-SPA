@@ -15,12 +15,13 @@ class ProviderContact extends Model
      * @var array
      */
     protected $fillable = [
-    'names',
-    'phones',
-    'email' ];
+        'names',
+        'phones',
+        'email'
+    ];
+
     public function providers()
     {
-      return $this->belongsToMany(provider::class);
+        return $this->belongsToMany(provider::class);
     }
-    
 }

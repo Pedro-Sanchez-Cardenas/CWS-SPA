@@ -17,17 +17,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CurrencySeeder::class,
             CountrySeeder::class,
-            CompaniesSeeder::class,
             RolesSeeder::class,
+            ServicesSeeder::class,
+            CompaniesSeeder::class,
             UsersSeeder::class,
             PlantTypeSeeder::class,
-            PlantsSeeder::class,
+            PersonalitationPlantsSeeder::class,
             PolishFiltersSeeder::class,
-            TrainsSeeder::class,
-            BillingPeriodSeeder::class,
-            PlantContractSeeder::class,
+            PlantsSeeder::class,
             MembraneSeeder::class,
-            ServicesSeeder::class
+            TrainsSeeder::class
         ]);
     }
 }

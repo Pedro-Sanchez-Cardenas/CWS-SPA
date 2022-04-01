@@ -14,12 +14,12 @@ class event extends Model
      * @var array
      */
     protected $fillable = [
+        'concep',
+        'category_conceps_id'
+    ];
 
-'concep',
-'category_conceps_id'
- ];
- public function Payment()
- {
-   return $this->belongsToMany(Payment::class);
- }
-  }
+    public function Payment()
+    {
+        return $this->belongsToMany(Payment::class);
+    }
+}

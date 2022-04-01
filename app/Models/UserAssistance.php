@@ -16,6 +16,6 @@ class UserAssistance extends Model
      */
     protected $fillable = [
         'user_id',
-        'location'
+        'production_readings_id'
     ];
 }

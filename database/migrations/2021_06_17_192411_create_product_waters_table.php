@@ -22,7 +22,7 @@ class CreateProductWatersTable extends Migration
             $table->double('tds');
             $table->double('h2s');
 
-            $table->double('freeChlorine');
+            $table->double('free_chlorine');
             $table->double('chloride')->nullable();
 
             $table->text('observations')->nullable();

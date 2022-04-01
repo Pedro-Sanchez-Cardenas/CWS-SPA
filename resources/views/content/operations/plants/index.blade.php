@@ -4,14 +4,13 @@
     * Start Date: 31 de Enero del 2022
     * Finish Date: 01 de Enero del 2022
 
-    * Update Author: --------
-    * Update Start Date: -------
-    * Update Finish Date: -------
+    * Update Author: Pedro Adrian Sanchez Cardenas.
+    * Update Start Date: 01 de Abril del 2022
+    * Update Finish Date: 01 de Abril del 2022
 
     * Description: --------
     /******************************************************************\
  -->
-
 @extends('layouts/contentLayoutMaster')
 
 @section('title', 'Water Treatment - RO')
@@ -64,7 +63,7 @@
                             </div>
                         @endhasanyrole
                         <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
-                            class="card-img-top" alt="error img plant">
+                            class="rounded mx-5 d-block" alt="plant_cover">
 
                         <div class="card-body">
                             <h5 class="card-title text-uppercase">{{ $plant->name }}</h5>
@@ -75,56 +74,62 @@
 
                             <div class="row">
                                 <div class="col text-center">
-                                    <h2>{{ $plant->trains->where('type', 'Train')->count() }} Train
+                                    <h4>{{ $plant->trains->where('type', 'Train')->count() }}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-subtract" viewBox="0 0 16 16">
                                             <path
                                                 d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z" />
                                         </svg>
-                                    </h2>
+                                    </h4>
+                                    <small>Train</small>
                                 </div>
                                 <div class="col text-center">
-                                    <h2>{{ $plant->cisterns_quantity }} Cisterns <i
-                                            class="fas fa-prescription-bottle"></i></h2>
+                                    <h4>{{ $plant->cisterns_quantity }} <i class="fas fa-prescription-bottle"></i>
+                                    </h4>
+                                    <small>Cisterns</small>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col text-center">
-                                    <h2>{{ $plant->trains->first()->multimedia_filter_quantity }} MF
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                                    <h4>{{ $plant->multimedia_filters_quantity }} <svg xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor" class="bi bi-funnel-fill"
+                                            viewBox="0 0 16 16">
                                             <path
                                                 d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
                                         </svg>
-                                    </h2>
+                                    </h4>
+                                    <small>Multimedia Filters</small>
                                 </div>
                                 <div class="col text-center">
-                                    <h2>{{ $plant->trains->first()->polish_filters_quantity }} PF
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                                    <h4>{{ $plant->polish_filters_quantity }} <svg xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor" class="bi bi-funnel-fill"
+                                            viewBox="0 0 16 16">
                                             <path
                                                 d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
                                         </svg>
-                                    </h2>
+                                    </h4>
+                                    <small>Polish Filters</small>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col text-center">
                                     @if ($plant->installed_capacity)
-                                        <h2>{{ $plant->installed_capacity }} IC <i class="fas fa-tint"></i></h2>
-                                    @else
-                                        <h2 class="text-muted">N/A <i class="fas fa-tint"></i></h2>
+                                        <h5>{{ $plant->installed_capacity }} <i class="fas fa-tint"></i></h4>
+                                        @else
+                                            <h4 class="text-muted">N/A <i class="fas fa-tint"></i></h4>
                                     @endif
+                                    <small>Installed Capacity</small>
                                 </div>
 
                                 <div class="col text-center">
                                     @if ($plant->design_limit)
-                                        <h2>{{ $plant->design_limit }} DL <i class="fas fa-tint"></i></h2>
+                                        <h4>{{ $plant->design_limit }} <i class="fas fa-tint"></i></h4>
                                     @else
-                                        <h2 class="text-muted">N/A <i class="fas fa-tint"></i></h2>
+                                        <h4 class="text-muted">N/A <i class="fas fa-tint"></i></h4>
                                     @endif
+                                    <small>Design Limit</small>
                                 </div>
                             </div>
 
@@ -133,7 +138,8 @@
                             <div class="btn-group col-12" role="group">
                                 <a href="{{ route('parameters.create', $plant->id) }}" class="btn btn-success"><i
                                         class="fas fa-plus"></i> Parameters</a>
-                                <a href="{{ route('parameters.show', $plant->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Parameters</a>
+                                <a href="{{ route('parameters.show', $plant->id) }}" class="btn btn-info"><i
+                                        class="far fa-eye"></i> Parameters</a>
                             </div>
 
                             <table class="table table-bordered mt-2">
@@ -145,16 +151,16 @@
                                 </thead>
                                 <tbody>
                                     <tr class="text-center">
-                                        <td><i class="fas fa-hard-hat"></i>{{ $plant->attendantUser->name }} <br>
-                                            <i class="fas fa-phone-square-alt"></i>{{ $plant->attendantUser->phone }}
+                                        <td><i class="fas fa-hard-hat"></i>{{ $plant->Operator->name }} <br>
+                                            <i class="fas fa-phone-square-alt"></i>{{ $plant->Operator->phone_1 }}
                                         </td>
 
                                         <td>
                                             @if ($plant->Manager)
                                                 <i class="fas fa-user-circle"></i>{{ $plant->Manager->name }} <br>
-                                                <i class="fas fa-phone-square-alt"></i>{{ $plant->Manager->phone }}
+                                                <i class="fas fa-phone-square-alt"></i>{{ $plant->Manager->phone_1 }}
                                             @else
-                                                <span class="text-muted">N/A</span>
+                                                <span class="text-danger">N/A</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -163,7 +169,14 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-subtitle mb-2 text-muted text-capitalize">Last update of parameters:
-                                @if ($plant->trains->first()->productionRea)<span>{{ $plant->trains->first()->productRea->created_at }}</span>@else <span class="text-danger">N/A</span> @endif</p>
+                                @if ($plant->product_water->last())
+                                    <span class="text-primary">{{ $plant->product_water->last()->created_at }}</span>
+                                    <span
+                                        class="text-danger">{{ \Carbon\Carbon::now()->diffForHumans($plant->product_water->last()->created_at) }}</span>
+                                @else
+                                    <span class="text-danger">N/A</span>
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -14,19 +14,16 @@ class ProviderType extends Model
      * @var array
      */
     protected $fillable = [
-
-
-    'type',
-    'names',
-    'phones',
-    'email',
-    'user_created_at',
-    'user_updated_at'  ];
+        'type',
+        'names',
+        'phones',
+        'email',
+        'user_created_at',
+        'user_updated_at'
+    ];
 
     public function providers()
     {
         return $this->hasMany(privider::class, 'providers_id', 'id');
-
     }
-   
 }

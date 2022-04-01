@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Train extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -18,14 +17,11 @@ class Train extends Model
     protected $fillable = [
         'plants_id',
         'capacity',
-        'multimedia_filter_quantity',
-        'polish_filters_types_id',
-        'polish_filters_quantity',
+        'boosters_quantity',
         'tds',
-        'booster_quantity',
         'status',
         'type',
-        'membrane_active_area',
+        'membrane_active_areas_id',
         'membrane_elements',
         'user_created_at',
         'user_updated_at'

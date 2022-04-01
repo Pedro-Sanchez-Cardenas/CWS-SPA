@@ -18,34 +18,41 @@ class Plant extends Model
     protected $fillable = [
         'name',
         'location',
-        'currencies_id',
-        'countries_id',
-        'companies_id',
         'cover_path', // nullable
         'installed_capacity',
-        'cisterns_quantity',
-        'plant_types_id',
         'design_limit',
 
-        'irrigation',
-        'sdi',
-        'chloride',
-        'well_pump',
-        'feed_pump',
-        'boosterc',
-        'feed',
-        'reject',
+        'polish_filter_types_id',
+        'polish_filters_quantity',
 
-        'attendant', //nullable
+        'multimedia_filters_quantity',
+        'cisterns_quantity',
+
+        'companies_id',
+        'clients_id',
+        'personalitation_plants_id',
+        'countries_id',
+        'plant_types_id',
+        'operator', //nullable
         'manager', // nullable
         'user_created_at',
         'user_updated_at' // nullable
     ];
 
     // Relations
-    public function attendantUser()
+    public function company()
     {
-        return $this->hasOne(User::class, 'id', 'attendant');
+        return $this->hasOne(Company::class, 'id', 'companies_id');
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class, 'id', 'clients_id');
+    }
+
+    public function Operator()
+    {
+        return $this->hasOne(User::class, 'id', 'operator');
     }
 
     public function Manager()
@@ -53,43 +60,43 @@ class Plant extends Model
         return $this->hasOne(User::class, 'id', 'manager');
     }
 
+    public function user_created()
+    {
+        return $this->hasOne(User::class, 'id', 'user_created_at');
+    }
+
+    public function user_updated()
+    {
+        return $this->hasOne(User::class, 'id', 'user_updated_at');
+    }
+
+    public function personalitation_plant()
+    {
+        return $this->hasOne(PersonalitationPlant::class, 'id', 'personalitation_plants_id');
+    }
+
+    public function plant_type()
+    {
+        return $this->hasOne(PlantType::class, 'id', 'plant_types_id');
+    }
+
     public function trains()
     {
         return $this->hasMany(Train::class, 'plants_id', 'id');
     }
 
-    public function currency()
-    {
-        return $this->belongsTo(Currency::class, 'currencies_id', 'id');
-    }
-
     public function country()
     {
-        return $this->belongsTo(Country::class, 'countries_id', 'id');
-    }
-
-    public function company()
-    {
-        return $this->belongsTo(Company::class, 'companies_id', 'id');
-    }
-
-    public function pretreatments()
-    {
-        return $this->hasMany(Pretreatment::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
-    }
-
-    public function operations()
-    {
-        return $this->hasMany(Operation::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
-    }
-
-    public function productWaters()
-    {
-        return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
+        return $this->hasOne(Country::class, 'id', 'countries_id');
     }
 
     public function contract()
     {
-        return $this->hasOne(PlantContract::class, 'plants_id', 'id');
+        return $this->belongsTo(PlantContract::class, 'plants_id', 'id');
+    }
+
+    public function product_water()
+    {
+        return $this->hasMany(ProductWater::class, 'plants_id', 'id');
     }
 }

@@ -17,13 +17,10 @@ class Product extends Model
         'name',
         'description',
         'price'
-
     ];
+
     public function providers()
     {
         return $this->hasMany(privider::class, 'providers_id', 'id');
-
     }
 }
-
-

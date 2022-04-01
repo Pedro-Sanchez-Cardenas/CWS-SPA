@@ -18,7 +18,6 @@ class ProductionReading extends Model
         'product_waters_id',
         'trains_id',
         'reading',
-        'production',
         'type'
     ];
 

@@ -4,9 +4,9 @@
     * Start Date: 02 de Enero del 2022
     * Finish Date: 11 de Marzo del 2022.
 
-    * Update Author: --------
-    * Update Start Date: -------
-    * Update Finish Date: -------
+    * Update Author: Pedro Adrian Sanchez Cardenas
+    * Update Start Date: 01 de Abril del 2022
+    * Update Finish Date: 01 de Abril del 2022
 
     * Description: --------
     /******************************************************************\
@@ -72,10 +72,10 @@
                             </div>
                         </div>
                         <h2 class="fw-bolder">
-                            {{ $plant->attendantUser->name }}
+                            {{ $plant->Operator->name }}
                         </h2>
                         <p class="card-text">
-                            {{ $plant->attendantUser->phone }}
+                            {{ $plant->Operator->phone_1 }}
                         </p>
                     </div>
                 </div>

@@ -15,3 +15,38 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 [x-cloak] {
   display: none !important;
 }
+<style type="text/css">
+.file-select {
+  position: relative;
+  display: inline-block;
+}
+
+.file-select::before {
+  background-color:rgba(0, 0, 0, 0);";
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  content: 'Seleccionar'; /* testo por defecto */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: white 0.5px solid;
+}
+
+.file-select input[type="file"] {
+  opacity: 0;
+  width: 250px;
+  height: 38px;
+  display: inline-block;
+}
+
+#src-file2::before {
+  content: 'Seleccionar Archivo';
+}
+</style>
+
+                    

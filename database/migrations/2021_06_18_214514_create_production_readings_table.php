@@ -15,10 +15,9 @@ class CreateProductionReadingsTable extends Migration
     {
         Schema::create('production_readings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_waters_id')->constrained('product_waters');
+            $table->foreignId('product_waters_id')->constrained();
             $table->foreignId('trains_id')->nullable()->constrained();
             $table->double('reading');
-            $table->double('production')->default('0');
             $table->string('type');
             $table->timestamps();
         });
