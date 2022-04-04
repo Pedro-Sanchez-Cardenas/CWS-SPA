@@ -97,6 +97,6 @@ class Plant extends Model
 
     public function product_water()
     {
-        return $this->hasMany(ProductWater::class, 'plants_id', 'id');
+        return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('created_at');
     }
 }
