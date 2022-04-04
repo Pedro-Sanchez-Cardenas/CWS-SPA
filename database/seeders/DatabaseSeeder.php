@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             PolishFiltersSeeder::class,
             PlantsSeeder::class,
             MembraneSeeder::class,
-            TrainsSeeder::class
+            TrainsSeeder::class,
+            InvoiceStatusSeeder::class
         ]);
     }
 }
