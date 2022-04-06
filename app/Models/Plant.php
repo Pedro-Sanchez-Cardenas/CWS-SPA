@@ -95,8 +95,8 @@ class Plant extends Model
         return $this->belongsTo(PlantContract::class, 'plants_id', 'id');
     }
 
-    public function product_water()
+    public function product_waters()
     {
-        return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('created_at');
+        return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('created_at', 'asc');
     }
 }
