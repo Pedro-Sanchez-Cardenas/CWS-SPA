@@ -225,7 +225,7 @@ class CreateParameters extends Component
                         Pretreatment::create([
                             'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
-                            'register' => $registerPre != null ? $registerPre->id + 1 : 1,
+                            //'register' => $registerPre != null ? $registerPre->id + 1 : 1,
                             'well_pump' => isset($this->pump['well'][$t]) ? $this->pump['well'][$t] : null,
                             'feed_pump' => isset($this->pump['feed'][$t]) ? $this->pump['feed'][$t] : null,
                             'frecuencies_well_pump' => isset($this->pump['wellf'][$t]) ? $this->pump['wellf'][$t] : null,
@@ -268,7 +268,7 @@ class CreateParameters extends Component
                         Operation::create([
                             'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
-                            'register' => $registerOpe != null ? $registerOpe->id + 1 : 1,
+                            //'register' => $registerOpe != null ? $registerOpe->id + 1 : 1,
 
                             'hp' => $this->hp['amp'][$t],
                             'hpF' => $this->hp['fre'][$t],
