@@ -16,25 +16,25 @@ class InvoiceStatusSeeder extends Seeder
     public function run()
     {
         InvoiceStatus::create([
-            'name' => 'not processed'
+            'name' => 'Not processed'
         ]);
         InvoiceStatus::create([
-            'name' => 'processed'
+            'name' => 'Processed'
         ]);
         InvoiceStatus::create([
-            'name' => 'verified'
+            'name' => 'Verified'
         ]);
         InvoiceStatus::create([
-            'name' => 'billed'
+            'name' => 'Billed'
         ]);
         InvoiceStatus::create([
-            'name' => 'partial payment'
+            'name' => 'Partial payment'
         ]);
         InvoiceStatus::create([
-            'name' => 'full payment'
+            'name' => 'Full payment'
         ]);
         InvoiceStatus::create([
-            'name' => 'not payed'
+            'name' => 'Not payed'
         ]);
     }
 }

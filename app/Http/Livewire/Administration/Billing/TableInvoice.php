@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Administration\Billing;
 use App\Models\Plant;
 use Livewire\Component;
 
+
 class TableInvoice extends Component
 {
     public Plant $plant;
