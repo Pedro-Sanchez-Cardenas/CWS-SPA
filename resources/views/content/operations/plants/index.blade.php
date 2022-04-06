@@ -63,7 +63,7 @@
                             </div>
                         @endhasanyrole
                         <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
-                            class="rounded d-block" alt="plant_cover">
+                            class="img-thumbnail" alt="plant_cover">
 
                         <div class="card-body">
                             <h5 class="card-title text-uppercase">{{ $plant->name }}</h5>
