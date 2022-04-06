@@ -169,10 +169,10 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-subtitle mb-2 text-muted text-capitalize">Last update of parameters:
-                                @if ($plant->product_water->last())
-                                    <span class="text-primary">{{ $plant->product_water->last()->created_at }}</span>
+                                @if ($plant->product_waters->last())
+                                    <span class="text-primary">{{ $plant->product_waters->last()->created_at }}</span>
                                     <span
-                                        class="text-danger">{{ \Carbon\Carbon::now()->diffForHumans($plant->product_water->last()->created_at) }}</span>
+                                        class="text-danger">{{ \Carbon\Carbon::now()->diffForHumans($plant->product_waters->last()->created_at) }}</span>
                                 @else
                                     <span class="text-danger">N/A</span>
                                 @endif
