@@ -46,10 +46,10 @@
                         <p class="card-text font-small-3">{{ $plant->location }}</p>
                         <h3 class="mb-75 mt-2 pt-50">
                             @if ($plant->cover_path != '')
-                                <img src="{{ $plant->cover_path }}" alt="">
+                                <img src="{{ $plant->cover_path }}" class="img-thumbnail" alt="">
                             @else
                                 <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
-                                    class="card-img-top" alt="error img plant">
+                                    class="img-thumbnail" alt="error img plant">
                             @endif
                         </h3>
                     </div>

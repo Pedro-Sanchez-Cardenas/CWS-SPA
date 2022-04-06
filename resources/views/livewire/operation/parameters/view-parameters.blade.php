@@ -261,6 +261,9 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-footer">
+                    Total: {{ $plant->product_waters->count() }}
+                </div>
             </div>
         </div>
         {{-- Product Water end --}}
@@ -501,6 +504,9 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    Total: {{ $plant->pretreatments->count() }}
                 </div>
             </div>
         </div>
@@ -861,6 +867,9 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    Total: {{ $plant->operations->count() }}
                 </div>
             </div>
         </div>
