@@ -95,6 +95,16 @@ class Plant extends Model
         return $this->belongsTo(PlantContract::class, 'plants_id', 'id');
     }
 
+    public function pretreatments()
+    {
+        return $this->hasMany(Pretreatment::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
+    }
+
+    public function operations()
+    {
+        return $this->hasMany(Operation::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
+    }
+
     public function product_waters()
     {
         return $this->hasMany(ProductWater::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');

@@ -387,7 +387,7 @@
                                 @enderror
                             </div>
 
-                            @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
+                            @for ($i = 1; $i <= $plant->trains->first()->boosters_quantity; $i++)
                                 <div class="col-6 mb-2">
                                     <label class="form-label">Booster
                                         #{{ $i }}</label>
@@ -441,7 +441,7 @@
                                 @enderror
                             </div>
 
-                            @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
+                            @for ($i = 1; $i <= $plant->trains->first()->boosters_quantity; $i++)
                                 <div class="col-6 mb-2">
                                     <label class="form-label">Booster #
                                         {{ $i }}</label>
@@ -649,7 +649,7 @@
                                 @enderror
                             </div>
 
-                            @if ($plant->boosterc == 'yes')
+                            @if ($plant->personalitation_plant->boosterc == 'yes')
                                 <div class="col-4 mb-2">
                                     <label class="form-label">Booster
                                         @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++)
@@ -753,10 +753,10 @@
                                 @enderror
                             </div>
 
-                            @if ($plant->boosterc == 'yes')
+                            @if ($plant->personalitation_plant->boosterc == 'yes')
                                 <div class="col mb-2">
                                     <label class="form-label">Booster
-                                        @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++)
+                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
                                             {{ $i > 0 ? '+' : '' }} {{ $i + 1 }}
                                         @endfor Out
                                     </label>
@@ -783,7 +783,7 @@
                             @endif
 
                             <div class="col">
-                                @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
+                                @for ($i = 1; $i <= $plant->trains->first()->boosters_quantity; $i++)
                                     <div class="col-md mb-2">
                                         <label class="form-label">Booster #
                                             {{ $i }}</label>
@@ -805,37 +805,6 @@
                                                 placeholder="0.0 psi">
                                         </div>
                                         @error("booster.pre.$pre.$i")
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                @endfor
-                            </div>
-
-                            <div class="col">
-                                @for ($i = 1; $i <= $plant->trains->first()->booster_quantity; $i++)
-                                    <div class="col-md mb-2">
-                                        <label class="form-label">px #
-                                            {{ $i }} Out</label>
-                                        <div class="input-group">
-                                            <span
-                                                class="input-group-text @error("px.$pre.$i") border border-danger @endif"
-                                                id="basic-addon-search1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor"
-                                                    class="bi bi-wrench-adjustable @error("px.$pre.$i") text-danger @endif"
-                                                    viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
-                                                    <path
-                                                        d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                                                </svg>
-                                            </span>
-                                            <input type="number"
-                                                class="form-control @error("px.$pre.$i") border border-danger @endif"
-                                                wire:model="px.{{ $pre }}.{{ $i }}"
-                                                placeholder="0.0 psi">
-                                        </div>
-                                        @error("px.$pre.$i")
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -1032,7 +1001,7 @@
                 </div>
 
                 <div class="row">
-                    @if ($plant->irrigation == 'yes')
+                    @if ($plant->personalitation_plant->irrigation == 'yes')
                         <div class="col-6 mb-2">
                             <label class="form-label">Irrigation</label>
                             <div class="input-group">
