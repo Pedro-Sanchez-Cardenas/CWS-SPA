@@ -223,6 +223,7 @@ class CreateParameters extends Component
                     // Pretreatment
                     if ($t % 2 != 0) {
                         Pretreatment::create([
+                            'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
                             'register' => $registerPre != null ? $registerPre->id + 1 : 1,
                             'well_pump' => isset($this->pump['well'][$t]) ? $this->pump['well'][$t] : null,
@@ -265,6 +266,7 @@ class CreateParameters extends Component
 
                         // Operation
                         Operation::create([
+                            'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
                             'register' => $registerOpe != null ? $registerOpe->id + 1 : 1,
 
