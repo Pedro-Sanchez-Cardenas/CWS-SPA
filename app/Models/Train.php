@@ -46,9 +46,4 @@ class Train extends Model
     {
         return $this->hasMany(Operation::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
     }
-
-    public function productRea()
-    {
-        return $this->hasMany(ProductionReading::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
-    }
 }
