@@ -16,7 +16,6 @@ class CreatePretreatmentsTable extends Migration
         Schema::create('pretreatments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('trains_id')->constrained();
-            $table->integer('register');
 
             $table->double('well_pump')->nullable();
             $table->double('feed_pump')->nullable();
