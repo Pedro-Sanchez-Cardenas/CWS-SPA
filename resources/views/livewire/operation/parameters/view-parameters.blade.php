@@ -1,8 +1,5 @@
 <div>
-    <div wire:poll>
-        Current time: {{ now() }}
-    </div>
-    <div class="row match-height">
+    <div wire:poll.10000ms class="row match-height">
         {{-- Product Reading --}}
         <div class="col-md-4">
             <h4 class="mb-1">PRODUCTO READINGS</h4>
