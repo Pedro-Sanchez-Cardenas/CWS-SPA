@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Administration\Billing;
 
 use Livewire\Component;
+use App\Models\Plant;
+
 
 class ButtonExtra extends Component
 {

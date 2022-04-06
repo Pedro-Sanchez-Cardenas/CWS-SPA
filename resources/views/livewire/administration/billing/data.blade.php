@@ -55,7 +55,7 @@ color: white;
                             }
 
                             #src-file2::before {
-                                content: 'Seleccionar Archivo';
+                                content: 'Select file';
                             }
 
                         </style>

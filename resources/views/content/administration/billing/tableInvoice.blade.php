@@ -89,13 +89,13 @@
                     <livewire:administration.billing.table-invoice :plant="$plant" />
                     <div class="col-md">
                         <div class="row">
-                            <livewire:administration.billing.button-extra />
+                            <livewire:administration.billing.button-extra :plant="$plant" />
                             <div class="col-md-6">
                                 <livewire:administration.billing.button-discount />
                             </div>
                         </div>
                     </div>
-                    <livewire:administration.billing.total />
+                    <livewire:administration.billing.total :plant="$plant" />
                 </div>
         </section>
 

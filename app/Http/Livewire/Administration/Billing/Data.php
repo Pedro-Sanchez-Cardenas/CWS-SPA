@@ -13,4 +13,5 @@ class Data extends Component
             'InvoiceStatus' => InvoiceStatus::all()
         ]);
     }
+    public $file;
 }
