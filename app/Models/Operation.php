@@ -15,6 +15,7 @@ class Operation extends Model
      * @var array
      */
     protected $fillable = [
+        'plants_id',
         'trains_id',
         'register',
 
