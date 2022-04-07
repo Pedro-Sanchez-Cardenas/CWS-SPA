@@ -61,8 +61,7 @@
             @for ($pre = 1; $pre <= $plant->trains->where('type', 'Train')->count() * 2; $pre++)
                 @if ($pre % 2 != 0)
                     {{-- /* Pretreatment Section */ --}}
-                    <div class="card-body" x-show.transition.in="step === {{ $pre }}"
-                        x-id="['pretreatment']">
+                    <div class="card-body" x-show.transition.in="step === {{ $pre }}">
                         @if ($plant->personalitation_plant->well_pump == 'yes' || $plant->personalitation_plant->feed_pump == 'yes')
                             <label class="h5">AMPERAGE</label>
                             <div class="row">
@@ -839,7 +838,7 @@
             {{-- Formulario que se repite segun el numero de trenes --}}
 
             {{-- /* Product Water Section */ --}}
-            <div class="card-body" x-show.transition.in="step === totalStep" x-id="['productWater']">
+            <div class="card-body" x-show.transition.in="step === totalStep">
                 <label class="h5">FEED LINE TO HOTEL SUPPLY</label>
                 <div class="row">
                     <div class="col-6 mb-2">
