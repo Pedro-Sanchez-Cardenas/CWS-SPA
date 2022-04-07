@@ -225,7 +225,7 @@ class CreateParameters extends Component
                         Pretreatment::create([
                             'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
-                            //'register' => $registerPre != null ? $registerPre->id + 1 : 1,
+                            'group_by' => $registerPre != null ? $registerPre->id + 1 : 1,
                             'well_pump' => isset($this->pump['well'][$t]) ? $this->pump['well'][$t] : null,
                             'feed_pump' => isset($this->pump['feed'][$t]) ? $this->pump['feed'][$t] : null,
                             'frecuencies_well_pump' => isset($this->pump['wellf'][$t]) ? $this->pump['wellf'][$t] : null,
@@ -268,7 +268,7 @@ class CreateParameters extends Component
                         Operation::create([
                             'plants_id' => $this->plant->id,
                             'trains_id' => $trains[$contTrains]->id,
-                            //'register' => $registerOpe != null ? $registerOpe->id + 1 : 1,
+                            'group_by' => $registerOpe != null ? $registerOpe->id + 1 : 1,
 
                             'hp' => $this->hp['amp'][$t],
                             'hpF' => $this->hp['fre'][$t],
@@ -289,7 +289,7 @@ class CreateParameters extends Component
                             'hp_out' => $this->hp['out'][$t],
                             'reject' => $this->reject[$t],
 
-                            'observations' => isset($this->observations['ope']) ? $this->observations['ope'][$t] : null,
+                            'observations' => isset($this->observations['ope'][$t]) ? $this->observations['ope'][$t] : null,
                             'user_created_at' => Auth::id(),
                             //'user_updated_at' => Auth::id()
                         ]);
@@ -330,7 +330,7 @@ class CreateParameters extends Component
 
                     'observations' => isset($this->observations['prw']) ? $this->observations['prw'] : null,
                     'user_created_at' => Auth::id(),
-                    'user_updated_at' => Auth::id()
+                    //'user_updated_at' => Auth::id()
                 ]);
 
                 $productWater = ProductWater::latest('id')->first();

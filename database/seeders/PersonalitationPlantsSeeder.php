@@ -33,7 +33,7 @@ class PersonalitationPlantsSeeder extends Seeder
         ]);
 
         PersonalitationPlant::create([
-            'irrigation' => 'yes',
+            'irrigation' => 'no',
             'sdi' => 'yes',
             'chloride' => 'no',
             'well_pump' => 'yes',

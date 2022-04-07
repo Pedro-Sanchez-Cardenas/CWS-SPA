@@ -1,5 +1,5 @@
 <div>
-    <div wire:poll.10000ms class="row match-height">
+    <div wire:poll.5000ms class="row match-height">
         {{-- Product Reading --}}
         <div class="col-md-4">
             <h4 class="mb-1">PRODUCTO READINGS</h4>
@@ -280,9 +280,9 @@
                             <thead>
                                 <tr class="text-center text-nowrap">
                                     <th>TRAIN</th>
-                                    @isset($plant->well_pump)
-                                        @if ($plant->personalitation_plants->well_pump != 'no' || $plant->personalitation_plants->feed_pump != 'no')
-                                            <th class="text-center" @if ($plant->personalitation_plants->well_pump != 'no' && $plant->personalitation_plants->feed_pump != 'no') colspan="2" @endif>
+                                    @isset($plant->personalitation_plant->well_pump)
+                                        @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no')
+                                            <th class="text-center" @if ($plant->personalitation_plant->well_pump != 'no' && $plant->personalitation_plant->feed_pump != 'no') colspan="2" @endif>
                                                 Water pumps</th>
                                         @endif
                                     @endisset
@@ -297,8 +297,8 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
-                                @foreach ($plant->pretreatments as $pretreatment)
+                            @foreach ($plant->pretreatments->groupBy('group_by') as $pretreatment)
+                                <tbody>
                                     <tr class="text-center">
                                         <td>
                                             <div class="table-responsive">
@@ -399,7 +399,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($pretreatment->multimedias as $mm)
+                                                            @foreach ($pretreatment[$t]->multimedias as $mm)
                                                                 <tr class="text-nowrap">
                                                                     <td>
                                                                         <div class="d-flex flex-column">
@@ -433,7 +433,7 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $pretreatment->backwash }}</span>
+                                                                        <span>{{ $pretreatment[$t]->backwash }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -458,18 +458,18 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $pretreatment->polish->first()->in }}</span>
+                                                                        <span>{{ $pretreatment[$t]->polish->first()->in }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $pretreatment->polish->first()->out }}</span>
+                                                                        <span>{{ $pretreatment[$t]->polish->first()->out }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
-                                                                    @foreach ($pretreatment->polish as $polish)
+                                                                    @foreach ($pretreatment[$t]->polish as $polish)
                                                                         @if ($polish->filter_change != null)
                                                                             <div class="d-flex flex-column">
                                                                                 <span>yes</span>
@@ -489,24 +489,26 @@
                                         </td>
 
                                         <td class="text-nowrap">
-                                            {{ $pretreatment->userCreated->name }}
+                                            {{ $pretreatment->last()->userCreated->name }}
                                         </td>
 
                                         <td>
-
+                                            @foreach($pretreatment as $pretre)
+                                                {{ $loop->iteration }}). {{ $pretre->observations }}<br>
+                                            @endforeach
                                         </td>
 
                                         <td class="text-nowrap">
-                                            {{ $pretreatment->created_at }}
+                                            {{ $pretreatment->last()->created_at }}
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
+                                </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>
                 <div class="card-footer">
-                    Total: {{ $plant->pretreatments->count() }}
+                    Total: {{ $plant->pretreatments->groupBy('group_by')->count() }}
                 </div>
             </div>
         </div>
@@ -533,8 +535,9 @@
                                     <th>DATE/TIME</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($plant->operations as $operation)
+
+                            @foreach ($plant->operations->groupBy('group_by') as $operation)
+                                <tbody>
                                     <tr>
                                         <td>
                                             <div class="table-responsive">
@@ -559,7 +562,7 @@
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->hp }}</span>
+                                                                        <span>{{ $operation[$t]->hp }}</span>
                                                                     </div>
                                                                 </td>
 
@@ -576,13 +579,13 @@
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        @for ($b = 0; $b < $operation->boosters->count(); $b++)
+                                                                                        @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
                                                                                             <tr class="text-center">
                                                                                                 <td
                                                                                                     class="text-nowrap">
                                                                                                     <div
                                                                                                         class="d-flex flex-column">
-                                                                                                        <span>{{ $t + 1 }}</span>
+                                                                                                        <span>{{ $b + 1 }}</span>
                                                                                                     </div>
                                                                                                 </td>
 
@@ -590,7 +593,7 @@
                                                                                                     class="text-nowrap">
                                                                                                     <div
                                                                                                         class="d-flex flex-column">
-                                                                                                        <span>{{ $operation->boosters[$b]->amperage }}</span>
+                                                                                                        <span>{{ $operation[$t]->boosters[$b]->amperage }}</span>
                                                                                                     </div>
                                                                                                 </td>
 
@@ -598,7 +601,7 @@
                                                                                                     class="text-nowrap">
                                                                                                     <div
                                                                                                         class="d-flex flex-column">
-                                                                                                        {{ $operation->boosters[$b]->frequency }}
+                                                                                                        {{ $operation[$t]->boosters[$b]->frequency }}
                                                                                                     </div>
                                                                                                 </td>
                                                                                             </tr>
@@ -632,7 +635,7 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->hpF }}</span>
+                                                                        <span>{{ $operation[$t]->hpF }}</span>
                                                                     </div>
                                                                 </td>
 
@@ -649,7 +652,7 @@
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        @for ($b = 0; $b < $operation->boosters->count(); $b++)
+                                                                                        @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
                                                                                             <tr>
                                                                                                 <td
                                                                                                     class="text-nowrap">
@@ -663,7 +666,7 @@
                                                                                                     class="text-nowrap">
                                                                                                     <div
                                                                                                         class="d-flex flex-column">
-                                                                                                        <span>{{ $operation->boosters[$b]->frequency }}</span>
+                                                                                                        <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
                                                                                                     </div>
                                                                                                 </td>
                                                                                             </tr>
@@ -695,13 +698,13 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->ph }}</span>
+                                                                        <span>{{ $operation[$t]->ph }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->temperature }}</span>
+                                                                        <span>{{ $operation[$t]->temperature }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -726,19 +729,19 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->feed }}</span>
+                                                                        <span>{{ $operation[$t]->feed }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->permeated }}</span>
+                                                                        <span>{{ $operation[$t]->permeated }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->rejection }}</span>
+                                                                        <span>{{ $operation[$t]->rejection }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -765,20 +768,20 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->reject_flow }}</span>
+                                                                        <span>{{ $operation[$t]->reject_flow }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->permeate_flow }}</span>
+                                                                        <span>{{ $operation[$t]->permeate_flow }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 @if ($plant->personalitation_plant->boosterc == 'yes')
                                                                     <td class="text-nowrap">
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $operation->boosters[$t] }}</span>
+                                                                            <span>{{ $operation[$t]->boosters[$t]->booster_flow }}</span>
                                                                         </div>
                                                                     </td>
                                                                 @endif
@@ -809,18 +812,18 @@
                                                             <tr class="text-center">
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->hp_in }}</span>
+                                                                        <span>{{ $operation[$t]->hp_in }}</span>
                                                                     </div>
                                                                 </td>
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->hp_out }}</span>
+                                                                        <span>{{ $operation[$t]->hp_out }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-nowrap">
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $operation->reject }}</span>
+                                                                        <span>{{ $operation[$t]->reject }}</span>
 
                                                                     </div>
                                                                 </td>
@@ -828,19 +831,19 @@
                                                                 @if ($plant->boosterc == 'yes')
                                                                     <td class="text-nowrap">
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $operation->boosters }}</span>
+                                                                            <span>{{ $operation[$t]->boosters }}</span>
                                                                         </div>
                                                                     </td>
 
                                                                     <td class="text-nowrap">
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $operation->boosters }}</span>
+                                                                            <span>{{ $operation[$t]->boosters }}</span>
                                                                         </div>
                                                                     </td>
 
                                                                     <td class="text-nowrap">
                                                                         <div class="d-flex flex-column">
-                                                                            <span>{{ $operation->boosters }}</span>
+                                                                            <span>{{ $operation[$t]->boosters }}</span>
                                                                         </div>
                                                                     </td>
                                                                 @endif
@@ -852,24 +855,26 @@
                                         </td>
 
                                         <td class="text-nowrap">
-                                            {{ $operation->assignedBy->name }}
+                                            {{ $operation->last()->assignedBy->name }}
                                         </td>
 
                                         <td>
-
+                                            @foreach($operation as $ope)
+                                                {{ $loop->iteration }}). {{ $ope->observations }}<br>
+                                            @endforeach
                                         </td>
 
-                                        <td>
-                                            {{ $operation->created_at }}
+                                        <td class="text-nowrap">
+                                            {{ $operation->last()->created_at }}
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
+                                </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>
                 <div class="card-footer">
-                    Total: {{ $plant->operations->count() }}
+                    Total: {{ $plant->operations->groupBy('group_by')->count() }}
                 </div>
             </div>
         </div>

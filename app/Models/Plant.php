@@ -97,12 +97,12 @@ class Plant extends Model
 
     public function pretreatments()
     {
-        return $this->hasMany(Pretreatment::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
+        return $this->hasMany(Pretreatment::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
     }
 
     public function operations()
     {
-        return $this->hasMany(Operation::class, 'trains_id', 'id')->orderBy('created_at', 'DESC');
+        return $this->hasMany(Operation::class, 'plants_id', 'id')->orderBy('created_at', 'DESC');
     }
 
     public function product_waters()

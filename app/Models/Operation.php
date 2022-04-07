@@ -17,6 +17,7 @@ class Operation extends Model
     protected $fillable = [
         'plants_id',
         'trains_id',
+        'group_by',
 
         'hp',
         'hpF',
