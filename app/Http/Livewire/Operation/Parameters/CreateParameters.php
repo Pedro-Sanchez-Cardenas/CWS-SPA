@@ -166,7 +166,7 @@ class CreateParameters extends Component
 
             'municipal' => ['required', 'numeric', 'min:0'],
 
-            'tank' => 'nullable|min:0|array',
+            'tank' => 'required|min:0|array',
             'tank.*' => ['required', 'integer', 'min:0', 'max:100'],
 
             'calcium_chloride' => ['required', 'numeric', 'min:0'],

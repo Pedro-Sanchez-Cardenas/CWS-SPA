@@ -1072,12 +1072,17 @@
                                 </span>
                                 <select class="form-select @error("tank.$i") border border-danger @enderror"
                                     wire:model="tank.{{ $i }}">
+                                    <option value="null" selected>SELECT</option>
                                     @for ($j = 0; $j <= 100; $j++)
                                         <option value="{{ $j }}">{{ $j }}%</option>
                                     @endfor
                                 </select>
                             </div>
                             @error("tank.$i")
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
+                            @error("tank")
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -1340,7 +1345,7 @@
                 if (result.isConfirmed) {
                     @this.store()
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'center',
                         icon: 'success',
                         title: 'Your parameters has been saved',
                         showConfirmButton: false,
