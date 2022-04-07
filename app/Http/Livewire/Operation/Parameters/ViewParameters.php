@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Operation\Parameters;
 
 use App\Models\Plant;
-use App\Models\Pretreatment;
-use App\Models\Train;
 use Livewire\Component;
 use Livewire\WithPagination;
 

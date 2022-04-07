@@ -17,6 +17,7 @@ class Pretreatment extends Model
     protected $fillable = [
         'plants_id',
         'trains_id',
+        'group_by',
 
         'well_pump', // nullable
         'feed_pump', // nullable

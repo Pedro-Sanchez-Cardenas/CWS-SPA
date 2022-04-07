@@ -64,7 +64,7 @@ class PlantsSeeder extends Seeder
             'name' => 'MOON PALACE JAMAICA',
             'location' => 'Ocho Ríos',
             'multimedia_filters_quantity' => '2',
-            'cisterns_quantity' => '1',
+            'cisterns_quantity' => '2',
             'polish_filters_quantity' => '3',
             'polish_filter_types_id' => '10',
             'countries_id' => '3',
