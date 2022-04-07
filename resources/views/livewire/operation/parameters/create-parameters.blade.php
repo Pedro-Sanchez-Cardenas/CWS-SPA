@@ -1283,7 +1283,7 @@
             <div class="card-footer">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="col me-2" x-show="step > 1" x-transition.delay.150ms>
-                        <button @click="removeStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 800);" type="button"
+                        <button @click="removeStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
                             class="btn d-flex col-12 btn-lg btn-danger me-2 align-items-center justify-content-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -1297,7 +1297,7 @@
                     <div class="col">
                         <div class="row">
                             <div class="col" x-show="step < totalStep" x-transition>
-                                <button @click="addStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 800);" type="button"
+                                <button @click="addStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
                                     class="btn d-flex col-12 btn-lg btn-info align-items-center justify-content-end">
                                     Next
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -1309,7 +1309,7 @@
                             </div>
 
                             <div class="col" x-show="step == totalStep" x-transition>
-                                <button wire:offline.attr="disabled" onclick="setTimeout(function(){window.scrollTo(0,0)}, 800);" type="button"
+                                <button wire:offline.attr="disabled" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
                                     wire:click="$emit('confirmParameters')"
                                     class="btn d-flex col-12 btn-lg btn-success align-items-center justify-content-end">
                                     Add Parameters
