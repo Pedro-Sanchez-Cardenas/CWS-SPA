@@ -41,7 +41,7 @@ class PlantsSeeder extends Seeder
             'name' => 'SECRETS',
             'location' => 'Playa del Carmen',
             'multimedia_filters_quantity' => '2',
-            'cisterns_quantity' => '1',
+            'cisterns_quantity' => '3',
             'polish_filters_quantity' => '1',
             'polish_filter_types_id' => '5',
             //'cover_path', // nullable
