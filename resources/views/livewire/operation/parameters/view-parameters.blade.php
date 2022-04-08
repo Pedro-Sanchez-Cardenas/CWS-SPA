@@ -2,7 +2,7 @@
     <div wire:poll.5000ms class="row match-height">
         {{-- Product Reading --}}
         <div class="col-md-4">
-            <h4 class="mb-1">PRODUCT READINGS</h4>
+            <h4 class="mb-1">PRODUCTION READINGS</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
                     <div class="table-responsive">
@@ -14,9 +14,15 @@
                                 </tr>
 
                                 <tr class="text-center text-nowrap" role="row">
-                                    <th>Type</th>
-                                    <th>Reading</th>
-                                    <th>Production</th>
+                                    <th rowspan="2">Type</th>
+                                    <th>
+                                        Reading <br>
+                                        <small class="text-danger">m³</small>
+                                    </th>
+                                    <th>
+                                        Production <br>
+                                        <small class="text-danger">m³</small>
+                                    </th>
                                 </tr>
                             </thead>
 
@@ -33,19 +39,19 @@
                                             </td>
 
                                             <td class="text-nowrap">
-                                                {{ $reading->reading }} <small class="text-danger">m³</small>
+                                                {{ $reading->reading }}
                                             </td>
 
                                             <td class="text-nowrap">
                                                 @if (!$loop->parent->last)
                                                     {{ $reading->reading -$plants->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
-                                                    <small class="text-danger">m³</small>
                                                 @else
-                                                    {{ $reading->reading }} <small class="text-danger">m³</small>
+                                                    {{ $reading->reading }}
                                                 @endif
                                             </td>
 
-                                            <td colspan="1" class="text-nowrap">
+                                            <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
+                                                class="text-nowrap">
                                                 @if (!$loop->first && !$loop->last)
                                                     <span>{{ $product_water->created_at }}</span>
                                                 @endif
@@ -76,29 +82,74 @@
                                 <tr class="text-center text-nowrap" role="row">
                                     <th colspan="5">FEED LINE TO HOTEL SUPPLY</th>
                                     <th colspan="8">DAYLI CHEMICAL SUPPLY</th>
-                                    <th colspan="1">Cisterns</th>
+                                    <th colspan="{{ $plant->cisterns_quantity }}">Cisterns</th>
                                     <th rowspan="2">ASSIGNED BY</th>
                                     <th rowspan="2">OBSERVATION</th>
                                     <th rowspan="2">DATE/TIME</th>
                                 </tr>
 
                                 <tr class="text-center text-nowrap" role="row">
-                                    <th>PH</th>
-                                    <th>HARDNESS</th>
-                                    <th>TDS</th>
-                                    <th>H2S</th>
-                                    <th>CHLORINE</th>
+                                    <th>
+                                        PH <br>
+                                        <small class="text-danger">u.
+                                            pH</small>
+                                    </th>
+                                    <th>
+                                        HARDNESS <br>
+                                        <small class="text-danger">ppm</small>
+                                    </th>
+                                    <th>
+                                        TDS <br>
+                                        <small class="text-danger">ppm</small>
+                                    </th>
+                                    <th>
+                                        H2S <br>
+                                        <small class="text-danger">ppm</small>
+                                    </th>
+                                    <th>
+                                        CHLORINE <br>
+                                        <small class="text-danger">ppm</small>
+                                    </th>
 
-                                    <th>CACL2</th>
-                                    <th>NACO3</th>
-                                    <th>NACLO</th>
-                                    <th>ANTIS</th>
-                                    <th>NAOH</th>
-                                    <th>HCL</th>
-                                    <th>KL1</th>
-                                    <th>KL2</th>
+                                    <th>
+                                        CACL2 <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        NACO3 <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        NACLO <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        ANTIS <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        NAOH <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        HCL <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        KL1 <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
+                                    <th>
+                                        KL2 <br>
+                                        <small class="text-danger">Kg</small>
+                                    </th>
 
-                                    <th>Capacity</th>
+                                    @for ($i = 0; $i < $plant->cisterns_quantity; $i++)
+                                        <th>
+                                            Cistern Level #{{ $i + 1 }} <br>
+                                            <small class="text-danger">%</small>
+                                        </th>
+                                    @endfor
                                 </tr>
                             </thead>
 
@@ -108,34 +159,29 @@
                                         {{-- Init Feed line to hotel supply --}}
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->ph }} <small class="text-danger">u.
-                                                        pH</small></span>
+                                                <span>{{ $product_water->ph }}</span>
                                             </div>
                                         </td>
 
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->hardness }} <small
-                                                        class="text-danger">ppm</small></span>
+                                                <span>{{ $product_water->hardness }}</span>
                                             </div>
                                         </td>
 
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->tds }} <small
-                                                        class="text-danger">ppm</small></span>
+                                                <span>{{ $product_water->tds }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->h2s }} <small
-                                                        class="text-danger">ppm</small></span>
+                                                <span>{{ $product_water->h2s }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->free_chlorine }} <small
-                                                        class="text-danger">ppm</small></span>
+                                                <span>{{ $product_water->free_chlorine }}</span>
                                             </div>
                                         </td>
                                         {{-- Fin Feed line to hotel supply --}}
@@ -143,71 +189,54 @@
                                         {{-- Init Dayli chemical supply --}}
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->calcium_chloride }}
-                                                    <small class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->calcium_chloride }}</span>
                                             </div>
                                         </td>
 
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->sodium_carbonate }}
-                                                    <small class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->sodium_carbonate }}</span>
                                             </div>
                                         </td>
 
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->sodium_hypochlorite }}
-                                                    <small class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->sodium_hypochlorite }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->antiscalant }}
-                                                    <small class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->antiscalant }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->sodium_hydroxide }}
-                                                    <small class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->sodium_hydroxide }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->hydrochloric_acid }}
-                                                    <small class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->hydrochloric_acid }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->kl1 }} <small
-                                                        class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->kl1 }}</span>
                                             </div>
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->kl2 }} <small
-                                                        class="text-danger">Kg</small></span>
+                                                <span>{{ $product_water->chemical->kl2 }}</span>
                                             </div>
                                         </td>
                                         {{-- Fin Dayli chemical supply --}}
 
                                         {{-- Init Cisterns --}}
-                                        <td>
-                                            @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
-                                                <table class="table table-bordered">
-                                                    <tbody>
-                                                        <tr class="text-center">
-                                                            <td class="text-nowrap">
-                                                                <span>{{ $product_water->cisterns[$c]->capacity }}
-                                                                    <small class="text-danger">%</small></span>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            @endfor
-                                        </td>
+                                        @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
+                                            <td>
+                                                <span>{{ $product_water->cisterns[$c]->capacity }}</span>
+                                            </td>
+                                        @endfor
                                         {{-- Fin Cisterns --}}
 
 
@@ -247,61 +276,100 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center text-nowrap" role="row">
-                                    <th colspan="1"
-                                        rowspan="@isset($plant->personalitation_plant->well_pump) @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no') 2 @else 1 @endif @endisset">
-                                        TRAIN</th>
+                                    <th colspan="1" rowspan="2">
+                                        TRAIN
+                                    </th>
+
                                     @isset($plant->personalitation_plant->well_pump)
                                         @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no')
                                             <th class="text-center" colspan="2">
-                                                Water pumps</th>
+                                                Water Pumps
+                                            </th>
                                         @endif
                                     @endisset
-                                    <th colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
-                                        rowspan="@isset($plant->personalitation_plant->well_pump) @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no') 2 @else 1 @endif @endisset">
-                                        M.
-                                        Filters
+
+                                    <th colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
+                                        Multimedia Filters
                                     </th>
-                                    <th rowspan="3">BACKWASH</th>
-                                    <th colspan="3" rowspan="2">POLISH FILTERS</th>
-                                    <th rowspan="3">ASSIGNED</th>
-                                    <th rowspan="3">OBSERVATION</th>
-                                    <th rowspan="3">DATE/TIME</th>
+
+                                    <th colspan="1" rowspan="3">
+                                        BACKWASH <br>
+                                        <small class="text-danger">Min</small>
+                                    </th>
+
+                                    <th colspan="3" rowspan="2">
+                                        POLISH FILTERS
+                                    </th>
+
+                                    <th rowspan="3">
+                                        ASSIGNED</th>
+                                    <th rowspan="3">
+                                        OBSERVATION</th>
+                                    <th rowspan="3">
+                                        DATE/TIME</th>
                                 </tr>
 
-                                @isset($plant->personalitation_plant->well_pump)
-                                    @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no')
-                                        <tr class="text-center text-nowrap" role="row">
-                                            @if ($plant->personalitation_plant->well_pump != 'no')
-                                                <th colspan="2">Well Pump</th>
-                                            @endif
-
-                                            @if ($plant->personalitation_plant->feed_pump != 'no')
-                                                <th colspan="2">Feed Pump</th>
-                                            @endif
-                                        </tr>
+                                <tr class="text-center text-nowrap" role="row">
+                                    @if ($plant->personalitation_plant->well_pump != 'no')
+                                        <th colspan="2">Well Pump</th>
                                     @endif
-                                @endisset
+
+                                    @if ($plant->personalitation_plant->feed_pump != 'no')
+                                        <th colspan="2">Feed Pump</th>
+                                    @endif
+
+                                    @for ($i = 0; $i < $plant->multimedia_filters_quantity; $i++)
+                                        <th colspan="2">Multimedia Filter #{{ $i + 1 }}</th>
+                                    @endfor
+                                </tr>
 
                                 <tr class="text-center text-nowrap" role="row">
                                     <th>#</th>
 
                                     @if ($plant->personalitation_plant->well_pump != 'no')
-                                        <th>Amperage</th>
-                                        <th>Frequencie</th>
+                                        <th>
+                                            Amperage <br>
+                                            <small class="text-danger">A</small>
+                                        </th>
+                                        <th>
+                                            Frequency <br>
+                                            <small class="text-danger">Hz</small>
+                                        </th>
                                     @endif
 
                                     @if ($plant->personalitation_plant->feed_pump != 'no')
-                                        <th>Amperage</th>
-                                        <th>Frequencie</th>
+                                        <th>
+                                            Amperage <br>
+                                            <small class="text-danger">A</small>
+                                        </th>
+                                        <th>
+                                            Frequency <br>
+                                            <small class="text-danger">Hz</small>
+                                        </th>
                                     @endif
 
                                     @for ($i = 0; $i < $plant->multimedia_filters_quantity; $i++)
-                                        <th>Multimedia Filters #{{ $i + 1 }}</th>
+                                        <th>
+                                            In <br>
+                                            <small class="text-danger">psi</small>
+                                        </th>
+                                        <th>
+                                            Out <br>
+                                            <small class="text-danger">psi</small>
+                                        </th>
                                     @endfor
 
-                                    <th>In</th>
-                                    <th>Out</th>
-                                    <th>Change</th>
+                                    <th>
+                                        In <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+                                    <th>
+                                        Out <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+                                    <th>
+                                        Change
+                                    </th>
                                 </tr>
                             </thead>
 
@@ -332,17 +400,13 @@
                                                             <tr class="text-nowrap">
                                                                 <td>
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $pretreatment[$t]->well_pump }}
-                                                                            <small
-                                                                                class="text-danger">psi</small></span>
+                                                                        <span>{{ $pretreatment[$t]->well_pump }}</span>
                                                                     </div>
                                                                 </td>
 
                                                                 <td>
                                                                     <div class="d-flex flex-column">
-                                                                        <span>{{ $pretreatment[$t]->frecuencies_well_pump }}
-                                                                            <small
-                                                                                class="text-danger">Hz</small></span>
+                                                                        <span>{{ $pretreatment[$t]->frecuencies_well_pump }}</span>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -381,31 +445,20 @@
                                             </td>
                                         @endif
 
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <td>
-                                                <table class="table">
-                                                    @foreach ($pretreatment[$t]->multimedias as $mm)
-                                                        <tbody>
-                                                            <tr class="text-nowrap">
-                                                                <td>
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $mm->in }} <small
-                                                                                class="text-danger">psi</small></span>
-                                                                    </div>
-                                                                </td>
-
-                                                                <td>
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $mm->out }} <small
-                                                                                class="text-danger">psi</small></span>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                </table>
-                                            </td>
-                                        @endfor
+                                        <td colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
+                                            <table class="table">
+                                                @for ($i = 0; $i < $plant->trains->where('type', 'Train')->count(); $i++)
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach ($plant->pretreatments[$i]->multimedias as $mm)
+                                                                <td> {{ $mm->in }}</td>
+                                                                <td> {{ $mm->out }}</td>
+                                                            @endforeach
+                                                        </tr>
+                                                    </tbody>
+                                                @endfor
+                                            </table>
+                                        </td>
 
                                         <td>
                                             <table class="table">
@@ -414,9 +467,7 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $pretreatment[$t]->backwash }}
-                                                                        <small
-                                                                            class="text-danger">min</small></span>
+                                                                    <span>{{ $pretreatment[$t]->backwash }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -432,17 +483,13 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $pretreatment[$t]->polish->first()->in }}
-                                                                        <small
-                                                                            class="text-danger">psi</small></span>
+                                                                    <span>{{ $pretreatment[$t]->polish->first()->in }}</span>
                                                                 </div>
                                                             </td>
 
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $pretreatment[$t]->polish->first()->out }}
-                                                                        <small
-                                                                            class="text-danger">psi</small></span>
+                                                                    <span>{{ $pretreatment[$t]->polish->first()->out }}</span>
                                                                 </div>
                                                             </td>
 
@@ -451,7 +498,7 @@
                                                                     @if ($polish->filter_change != null)
                                                                         {{ $loop->iteration }},
                                                                     @else
-                                                                        <small class="text-danger">N/A</small>,
+                                                                        --
                                                                     @endif
                                                                 @endforeach
                                                             </td>
@@ -498,19 +545,23 @@
         {{-- Operation --}}
         <div class="col-md-12">
             <h4 class="mb-1">OPERATION</h4>
-            <div class="card card-company-table">
-                <div class="card-body p-0">
+            <div class="card">
+                <div class="card-body p-0 m-0">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center" role="row">
                                     <th>TRAIN</th>
-                                    <th colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 3 @else 1 @endif">AMPERAGE</th>
-                                    <th colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 3 @else 1 @endif">FRECUENCIES</th>
+                                    <th
+                                        colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1) @endphp @else 1 @endif">
+                                        AMPERAGE</th>
+                                    <th
+                                        colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1) @endphp @else 1 @endif">
+                                        FRECUENCIES</th>
                                     <th colspan="2">FEED</th>
                                     <th colspan="3">TDS CONCENTRATION</th>
-                                    <th colspan="2">FLOW</th>
-                                    <th colspan="3">PRESSURES</th>
+                                    <th colspan="3">FLOW</th>
+                                    <th colspan="@php echo ($plant->trains->first()->boosters_quantity + 3); @endphp">PRESSURES</th>
                                     <th rowspan="2">ASSIGNED BY</th>
                                     <th rowspan="2">OBSERVATION</th>
                                     <th rowspan="2">DATE/TIME</th>
@@ -519,38 +570,103 @@
                                 <tr class="text-center" role="row">
                                     <th>#</th>
 
-                                    <th>H.P.</th>
+                                    {{-- Init Amperage --}}
+                                    <th>
+                                        H.P. <br>
+                                        <small class="text-danger">A</small>
+                                    </th>
+
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <th>#</th>
-                                        <th>Boosters</th>
+                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                            <th class="text-nowrap">
+                                                Booster #{{ $i + 1 }} <br>
+                                                <small class="text-danger">A</small>
+                                            </th>
+                                        @endfor
                                     @endif
+                                    {{-- End Amperage --}}
 
-                                    <th>H.P</th>
+                                    {{-- Init Frequency --}}
+                                    <th>
+                                        H.P <br>
+                                        <small class="text-danger">Hz</small>
+                                    </th>
+
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <th>#</th>
-                                        <th>Boosters</th>
+                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                            <th class="text-nowrap">
+                                                Booster #{{ $i + 1 }} <br>
+                                                <small class="text-danger">A</small>
+                                            </th>
+                                        @endfor
                                     @endif
+                                    {{-- End Frequency --}}
 
-                                    <th>PH</th>
-                                    <th>TEMPERATURE</th>
+                                    {{-- Init Feed --}}
+                                    <th class="text-nowrap">
+                                        PH <br>
+                                        <small class="text-danger">U. ph</small>
+                                    </th>
+                                    <th>
+                                        TEMPERATURE <br>
+                                        <small class="text-danger">°C</small>
+                                    </th>
+                                    {{-- End Feed --}}
 
-                                    <th>FEED</th>
-                                    <th>PERMEATE</th>
-                                    <th>REJECTION</th>
+                                    {{-- Init TDS Concentration --}}
+                                    <th class="text-nowrap">
+                                        FEED <br>
+                                        <small class="text-danger">ppm TDS</small>
+                                    </th>
+                                    <th class="text-nowrap">
+                                        PERMEATE <br>
+                                        <small class="text-danger">ppm TDS</small>
+                                    </th>
+                                    <th class="text-nowrap">
+                                        REJECTION <br>
+                                        <small class="text-danger">ppm TDS</small>
+                                    </th>
+                                    {{-- End TDS Concentration --}}
 
-                                    <th>REJET</th>
-                                    <th>PERMEATE</th>
+                                    {{-- Init Flow --}}
+                                    <th>
+                                        FEED <br>
+                                        <small class="text-danger">gpm</small>
+                                    </th>
+                                    <th>
+                                        PERMEATE <br>
+                                        <small class="text-danger">gpm</small>
+                                    </th>
+                                    <th>
+                                        REJET <br>
+                                        <small class="text-danger">gpm</small>
+                                    </th>
+                                    {{-- End Flow --}}
+
+                                    {{-- Init Pressures --}}
+                                    <th class="text-nowrap">
+                                        <!-- TODO: Agregar boosters -->
+                                        H.P. IN <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+                                    <th class="text-nowrap">
+                                        H.P. OUT <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <th>B1+2</th>
+                                        <th class="text-nowrap">
+                                            B1+2 Out <br>
+                                            <small class="text-danger">psi</small>
+                                        </th>
+                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                            <th class="text-nowrap">
+                                                PX #{{ $i + 1 }} <br>
+                                                <small class="text-danger">psi</small>
+                                            </th>
+                                        @endfor
                                     @endif
-
-                                    <th class="text-nowrap">H.P. IN</th>
-                                    <th class="text-nowrap">H.P. OUT</th>
-                                    <th>REJET</th>
-                                    @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <th>B1+2</th>
-                                        <th>PX</th>
-                                    @endif
+                                    {{-- End Pressures --}}
                                 </tr>
                             </thead>
 
@@ -580,8 +696,7 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->hp }} <small
-                                                                            class="text-danger">A</small></span>
+                                                                    <span>{{ $operation[$t]->hp }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -591,43 +706,21 @@
                                         </td>
 
                                         @if ($plant->personalitation_plant->boosterc == 'yes')
-                                            <td colspan="2">
-                                                <table class="table">
-                                                    @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                <td colspan="{{ $plant->trains->first()->boosters_quantity }}">
+                                                    <table class="table">
                                                         <tbody>
-                                                            <tr class="text-center">
-                                                                <td class="text-nowrap">
-                                                                    <div class="table-responsive">
-                                                                        <table class="table">
-                                                                            <tbody>
-                                                                                @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                                                    <tr>
-                                                                                        <td class="text-nowrap">
-                                                                                            <div
-                                                                                                class="d-flex flex-column">
-                                                                                                <span>{{ $b + 1 }}</span>
-                                                                                            </div>
-                                                                                        </td>
-
-                                                                                        <td class="text-nowrap">
-                                                                                            <div
-                                                                                                class="d-flex flex-column">
-                                                                                                <span>{{ $operation[$t]->boosters[$b]->frequency }}
-                                                                                                    <small
-                                                                                                        class="text-danger">Hz</small></span>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                @endfor
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
+                                                            <tr>
+                                                                @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                                    <td class="text-nowrap">
+                                                                        <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
+                                                                    </td>
+                                                                @endfor
                                                             </tr>
                                                         </tbody>
-                                                    @endfor
-                                                </table>
-                                            </td>
+                                                    </table>
+                                                </td>
+                                            @endfor
                                         @endif
 
                                         <td>
@@ -637,8 +730,7 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->hpF }} <small
-                                                                            class="text-danger">Hz</small></span>
+                                                                    <span>{{ $operation[$t]->hpF }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -648,45 +740,21 @@
                                         </td>
 
                                         @if ($plant->personalitation_plant->boosterc == 'yes')
-                                            <td colspan="2">
-                                                <table class="table">
-                                                    <tbody>
-                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                <td colspan="2">
+                                                    <table class="table">
+                                                        <tbody>
                                                             <tr class="text-center">
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table">
-                                                                                <tbody>
-                                                                                    @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                                                        <tr>
-                                                                                            <td class="text-nowrap">
-                                                                                                <div
-                                                                                                    class="d-flex flex-column">
-                                                                                                    <span>{{ $b + 1 }}</span>
-                                                                                                </div>
-                                                                                            </td>
-
-                                                                                            <td class="text-nowrap">
-                                                                                                <div
-                                                                                                    class="d-flex flex-column">
-                                                                                                    <span>{{ $operation[$t]->boosters[$b]->frequency }}
-                                                                                                        <small
-                                                                                                            class="text-danger">Hz</small></span>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    @endfor
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
+                                                                @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                                    <td class="text-nowrap">
+                                                                        <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
+                                                                    </td>
+                                                                @endfor
                                                             </tr>
-                                                        @endfor
-                                                    </tbody>
-                                                </table>
-                                            </td>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            @endfor
                                         @endif
 
                                         <td colspan="2">
@@ -696,16 +764,13 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->ph }} <small
-                                                                            class="text-danger">u.
-                                                                            pH</small></span>
+                                                                    <span>{{ $operation[$t]->ph }}</span>
                                                                 </div>
                                                             </td>
 
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->temperature }} <span
-                                                                            class="text-danger">°</span></span>
+                                                                    <span>{{ $operation[$t]->temperature }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -721,25 +786,19 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->feed }} <small
-                                                                            class="text-danger">ppm
-                                                                            TDS</small></span>
+                                                                    <span>{{ $operation[$t]->feed }}</span>
                                                                 </div>
                                                             </td>
 
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->permeated }} <small
-                                                                            class="text-danger">ppm
-                                                                            TDS</small></span>
+                                                                    <span>{{ $operation[$t]->permeated }}</span>
                                                                 </div>
                                                             </td>
 
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->rejection }} <small
-                                                                            class="text-danger">ppm
-                                                                            TDS</small></span>
+                                                                    <span>{{ $operation[$t]->rejection }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -748,36 +807,28 @@
                                             </table>
                                         </td>
 
-                                        <td colspan="2">
+                                        <td colspan="3">
                                             <table class="table">
                                                 <tbody>
                                                     @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->reject_flow }}
-                                                                        <small
-                                                                            class="text-danger">gpm</small></span>
+                                                                    <span>{{ $operation[$t]->feed_flow }}</span>
                                                                 </div>
                                                             </td>
 
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->permeate_flow }}
-                                                                        <small
-                                                                            class="text-danger">gpm</small></span>
+                                                                    <span>{{ $operation[$t]->permeate_flow }}</span>
                                                                 </div>
                                                             </td>
 
-                                                            @if ($plant->personalitation_plant->boosterc == 'yes')
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $operation[$t]->boosters[$t]->booster_flow }}
-                                                                            <small
-                                                                                class="text-danger">gpm</small></span>
-                                                                    </div>
-                                                                </td>
-                                                            @endif
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span>{{ $operation[$t]->reject_flow }}</span>
+                                                                </div>
+                                                            </td>
                                                         </tr>
                                                     @endfor
                                                 </tbody>
@@ -791,84 +842,36 @@
                                                         <tr class="text-center">
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->hp_in }} <small
-                                                                            class="text-danger">psi</small></span>
+                                                                    <span>{{ $operation[$t]->hp_in }}</span>
                                                                 </div>
                                                             </td>
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->hp_out }} <small
-                                                                            class="text-danger">psi</small></span>
+                                                                    <span>{{ $operation[$t]->hp_out }}</span>
                                                                 </div>
                                                             </td>
 
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->reject }} <small
-                                                                            class="text-danger">psi</small></span>
-
+                                                                    <span>{{ $operation[$t]->hp_out }}</span>
                                                                 </div>
                                                             </td>
-
-                                                            @if ($plant->personalitation_plant->boosterc == 'yes')
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table">
-                                                                            <tbody>
-                                                                                @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                                                    <tr>
-                                                                                        <td class="text-nowrap">
-                                                                                            <div
-                                                                                                class="d-flex flex-column">
-                                                                                                <span>{{ $b + 1 }}</span>
-                                                                                            </div>
-                                                                                        </td>
-
-                                                                                        <td class="text-nowrap">
-                                                                                            <div
-                                                                                                class="d-flex flex-column">
-                                                                                                <span>{{ $operation[$t]->boosters[$b]->frequency }}
-                                                                                                    <small
-                                                                                                        class="text-danger">psi</small></span>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                @endfor
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table">
-                                                                            <tbody>
-                                                                                @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                                                    <tr>
-                                                                                        <td class="text-nowrap">
-                                                                                            <div
-                                                                                                class="d-flex flex-column">
-                                                                                                <span>{{ $b + 1 }}</span>
-                                                                                            </div>
-                                                                                        </td>
-
-                                                                                        <td class="text-nowrap">
-                                                                                            <div
-                                                                                                class="d-flex flex-column">
-                                                                                                <span>{{ $operation[$t]->boosters[$b]->px }}
-                                                                                                    <small
-                                                                                                        class="text-danger">psi</small></span>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                @endfor
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            @endif
                                                         </tr>
                                                     @endfor
+                                                </tbody>
+                                            </table>
+                                        </td>
+
+                                        <td colspan="2">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                                            <td>
+                                                                value*
+                                                            </td>
+                                                        @endfor
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </td>
