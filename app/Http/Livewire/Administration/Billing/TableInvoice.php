@@ -10,6 +10,7 @@ class TableInvoice extends Component
 {
     public Plant $plant;
 
+
     public function render()
     {
         return view('livewire.administration.billing.table-invoice');

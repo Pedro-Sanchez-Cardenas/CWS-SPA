@@ -36,6 +36,7 @@
     <section id="alerts">
         <livewire:wifi-alerts />
     </section>
+
     <section id="indexcreate">
         <div class="row match-height">
             <!-- Medal Card -->
@@ -67,10 +68,7 @@
                 </div>
             </div>
 
-            <!-- Statistics Card -->
             <livewire:operation.parameters.data-filters />
-
-            <!--/ Statistics Card -->
         </div>
 
 
