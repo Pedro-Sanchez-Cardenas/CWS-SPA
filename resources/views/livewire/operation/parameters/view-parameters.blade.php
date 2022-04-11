@@ -80,7 +80,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center text-nowrap" role="row">
-                                    <th colspan="5">FEED LINE TO HOTEL SUPPLY</th>
+                                    <th colspan="@if($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL SUPPLY</th>
                                     <th colspan="8">DAYLI CHEMICAL SUPPLY</th>
                                     <th colspan="{{ $plant->cisterns_quantity }}">Cisterns</th>
                                     <th rowspan="2">ASSIGNED BY</th>
@@ -89,6 +89,7 @@
                                 </tr>
 
                                 <tr class="text-center text-nowrap" role="row">
+                                    {{-- Init Feed line to hotel supply --}}
                                     <th>
                                         PH <br>
                                         <small class="text-danger">u.
@@ -107,10 +108,19 @@
                                         <small class="text-danger">ppm</small>
                                     </th>
                                     <th>
-                                        CHLORINE <br>
+                                        FREE CHLORINE <br>
                                         <small class="text-danger">ppm</small>
                                     </th>
 
+                                    @if ($plant->personalitation_plant->chloride == 'yes')
+                                        <th>
+                                            CHLORIDES <br>
+                                            <small class="text-danger">ppm</small>
+                                        </th>
+                                    @endif
+                                    {{-- End Feed line to hotel supply --}}
+
+                                    {{-- Init Dayli chemical supply --}}
                                     <th>
                                         CACL2 <br>
                                         <small class="text-danger">Kg</small>
@@ -150,6 +160,7 @@
                                             <small class="text-danger">%</small>
                                         </th>
                                     @endfor
+                                    {{-- Init Dayli chemical supply --}}
                                 </tr>
                             </thead>
 
@@ -184,7 +195,15 @@
                                                 <span>{{ $product_water->free_chlorine }}</span>
                                             </div>
                                         </td>
-                                        {{-- Fin Feed line to hotel supply --}}
+
+                                        @if ($plant->personalitation_plant->chloride == 'yes')
+                                            <td class="text-nowrap">
+                                                <div class="d-flex flex-column">
+                                                    <span>{{ $product_water->chloride }}</span>
+                                                </div>
+                                            </td>
+                                        @endif
+                                        {{-- End Feed line to hotel supply --}}
 
                                         {{-- Init Dayli chemical supply --}}
                                         <td class="text-nowrap">
@@ -229,7 +248,7 @@
                                                 <span>{{ $product_water->chemical->kl2 }}</span>
                                             </div>
                                         </td>
-                                        {{-- Fin Dayli chemical supply --}}
+                                        {{-- End Dayli chemical supply --}}
 
                                         {{-- Init Cisterns --}}
                                         @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
@@ -237,7 +256,7 @@
                                                 <span>{{ $product_water->cisterns[$c]->capacity }}</span>
                                             </td>
                                         @endfor
-                                        {{-- Fin Cisterns --}}
+                                        {{-- End Cisterns --}}
 
 
                                         <td class="text-nowrap">

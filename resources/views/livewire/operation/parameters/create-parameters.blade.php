@@ -956,9 +956,9 @@
                         @enderror
                     </div>
 
-                    @if ($plant->chloride == 'yes')
+                    @if ($plant->personalitation_plant->chloride == 'yes')
                         <div class="col-6 mb-2">
-                            <label class="form-label">Chloride</label>
+                            <label class="form-label">Chlorides</label>
                             <div class="input-group">
                                 <span class="input-group-text @error('chloride') border border-danger @enderror"
                                     id="basic-addon-search1">
