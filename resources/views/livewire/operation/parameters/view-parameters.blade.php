@@ -553,10 +553,10 @@
                                 <tr class="text-center" role="row">
                                     <th>TRAIN</th>
                                     <th
-                                        colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1) @endphp @else 1 @endif">
+                                        colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1); @endphp @else 1 @endif">
                                         AMPERAGE</th>
                                     <th
-                                        colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1) @endphp @else 1 @endif">
+                                        colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1); @endphp @else 1 @endif">
                                         FRECUENCIES</th>
                                     <th colspan="2">FEED</th>
                                     <th colspan="3">TDS CONCENTRATION</th>
@@ -862,19 +862,21 @@
                                             </table>
                                         </td>
 
-                                        <td colspan="2">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
-                                                            <td>
-                                                                value*
-                                                            </td>
-                                                        @endfor
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
+                                        @if ($plant->personalitation_plant->boosterc == 'yes')
+                                            <td colspan="2">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                                                <td>
+                                                                    value*
+                                                                </td>
+                                                            @endfor
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        @endif
 
                                         <td class="text-nowrap">
                                             {{ $operation->last()->assignedBy->name }}
