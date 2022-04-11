@@ -850,12 +850,6 @@
                                                                     <span>{{ $operation[$t]->hp_out }}</span>
                                                                 </div>
                                                             </td>
-
-                                                            <td class="text-nowrap">
-                                                                <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->hp_out }}</span>
-                                                                </div>
-                                                            </td>
                                                         </tr>
                                                     @endfor
                                                 </tbody>
