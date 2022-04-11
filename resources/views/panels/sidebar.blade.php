@@ -297,7 +297,7 @@ $configData = Helper::applClasses();
                                             @endif
                                         @endif
 
-                                        @if (Auth::user()->getRoleNames()['0'] == 'Super-Admin')
+                                        @if (Auth::user()->getRoleNames()['0'] == 'Super-Admin' || Auth::user()->getRoleNames()['0'] == 'Operations-Manager')
                                             @if ($loop->first)
                                                 @if (isset($menu->navheader))
                                                     <li class="navigation-header">
