@@ -580,7 +580,7 @@
                                         FRECUENCIES</th>
                                     <th colspan="2">FEED</th>
                                     <th colspan="3">TDS CONCENTRATION</th>
-                                    <th colspan="3">FLOW</th>
+                                    <th colspan="@if($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">FLOW</th>
                                     <th colspan="@php echo ($plant->trains->first()->boosters_quantity + 3); @endphp">PRESSURES</th>
                                     <th rowspan="2">ASSIGNED BY</th>
                                     <th rowspan="2">OBSERVATIONS</th>
@@ -670,16 +670,6 @@
                                     {{-- End Flow --}}
 
                                     {{-- Init Pressures --}}
-                                    <th class="text-nowrap">
-                                        <!-- TODO: Agregar boosters -->
-                                        H.P. IN <br>
-                                        <small class="text-danger">psi</small>
-                                    </th>
-                                    <th class="text-nowrap">
-                                        H.P. OUT <br>
-                                        <small class="text-danger">psi</small>
-                                    </th>
-
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
                                         <th class="text-nowrap">
                                             B1+2 Out <br>
@@ -692,6 +682,16 @@
                                             </th>
                                         @endfor
                                     @endif
+
+                                    <th class="text-nowrap">
+                                        <!-- TODO: Agregar boosters -->
+                                        H.P. IN <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+                                    <th class="text-nowrap">
+                                        H.P. OUT <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
                                     {{-- End Pressures --}}
                                 </tr>
                             </thead>
@@ -833,7 +833,7 @@
                                             </table>
                                         </td>
 
-                                        <td colspan="3">
+                                        <td colspan="@if($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">
                                             <table class="table">
                                                 <tbody>
                                                     @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
@@ -857,6 +857,12 @@
                                                                     <span>{{ $operation[$t]->permeate_flow }}</span>
                                                                 </div>
                                                             </td>
+
+                                                            <td class="text-nowrap">
+                                                                <div class="d-flex flex-column">
+                                                                    <span>{{ $operation[$t]->permeate_flow }}</span>
+                                                                </div>
+                                                            </td>
                                                         </tr>
                                                     @endfor
                                                 </tbody>
@@ -868,6 +874,14 @@
                                                 <tbody>
                                                     @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
                                                         <tr class="text-center">
+                                                            @if ($plant->personalitation_plant->boosterc == 'yes')
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $operation[$t]->boosters->first()->booster_pressures_total }}</span>
+                                                                    </div>
+                                                                </td>
+                                                            @endif
+
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
                                                                     <span>{{ $operation[$t]->hp_in }}</span>
@@ -878,14 +892,6 @@
                                                                     <span>{{ $operation[$t]->hp_out }}</span>
                                                                 </div>
                                                             </td>
-
-                                                            @if ($plant->personalitation_plant->boosterc == 'yes')
-                                                                <td class="text-nowrap">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span>{{ $operation[$t]->boosters->first()->booster_pressures_total }}</span>
-                                                                    </div>
-                                                                </td>
-                                                            @endif
                                                         </tr>
                                                     @endfor
                                                 </tbody>
