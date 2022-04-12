@@ -32,7 +32,7 @@
                                     @endif
                                 @endif
 
-                                @if (Auth::user()->getRoleNames()['0'] == 'Super-Admin')
+                                @if (Auth::user()->getRoleNames()['0'] == 'Super-Admin' || Auth::user()->getRoleNames()['0'] == 'Operations-Manager')
                                     @if ($loop->first)
                                         <li @if ($submenu->slug === Route::currentRouteName()) class="active" @endif>
                                             <a href="{{ isset($submenu->url) ? route($submenu->url, $com) : 'javascript:void(0)' }}"

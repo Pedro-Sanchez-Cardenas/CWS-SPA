@@ -36,6 +36,7 @@
     <section id="alerts">
         <livewire:wifi-alerts />
     </section>
+
     <section id="indexcreate">
         <div class="row match-height">
             <!-- Medal Card -->
@@ -54,11 +55,11 @@
                         </h3>
                     </div>
                     <div class="card-footer">
-                        <p class="card-subtitle mb-2 text-muted text-capitalize">Last update of parameters:
+                        <p class="card-subtitle mb-2 text-muted text-capitalize">Last Parameters:
                             @if ($plant->product_waters->first())
                                 <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
                                 <span
-                                    class="text-danger">{{ \Carbon\Carbon::now()->diffForHumans($plant->product_waters->first()->created_at) }}</span>
+                                        class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
                             @else
                                 <span class="text-danger">N/A</span>
                             @endif
@@ -67,10 +68,7 @@
                 </div>
             </div>
 
-            <!-- Statistics Card -->
             <livewire:operation.parameters.data-filters />
-
-            <!--/ Statistics Card -->
         </div>
 
 
