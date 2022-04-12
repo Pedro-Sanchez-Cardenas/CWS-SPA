@@ -656,7 +656,7 @@
                             @if ($plant->personalitation_plant->boosterc == 'yes')
                                 <div class="col-4 mb-2">
                                     <label class="form-label">Booster
-                                        @for ($i = 0; $i < $plant->trains->first()->booster_quantity; $i++)
+                                        @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
                                             {{ $i > 0 ? '+' : '' }} {{ $i + 1 }}
                                         @endfor Out
                                     </label>

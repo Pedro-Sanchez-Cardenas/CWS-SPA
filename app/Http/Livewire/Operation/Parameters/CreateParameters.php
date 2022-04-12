@@ -393,7 +393,7 @@ class CreateParameters extends Component
             });
 
             // Success Save
-            return redirect()->back();
+            //return redirect()->back();
             sleep(2);
 
             $uri = explode('/', $this->back);
