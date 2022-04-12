@@ -5,7 +5,7 @@
             <h4 class="mb-1">PRODUCTION READINGS</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
-                    <div class="table-responsive">
+                    <div class="table-responsive rounded">
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center text-nowrap" role="row">
@@ -76,11 +76,12 @@
             <h4 class="mb-1">PRODUCT WATER</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
-                    <div class="table-responsive">
+                    <div class="table-responsive rounded">
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center text-nowrap" role="row">
-                                    <th colspan="@if($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL SUPPLY</th>
+                                    <th colspan="@if ($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
+                                        SUPPLY</th>
                                     <th colspan="8">DAYLI CHEMICAL SUPPLY</th>
                                     <th colspan="{{ $plant->cisterns_quantity }}">Cisterns</th>
                                     <th rowspan="2">ASSIGNED BY</th>
@@ -291,7 +292,7 @@
             <h4 class="mb-1">PRETREATMENT</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
-                    <div class="table-responsive">
+                    <div class="table-responsive rounded">
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center text-nowrap" role="row">
@@ -323,7 +324,7 @@
                                     <th rowspan="3">
                                         ASSIGNED</th>
                                     <th rowspan="3">
-                                        OBSERVATION</th>
+                                        OBSERVATIONS</th>
                                     <th rowspan="3">
                                         DATE/TIME</th>
                                 </tr>
@@ -566,7 +567,7 @@
             <h4 class="mb-1">OPERATION</h4>
             <div class="card">
                 <div class="card-body p-0 m-0">
-                    <div class="table-responsive">
+                    <div class="table-responsive rounded">
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="text-center" role="row">
@@ -582,7 +583,7 @@
                                     <th colspan="3">FLOW</th>
                                     <th colspan="@php echo ($plant->trains->first()->boosters_quantity + 3); @endphp">PRESSURES</th>
                                     <th rowspan="2">ASSIGNED BY</th>
-                                    <th rowspan="2">OBSERVATION</th>
+                                    <th rowspan="2">OBSERVATIONS</th>
                                     <th rowspan="2">DATE/TIME</th>
                                 </tr>
 
@@ -648,6 +649,12 @@
                                     {{-- End TDS Concentration --}}
 
                                     {{-- Init Flow --}}
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        <th class="text-nowrap">
+                                            B1+2 Out <br>
+                                            <small class="text-danger">gpm</small>
+                                        </th>
+                                    @endif
                                     <th>
                                         FEED <br>
                                         <small class="text-danger">gpm</small>
@@ -831,6 +838,14 @@
                                                 <tbody>
                                                     @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
                                                         <tr class="text-center">
+                                                            @if ($plant->personalitation_plant->boosterc == 'yes')
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $operation[$t]->boosters->first()->booster_flow }}</span>
+                                                                    </div>
+                                                                </td>
+                                                            @endif
+
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
                                                                     <span>{{ $operation[$t]->feed_flow }}</span>
@@ -840,12 +855,6 @@
                                                             <td class="text-nowrap">
                                                                 <div class="d-flex flex-column">
                                                                     <span>{{ $operation[$t]->permeate_flow }}</span>
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-nowrap">
-                                                                <div class="d-flex flex-column">
-                                                                    <span>{{ $operation[$t]->reject_flow }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -869,6 +878,14 @@
                                                                     <span>{{ $operation[$t]->hp_out }}</span>
                                                                 </div>
                                                             </td>
+
+                                                            @if ($plant->personalitation_plant->boosterc == 'yes')
+                                                                <td class="text-nowrap">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span>{{ $operation[$t]->boosters->first()->booster_pressures_total }}</span>
+                                                                    </div>
+                                                                </td>
+                                                            @endif
                                                         </tr>
                                                     @endfor
                                                 </tbody>
@@ -879,13 +896,15 @@
                                             <td colspan="2">
                                                 <table class="table">
                                                     <tbody>
-                                                        <tr>
-                                                            @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
-                                                                <td>
-                                                                    value*
-                                                                </td>
-                                                            @endfor
-                                                        </tr>
+                                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                            <tr>
+                                                                @for ($b = 0; $b < $plant->trains->first()->boosters_quantity; $b++)
+                                                                    <td>
+                                                                        <span>{{ $operation[$t]->boosters[$b]->px }}</span>
+                                                                    </td>
+                                                                @endfor
+                                                            </tr>
+                                                        @endfor
                                                     </tbody>
                                                 </table>
                                             </td>
