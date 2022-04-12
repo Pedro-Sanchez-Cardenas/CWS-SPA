@@ -172,7 +172,7 @@
                                 @if ($plant->product_waters->first())
                                     <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
                                     <span
-                                        class="text-danger">{{ \Carbon\Carbon::now()->diffForHumans($plant->product_waters->first()->created_at) }}</span>
+                                        class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
                                 @else
                                     <span class="text-danger">N/A</span>
                                 @endif
