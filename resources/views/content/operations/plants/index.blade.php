@@ -168,7 +168,7 @@
                             </table>
                         </div>
                         <div class="card-footer">
-                            <p class="card-subtitle mb-2 text-muted text-capitalize">Last update of parameters:
+                            <p class="card-subtitle mb-2 text-muted text-capitalize">Last Parameters:
                                 @if ($plant->product_waters->first())
                                     <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
                                     <span
