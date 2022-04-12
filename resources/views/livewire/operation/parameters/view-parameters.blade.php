@@ -580,7 +580,7 @@
                                         FRECUENCIES</th>
                                     <th colspan="2">FEED</th>
                                     <th colspan="3">TDS CONCENTRATION</th>
-                                    <th colspan="@if($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">FLOW</th>
+                                    <th colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">FLOW</th>
                                     <th colspan="@php echo ($plant->trains->first()->boosters_quantity + 3); @endphp">PRESSURES</th>
                                     <th rowspan="2">ASSIGNED BY</th>
                                     <th rowspan="2">OBSERVATIONS</th>
@@ -684,7 +684,6 @@
                                     @endif
 
                                     <th class="text-nowrap">
-                                        <!-- TODO: Agregar boosters -->
                                         H.P. IN <br>
                                         <small class="text-danger">psi</small>
                                     </th>
@@ -833,7 +832,7 @@
                                             </table>
                                         </td>
 
-                                        <td colspan="@if($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">
+                                        <td colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">
                                             <table class="table">
                                                 <tbody>
                                                     @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
