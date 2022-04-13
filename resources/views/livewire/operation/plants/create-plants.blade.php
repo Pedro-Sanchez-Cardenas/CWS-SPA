@@ -10,18 +10,22 @@
                                     <h4 class="card-title">Plant image</h4>
                                 </div>
                             </div>
-                            <div class="ms-2">
-                                <input type="file" class=""
-                                    accept="image/gif,image/jpeg,image/jpg,image/png" id="file">
+                            <div class="file1">
+                                <input class="" type="file"
+                                    accept="image/gif,image/jpeg,image/jpg,image/png" id="file"
+                                    nChange="onLoadImage(event.target.files)">
+                                <button type="button" class="btn btn-outline-danger waves-effect">
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Remove</font>
+                                    </font>
+                                </button>
+                                <span id="imgName"></span>
                                 <br><br>
                                 <div id="preview"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body statistics-body">
@@ -30,9 +34,10 @@
                                     <h4 class="card-title">Plant image</h4>
                                 </div>
                             </div>
-                            <div class="ms-2">
-                                <input type="file" multiple class="" accept=".pdf">
+                            <div class="file2">
+                                <input class="" type="file" accept=".pdf" id="file">
                                 <br><br>
+                                <div id="preview"></div>
                             </div>
                         </div>
                     </div>
@@ -696,6 +701,7 @@
                 </div>
             </div>
         </section>
+
         <section id="trains">
             <div class="card" x-data="trains()" x-cloak>
                 <div class="card-header">
@@ -1122,44 +1128,92 @@
             }
         </script>
 
-        {{-- CSS/BOTTON --}}
-        <style type="text/css">
-            .file-select {
+        {{-- CSS/BOTTON IMAGE --}}
+        --<style type="text/css">
+            .file1 {
                 position: relative;
                 display: inline-block;
             }
 
-            .file-select::before {
+            .file1::before {
                 background-color: rgba(0, 0, 0, 0);
-                ";
-    color: white;
+                color: white;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-radius: 4px;
+                border-radius: 3px;
                 content: 'Seleccionar';
                 /* testo por defecto */
                 position: absolute;
                 left: 0;
                 right: 0;
                 top: 0;
-                bottom: 0;
+                width: 200px;
+                height: 40px;
                 border: white 0.5px solid;
+
             }
 
-            .file-select input[type="file"] {
+            .file1 input[type="file"] {
                 opacity: 0;
                 width: 200px;
-                height: 200px;
+                height: 32px;
                 display: inline-block;
             }
 
-            #preview img {
-                width: 350px;
-                height: 190px;
+            #file-file::before {
+                content: 'Seleccionar Archivo 1';
             }
 
-        </style>
+            #file-file::before {
+                content: 'Seleccionar Archivo 2';
+            }
+
+            #preview img {
+                width: 545px;
+                height: 250px;
+            }
+
+            {{-- CSS/BOTTON PDF --}} .file2 {
+                position: relative;
+                display: inline-block;
+            }
+
+            .file2::before {
+                background-color: rgba(0, 0, 0, 0);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+                content: 'Seleccionar';
+                /* testo por defecto */
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                width: 200px;
+                height: 35px;
+                border: white 0.5px solid;
+
+            }
+
+            .file2 input[type="file"] {
+                opacity: 0;
+                width: 200px;
+                height: 32px;
+                display: inline-block;
+            }
+
+            #file-file::before {
+                content: 'Seleccionar Archivo 1';
+            }
+
+            #file-file::before {
+                content: 'Seleccionar Archivo 2';
+            }
+
+        </style>--}}
     @endpush
 </div>
 
@@ -1183,6 +1237,24 @@
 
             preview.innerHTML = '';
             preview.append(image);
+
         };
     }
 </script>
+
+
+
+<script>
+    function onLoadImage(files2) {
+        console.log(files2)
+        if (files2 && files2[0]) {
+            document
+                .getElementById('imgName')
+                .innerHTML = files2[0].name
+        }
+    }
+</script>
+
+
+<input id="img" type="file" onChange="onLoadImage(event.target.files)" />
+<span id="imgName"></span>
