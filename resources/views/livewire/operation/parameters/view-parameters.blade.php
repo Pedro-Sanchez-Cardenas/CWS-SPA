@@ -5,9 +5,9 @@
             <h4 class="mb-1">PRODUCTION READINGS</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
-                    <div class="table-responsive rounded">
-                        <table class="table table-bordered">
-                            <thead>
+                    <div class="rounded overflow-auto" style="height: 350pt;">
+                        <table class="table table-bordered table-hover">
+                            <thead class="sticky-top">
                                 <tr class="text-center text-nowrap" role="row">
                                     <th colspan="3">PRODUCTION</th>
                                     <th colspan="1" rowspan="2">DATE/TIME</th>
@@ -76,9 +76,9 @@
             <h4 class="mb-1">PRODUCT WATER</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
-                    <div class="table-responsive rounded">
+                    <div class="rounded overflow-auto" style="height: 350pt;">
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="sticky-top">
                                 <tr class="text-center text-nowrap" role="row">
                                     <th colspan="@if ($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
                                         SUPPLY</th>
@@ -292,9 +292,9 @@
             <h4 class="mb-1">PRETREATMENT</h4>
             <div class="card">
                 <div class="card-body m-0 p-0">
-                    <div class="table-responsive rounded">
+                    <div class="rounded overflow-auto" style="height: 350pt;">
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="sticky-top">
                                 <tr class="text-center text-nowrap" role="row">
                                     <th colspan="1" rowspan="2">
                                         TRAIN
@@ -567,9 +567,9 @@
             <h4 class="mb-1">OPERATION</h4>
             <div class="card">
                 <div class="card-body p-0 m-0">
-                    <div class="table-responsive rounded">
+                    <div class="rounded overflow-auto" style="height: 350pt;">
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="sticky-top">
                                 <tr class="text-center" role="row">
                                     <th>TRAIN</th>
                                     <th
