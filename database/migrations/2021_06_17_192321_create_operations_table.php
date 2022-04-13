@@ -27,15 +27,16 @@ class CreateOperationsTable extends Migration
             $table->double('temperature');
 
             $table->double('feed');
-            $table->double('permeated');
-            $table->double('rejection');
+            $table->double('permeate');
+            $table->double('reject');
 
             $table->double('feed_flow');
             $table->double('permeate_flow');
+            $table->double('reject_flow');
 
             $table->double('hp_in');
             $table->double('hp_out');
-            $table->double('reject');
+            $table->double('reject_pressure');
 
             $table->text('observations')->nullable();
             $table->foreignId('user_created_at')->constrained('users');

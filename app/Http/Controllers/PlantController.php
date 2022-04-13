@@ -30,9 +30,10 @@ class PlantController extends Controller
     {
         if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
 
-            $company = Company::where('name', $company)->first();
+            $companies = Company::where('name', $company)->first();
 
-            $plants = Plant::where('companies_id', $company->id)->get();
+
+            $plants = Plant::where('companies_id', $companies->id)->get();
         } else if (Auth::user()->getRoleNames()->first() == 'Manager') {
 
             $plants = Plant::where('manager', Auth::id())->get();
@@ -58,11 +59,11 @@ class PlantController extends Controller
         $countries = Country::all();
         $currencies = Currency::all();
         $polishFilterTypes = PolishFilterType::all();
-        $billings = BillingPeriod::all();
+        //$billings = BillingPeriod::all();
         $membranesActiveArea = MembraneActiveArea::all();
         $companies = Company::all();
 
-        return view('content.operations.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'billings', 'membranesActiveArea', 'companies'));
+        return view('content.operations.plants.create', compact('plantTypes', 'attendants', 'managers', 'countries', 'currencies', 'polishFilterTypes', 'membranesActiveArea', 'companies'));
     }
 
     /**

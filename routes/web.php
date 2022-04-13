@@ -49,17 +49,17 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     /* Route Operation */
     Route::group(['prefix' => 'operation'], function () {
-        Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
+        Route::get('plants/{company}', [PlantController::class, 'index'])->name('plants.index');
         Route::resource('plants', PlantController::class)->except('index');
 
         Route::get('parameters/{id}/create', [ParametersController::class, 'create'])->name('parameters.create');
-        Route::resource('parameters', ParametersController::class)->except('index', 'create');
+        Route::resource('parameters', ParametersController::class)->except('index', 'create')->parameters(['parameters' => 'company']);
     });
     /* Route Operation */
 
     /* Route Administration */
     Route::group(['prefix' => 'administration'], function () {
-        Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
+        //Route::get('plants/', [PlantController::class, 'index'])->name('plants.index');
         Route::get('billing/{id}', [BillingController::class, 'index'])->name('billing.index');
         Route::resource('billing', BillingController::class)->except('index');
     });

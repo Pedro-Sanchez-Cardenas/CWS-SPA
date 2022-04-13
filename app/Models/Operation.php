@@ -27,15 +27,16 @@ class Operation extends Model
         'temperature',
 
         'feed',
-        'permeated',
-        'rejection',
+        'permeate',
+        'reject',
 
         'feed_flow',
         'permeate_flow',
+        'reject_flow',
 
         'hp_in',
         'hp_out',
-        'reject',
+        'reject_pressure',
 
         'observations',
         'user_created_at',

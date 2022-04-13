@@ -1,5 +1,46 @@
 <div>
     <form wire:submit.prevent="store">
+        <section>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body statistics-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-header">
+                                    <h4 class="card-title">Plant image</h4>
+                                </div>
+                            </div>
+                            <div class="ms-2">
+                                <input type="file" class=""
+                                    accept="image/gif,image/jpeg,image/jpg,image/png" id="file">
+                                <br><br>
+                                <div id="preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body statistics-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-header">
+                                    <h4 class="card-title">Plant image</h4>
+                                </div>
+                            </div>
+                            <div class="ms-2">
+                                <input type="file" multiple class="" accept=".pdf">
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section class="card">
             <div class="card-header">
                 <h4 class="card-title">Plant Data</h4>
@@ -655,38 +696,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Plant image</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div action="#" class="dropzone dropzone-area dz-clickable" id="dpz-single-file">
-                            <div class="dz-message">Drop files here or click to upload.</div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Handbook</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div action="#" class="dropzone dropzone-area" id="dpz-multiple-files">
-                            <div class="dz-message">PDF up to 40MB.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="trains">
             <div class="card" x-data="trains()" x-cloak>
                 <div class="card-header">
@@ -1112,5 +1121,68 @@
                 }
             }
         </script>
+
+        {{-- CSS/BOTTON --}}
+        <style type="text/css">
+            .file-select {
+                position: relative;
+                display: inline-block;
+            }
+
+            .file-select::before {
+                background-color: rgba(0, 0, 0, 0);
+                ";
+    color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 4px;
+                content: 'Seleccionar';
+                /* testo por defecto */
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                border: white 0.5px solid;
+            }
+
+            .file-select input[type="file"] {
+                opacity: 0;
+                width: 200px;
+                height: 200px;
+                display: inline-block;
+            }
+
+            #preview img {
+                width: 350px;
+                height: 190px;
+            }
+
+        </style>
     @endpush
 </div>
+
+
+
+
+<script>
+    document.getElementById("file").onchange = function(e) {
+        // Creamos el objeto de la clase FileReader
+        let reader = new FileReader();
+
+        // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+        reader.readAsDataURL(e.target.files[0]);
+
+        // Le decimos que cuando este listo ejecute el código interno
+        reader.onload = function() {
+            let preview = document.getElementById('preview'),
+                image = document.createElement('img');
+
+            image.src = reader.result;
+
+            preview.innerHTML = '';
+            preview.append(image);
+        };
+    }
+</script>
