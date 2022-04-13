@@ -576,14 +576,14 @@
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label class="form-label">Rejection</label>
+                                <label class="form-label">Reject</label>
                                 <div class="input-group">
                                     <span
-                                        class="input-group-text @error("rejection.$pre") border border-danger @enderror"
+                                        class="input-group-text @error("reject.ope.$pre") border border-danger @enderror"
                                         id="basic-addon-search1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor"
-                                            class="bi bi-wrench-adjustable @error("rejection.$pre") text-danger @enderror"
+                                            class="bi bi-wrench-adjustable @error("reject.ope.$pre") text-danger @enderror"
                                             viewBox="0 0 16 16">
                                             <path
                                                 d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
@@ -592,10 +592,10 @@
                                         </svg>
                                     </span>
                                     <input type="number"
-                                        class="form-control @error("rejection.$pre") border border-danger @enderror"
-                                        wire:model="rejection.{{ $pre }}" placeholder="0.0 ppm TDS">
+                                        class="form-control @error("reject.ope.$pre") border border-danger @enderror"
+                                        wire:model="reject.ope.{{ $pre }}" placeholder="0.0 ppm TDS">
                                 </div>
-                                @error("rejection.$pre")
+                                @error("reject.ope.$pre")
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -604,53 +604,84 @@
                         <label class="h5 mt-1">FLOW</label>
                         <div class="row">
                             <div class="col-4 mb-2">
-                                <label class="form-label">Feed</label>
-                                <div class="input-group">
-                                    <span
-                                        class="input-group-text @error("feed.flo.$pre") border border-danger @enderror"
-                                        id="basic-addon-search1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            class="bi bi-wrench-adjustable @error("feed.flo.$pre") text-danger @enderror"
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
-                                            <path
-                                                d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                                        </svg>
-                                    </span>
-                                    <input type="number"
-                                        class="form-control @error("feed.flo.$pre") border border-danger @enderror"
-                                        wire:model="feed.flo.{{ $pre }}" placeholder="0.0 gpm">
-                                </div>
-                                @error("feed.flo.$pre")
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @if ($plant->personalitation_plant->feed_flow == 'yes')
+                                    <label class="form-label">Feed</label>
+                                    <div class="input-group">
+                                        <span
+                                            class="input-group-text @error("feed.flo.$pre") border border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor"
+                                                class="bi bi-wrench-adjustable @error("feed.flo.$pre") text-danger @enderror"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
+                                                <path
+                                                    d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                            </svg>
+                                        </span>
+                                        <input type="number"
+                                            class="form-control @error("feed.flo.$pre") border border-danger @enderror"
+                                            wire:model="feed.flo.{{ $pre }}" placeholder="0.0 gpm">
+                                    </div>
+                                    @error("feed.flo.$pre")
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                @endif
                             </div>
 
                             <div class="col-4 mb-2">
-                                <label class="form-label">Permeate</label>
-                                <div class="input-group">
-                                    <span
-                                        class="input-group-text @error("permeate.flo.$pre") border border-danger @enderror"
-                                        id="basic-addon-search1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            class="bi bi-wrench-adjustable @error("permeate.flo.$pre") text-danger @enderror"
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
-                                            <path
-                                                d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                                        </svg>
-                                    </span>
-                                    <input type="number"
-                                        class="form-control @error("permeate.flo.$pre") border border-danger @enderror"
-                                        wire:model="permeate.flo.{{ $pre }}" placeholder="0.0 gpm">
-                                </div>
-                                @error("permeate.flo.$pre")
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @if ($plant->personalitation_plant->permeate_flow == 'yes')
+                                    <label class="form-label">Permeate</label>
+                                    <div class="input-group">
+                                        <span
+                                            class="input-group-text @error("permeate.flo.$pre") border border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor"
+                                                class="bi bi-wrench-adjustable @error("permeate.flo.$pre") text-danger @enderror"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
+                                                <path
+                                                    d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                            </svg>
+                                        </span>
+                                        <input type="number"
+                                            class="form-control @error("permeate.flo.$pre") border border-danger @enderror"
+                                            wire:model="permeate.flo.{{ $pre }}" placeholder="0.0 gpm">
+                                    </div>
+                                    @error("permeate.flo.$pre")
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                @endif
+                            </div>
+
+                            <div class="col-4 mb-2">
+                                @if ($plant->personalitation_plant->reject_flow == 'yes')
+                                    <label class="form-label">Reject</label>
+                                    <div class="input-group">
+                                        <span
+                                            class="input-group-text @error("reject.flo.$pre") border border-danger @enderror"
+                                            id="basic-addon-search1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor"
+                                                class="bi bi-wrench-adjustable @error("reject.flo.$pre") text-danger @enderror"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
+                                                <path
+                                                    d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                            </svg>
+                                        </span>
+                                        <input type="number"
+                                            class="form-control @error("reject.flo.$pre") border border-danger @enderror"
+                                            wire:model="reject.flo.{{ $pre }}" placeholder="0.0 gpm">
+                                    </div>
+                                    @error("reject.flo.$pre")
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                @endif
                             </div>
 
                             @if ($plant->personalitation_plant->boosterc == 'yes')
@@ -738,11 +769,11 @@
                                 <label class="form-label">Reject</label>
                                 <div class="input-group">
                                     <span
-                                        class="input-group-text @error("reject.$pre") border border-danger @enderror"
+                                        class="input-group-text @error("reject.pre.$pre") border border-danger @enderror"
                                         id="basic-addon-search1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor"
-                                            class="bi bi-wrench-adjustable @error("reject.$pre") text-danger @enderror"
+                                            class="bi bi-wrench-adjustable @error("reject.pre.$pre") text-danger @enderror"
                                             viewBox="0 0 16 16">
                                             <path
                                                 d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
@@ -751,10 +782,10 @@
                                         </svg>
                                     </span>
                                     <input type="number"
-                                        class="form-control @error("reject.$pre") border border-danger @enderror"
-                                        wire:model="reject.{{ $pre }}" placeholder="0.0 psi">
+                                        class="form-control @error("reject.pre.$pre") border border-danger @enderror"
+                                        wire:model="reject.pre.{{ $pre }}" placeholder="0.0 psi">
                                 </div>
-                                @error("reject.$pre")
+                                @error("reject.pre.$pre")
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -956,7 +987,7 @@
                         @enderror
                     </div>
 
-                    @if ($plant->personalitation_plant->chloride == 'yes')
+                    {{-- @if ($plant->personalitation_plant->chloride == 'yes') --}}
                         <div class="col-6 mb-2">
                             <label class="form-label">Chlorides</label>
                             <div class="input-group">
@@ -971,7 +1002,7 @@
                                             d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
                                     </svg>
                                 </span>
-                                <input type="number"
+                                <input type="number" @if ($plant->personalitation_plant->chloride == 'no') disabled @endif
                                     class="form-control @error('chloride') border border-danger @enderror"
                                     wire:model="chloride" placeholder="0.0 ppm">
                             </div>
@@ -979,7 +1010,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    @endif
+                    {{-- @endif --}}
                 </div>
 
                 <label class="h5 mt-1">PRODUCTION READINGS</label>
@@ -1082,7 +1113,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
 
-                            @error("tank")
+                            @error('tank')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -1283,7 +1314,8 @@
             <div class="card-footer">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="col me-2" x-show="step > 1" x-transition.delay.150ms>
-                        <button @click="removeStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
+                        <button @click="removeStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);"
+                            type="button"
                             class="btn d-flex col-12 btn-lg btn-danger me-2 align-items-center justify-content-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -1297,7 +1329,8 @@
                     <div class="col">
                         <div class="row">
                             <div class="col" x-show="step < totalStep" x-transition>
-                                <button @click="addStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
+                                <button @click="addStep()" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);"
+                                    type="button"
                                     class="btn d-flex col-12 btn-lg btn-info align-items-center justify-content-end">
                                     Next
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -1309,7 +1342,8 @@
                             </div>
 
                             <div class="col" x-show="step == totalStep" x-transition>
-                                <button wire:offline.attr="disabled" onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
+                                <button wire:offline.attr="disabled"
+                                    onclick="setTimeout(function(){window.scrollTo(0,0)}, 500);" type="button"
                                     wire:click="$emit('confirmParameters')"
                                     class="btn d-flex col-12 btn-lg btn-success align-items-center justify-content-end">
                                     Add Parameters

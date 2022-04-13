@@ -20,7 +20,10 @@ class PersonalitationPlant extends Model
         'chloride',
         'well_pump',
         'feed_pump',
-        'boosterc'
+        'boosterc',
+        'feed_flow',
+        'permeate_flow',
+        'reject_flow'
     ];
 
     // Relations
