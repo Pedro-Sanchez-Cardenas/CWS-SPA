@@ -18,6 +18,7 @@
                     <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
                     <span
                         class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
+                        <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
                 @else
                     <span class="text-danger">N/A</span>
                 @endif
