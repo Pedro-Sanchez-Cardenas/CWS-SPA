@@ -1,4 +1,4 @@
-<div wire:poll class="row">
+<div wire:poll.1000ms class="row">
     @foreach ($plants as $plant)
         <div class="col-sm-1 col-md-6 col-lg-6">
             <div class="card">
@@ -141,7 +141,7 @@
                             <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
                             <span
                                 class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
-                                <span>({{ $plant->product_waters->first()->assignedBy->name }})</span>
+                            <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
                         @else
                             <span class="text-danger">N/A</span>
                         @endif
