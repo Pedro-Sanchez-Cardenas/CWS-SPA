@@ -1,4 +1,4 @@
-<div wire:poll.1000ms class="col-xl-4 col-md-6 col-12">
+<div wire:poll.500ms class="col-xl-4 col-md-6 col-12">
     <div class="card card-congratulation-medal">
         <div class="card-body">
             <h5>{{ $plant->name }}</h5>

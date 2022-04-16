@@ -1,4 +1,4 @@
-<div wire:poll.1000ms class="row">
+<div wire:poll.500ms class="row">
     @foreach ($plants as $plant)
         <div class="col-sm-1 col-md-6 col-lg-6">
             <div class="card">
