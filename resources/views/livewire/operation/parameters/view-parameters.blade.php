@@ -1,5 +1,5 @@
-<div>
-    <div wire:poll.5000ms class="row match-height">
+<div wire:poll.10000ms>
+    <div class="row match-height">
         {{-- Product Reading --}}
         <div class="col-md-4">
             <h4 class="mb-1">PRODUCTION READINGS</h4>
@@ -77,7 +77,7 @@
             <div class="card">
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <thead class="sticky-top">
                                 <tr class="text-center text-nowrap" role="row">
                                     <th colspan="@if ($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
@@ -293,7 +293,7 @@
             <div class="card">
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <thead class="sticky-top">
                                 <tr class="text-center text-nowrap" role="row">
                                     <th colspan="1" rowspan="2">
@@ -568,7 +568,7 @@
             <div class="card">
                 <div class="card-body p-0 m-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <thead class="sticky-top">
                                 <tr class="text-center" role="row">
                                     <th>TRAIN</th>
