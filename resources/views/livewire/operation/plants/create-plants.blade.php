@@ -17,25 +17,25 @@
                                         <br><br>
                                         <div class="table-responsive">
                                             <table class="table">
-                                                <caption>List of users</caption>
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
+                                                        <th scope="col">Nombre del archivo</th>
+                                                        <th scope="col">Eliminar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
+                                                        <td>Archivo img</td>
+                                                        </td>
+                                                        <td><a href=""
+                                                                class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div id="preview"></div>
+                                            <div class="img-fluid" alt="Responsive image" id="preview"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -56,29 +56,24 @@
                                         <br><br>
                                         <div class="table-responsive">
                                             <table class="table">
-                                                <table class="table">
-                                                    <caption>List of users</caption>
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Nombre del archivo</th>
-                                                            <th scope="col">Ver</th>
-                                                            <th scope="col">Eliminar</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td><a href=""
-                                                                    class="btn btn-sm btn-outline-secondary">Ver</a>
-                                                            </td>
-                                                            <td><a href=""
-                                                                    class="btn btn-sm btn-outline-danger">Eliminar</a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nombre del archivo</th>
+
+                                                        <th scope="col">Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Archivo pdf</td>
+                                                        </td>
+                                                        <td><a href=""
+                                                                class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
