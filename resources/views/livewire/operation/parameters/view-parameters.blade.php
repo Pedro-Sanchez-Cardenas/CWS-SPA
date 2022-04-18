@@ -1,6 +1,45 @@
-<div wire:poll.10000ms>
+<div wire:poll.30000ms>
+    {{-- Data Filters --}}
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">DATA FILTERS</h4>
+            <div class="col-md-2 mb-1">
+                <label class="form-label" for="select2-icons">Export to:</label>
+                <select data-placeholder="Select a type..." class="select2-icons form-select" id="select2-icons">
+                    <optgroup label="File types">
+                        <option value="pdf" data-icon="file">PDF</option>
+                        <option value="excel" data-icon="file-text">EXCEL</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+
+        <div class="card-body statistics-body">
+            <div class="card-body statistics-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="date-range">DATE/TIME</label>
+                        <input type="search" id="date-range" wire:model='date_range' autocomplete="off"
+                            class="form-control flatpickr-range" placeholder="YYYY-MM-DD to YYYY-MM-DD" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="bills">BILLS</label>
+                        <select data-placeholder="Select a type..." class="select2-icons form-select" id="bills">
+                            <optgroup label="Bills">
+                                <option value="pdf" data-icon="file">PDF</option>
+                                <option value="excel" data-icon="file-text">EXCEL</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Data Filters end --}}
+
     <div class="row match-height">
-        {{-- Product Reading --}}
+        {{-- Production Reading --}}
         <div class="col-md-4">
             <h4 class="mb-1">PRODUCTION READINGS</h4>
             <div class="card">
@@ -65,7 +104,7 @@
                 </div>
 
                 <div class="card-footer">
-                    Total: {{ $plant->product_waters->count() }}
+                    Total: {{ $plants->first()->product_waters->count() }}
                 </div>
             </div>
         </div>
@@ -165,7 +204,7 @@
                                 </tr>
                             </thead>
 
-                            @foreach ($plant->product_waters as $product_water)
+                            @foreach ($plants->first()->product_waters as $product_water)
                                 <tbody>
                                     <tr class="text-center">
                                         {{-- Init Feed line to hotel supply --}}
@@ -279,7 +318,7 @@
                 </div>
 
                 <div class="card-footer">
-                    Total: {{ $plant->product_waters->count() }}
+                    Total: {{ $plants->first()->product_waters->count() }}
                 </div>
             </div>
         </div>
@@ -393,7 +432,7 @@
                                 </tr>
                             </thead>
 
-                            @foreach ($plant->pretreatments->groupBy('group_by') as $pretreatment)
+                            @foreach ($plants->first()->pretreatments->groupBy('group_by') as $pretreatment)
                                 <tbody>
                                     <tr class="text-center">
                                         <td>
@@ -555,7 +594,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    Total: {{ $plant->pretreatments->groupBy('group_by')->count() }}
+                    Total: {{ $plants->first()->pretreatments->groupBy('group_by')->count() }}
                 </div>
             </div>
         </div>
@@ -699,7 +738,7 @@
                                 </tr>
                             </thead>
 
-                            @foreach ($plant->operations->groupBy('group_by') as $operation)
+                            @foreach ($plants->first()->operations->groupBy('group_by') as $operation)
                                 <tbody>
                                     <tr class="text-center">
                                         <td>
@@ -945,7 +984,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    Total: {{ $plant->operations->groupBy('group_by')->count() }}
+                    Total: {{ $plants->first()->operations->groupBy('group_by')->count() }}
                 </div>
             </div>
         </div>
