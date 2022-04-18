@@ -1,5 +1,5 @@
 /*================================================================================
-	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Vuexy - 
 	Version: 2.0
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
@@ -15,20 +15,22 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 [x-cloak] {
   display: none !important;
 }
-<style type="text/css">
-.file-select {
+
+<style type="text/css">.file-select {
   position: relative;
   display: inline-block;
 }
 
 .file-select::before {
-  background-color:rgba(0, 0, 0, 0);";
-  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  ";
+color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  content: 'Seleccionar'; /* testo por defecto */
+  content: 'Seleccionar';
+  /* testo por defecto */
   position: absolute;
   left: 0;
   right: 0;
@@ -47,6 +49,5 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 #src-file2::before {
   content: 'Seleccionar Archivo';
 }
-</style>
 
-                    
+</style>

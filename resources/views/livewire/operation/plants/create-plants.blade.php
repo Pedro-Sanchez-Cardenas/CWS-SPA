@@ -4,44 +4,85 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body statistics-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="card-header">
-                                    <h4 class="card-title">Plant image</h4>
+                        <div class="card-header">
+                            <h4 class="card-title">Contract</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-2 ">
+                                <div class="input-group ">
+                                    <div class="col-md-12">
+                                        <input type="file" class="form-control"
+                                            accept="image/gif,image/jpeg,image/jpg,image/png" name="files[]" id="file"
+                                            nChange="onLoadImage(event.target.files)">
+                                        <br><br>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <caption>List of users</caption>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">First</th>
+                                                        <th scope="col">Last</th>
+                                                        <th scope="col">Handle</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div id="preview"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="file1">
-                                <input class="" type="file"
-                                    accept="image/gif,image/jpeg,image/jpg,image/png" id="file"
-                                    nChange="onLoadImage(event.target.files)">
-                                <button type="button" class="btn btn-outline-danger" @click="remove()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-trash" viewBox="0 0 16 16">
-                                        <path
-                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                        <path fill-rule="evenodd"
-                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                    </svg>
-                                </button>
-                                <span id="imgName"></span>
-                                <br><br>
-                                <div id="preview"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body statistics-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="card-header">
-                                    <h4 class="card-title">Plant image</h4>
+                        <div class="card-header">
+                            <h4 class="card-title">Contract</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-2 ">
+                                <div class="input-group ">
+                                    <div class="col-md-12">
+                                        <input type="file" multiple class="form-control" accept=".pdf" name="files[]">
+                                        <br><br>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <table class="table">
+                                                    <caption>List of users</caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Nombre del archivo</th>
+                                                            <th scope="col">Ver</th>
+                                                            <th scope="col">Eliminar</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td><a href=""
+                                                                    class="btn btn-sm btn-outline-secondary">Ver</a>
+                                                            </td>
+                                                            <td><a href=""
+                                                                    class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="file2">
-                                <input class="" type="file" accept=".pdf" id="file">
-                                <br><br>
-                                <div id="preview"></div>
                             </div>
                         </div>
                     </div>
@@ -1132,98 +1173,17 @@
             }
         </script>
 
-        {{-- CSS/BOTTON IMAGE --}}
+        {{-- CSS/BOTTON --}}
         --<style type="text/css">
-            .file1 {
-                position: relative;
-                display: inline-block;
-            }
-
-            .file1::before {
-                background-color: rgba(0, 0, 0, 0);
-                color: white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 3px;
-                content: 'Seleccionar';
-                /* testo por defecto */
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                width: 200px;
-                height: 41px;
-                border: white 0.5px solid;
-
-            }
-
-            .file1 input[type="file"] {
-                opacity: 0;
-                width: 200px;
-                height: 49px;
-
-            }
-
-            #file-file::before {
-                content: 'Seleccionar Archivo 1';
-            }
-
-            #file-file::before {
-                content: 'Seleccionar Archivo 2';
-            }
-
             #preview img {
-                width: 555px;
-                height: 250px;
-            }
+                width: 385px;
+                height: 220px;
 
-            {{-- CSS/BOTTON PDF --}} .file2 {
-                position: relative;
-                display: inline-block;
-            }
-
-            .file2::before {
-                background-color: rgba(0, 0, 0, 0);
-                color: white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 3px;
-                content: 'Seleccionar';
-                /* testo por defecto */
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                width: 200px;
-                height: 35px;
-                border: white 0.5px solid;
-
-            }
-
-            .file2 input[type="file"] {
-                opacity: 0;
-                width: 200px;
-                height: 32px;
-                display: inline-block;
-            }
-
-            #file-file::before {
-                content: 'Seleccionar Archivo 1';
-            }
-
-            #file-file::before {
-                content: 'Seleccionar Archivo 2';
             }
 
         </style>--}}
     @endpush
 </div>
-
-
-
-
 <script>
     document.getElementById("file").onchange = function(e) {
         // Creamos el objeto de la clase FileReader
@@ -1241,24 +1201,6 @@
 
             preview.innerHTML = '';
             preview.append(image);
-
         };
     }
 </script>
-
-
-
-<script>
-    function onLoadImage(files2) {
-        console.log(files2)
-        if (files2 && files2[0]) {
-            document
-                .getElementById('imgName')
-                .innerHTML = files2[0].name
-        }
-    }
-</script>
-
-
-<input id="img" type="file" onChange="onLoadImage(event.target.files)" />
-<span id="imgName"></span>
