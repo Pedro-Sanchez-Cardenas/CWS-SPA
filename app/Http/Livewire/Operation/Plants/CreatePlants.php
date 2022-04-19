@@ -32,6 +32,7 @@ class CreatePlants extends Component
     public $personalitations;
     public $contract;
     public $trains;
+    public $variable;
 
     // Costs
     public $botM3;

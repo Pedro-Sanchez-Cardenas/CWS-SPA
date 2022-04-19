@@ -666,7 +666,7 @@
                                     </span>
                                     <select
                                         class="form-select @error('contract.billingDay') border border-danger @enderror"
-                                        id="billingDay" wire:model.lazy="contract.billingDay">
+                                        id="billingDay" wire:model="contract.billingDay">
                                         <option value="">SELECT BILLING DAY</option>
                                         @for ($i = 1; $i < 32; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -681,7 +681,7 @@
 
 
                             <div class="col-6">
-                                <label for="contract.billingPeriod" class="form-label">Billing period</label>
+                                <label for="contract.billingPeriod" class="form-label"> period</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error('billingPeriod') border border-danger @enderror"
@@ -751,6 +751,7 @@
                 <div x-text="$wire.trainIndex"></div>
 
                 <div class="card-body">
+                    <h1>{{ $variable }}</h1>
                     <template x-for="(list, index) in trains">
                         <div class="row p-1 m-1 border rounded" wire:key="trainIndex">
                             <div class="row">
@@ -773,7 +774,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error('trains.capacity') border border-danger @enderror"
-                                            wire:model="list.id" placeholder="0.00 m3">
+                                            wire:model="variable" placeholder="0.00 m3">
                                     </div>
                                     @error('trains.capacity')
                                         <span class="text-danger">{{ $message }}</span>
