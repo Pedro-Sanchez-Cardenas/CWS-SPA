@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             PlantsSeeder::class,
             MembraneSeeder::class,
             TrainsSeeder::class,
-            InvoiceStatusSeeder::class
+            InvoiceStatusSeeder::class,
+            PaymentTypeSeeder::class
         ]);
     }
 }

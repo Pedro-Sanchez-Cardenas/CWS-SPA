@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class event extends Model
+class CategoryConcep extends Model
 
 {
     use HasFactory;
