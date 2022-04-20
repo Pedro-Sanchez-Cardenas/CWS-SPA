@@ -56,7 +56,7 @@
         <div class="col-md-4">
             <h4 class="mb-1">PRODUCTION READINGS</h4>
             <div wire:loading>
-                <div class="card d-flex justify-content-center align-items-center" style="height: 350px;">
+                <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
                     <span>Loading...</span>
@@ -137,7 +137,7 @@
         <div class="col-md-8">
             <h4 class="mb-1">PRODUCT WATER</h4>
             <div wire:loading>
-                <div class="card d-flex justify-content-center align-items-center" style="height: 350px;">
+                <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
                     <span>Loading...</span>
@@ -363,7 +363,7 @@
         <div class="col-12">
             <h4 class="mb-1">PRETREATMENT</h4>
             <div wire:loading>
-                <div class="card d-flex justify-content-center align-items-center" style="height: 350px;">
+                <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
                     <span>Loading...</span>
@@ -647,7 +647,7 @@
         <div class="col-md-12">
             <h4 class="mb-1">OPERATION</h4>
             <div wire:loading>
-                <div class="card d-flex justify-content-center align-items-center" style="height: 350px;">
+                <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
                     <span>Loading...</span>
