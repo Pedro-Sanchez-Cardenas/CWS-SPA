@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Operation\Parameters;
 
 use App\Models\Plant;
 use Livewire\Component;
-use phpDocumentor\Reflection\Types\Null_;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ViewParameters extends Component
 {
@@ -46,5 +46,11 @@ class ViewParameters extends Component
             )->get();
             return $plants;
         }
+    }
+
+    public function createPDF()
+    {
+        $pdf = PDF::loadView('PdfTemplates/pdf');
+        return $pdf->download('invoice.pdf');
     }
 }

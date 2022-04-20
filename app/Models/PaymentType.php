@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class payment_types extends Model
+class PaymentType extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,9 +19,4 @@ class payment_types extends Model
         'user_created_at',
         'user_updated_at'
     ];
-
-    public function UserContracts()
-    {
-        return $this->hasMany(UserContract::class, 'payment_types_id', 'id');
-    }
 }
