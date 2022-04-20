@@ -17,25 +17,25 @@
                                         <br><br>
                                         <div class="table-responsive">
                                             <table class="table">
-                                                <caption>List of users</caption>
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
+                                                        <th scope="col">Nombre del archivo</th>
+                                                        <th scope="col">Eliminar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
+                                                        <td>Archivo img</td>
+                                                        </td>
+                                                        <td><a href=""
+                                                                class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div id="preview"></div>
+                                            <div class="img-fluid" alt="Responsive image" id="preview"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -56,29 +56,24 @@
                                         <br><br>
                                         <div class="table-responsive">
                                             <table class="table">
-                                                <table class="table">
-                                                    <caption>List of users</caption>
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Nombre del archivo</th>
-                                                            <th scope="col">Ver</th>
-                                                            <th scope="col">Eliminar</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td><a href=""
-                                                                    class="btn btn-sm btn-outline-secondary">Ver</a>
-                                                            </td>
-                                                            <td><a href=""
-                                                                    class="btn btn-sm btn-outline-danger">Eliminar</a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nombre del archivo</th>
+
+                                                        <th scope="col">Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Archivo pdf</td>
+                                                        </td>
+                                                        <td><a href=""
+                                                                class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -671,7 +666,7 @@
                                     </span>
                                     <select
                                         class="form-select @error('contract.billingDay') border border-danger @enderror"
-                                        id="billingDay" wire:model.lazy="contract.billingDay">
+                                        id="billingDay" wire:model="contract.billingDay">
                                         <option value="">SELECT BILLING DAY</option>
                                         @for ($i = 1; $i < 32; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -686,7 +681,7 @@
 
 
                             <div class="col-6">
-                                <label for="contract.billingPeriod" class="form-label">Billing period</label>
+                                <label for="contract.billingPeriod" class="form-label"> period</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error('billingPeriod') border border-danger @enderror"
@@ -756,6 +751,7 @@
                 <div x-text="$wire.trainIndex"></div>
 
                 <div class="card-body">
+                    <h1>{{ $variable }}</h1>
                     <template x-for="(list, index) in trains">
                         <div class="row p-1 m-1 border rounded" wire:key="trainIndex">
                             <div class="row">
@@ -778,7 +774,7 @@
                                         </span>
                                         <input type="number"
                                             class="form-control @error('trains.capacity') border border-danger @enderror"
-                                            wire:model="list.id" placeholder="0.00 m3">
+                                            wire:model="variable" placeholder="0.00 m3">
                                     </div>
                                     @error('trains.capacity')
                                         <span class="text-danger">{{ $message }}</span>
