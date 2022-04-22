@@ -11,7 +11,7 @@
                         <option value="excel" data-icon="file-text">EXCEL</option>
                     </optgroup>
                 </select>
-                <a href="{{ route('parameters.pdf') }}">PDF</a>
+                <a href="{{ route('parameters.pdf', ['id' => $plant->id, 'date_range' => $date_range]) }}">PDF</a>
             </div>
         </div>
 
