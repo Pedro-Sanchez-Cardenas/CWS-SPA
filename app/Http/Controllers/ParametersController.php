@@ -18,6 +18,7 @@ use App\Models\UserAssistance;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class ParametersController extends Controller
 {
@@ -266,6 +267,55 @@ class ParametersController extends Controller
         $plant = Plant::find($id);
 
         return view('content.operations.parameters.show', compact('plant'));
+    }
+
+    public function exportPDF($id, $date_range = null)
+    {
+        $plant = Plant::find($id);
+
+        if (isset($date_range)) {
+            $dates = explode(" ", $date_range);
+
+            if (count($dates) > 2) {
+                $parameters = Plant::where('id', $id)->with(
+                    [
+                        'product_waters' => function ($query) use ($date_range) {
+                            $dates = explode(" ", $date_range);
+                            $query->whereBetween('created_at', [$dates[0], $dates[2]]);
+                        },
+                        'pretreatments' => function ($query) use ($date_range) {
+                            $dates = explode(" ", $date_range);
+                            $query->whereBetween('created_at', [$dates[0], $dates[2]]);
+                        },
+                        'operations' => function ($query) use ($date_range) {
+                            $dates = explode(" ", $date_range);
+                            $query->whereBetween('created_at', [$dates[0], $dates[2]]);
+                        }
+                    ]
+                )->get();
+
+                $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
+                return $pdf->stream();
+            }
+        } else {
+            $parameters = Plant::where('id', $id)->with(
+                [
+                    'product_waters' => function ($query) {
+                        $query->get();
+                    },
+                    'pretreatments' => function ($query) {
+                        $query->get();
+                    },
+                    'operations' => function ($query) {
+                        $query->get();
+                    }
+                ]
+            )->get();
+
+            $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range', 'plant'));
+            return $pdf->stream();
+        }
+        //return $pdf->download('parametersReport.pdf');
     }
 
     /**

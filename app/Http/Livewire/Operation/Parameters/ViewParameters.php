@@ -4,13 +4,13 @@ namespace App\Http\Livewire\Operation\Parameters;
 
 use App\Models\Plant;
 use Livewire\Component;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class ViewParameters extends Component
 {
 
     public Plant $plant;
     public $date_range;
+    public $dates = [];
 
     protected $queryString = [
         'date_range' => ['except' => ''],
@@ -20,7 +20,7 @@ class ViewParameters extends Component
     {
         $dates = explode(" ", $this->date_range);
         return view('livewire.operation.parameters.view-parameters', [
-            'plants' => empty($this->date_range) ? (Plant::where('id', $this->plant->id)->with('product_waters', 'pretreatments', 'operations')->get()) : ((count($dates) > 2) ? $this->query() : Plant::where('id', $this->plant->id)->with('product_waters', 'pretreatments', 'operations')->get()),
+            'parameters' => empty($this->date_range) ? (Plant::where('id', $this->plant->id)->with('product_waters', 'pretreatments', 'operations')->get()) : ((count($dates) > 2) ? $this->query() : Plant::where('id', $this->plant->id)->with('product_waters', 'pretreatments', 'operations')->get()),
         ]);
     }
 
@@ -28,7 +28,7 @@ class ViewParameters extends Component
     {
         $dates = explode(" ", $this->date_range);
         if (count($dates) > 2) {
-            $plants = Plant::where('id', $this->plant->id)->with(
+            $parameters = Plant::where('id', $this->plant->id)->with(
                 [
                     'product_waters' => function ($query) {
                         $dates = explode(" ", $this->date_range);
@@ -44,13 +44,7 @@ class ViewParameters extends Component
                     }
                 ]
             )->get();
-            return $plants;
+            return $parameters;
         }
-    }
-
-    public function createPDF()
-    {
-        $pdf = PDF::loadView('PdfTemplates/pdf');
-        return $pdf->download('invoice.pdf');
     }
 }
