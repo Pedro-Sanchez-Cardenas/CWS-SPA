@@ -16,8 +16,6 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_created_at')->nullable()->constrained('users');
-            $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

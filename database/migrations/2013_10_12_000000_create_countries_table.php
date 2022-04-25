@@ -19,8 +19,6 @@ class CreateCountriesTable extends Migration
             $table->string('abbreviation');
             $table->double('vat');
             $table->foreignId('currencies_id')->constrained();
-            $table->foreignId('user_created_at')->nullable()->constrained('users');
-            $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });
