@@ -39,7 +39,7 @@ class CreateOperationsTable extends Migration
             $table->double('reject_pressure');
 
             $table->text('observations')->nullable();
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

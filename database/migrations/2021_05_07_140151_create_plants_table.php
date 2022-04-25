@@ -31,7 +31,7 @@ class CreatePlantsTable extends Migration
             $table->foreignId('clients_id')->nullable()->constrained();
             $table->foreignId('operator')->constrained('users');
             $table->foreignId('manager')->nullable()->constrained('users');
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
 
             $table->foreignId('personalitation_plants_id')->constrained();

@@ -27,7 +27,7 @@ class CreateProductionInvoicesTable extends Migration
             $table->double('total');
             $table->string('status'); // Cambiar por production_invoice_types
 
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

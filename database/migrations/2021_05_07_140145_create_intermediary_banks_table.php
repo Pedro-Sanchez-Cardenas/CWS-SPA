@@ -19,7 +19,7 @@ class CreateIntermediaryBanksTable extends Migration
             $table->string('swift');
             $table->string('location');
             $table->foreignId('countries_id')->constrained();
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

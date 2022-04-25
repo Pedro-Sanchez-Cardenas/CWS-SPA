@@ -24,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->foreignId('companies_id')->constrained();
             $table->foreignId('services_id')->constrained();
             $table->foreignId('data_banks_id')->nullable()->constrained();
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });
