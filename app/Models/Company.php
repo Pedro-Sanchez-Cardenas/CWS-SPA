@@ -32,4 +32,8 @@ class Company extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function country() {
+        return $this->hasOne(Country::class, 'id', 'countries_id');
+    }
 }
