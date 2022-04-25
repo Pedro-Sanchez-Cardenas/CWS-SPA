@@ -26,7 +26,7 @@ class CreateDataBanksTable extends Migration
             $table->string('account_number');
             $table->string('key_account');
             $table->foreignId('intermediary_banks_id')->constrained();
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

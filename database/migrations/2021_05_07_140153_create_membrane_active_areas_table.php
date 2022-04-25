@@ -16,7 +16,7 @@ class CreateMembraneActiveAreasTable extends Migration
         Schema::create('membrane_active_areas', function (Blueprint $table) {
             $table->id();
             $table->integer('ft2');
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

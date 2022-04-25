@@ -30,7 +30,7 @@ class CreatePlantContractsTable extends Migration
             $table->integer('billing_day')->nullable();
             $table->foreignId('payment_types_id')->constrained();
 
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->foreignId('user_deleted_at')->nullable()->constrained('users');
             $table->timestamps();

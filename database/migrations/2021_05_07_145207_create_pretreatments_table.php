@@ -27,7 +27,7 @@ class CreatePretreatmentsTable extends Migration
 
             $table->double('backwash');
             $table->text('observations')->nullable();
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

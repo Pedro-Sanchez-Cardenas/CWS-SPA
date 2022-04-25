@@ -26,7 +26,7 @@ class CreateTrainsTable extends Migration
 
             $table->enum('status', ['Enabled', 'Disabled'])->default('Enabled');
             $table->enum('type', ['Train', 'Irrigation', 'Municipal'])->default('Train');
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });

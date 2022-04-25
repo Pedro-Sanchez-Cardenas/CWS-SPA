@@ -17,7 +17,7 @@ class CreatePolishFilterTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('microns');
-            $table->foreignId('user_created_at')->constrained('users');
+            $table->foreignId('user_created_at')->nullable()->constrained('users');
             $table->foreignId('user_updated_at')->nullable()->constrained('users');
             $table->timestamps();
         });
