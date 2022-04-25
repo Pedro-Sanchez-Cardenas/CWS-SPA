@@ -269,15 +269,13 @@ class ParametersController extends Controller
         return view('content.operations.parameters.show', compact('plant'));
     }
 
-    public function exportPDF($id, $date_range = null)
+    public function exportPDF($plant, $date_range = null)
     {
-        $plant = Plant::find($id);
-
         if (isset($date_range)) {
             $dates = explode(" ", $date_range);
 
             if (count($dates) > 2) {
-                $parameters = Plant::where('id', $id)->with(
+                $parameters = Plant::where('id', $plant)->with(
                     [
                         'product_waters' => function ($query) use ($date_range) {
                             $dates = explode(" ", $date_range);
@@ -295,10 +293,12 @@ class ParametersController extends Controller
                 )->get();
 
                 $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
+                $pdf->setPaper('A4', 'landscape');
+                $pdf->render();
                 return $pdf->stream();
             }
         } else {
-            $parameters = Plant::where('id', $id)->with(
+            $parameters = Plant::where('id', $plant)->with(
                 [
                     'product_waters' => function ($query) {
                         $query->get();
@@ -312,7 +312,9 @@ class ParametersController extends Controller
                 ]
             )->get();
 
-            $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range', 'plant'));
+            $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
+            $pdf->setPaper('A4', 'landscape');
+            $pdf->render();
             return $pdf->stream();
         }
         //return $pdf->download('parametersReport.pdf');
