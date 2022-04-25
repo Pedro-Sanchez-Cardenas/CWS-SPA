@@ -40,7 +40,7 @@
 
                         <div class="col-6">
                             <div class="input-group mb-2">
-                                <span class="input-group-text">PRODUCTION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span class="input-group-text">PRODUCTION</span>
                                 <input type="text" class="form-control" placeholder="" id="idNombre"
                                     aria-label="Amount (to the nearest dollar)">
                                 <span class="input-group-text">m³</span>

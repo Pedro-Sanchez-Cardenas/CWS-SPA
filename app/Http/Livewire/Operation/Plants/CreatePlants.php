@@ -19,6 +19,13 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 
+class UploadPhotoWithPreview extends Component
+{
+    use WithFileUploads;
+
+    public $photo;
+}
+
 class CreatePlants extends Component
 {
     use WithFileUploads;
@@ -32,7 +39,7 @@ class CreatePlants extends Component
     public $personalitations;
     public $contract;
     public $trains;
-    public $variable;
+    public $photo;
 
     // Costs
     public $botM3;
@@ -120,6 +127,7 @@ class CreatePlants extends Component
             'membranesActiveArea' => MembraneActiveArea::all(),
             'polishFilterTypes' => PolishFilterType::all(),
             'companies' => Company::all(),
+
         ]);
     }
 }
