@@ -5,25 +5,24 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Image</h4>
+                            <h4 class="card-title">Plant image</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="row mb-2 ">
-                                <div class="input-group ">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <input type="file" wire:model="photo" class="form-control"
-                                                accept="image/gif,image/jpeg,image/jpg,image/png" name="files[]"
-                                                id="file">
-                                            @if ($photo)
-                                                Photo Preview:
-                                                <img src="{{ $photo->temporaryUrl() }}">
-                                            @endif
-                                            @error('photo')
-                                                <span class="error">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <br><br>
+                        <div class="card-body mb-1">
+                            <div class="input-group ">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <input type="file" wire:model="photo" class="form-control"
+                                            livewire-upload-progress accept="image/gif,image/jpeg,image/jpg,image/png"
+                                            name="files[]" id="file">
+                                        <br>
+                                        @if ($photo)
+                                            <img width="545x" height="250" src="{{ $photo->temporaryUrl() }}">
+                                            <br><br>
+                                            <input type="button" value="Delate image" class="col-md-12" />
+                                        @endif
+                                        @error('photo')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -33,33 +32,17 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Multiple files</h4>
+                            <h4 class="card-title">Multiple file</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="row mb-2 ">
-                                <div class="input-group ">
-                                    <div class="col-md-12">
+                        <div class="card-body" wire:ignore>
+                            <div class="input-group">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
                                         <input type="file" name="files[]" id="inputFile" multiple class="form-control"
-                                            accept=".pdf" wire:model.lazy="files">
-                                        <br><br>
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nombre del archivo</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            <ul id="listaDeArchivos">
-                                                            </ul>
-                                                        </th>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            accept=".pdf" wire:model="multiple">
+                                        <br>
+                                        <ul id="listaDeArchivos">
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +51,6 @@
                 </div>
             </div>
         </section>
-
-
         <section class="card">
             <div class="card-header">
                 <h4 class="card-title">Plant Data</h4>
@@ -297,7 +278,6 @@
                             Total cisterns: <span class="text-danger font-bold" x-text="cisterns.length"></span>
                         </div>
                     </div>
-
                     <div class="ms-2">
                         <button type="button" @click="add()"
                             class="btn btn-success waves-effect waves-float waves-light">
@@ -309,7 +289,6 @@
                             Add Cistern
                         </button>
                     </div>
-
                     <div class="card-body">
                         <div class="text-danger text-center" x-show="cisterns.length == 0">
                             <div>
@@ -418,7 +397,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="card-footer">
                         <p>The fields can be left empty, but it is necesary that they exist to add the
                             number of thaks.</p>
@@ -722,16 +700,21 @@
                 </div>
             </div>
         </section>
+        <section id="">
+            <livewire:operation.plants.trains /> <!-- Paso de parametros por el render del componente trains -->
+        </section>
+        <button wire:offline.attr="disabled" type="submit"
+            class="btn btn-success col-12 waves-effect waves-float waves-light">
+            <div class="d-flex justify-content-center align-items-center font-weight-bold" wire:model="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                </svg>
+                <span>CREATE PLANT</span>
+            </div>
+        </button>
     </form>
-    <style type="text/css">
-        .img {
-            width: 50;
-            height: 5999;
-
-        }
-
-    </style>
-
     @push('jsLivewire')
         <script>
             function cisterns() {

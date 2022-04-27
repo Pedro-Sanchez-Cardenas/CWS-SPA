@@ -40,6 +40,7 @@ class CreatePlants extends Component
     public $contract;
     public $trains;
     public $photo;
+    public $multiple;
 
     // Costs
     public $botM3;
@@ -126,8 +127,7 @@ class CreatePlants extends Component
             'managers' => User::role('Manager')->get(),
             'membranesActiveArea' => MembraneActiveArea::all(),
             'polishFilterTypes' => PolishFilterType::all(),
-            'companies' => Company::all(),
-
+            'companies' => Company::all()
         ]);
     }
 }
