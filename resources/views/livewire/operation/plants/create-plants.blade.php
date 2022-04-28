@@ -1,5 +1,6 @@
 <div>
-    <form wire:submit.prevent="store">
+    <form name="formulario" method="post" action="ejemploPost.php">
+        Nombre: <input type="text" name="nombre" value="">
         <section>
             <div class="row">
                 <div class="col-md-6">
@@ -39,7 +40,7 @@
                                 <div class="col-md-12">
                                     <div class="table-responsive">
                                         <input type="file" name="files[]" id="inputFile" multiple class="form-control"
-                                            accept=".pdf" wire:model="multiple">
+                                            accept=".pdf" wire:model="multiplepdf">
                                         <br>
                                         <ul id="listaDeArchivos">
                                         </ul>
@@ -55,7 +56,6 @@
             <div class="card-header">
                 <h4 class="card-title">Plant Data</h4>
             </div>
-
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 mb-2">
@@ -319,7 +319,7 @@
                                         </span>
 
                                         <input :id="index" type="text" step="0.01" class="form-control"
-                                            placeholder="0.0 lt" :x-model="index">
+                                            placeholder="0.0 lt" :x-model="index" wire:model="cisterns">
                                     </div>
                                     @error('cisterns.capacity')
                                         <span class="text-danger">{{ $message }}</span>
@@ -700,7 +700,7 @@
                 </div>
             </div>
         </section>
-        <section id="">
+        <section id="trains">
             <livewire:operation.plants.trains /> <!-- Paso de parametros por el render del componente trains -->
         </section>
         <button wire:offline.attr="disabled" type="submit"

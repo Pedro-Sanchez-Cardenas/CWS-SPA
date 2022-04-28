@@ -40,7 +40,7 @@ class CreatePlants extends Component
     public $contract;
     public $trains;
     public $photo;
-    public $multiple;
+    public $multiplepdf;
 
     // Costs
     public $botM3;
@@ -116,6 +116,7 @@ class CreatePlants extends Component
         dd($this->trainIndex);
         //$this->validate();
     }
+    
 
     public function render()
     {
@@ -130,4 +131,5 @@ class CreatePlants extends Component
             'companies' => Company::all()
         ]);
     }
+    
 }
