@@ -3,21 +3,20 @@
 namespace App\Http\Livewire\Operation\Plants;
 
 use Livewire\Component;
-
-use App\Models\BillingPeriod;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\MembraneActiveArea;
+use App\Models\PersonalitationPlant;
 use App\Models\Plant;
-use App\Models\PlantContract;
 use App\Models\PlantType;
 use App\Models\PolishFilterType;
 use App\Models\Train;
 use App\Models\User;
-
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
+
 
 class UploadPhotoWithPreview extends Component
 {
@@ -113,10 +112,66 @@ class CreatePlants extends Component
 
     public function store()
     {
-        dd($this->trainIndex);
-        //$this->validate();
+        /*try {*/
+        DB::transaction(function () {
+            PersonalitationPlant::create([
+                'irrigation' => $this->personalitations['irrigation'],
+                'sdi' => $this->personalitations['sdi'],
+                'chloride' => $this->personalitations['chloride'],
+                'well_pump' => $this->personalitations['wellPump'],
+                'feed_pump' => $this->personalitations['feedPump'],
+                'boosterc' => 0,
+                'feed_flow' => 0,
+                'permeate_flow' => 0,
+                'reject_flow'  => 0
+            ]);
+
+            $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
+
+            Plant::create([
+                'name' => $this->plants['name'],
+                'location' => $this->plants['location'],
+                'cover_path' => $this->plants['cover'], // nullable
+                'installed_capacity' => 0,
+                'design_limit' => 0,
+
+                'polish_filter_types_id' => $this->trains['polishFilters'],
+                'polish_filters_quantity' => $this->trains['polishQuantity'],
+
+                'multimedia_filters_quantity' => $this->trains['multimediaFilsters'],
+                'cisterns_quantity' => 0,
+
+                'companies_id' => $this->plants['company'],
+                'clients_id' => 0,
+                'personalitation_plants_id' => $idPersonalitationPlant->id,
+                'countries_id' => $this->plants['country'],
+                'plant_types_id' => $this->plants['type'],
+                'operator' => $this->plants['operator'], //nullable
+                'manager' => $this->plants['manager'], // nullable
+                'user_created_at',
+                'user_updated_at' // nullable
+            ]);
+
+            $idPlant = Plant::latest('id')->first();
+
+            Train::create([
+                'plants_id' => $idPlant->id,
+                'capacity',
+                'boosters_quantity',
+                'tds',
+                'status',
+                'type',
+                'membrane_active_areas_id',
+                'membrane_elements',
+                'user_created_at',
+                'user_updated_at'
+            ]);
+        });
+        /*} catch (\Exception $e) {
+            dd('ERROR TRY CATCH');
+        }*/
     }
-    
+
 
     public function render()
     {
@@ -131,5 +186,4 @@ class CreatePlants extends Component
             'companies' => Company::all()
         ]);
     }
-    
 }
