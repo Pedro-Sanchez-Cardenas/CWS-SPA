@@ -91,26 +91,24 @@
         <table class="table table-bordered">
             <tbody>
                 <td>
-                    <div class="container">
-                        <p><small>{{ $parameters->first()->company->business_name }}</small><br>
-                            <small class="">{{ $parameters->first()->company->location }},
-                                {{ $parameters->first()->company->suburb }},
-                                {{ $parameters->first()->country->name }},
-                                <strong>C.P.#</strong>{{ $parameters->first()->company->zip }} <br>
-                                <strong>TRN
-                                    NUMBER/RFC:
-                                </strong>{{ $parameters->first()->company->trn_number != null? $parameters->first()->company->trn_number: $parameters->first()->company->rfc }}
-                            </small>
-                        </p>
-                        <h5>Operation Report ({{ $date_range != null ? $date_range : 'All' }})</h5>
-                        <h6>{{ $parameters->first()->name }}</h6>
-                        <span
-                            class="badge badge-primary">{{ $parameters->first()->trains->where('type', 'Train')->count() }}
-                            Train</span>
-                        @if ($parameters->first()->trains->where('type', 'Irrigation')->count() > 0)
-                            <span class="badge badge-success">Irrigation</span>
-                        @endif
-                    </div>
+                    <p><small>{{ $parameters->first()->company->business_name }}</small><br>
+                        <small class="">{{ $parameters->first()->company->location }},
+                            {{ $parameters->first()->company->suburb }},
+                            {{ $parameters->first()->country->name }},
+                            <strong>C.P.#</strong>{{ $parameters->first()->company->zip }} <br>
+                            <strong>TRN
+                                NUMBER/RFC:
+                            </strong>{{ $parameters->first()->company->trn_number != null? $parameters->first()->company->trn_number: $parameters->first()->company->rfc }}
+                        </small>
+                    </p>
+                    <h5>Operation Report ({{ $date_range != null ? $date_range : 'All' }})</h5>
+                    <h6>{{ $parameters->first()->name }}</h6>
+                    <span
+                        class="badge badge-primary">{{ $parameters->first()->trains->where('type', 'Train')->count() }}
+                        Train</span>
+                    @if ($parameters->first()->trains->where('type', 'Irrigation')->count() > 0)
+                        <span class="badge badge-success">Irrigation</span>
+                    @endif
                 </td>
 
                 <td class="td-img text-center">
@@ -686,4 +684,5 @@
         @endforeach
     </main>
 </body>
+
 </html>
