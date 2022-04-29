@@ -16,6 +16,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class UploadPhotoWithPreview extends Component
@@ -112,61 +113,62 @@ class CreatePlants extends Component
 
     public function store()
     {
+        dd("test");
         /*try {*/
-        DB::transaction(function () {
-            PersonalitationPlant::create([
-                'irrigation' => $this->personalitations['irrigation'],
-                'sdi' => $this->personalitations['sdi'],
-                'chloride' => $this->personalitations['chloride'],
-                'well_pump' => $this->personalitations['wellPump'],
-                'feed_pump' => $this->personalitations['feedPump'],
-                'boosterc' => 0,
-                'feed_flow' => 0,
-                'permeate_flow' => 0,
-                'reject_flow'  => 0
-            ]);
+        //DB::transaction(function () {
+        PersonalitationPlant::create([
+            'irrigation' => $this->personalitations['irrigation'],
+            'sdi' => $this->personalitations['sdi'],
+            'chloride' => $this->personalitations['chloride'],
+            'well_pump' => $this->personalitations['wellPump'],
+            'feed_pump' => $this->personalitations['feedPump'],
+            'boosterc' => 0,
+            'feed_flow' => 0,
+            'permeate_flow' => 0,
+            'reject_flow'  => 0
+        ]);
 
-            $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
+        $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
 
-            Plant::create([
-                'name' => $this->plants['name'],
-                'location' => $this->plants['location'],
-                'cover_path' => $this->plants['cover'], // nullable
-                'installed_capacity' => 0,
-                'design_limit' => 0,
+        Plant::create([
+            'name' => $this->plants['name'],
+            'location' => $this->plants['location'],
+            'cover_path' => $this->plants['cover'], // nullable
+            'installed_capacity' => 0,
+            'design_limit' => 0,
 
-                'polish_filter_types_id' => $this->trains['polishFilters'],
-                'polish_filters_quantity' => $this->trains['polishQuantity'],
+            'polish_filter_types_id' => $this->trains['polishFilters'],
+            'polish_filters_quantity' => $this->trains['polishQuantity'],
 
-                'multimedia_filters_quantity' => $this->trains['multimediaFilsters'],
-                'cisterns_quantity' => 0,
+            'multimedia_filters_quantity' => $this->trains['multimediaFilsters'],
+            'cisterns_quantity' => 0,
 
-                'companies_id' => $this->plants['company'],
-                'clients_id' => 0,
-                'personalitation_plants_id' => $idPersonalitationPlant->id,
-                'countries_id' => $this->plants['country'],
-                'plant_types_id' => $this->plants['type'],
-                'operator' => $this->plants['operator'], //nullable
-                'manager' => $this->plants['manager'], // nullable
-                'user_created_at',
-                'user_updated_at' // nullable
-            ]);
+            'companies_id' => $this->plants['company'],
+            'clients_id' => 0,
+            'personalitation_plants_id' => $idPersonalitationPlant->id,
+            'countries_id' => $this->plants['country'],
+            'plant_types_id' => $this->plants['type'],
+            'operator' => $this->plants['operator'], //nullable
+            'manager' => $this->plants['manager'], // nullable
+            'user_created_at',
+        ]);
 
-            $idPlant = Plant::latest('id')->first();
+        $idPlant = Plant::latest('id')->first();
 
+        for ($t = 0; $t < count($this->trains); $t++) {
             Train::create([
                 'plants_id' => $idPlant->id,
-                'capacity',
-                'boosters_quantity',
-                'tds',
-                'status',
-                'type',
-                'membrane_active_areas_id',
-                'membrane_elements',
-                'user_created_at',
-                'user_updated_at'
+                'capacity' => $this->trains['capacity'][$t],
+                'boosters_quantity' => $this->trains['booster'][$t],
+                'tds' => $this->trains['tds'][$t],
+                'status' => 'Enable',
+                'type' => 'Train',
+                'membrane_active_areas_id' => $this->trains['mArea'][$t],
+                'membrane_elements' => $this->trains['mElements'][$t],
+                'user_created_at' => Auth::id(),
             ]);
-        });
+        }
+        //});
         /*} catch (\Exception $e) {
             dd('ERROR TRY CATCH');
         }*/
