@@ -112,7 +112,7 @@
                 </td>
 
                 <td class="td-img text-center">
-                    <img class="mt-3" src="{{ asset('logo_v1.png') }}" alt="">
+                    {{-- <img class="mt-3" src="{{ asset('logo_v1.png') }}" alt=""> --}}
                 </td>
             </tbody>
         </table>
