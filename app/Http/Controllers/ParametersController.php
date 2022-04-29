@@ -303,7 +303,7 @@ class ParametersController extends Controller
 
                 $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
                 $pdf->setPaper('letter', 'landscape');
-                $pdf->render();
+                //$pdf->render();
                 return $pdf->stream();
             }
         } else {
@@ -323,7 +323,7 @@ class ParametersController extends Controller
 
             $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
             $pdf->setPaper('letter', 'landscape');
-            $pdf->render();
+           //$pdf->render();
             return $pdf->stream();
         }
         //return $pdf->download('parametersReport.pdf');
