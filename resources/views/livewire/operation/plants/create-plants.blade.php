@@ -1,4 +1,5 @@
 <div>
+    {{ $errors }}
     <form wire:submit.prevent="store" method="POST">
         <section>
             <div class="row">
@@ -699,9 +700,8 @@
         <section id="trains">
             <livewire:operation.plants.trains /> <!-- Paso de parametros por el render del componente trains -->
         </section>
-        <button wire:offline.attr="disabled" type="submit"
-            class="btn btn-success col-12 waves-effect waves-float waves-light">
-            <div class="d-flex justify-content-center align-items-center font-weight-bold" wire:model="">
+        <button wire:offline.attr="disabled" class="btn btn-success col-12 waves-effect waves-float waves-light">
+            <div class="d-flex justify-content-center align-items-center font-weight-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
