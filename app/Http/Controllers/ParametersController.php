@@ -279,21 +279,30 @@ class ParametersController extends Controller
                     [
                         'product_waters' => function ($query) use ($date_range) {
                             $dates = explode(" ", $date_range);
+                            $replace = array(0 => $dates[0], 1 => 'to', 2 => Carbon::createFromFormat('Y-m-d', $dates[2])->addDay()->toDateString());
+                            $dates = array_replace($dates, $replace);
+
                             $query->whereBetween('created_at', [$dates[0], $dates[2]]);
                         },
                         'pretreatments' => function ($query) use ($date_range) {
                             $dates = explode(" ", $date_range);
+                            $replace = array(0 => $dates[0], 1 => 'to', 2 => Carbon::createFromFormat('Y-m-d', $dates[2])->addDay()->toDateString());
+                            $dates = array_replace($dates, $replace);
+
                             $query->whereBetween('created_at', [$dates[0], $dates[2]]);
                         },
                         'operations' => function ($query) use ($date_range) {
                             $dates = explode(" ", $date_range);
+                            $replace = array(0 => $dates[0], 1 => 'to', 2 => Carbon::createFromFormat('Y-m-d', $dates[2])->addDay()->toDateString());
+                            $dates = array_replace($dates, $replace);
+
                             $query->whereBetween('created_at', [$dates[0], $dates[2]]);
                         }
                     ]
                 )->get();
 
                 $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
-                $pdf->setPaper('A4', 'landscape');
+                $pdf->setPaper('letter', 'landscape');
                 $pdf->render();
                 return $pdf->stream();
             }
@@ -313,7 +322,7 @@ class ParametersController extends Controller
             )->get();
 
             $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
-            $pdf->setPaper('A4', 'landscape');
+            $pdf->setPaper('letter', 'landscape');
             $pdf->render();
             return $pdf->stream();
         }
