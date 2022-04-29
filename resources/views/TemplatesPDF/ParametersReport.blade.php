@@ -63,7 +63,7 @@
             left: 20cm;
             right: 0cm;
             height: 1.7cm;
-            font-size: 10px;
+            font-size: 13px;
         }
 
         hr {
@@ -678,7 +678,7 @@
 
                 <div class="firma">
                     <hr>
-                    <span>Reviewed and authorized</span>
+                    <span>Verified</span>
                 </div>
             </footer>
         @endforeach
