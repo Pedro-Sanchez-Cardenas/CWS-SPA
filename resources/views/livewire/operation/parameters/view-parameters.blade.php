@@ -360,8 +360,8 @@
 
     {{-- Pretreatment --}}
     <h4 class="mb-1">PRETREATMENT</h4>
-    <div wire:loading>
-        <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
+    <div wire:loading class="col-12">
+        <div class="card d-flex justify-content-center align-items-center col-12" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
             <span>Loading...</span>
@@ -640,7 +640,7 @@
 
     {{-- Operation --}}
     <h4 class="mb-1">OPERATION</h4>
-    <div wire:loading>
+    <div wire:loading class="col-12">
         <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
