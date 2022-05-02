@@ -48,11 +48,6 @@
             height: 1.3cm;
         }
 
-        img {
-            width: 90px;
-            height: 140px;
-        }
-
         .firma {
             position: absolute;
             margin: 0cm;
@@ -112,7 +107,11 @@
                 </td>
 
                 <td class="td-img text-center">
-                    <img class="mt-3" src="{{ asset('logo_v1.png') }}" alt="">
+                    @if ($parameters->first()->company->name == 'CWS-MEX')
+                        <img class="mt-3" style="width: 120px; height: 140px;" src="{{ asset('logo-cws.png') }}" alt="">
+                    @else
+                        <img class="mt-3" style="width: 90px; height: 140px;" src="{{ asset('logo-cws-ku3.png') }}" alt="">
+                    @endif
                 </td>
             </tbody>
         </table>
@@ -372,9 +371,9 @@
 
                 <tbody style="font-size: 10px">
                     @for ($train = 0;
-                    $train <
-                    $parameters->first()->trains->where('type', 'Train')->count();
-                    $train++)
+    $train <
+    $parameters->first()->trains->where('type', 'Train')->count();
+    $train++)
                         <tr class="text-center">
                             <td>
                                 {{ $train + 1 }}
@@ -568,9 +567,9 @@
 
                 <tbody style="font-size: 10px">
                     @for ($train = 0;
-                    $train <
-                    $parameters->first()->trains->where('type', 'Train')->count();
-                    $train++)
+    $train <
+    $parameters->first()->trains->where('type', 'Train')->count();
+    $train++)
                         <tr class="text-center">
                             <td>
                                 {{ $train + 1 }}
