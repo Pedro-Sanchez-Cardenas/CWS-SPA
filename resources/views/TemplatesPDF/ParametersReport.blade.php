@@ -108,7 +108,7 @@
 
                 <td class="td-img text-center">
                     @if ($parameters->first()->company->name == 'CWS-MEX')
-                        <img class="mt-3" style="width: 120px; height: 140px;" src="{{ asset('logo-cws.png') }}" alt="">
+                        <img class="mt-3" style="width: 130px; height: 140px;" src="{{ asset('logo-cws.png') }}" alt="">
                     @else
                         <img class="mt-3" style="width: 90px; height: 140px;" src="{{ asset('logo-cws-ku3.png') }}" alt="">
                     @endif
@@ -371,9 +371,9 @@
 
                 <tbody style="font-size: 10px">
                     @for ($train = 0;
-    $train <
-    $parameters->first()->trains->where('type', 'Train')->count();
-    $train++)
+                    $train <
+                    $parameters->first()->trains->where('type', 'Train')->count();
+                    $train++)
                         <tr class="text-center">
                             <td>
                                 {{ $train + 1 }}
@@ -567,9 +567,9 @@
 
                 <tbody style="font-size: 10px">
                     @for ($train = 0;
-    $train <
-    $parameters->first()->trains->where('type', 'Train')->count();
-    $train++)
+                    $train <
+                    $parameters->first()->trains->where('type', 'Train')->count();
+                    $train++)
                         <tr class="text-center">
                             <td>
                                 {{ $train + 1 }}
