@@ -667,7 +667,7 @@
                                                                 <thead>
                                                                     <tr>
                                                                         @foreach ($pretreatment[$loop->index]->polish as $polish)
-                                                                            <th>{{ $loop->iteration }}</th>
+                                                                            <th class="text-center">{{ $loop->iteration }}</th>
                                                                         @endforeach
                                                                     </tr>
                                                                 </thead>
