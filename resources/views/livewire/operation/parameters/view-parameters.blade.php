@@ -925,7 +925,7 @@
                                                             class="@if (!$loop->last) border-bottom @endif">
                                                             @for ($b = 0; $b < $operation[$loop->index]->boosters->count(); $b++)
                                                                 <td class="text-nowrap">
-                                                                    <span>{{ $operation[$loop->index]->boosters[$b]->frequency }}</span>
+                                                                    <span>{{ $operation[$loop->index]->boosters[$b]->amperage }}</span>
                                                                 </td>
                                                             @endfor
                                                         </tr>
