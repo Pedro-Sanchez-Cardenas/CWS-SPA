@@ -29,8 +29,8 @@ class PlantsSeeder extends Seeder
             'plant_types_id' => '1',
             //'design_limit',
 
-            'operator' => '8',
-            'manager' => '7',
+            'operator' => '9',
+            'manager' => '8',
             'user_created_at'  => '1',
 
             'personalitation_plants_id' => '1'
@@ -52,7 +52,7 @@ class PlantsSeeder extends Seeder
             'plant_types_id' => '1',
             'countries_id' => '1',
 
-            'operator' => '10',
+            'operator' => '11',
             //'manager' => '4',
             'user_created_at'  => '1',
             //'user_updated_at' // NULLABLE
@@ -75,8 +75,8 @@ class PlantsSeeder extends Seeder
             'plant_types_id' => '1',
             //'design_limit',
 
-            'operator' => '9',
-            'manager' => '7',
+            'operator' => '10',
+            'manager' => '8',
             'user_created_at'  => '1',
 
             'personalitation_plants_id' => '3'
