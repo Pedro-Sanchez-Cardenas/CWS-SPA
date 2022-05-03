@@ -1,65 +1,97 @@
 <div wire:poll.30000ms>
     {{-- Data Filters --}}
-    <div class="card">
-        <div class="card-body statistics-body">
-            <div class="d-flex justify-content-between">
-                <h4 class="card-title">DATA FILTERS</h4>
-
-                @hasrole('Super-Admin|Operations-Manager')
-                    <div>
-                        <strong class="form-label text-primary">Export to:</strong>
-
-                        <div class="d-flex gap-1">
-                            <a class="btn btn-danger"
-                                href="{{ route('parameters.pdf', ['id' => $plant, 'date_range' => $date_range]) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-filetype-pdf" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z" />
-                                </svg>
-                                <strong>PDF</strong>
-                            </a>
-
-                            <a class="btn btn-success" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
-                                    <path
-                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h3v2H6zm4 0v-2h3v1a1 1 0 0 1-1 1h-2zm3-3h-3v-2h3v2zm-7 0v-2h3v2H6z" />
-                                </svg>
-                                <strong>EXCEL</strong>
-                            </a>
-                        </div>
-                    </div>
-                @endhasrole
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-1">
-                        <label class="form-label" for="first-name-icon">
-                            DATE/TIME
-                        </label>
-                        <div class="input-group input-group-merge">
-                            <span class="input-group-text">
-                                <svg fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px"
-                                    height="20px">
-                                    <path
-                                        d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
-                                </svg>
-                            </span>
-                            <input type="search" id="date-range" wire:model='date_range' autocomplete="off"
-                                class="form-control flatpickr-range ps-1" placeholder="YYYY-MM-DD to YYYY-MM-DD" />
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-lg-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{ $plant->name }}</h5>
+                    <p class="card-text font-small-3">{{ $plant->location }}</p>
+                        @if ($plant->cover_path != '')
+                            <img src="{{ $plant->cover_path }}" class="img-thumbnail" alt="error img plant">
+                        @else
+                            <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
+                                class="img-thumbnail" alt="error img plant">
+                        @endif
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label" for="bills">BILLS</label>
-                    <select data-placeholder="Select a type..." class="select2-icons form-select" id="bills">
-                        <optgroup label="Bills">
-                            <!-- TODO: agregar facturas generadas por el sistema (Daniel). -->
-                        </optgroup>
-                    </select>
+                <div class="card-footer pb-0">
+                    <p class="card-subtitle mb-2 text-muted text-capitalize">Last Parameters:
+                        @if ($plant->product_waters->first())
+                            <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
+                            <span
+                                class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
+                                <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
+                        @else
+                            <span class="text-danger">N/A</span>
+                        @endif
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body statistics-body">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title">DATA FILTERS</h4>
+
+                        @hasrole('Super-Admin|Operations-Manager')
+                            <div>
+                                <strong class="form-label text-primary">Export to:</strong>
+
+                                <div class="d-flex gap-1">
+                                    <a class="btn btn-danger"
+                                        href="{{ route('parameters.pdf', ['id' => $plant, 'date_range' => $date_range]) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z" />
+                                        </svg>
+                                        <strong>PDF</strong>
+                                    </a>
+
+                                    <a class="btn btn-success" href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
+                                            <path
+                                                d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h3v2H6zm4 0v-2h3v1a1 1 0 0 1-1 1h-2zm3-3h-3v-2h3v2zm-7 0v-2h3v2H6z" />
+                                        </svg>
+                                        <strong>EXCEL</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        @endhasrole
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="mb-1">
+                                <label class="form-label" for="first-name-icon">
+                                    DATE/TIME
+                                </label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text">
+                                        <svg fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px"
+                                            height="20px">
+                                            <path
+                                                d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
+                                        </svg>
+                                    </span>
+                                    <input type="search" id="date-range" wire:model='date_range' autocomplete="off"
+                                        class="form-control flatpickr-range ps-1" placeholder="YYYY-MM-DD to YYYY-MM-DD" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <div class="col-md">
+                            <label class="form-label" for="bills">BILLS</label>
+                            <select data-placeholder="Select a type..." class="select2-icons form-select" id="bills">
+                                <optgroup label="Bills">
+                                    <!-- TODO: agregar facturas generadas por el sistema (Daniel). -->
+                                </optgroup>
+                            </select>
+                        </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,7 +101,7 @@
     <div class="row match-height">
         {{-- Production Reading --}}
         <div class="col-md-4">
-            <h3 class="mb-1">PRODUCTION READINGS</h3>
+            <h5 class="mb-1">PRODUCTION READINGS</h5>
             <div wire:loading>
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -170,7 +202,7 @@
 
         {{-- Product Water --}}
         <div class="col-md-8">
-            <h3 class="mb-1">PRODUCT WATER</h3>
+            <h5 class="mb-1">PRODUCT WATER</h5>
             <div wire:loading>
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -409,7 +441,7 @@
     </div>
 
     {{-- Pretreatment --}}
-    <h3 class="mb-1">PRETREATMENT</h3>
+    <h5 class="mb-1">PRETREATMENT</h5>
     <div wire:loading class="col-12">
         <div class="card d-flex justify-content-center align-items-center col-12" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -764,7 +796,7 @@
     {{-- Pretreatment end --}}
 
     {{-- Operation --}}
-    <h3 class="mb-1">OPERATION</h3>
+    <h5 class="mb-1">OPERATION</h5>
     <div wire:loading class="col-12">
         <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
