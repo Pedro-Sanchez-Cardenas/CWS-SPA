@@ -34,16 +34,9 @@
     </section>
 
     <section id="indexcreate">
-        <div class="row match-height">
-            <livewire:operation.plants.card-plant :plant="$plant">
-        </div>
-
-
-        <div class="row match-height">
-            <section id="body">
-                <livewire:operation.parameters.view-parameters :plant="$plant" />
-            </section>
-        </div>
+        <section id="main">
+            <livewire:operation.parameters.view-parameters :plant="$plant" />
+        </section>
     </section>
 @endsection
 
