@@ -646,7 +646,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0">
+                                    <td class="m-0 p-0">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
