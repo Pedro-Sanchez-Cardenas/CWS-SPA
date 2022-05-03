@@ -695,12 +695,12 @@
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="avatar">
                                                 <img class="round"
-                                                    src="{{'https://ui-avatars.com/api/?name='.urlencode($product_water->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
+                                                    src="{{'https://ui-avatars.com/api/?name='.urlencode($pretreatment->first()->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
                                                     alt="avatar" height="40" width="40">
                                                 <span class="avatar-status-offline"></span>
                                             </span>
                                         </div>
-                                        <strong>{{ $product_water->assignedBy->name }}</strong>
+                                        <strong>{{ $pretreatment->first()->assignedBy->name }}</strong>
                                     </td>
 
                                     <td class="m-0 px-0 text-justify">
@@ -1217,12 +1217,12 @@
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="avatar">
                                                 <img class="round"
-                                                    src="{{'https://ui-avatars.com/api/?name='.urlencode($product_water->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
+                                                    src="{{'https://ui-avatars.com/api/?name='.urlencode($operation->first()->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
                                                     alt="avatar" height="40" width="40">
                                                 <span class="avatar-status-offline"></span>
                                             </span>
                                         </div>
-                                        <strong>{{ $product_water->assignedBy->name }}</strong>
+                                        <strong>{{ $operation->first()->assignedBy->name }}</strong>
                                     </td>
 
                                     <td class="m-0 px-0">
