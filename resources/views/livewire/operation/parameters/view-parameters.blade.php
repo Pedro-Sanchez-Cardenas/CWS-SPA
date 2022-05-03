@@ -117,7 +117,7 @@
 
                                                 <td class="m-0 px-0">
                                                     @if (!$loop->parent->last)
-                                                        {{ $reading->reading -$parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
+                                                        {{ $reading->reading - $parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
                                                     @else
                                                         {{ $reading->reading }}
                                                     @endif
@@ -350,12 +350,14 @@
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <span class="avatar">
                                                         <img class="round"
-                                                            src="{{'https://ui-avatars.com/api/?name='.urlencode($product_water->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
+                                                            src="{{ 'https://ui-avatars.com/api/?name=' . urlencode($product_water->assignedBy->name) . '&color=7F9CF5&background=EBF4F4' }}"
                                                             alt="avatar" height="40" width="40">
                                                         <span class="avatar-status-offline"></span>
                                                     </span>
                                                 </div>
-                                                <strong>{{ $product_water->assignedBy->name }}</strong>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <strong>{{ $product_water->assignedBy->name }}</strong>
+                                                </div>
                                             </td>
 
                                             <td class="m-0 px-0 text-justify">
@@ -667,7 +669,8 @@
                                                                 <thead>
                                                                     <tr>
                                                                         @foreach ($pretreatment[$loop->index]->polish as $polish)
-                                                                            <th class="text-center">{{ $loop->iteration }}</th>
+                                                                            <th class="text-center">
+                                                                                {{ $loop->iteration }}</th>
                                                                         @endforeach
                                                                     </tr>
                                                                 </thead>
@@ -695,12 +698,14 @@
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="avatar">
                                                 <img class="round"
-                                                    src="{{'https://ui-avatars.com/api/?name='.urlencode($pretreatment->first()->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
+                                                    src="{{ 'https://ui-avatars.com/api/?name=' . urlencode($pretreatment->first()->assignedBy->name) . '&color=7F9CF5&background=EBF4F4' }}"
                                                     alt="avatar" height="40" width="40">
                                                 <span class="avatar-status-offline"></span>
                                             </span>
                                         </div>
-                                        <strong>{{ $pretreatment->first()->assignedBy->name }}</strong>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <strong>{{ $pretreatment->first()->assignedBy->name }}</strong>
+                                        </div>
                                     </td>
 
                                     <td class="m-0 px-0 text-justify">
@@ -1217,12 +1222,14 @@
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="avatar">
                                                 <img class="round"
-                                                    src="{{'https://ui-avatars.com/api/?name='.urlencode($operation->first()->assignedBy->name).'&color=7F9CF5&background=EBF4F4'}}"
+                                                    src="{{ 'https://ui-avatars.com/api/?name=' . urlencode($operation->first()->assignedBy->name) . '&color=7F9CF5&background=EBF4F4' }}"
                                                     alt="avatar" height="40" width="40">
                                                 <span class="avatar-status-offline"></span>
                                             </span>
                                         </div>
-                                        <strong>{{ $operation->first()->assignedBy->name }}</strong>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <strong>{{ $operation->first()->assignedBy->name }}</strong>
+                                        </div>
                                     </td>
 
                                     <td class="m-0 px-0">
