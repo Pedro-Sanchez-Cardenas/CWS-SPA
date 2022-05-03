@@ -102,7 +102,7 @@
         {{-- Production Reading --}}
         <div class="col-md-4">
             <h5 class="mb-1">PRODUCTION READINGS</h5>
-            <div wire:loading>
+            <div wire:loading class="w-100">
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
@@ -203,7 +203,7 @@
         {{-- Product Water --}}
         <div class="col-md-8">
             <h5 class="mb-1">PRODUCT WATER</h5>
-            <div wire:loading>
+            <div wire:loading class="w-100">
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
@@ -442,7 +442,7 @@
 
     {{-- Pretreatment --}}
     <h5 class="mb-1">PRETREATMENT</h5>
-    <div wire:loading class="col-12">
+    <div wire:loading class="w-100">
         <div class="card d-flex justify-content-center align-items-center col-12" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
@@ -741,7 +741,7 @@
                                     </td>
 
                                     <td class="m-0 px-0 text-justify">
-                                        <table style="width: 100%">
+                                        <table class="w-100">
                                             <tbody>
                                                 @foreach ($pretreatment as $pretre)
                                                     <tr
@@ -797,7 +797,7 @@
 
     {{-- Operation --}}
     <h5 class="mb-1">OPERATION</h5>
-    <div wire:loading class="col-12">
+    <div wire:loading class="w-100">
         <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
