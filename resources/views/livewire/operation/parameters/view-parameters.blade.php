@@ -85,13 +85,13 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="sticky-top">
                                     <tr class="text-center text-nowrap" role="row">
-                                        <th class="pt-2">Type</th>
+                                        <th class="pt-2">TYPE</th>
                                         <th>
-                                            Reading <br>
+                                            READING <br>
                                             <small class="text-danger">m³</small>
                                         </th>
                                         <th>
-                                            Production <br>
+                                            PRODUCTION <br>
                                             <small class="text-danger">m³</small>
                                         </th>
 
@@ -99,11 +99,11 @@
                                     </tr>
                                 </thead>
 
-                                @forelse ($parameters->first()->product_waters as $product_water)
+                                @foreach ($parameters->first()->product_waters as $product_water)
                                     <tbody>
                                         @foreach ($product_water->production_readings as $reading)
                                             <tr class="text-center">
-                                                <td>
+                                                <td class="m-0 px-0.5">
                                                     @if ($reading->type == 'Train')
                                                         {{ $reading->type }} #{{ $loop->iteration }}
                                                     @else
@@ -111,11 +111,11 @@
                                                     @endif
                                                 </td>
 
-                                                <td class="text-nowrap">
+                                                <td class="m-0 px-0.5">
                                                     {{ $reading->reading }}
                                                 </td>
 
-                                                <td class="text-nowrap">
+                                                <td class="m-0 px-0.5">
                                                     @if (!$loop->parent->last)
                                                         {{ $reading->reading -$parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
                                                     @else
@@ -124,7 +124,7 @@
                                                 </td>
 
                                                 <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
-                                                    class="text-nowrap">
+                                                    class="text-nowrap m-0 px-0.5">
                                                     @if (!$loop->first && !$loop->last)
                                                         <span>{{ $product_water->created_at }}</span>
                                                     @endif
@@ -132,9 +132,7 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                @empty
-                                    <h5 class="text-danger">*There is no information</h5>
-                                @endforelse
+                                @endforeach
                             </table>
                         @else
                             <div style="height: 350pt;"
@@ -274,117 +272,94 @@
                                     </tr>
                                 </thead>
 
-                                @forelse ($parameters->first()->product_waters as $product_water)
+                                @foreach ($parameters->first()->product_waters as $product_water)
                                     <tbody>
                                         <tr class="text-center">
                                             {{-- Init Feed line to hotel supply --}}
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->ph }}</span>
-                                                </div>
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->ph }}
                                             </td>
 
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->hardness }}</span>
-                                                </div>
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->hardness }}
                                             </td>
 
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->tds }}</span>
-                                                </div>
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->tds }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->h2s }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->h2s }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->free_chlorine }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->free_chlorine }}
                                             </td>
 
                                             @if ($plant->personalitation_plant->chloride == 'yes')
-                                                <td class="text-nowrap">
-                                                    <div class="d-flex flex-column">
-                                                        <span>{{ $product_water->chloride }}</span>
-                                                    </div>
+                                                <td class="m-0 px-0.5">
+                                                    {{ $product_water->chloride }}
                                                 </td>
                                             @endif
                                             {{-- End Feed line to hotel supply --}}
 
                                             {{-- Init Dayli chemical supply --}}
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->calcium_chloride }}</span>
-                                                </div>
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->calcium_chloride }}
                                             </td>
 
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->sodium_carbonate }}</span>
-                                                </div>
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->sodium_carbonate }}
                                             </td>
 
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->sodium_hypochlorite }}</span>
-                                                </div>
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->sodium_hypochlorite }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->antiscalant }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->antiscalant }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->sodium_hydroxide }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->sodium_hydroxide }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->hydrochloric_acid }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->hydrochloric_acid }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->kl1 }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->kl1 }}
                                             </td>
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chemical->kl2 }}</span>
-                                                </div>
+
+                                            <td class="m-0 px-0.5">
+                                                {{ $product_water->chemical->kl2 }}
                                             </td>
                                             {{-- End Dayli chemical supply --}}
 
                                             {{-- Init Cisterns --}}
                                             @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
-                                                <td>
-                                                    <span>{{ $product_water->cisterns[$c]->capacity }}</span>
+                                                <td class="m-0 px-0.5">
+                                                    {{ $product_water->cisterns[$c]->capacity }}
                                                 </td>
                                             @endfor
                                             {{-- End Cisterns --}}
 
 
-                                            <td class="text-nowrap">
+                                            <td class="text-nowrap m-0 px-0.5">
                                                 {{ $product_water->assignedBy->name }}
                                             </td>
 
-                                            <td>
+                                            <td class="m-0 px-0.5">
                                                 {{ $product_water->observations }}
                                             </td>
 
-                                            <td class="text-nowrap">
+                                            <td class="text-nowrap m-0 px-0.5">
                                                 {{ $product_water->created_at }}
                                             </td>
                                         </tr>
                                     </tbody>
-                                @empty
-                                    <h5 class="text-danger">*There is no information</h5>
-                                @endforelse
+                                @endforeach
                             </table>
                         @else
                             <div style="height: 350pt;"
@@ -538,7 +513,7 @@
                         @foreach ($parameters->first()->pretreatments->groupBy('group_by') as $pretreatment)
                             <tbody>
                                 <tr class="text-center">
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($parameters->first()->trains->where('type', 'Train') as $train)
@@ -553,7 +528,7 @@
                                     </td>
 
                                     @if ($plant->personalitation_plant->well_pump == 'yes')
-                                        <td class="m-0 p-0">
+                                        <td class="m-0 px-0.5">
                                             <table style="width: 100%">
                                                 <tbody>
                                                     @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -568,7 +543,7 @@
                                             </table>
                                         </td>
 
-                                        <td class="m-0 p-0">
+                                        <td class="m-0 px-0.5">
                                             <table style="width: 100%">
                                                 <tbody>
                                                     @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -585,7 +560,7 @@
                                     @endif
 
                                     @if ($plant->personalitation_plant->feed_pump == 'yes')
-                                        <td class="m-0 p-0">
+                                        <td class="m-0 px-0.5">
                                             <table style="width: 100%">
                                                 <tbody>
                                                     @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -600,7 +575,7 @@
                                             </table>
                                         </td>
 
-                                        <td class="m-0 p-0">
+                                        <td class="m-0 px-0.5">
                                             <table style="width: 100%">
                                                 <tbody>
                                                     @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -616,7 +591,7 @@
                                         </td>
                                     @endif
 
-                                    <td class="m-0 p-0" colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
+                                    <td class="m-0 px-0.5" colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tr class="@if (!$loop->last) border-bottom @endif">
@@ -629,7 +604,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -643,7 +618,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -657,7 +632,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -671,7 +646,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -706,11 +681,11 @@
                                         </table>
                                     </td>
 
-                                    <td class="text-nowrap">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         {{ $pretreatment->last()->userCreated->name }}
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($pretreatment as $pretre)
@@ -724,7 +699,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="text-nowrap">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         {{ $pretreatment->last()->created_at }}
                                     </td>
                                 </tr>
@@ -910,7 +885,7 @@
                         @foreach ($parameters->first()->operations->groupBy('group_by') as $operation)
                             <tbody>
                                 <tr class="text-center">
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -925,7 +900,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -942,7 +917,7 @@
 
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
                                         @foreach ($plant->trains->where('type', 'Train') as $train)
-                                            <td class="m-0 p-0"
+                                            <td class="m-0 px-0.5"
                                                 colspan="{{ $plant->trains->first()->boosters_quantity }}">
                                                 <table style="width: 100%">
                                                     <tbody>
@@ -960,7 +935,7 @@
                                         @endforeach
                                     @endif
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -979,7 +954,7 @@
 
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
                                         @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <td colspan="2">
+                                            <td class="m-0 px-0.5" colspan="2">
                                                 <table style="width:100%">
                                                     <tbody>
                                                         <tr class="text-center">
@@ -995,7 +970,7 @@
                                         @endfor
                                     @endif
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1010,7 +985,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1025,7 +1000,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1040,7 +1015,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1055,7 +1030,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1072,7 +1047,7 @@
 
                                     {{-- FLOW --}}
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <td class="m-0 p-0">
+                                        <td class="m-0 px-0.5">
                                             <table style="width: 100%">
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
                                                     <tbody>
@@ -1088,7 +1063,7 @@
                                         </td>
                                     @endif
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1103,7 +1078,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1118,7 +1093,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1136,7 +1111,7 @@
 
                                     {{-- PRESSURES --}}
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <td class="m-0 p-0">
+                                        <td class="m-0 px-0.5">
                                             <table style="width: 100%">
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
                                                     <tbody>
@@ -1153,7 +1128,7 @@
                                     @endif
 
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <td colspan="2">
+                                        <td class="m-0 px-0.5" colspan="2">
                                             <table style="width: 100%">
                                                 <tbody>
                                                     @foreach ($plant->trains->where('type', 'Train') as $train)
@@ -1170,7 +1145,7 @@
                                         </td>
                                     @endif
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1185,7 +1160,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1200,7 +1175,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
@@ -1216,11 +1191,11 @@
                                     </td>
                                     {{-- END PRESSURES --}}
 
-                                    <td class="text-nowrap">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         {{ $operation->last()->assignedBy->name }}
                                     </td>
 
-                                    <td class="m-0 p-0">
+                                    <td class="m-0 px-0.5">
                                         <table style="width: 100%">
                                             <tbody>
                                                 @foreach ($operation as $oper)
@@ -1234,7 +1209,7 @@
                                         </table>
                                     </td>
 
-                                    <td class="text-nowrap">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         {{ $operation->last()->created_at }}
                                     </td>
                                 </tr>
