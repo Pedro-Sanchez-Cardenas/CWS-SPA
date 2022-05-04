@@ -131,7 +131,7 @@
         @foreach ($parameters->first()->product_waters as $product_water)
             <strong class="text-primary">{{ $product_water->created_at->toDatestring() }}</strong>
             <h6 style="font-size: 11px">PRODUCTION READINGS</h6>
-            <table style="width: 40%;" border="1">
+            <table class="w-25 table-bordered">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TYPE</th>
@@ -181,7 +181,7 @@
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
                 PRODUCT WATER</h6>
-            <table style="width: 60%;" border="1">
+            <table class="table-bordered" style="width: 60%">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th colspan="@if ($parameters->first()->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
@@ -275,7 +275,7 @@
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
                 PRETREATMENT</h6>
-            <table style="width: 100%" border="1">
+            <table class="w-100 table-bordered">
                 <thead class="text-center" style="font-size: 10px">
                     <tr role="row">
                         <th class="m-0 p-0" colspan="1" rowspan="2">
@@ -441,7 +441,7 @@
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
                 OPERATION</h6>
-            <table style="width: 100%;" border="1">
+            <table class="w-100 table-bordered">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TRAIN</th>
