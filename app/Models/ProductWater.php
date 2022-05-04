@@ -26,6 +26,7 @@ class ProductWater extends Model
         'chloride',
 
         'observations',
+        'ope_mana_observation',
 
         'user_created_at',
         'user_updated_at'
