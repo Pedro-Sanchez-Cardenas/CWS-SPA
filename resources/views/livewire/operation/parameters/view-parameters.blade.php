@@ -1,4 +1,4 @@
-<div wire:poll.30000ms>
+<div wire:poll.60000ms>
     {{-- Data Filters --}}
     <div class="row">
         <div class="col-lg-4 col-12">
@@ -6,12 +6,12 @@
                 <div class="card-body">
                     <h5>{{ $plant->name }}</h5>
                     <p class="card-text font-small-3">{{ $plant->location }}</p>
-                        @if ($plant->cover_path != '')
-                            <img src="{{ $plant->cover_path }}" class="img-thumbnail" alt="error img plant">
-                        @else
-                            <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
-                                class="img-thumbnail" alt="error img plant">
-                        @endif
+                    @if ($plant->cover_path != '')
+                        <img src="{{ $plant->cover_path }}" class="img-thumbnail" alt="error img plant">
+                    @else
+                        <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
+                            class="img-thumbnail" alt="error img plant">
+                    @endif
                 </div>
 
                 <div class="card-footer pb-0">
@@ -20,7 +20,7 @@
                             <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
                             <span
                                 class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
-                                <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
+                            <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
                         @else
                             <span class="text-danger">N/A</span>
                         @endif
@@ -71,14 +71,15 @@
                                 </label>
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text">
-                                        <svg fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px"
-                                            height="20px">
+                                        <svg fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
+                                            width="20px" height="20px">
                                             <path
                                                 d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
                                         </svg>
                                     </span>
                                     <input type="search" id="date-range" wire:model='date_range' autocomplete="off"
-                                        class="form-control flatpickr-range ps-1" placeholder="YYYY-MM-DD to YYYY-MM-DD" />
+                                        class="form-control flatpickr-range ps-1"
+                                        placeholder="YYYY-MM-DD to YYYY-MM-DD" />
                                 </div>
                             </div>
                         </div>
@@ -225,7 +226,11 @@
                                         <th colspan="{{ $plant->cisterns_quantity }}">Cistern Levels</th>
                                         <th rowspan="2" class="pt-3">ASSIGNED BY</th>
                                         <th rowspan="2" class="pt-3">OBSERVATION</th>
+                                        <th rowspan="2" class="pt-3">OPERATIONS MANAGER OBSERVATION</th>
                                         <th rowspan="2" class="pt-3">DATE/TIME</th>
+                                        @hasrole('Super-Admin|Operation-Manager')
+                                            <th rowspan="2" class="pt-3">ACTIONS</th>
+                                        @endhasrole
                                     </tr>
 
                                     <tr class="text-center text-nowrap" role="row">
@@ -393,13 +398,64 @@
                                             </td>
 
                                             <td class="m-0 px-0 text-justify">
-                                                <p class="text-justify" style="width: 500px">
-                                                    {{ $product_water->observations }}
+                                                <p class="text-justify p-1" style="width: 500px">
+                                                    @if ($product_water->observations != null)
+                                                        {{ $product_water->observations }}
+                                                    @else
+                                                        <span class="text-danger">NO COMMENTS</span>
+                                                    @endif
                                                 </p>
                                             </td>
 
+                                            {{-- OPERATIONS MANAGER OBSERVATIONS --}}
+                                            <td class="m-0 p-1 text-justify">
+                                                @if ($product_water->ope_mana_observation == null)
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-success" type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#addOpeManaObservation"
+                                                            wire:click='get_id_toAddOpeManaObservation({{ $product_water->id }})'>
+                                                            <div
+                                                                class="d-flex justify-content-center align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                    <path
+                                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                                </svg>
+                                                                <strong class="ms-1">COMMENT</strong>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                @else
+                                                    <p class="text-justify" style="width: 500px">
+                                                        {{ $product_water->ope_mana_observation }}
+                                                    </p>
+                                                @endif
+                                            </td>
+                                            {{-- OPERATIONS MANAGER OBSERVATIONS END --}}
+
                                             <td class="text-nowrap m-0 px-0.1">
                                                 {{ $product_water->created_at }}
+                                            </td>
+
+                                            <td class="text-nowrap m-0 px-0.1">
+                                                <div class="d-flex justify-content-center align-items-center gap-1">
+                                                    <button type="button" class="btn btn-sm btn-warning"
+                                                        data-bs-toggle="modal" data-bs-target="#editParameters"
+                                                        wire:click='get_id_editParameters({{ $product_water->id }})'>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-pencil-square"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1317,4 +1373,71 @@
         </div>
     </div>
     {{-- Operation end --}}
+
+    {{-- Modal Add Operation Manager Observation --}}
+    <div wire:ignore.self class="modal fade" id="addOpeManaObservation" tabindex="-1"
+        aria-labelledby="addOpeManaObservationLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Operation Manager Observation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form wire:submit.prevent="AddOpeManaObservation()">
+                    <div class="modal-body">
+                        @if (session('success'))
+                            <div class="alert alert-success mt-1 alert-validation-msg" role="alert"
+                                style="display: block;">
+                                <div class="alert-body d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                    </svg>
+                                    <span class="ms-1">
+                                        {{ session('success') }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
+                        <textarea style="resize: none" class="form-control" wire:model.lazy='opeManaObservation' cols="30" rows="10"
+                            placeholder="Observation"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Add Operation Manager Observation End --}}
+
+    {{-- Modal Edit Parameters --}}
+    <div wire:ignore.self class="modal fade" id="editParameters" tabindex="-1"
+        aria-labelledby="editParametersLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Operation Manager Observations</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form wire:submit.prevent="AddOpeManaObservation()">
+                    <div class="modal-body">
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Edit parameters --}}
 </div>
