@@ -136,7 +136,7 @@
         @foreach ($parameters->first()->product_waters as $product_water)
             <strong class="text-primary">{{ $product_water->created_at->toDatestring() }}</strong>
             <h6 style="font-size: 11px">PRODUCTION READINGS</h6>
-            <table class="table-sm table-bordered bdr">
+            <table class="table-bordered bdr" style="width: 30%">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TYPE</th>
@@ -184,7 +184,7 @@
 
 
             <h6 style="font-size: 11px"
-                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-1': 'mt-3' }}">
+                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
                 PRODUCT WATER</h6>
             <table class="table-bordered bdr" style="width: 60%">
                 <thead style="font-size: 10px">
@@ -278,7 +278,7 @@
 
 
             <h6 style="font-size: 11px"
-                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-1': 'mt-3' }}">
+                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
                 PRETREATMENT</h6>
             <table class="w-100 table-bordered bdr">
                 <thead class="text-center" style="font-size: 10px">
@@ -443,7 +443,7 @@
             </table>
 
 
-            <h6 style="font-size: 11px" class="mt-3">
+            <h6 style="font-size: 11px" class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
                 OPERATION</h6>
             <table class="w-100 table-bordered bdr">
                 <thead style="font-size: 10px">
@@ -501,6 +501,7 @@
                             PH <br>
                             <small class="text-danger">U. ph</small>
                         </th>
+
                         <th>
                             TEMP <br>
                             <small class="text-danger">°C</small>
@@ -512,10 +513,12 @@
                             FEED <br>
                             <small class="text-danger">ppm TDS</small>
                         </th>
+
                         <th class="text-nowrap">
                             PERMEATE <br>
                             <small class="text-danger">ppm TDS</small>
                         </th>
+
                         <th class="text-nowrap">
                             REJECT <br>
                             <small class="text-danger">ppm TDS</small>
@@ -533,10 +536,12 @@
                             FEED <br>
                             <small class="text-danger">gpm</small>
                         </th>
+
                         <th>
                             PERMEATE <br>
                             <small class="text-danger">gpm</small>
                         </th>
+
                         <th>
                             REJECT <br>
                             <small class="text-danger">gpm</small>
@@ -561,10 +566,12 @@
                             H.P. IN <br>
                             <small class="text-danger">psi</small>
                         </th>
+
                         <th class="text-nowrap">
                             H.P. OUT <br>
                             <small class="text-danger">psi</small>
                         </th>
+
                         <th class="text-nowrap">
                             REJECT <br>
                             <small class="text-danger">psi</small>
