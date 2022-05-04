@@ -78,12 +78,17 @@
             padding-left: 0.3cm;
         }
 
+        .bdr {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
-        <table class="table table-bordered">
+        <table class="table table-bordered bdr">
             <tbody>
                 <td>
                     <p><small>{{ $parameters->first()->company->business_name }}</small><br>
@@ -93,7 +98,7 @@
                             <strong>C.P.#</strong>{{ $parameters->first()->company->zip }} <br>
                             <strong>TRN
                                 NUMBER/RFC:
-                            </strong>{{ $parameters->first()->company->trn_number != null? $parameters->first()->company->trn_number: $parameters->first()->company->rfc }}
+                            </strong>{{ $parameters->first()->company->trn_number != null ? $parameters->first()->company->trn_number : $parameters->first()->company->rfc }}
                         </small>
                     </p>
                     <h5>Operation Report ({{ $date_range != null ? $date_range : 'All' }})</h5>
@@ -131,7 +136,7 @@
         @foreach ($parameters->first()->product_waters as $product_water)
             <strong class="text-primary">{{ $product_water->created_at->toDatestring() }}</strong>
             <h6 style="font-size: 11px">PRODUCTION READINGS</h6>
-            <table class="w-25 table-bordered">
+            <table class="table-sm table-bordered bdr">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TYPE</th>
@@ -163,7 +168,7 @@
 
                             <td class="text-nowrap">
                                 @if (!$loop->parent->last)
-                                    {{ $reading->reading -$parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
+                                    {{ $reading->reading - $parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
                                 @else
                                     {{ $reading->reading }}
                                 @endif
@@ -179,9 +184,9 @@
 
 
             <h6 style="font-size: 11px"
-                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
+                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-1': 'mt-3' }}">
                 PRODUCT WATER</h6>
-            <table class="table-bordered" style="width: 60%">
+            <table class="table-bordered bdr" style="width: 60%">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th colspan="@if ($parameters->first()->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
@@ -273,9 +278,9 @@
 
 
             <h6 style="font-size: 11px"
-                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
+                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-1': 'mt-3' }}">
                 PRETREATMENT</h6>
-            <table class="w-100 table-bordered">
+            <table class="w-100 table-bordered bdr">
                 <thead class="text-center" style="font-size: 10px">
                     <tr role="row">
                         <th class="m-0 p-0" colspan="1" rowspan="2">
@@ -423,9 +428,9 @@
                             <td class="m-0 p-0">
                                 @foreach ($pretreatment[$banderaPretreatments]->polish as $polish)
                                     @if ($polish->filter_change != null)
-                                        {{ $loop->iteration }},
+                                        {{ $loop->iteration }}@if(!$loop->first),@endif
                                     @else
-                                        --
+                                        --@if(!$loop->last),@endif
                                     @endif
                                 @endforeach
                             </td>
@@ -438,10 +443,9 @@
             </table>
 
 
-            <h6 style="font-size: 11px"
-                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
+            <h6 style="font-size: 11px" class="mt-3">
                 OPERATION</h6>
-            <table class="w-100 table-bordered">
+            <table class="w-100 table-bordered bdr">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TRAIN</th>
@@ -571,9 +575,9 @@
 
                 <tbody style="font-size: 10px">
                     @for ($train = 0;
-                        $train <
-                        $parameters->first()->trains->where('type', 'Train')->count();
-                        $train++)
+                    $train <
+                    $parameters->first()->trains->where('type', 'Train')->count();
+                    $train++)
                         <tr class="text-center">
                             <td>
                                 {{ $train + 1 }}
