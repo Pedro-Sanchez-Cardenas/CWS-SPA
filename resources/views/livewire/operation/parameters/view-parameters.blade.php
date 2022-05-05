@@ -1,49 +1,97 @@
-<div wire:poll.30000ms>
+<div wire:poll.60000ms>
     {{-- Data Filters --}}
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">DATA FILTERS</h4>
-            <div class="col-md-2 mb-1">
-                <label class="form-label" for="select2-icons">Export to:</label>
-                <select data-placeholder="Select a type..." class="select2-icons form-select" id="select2-icons">
-                    <optgroup label="File types">
-                        <option value="pdf" data-icon="file">PDF</option>
-                        <option value="excel" data-icon="file-text">EXCEL</option>
-                    </optgroup>
-                </select>
-                <a href="{{ route('parameters.pdf', ['id' => $plant, 'date_range' => $date_range]) }}">PDF</a>
+    <div class="row">
+        <div class="col-lg-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{ $plant->name }}</h5>
+                    <p class="card-text font-small-3">{{ $plant->location }}</p>
+                    @if ($plant->cover_path != '')
+                        <img src="{{ $plant->cover_path }}" class="img-thumbnail" alt="error img plant">
+                    @else
+                        <img src="https://www.f-w-s.com/assets/img/sistemas/planta_tratamiento_osmosis_inversa/planta-tratamiento-osmosis-inversa.jpg"
+                            class="img-thumbnail" alt="error img plant">
+                    @endif
+                </div>
+
+                <div class="card-footer pb-0">
+                    <p class="card-subtitle mb-2 text-muted text-capitalize">Last Parameters:
+                        @if ($plant->product_waters->first())
+                            <span class="text-primary">{{ $plant->product_waters->first()->created_at }}</span>
+                            <span
+                                class="text-danger">{{ \Carbon\Carbon::create($plant->product_waters->first()->created_at)->diffForHumans() }}</span>
+                            <br><span>By ({{ $plant->product_waters->first()->assignedBy->name }})</span>
+                        @else
+                            <span class="text-danger">N/A</span>
+                        @endif
+                    </p>
+                </div>
             </div>
         </div>
 
-        <div class="card-body statistics-body">
-            <div class="card-body statistics-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-1">
-                            <label class="form-label" for="first-name-icon">
-                                DATE/TIME
-                            </label>
-                            <div class="input-group input-group-merge">
-                                <span class="input-group-text">
-                                    <svg fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
-                                        width="20px" height="20px">
-                                        <path
-                                            d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
-                                    </svg>
-                                </span>
-                                <input type="search" id="date-range" wire:model='date_range' autocomplete="off"
-                                    class="form-control flatpickr-range ps-1" placeholder="YYYY-MM-DD to YYYY-MM-DD" />
+        <div class="col">
+            <div class="card">
+                <div class="card-body statistics-body">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title">DATA FILTERS</h4>
+
+                        @hasrole('Super-Admin|Operations-Manager')
+                            <div>
+                                <strong class="form-label text-primary">Export to:</strong>
+
+                                <div class="d-flex gap-1">
+                                    <a class="btn btn-danger"
+                                        href="{{ route('parameters.pdf', ['id' => $plant, 'date_range' => $date_range]) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z" />
+                                        </svg>
+                                        <strong>PDF</strong>
+                                    </a>
+
+                                    <a class="btn btn-success" href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                            class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
+                                            <path
+                                                d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h3v2H6zm4 0v-2h3v1a1 1 0 0 1-1 1h-2zm3-3h-3v-2h3v2zm-7 0v-2h3v2H6z" />
+                                        </svg>
+                                        <strong>EXCEL</strong>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        @endhasrole
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label" for="bills">BILLS</label>
-                        <select data-placeholder="Select a type..." class="select2-icons form-select" id="bills">
-                            <optgroup label="Bills">
-                                <!-- TODO: agregar facturas generadas por el sistema (Daniel). -->
-                            </optgroup>
-                        </select>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="mb-1">
+                                <label class="form-label" for="first-name-icon">
+                                    DATE/TIME
+                                </label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text">
+                                        <svg fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
+                                            width="20px" height="20px">
+                                            <path
+                                                d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" />
+                                        </svg>
+                                    </span>
+                                    <input type="search" id="date-range" wire:model='date_range' autocomplete="off"
+                                        class="form-control flatpickr-range ps-1"
+                                        placeholder="YYYY-MM-DD to YYYY-MM-DD" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <div class="col-md">
+                            <label class="form-label" for="bills">BILLS</label>
+                            <select data-placeholder="Select a type..." class="select2-icons form-select" id="bills">
+                                <optgroup label="Bills">
+                                    <!-- TODO: agregar facturas generadas por el sistema (Daniel). -->
+                                </optgroup>
+                            </select>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -54,8 +102,8 @@
     <div class="row match-height">
         {{-- Production Reading --}}
         <div class="col-md-4">
-            <h4 class="mb-1">PRODUCTION READINGS</h4>
-            <div wire:loading>
+            <h5 class="mb-1">PRODUCTION READINGS</h5>
+            <div wire:loading class="w-100">
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
@@ -66,63 +114,83 @@
             <div wire:loading.remove class="card">
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
-                        <table class="table table-bordered table-hover">
-                            <thead class="sticky-top">
-                                <tr class="text-center text-nowrap" role="row">
-                                    <th colspan="3">PRODUCTION</th>
-                                    <th colspan="1" rowspan="2" class="pt-3">DATE/TIME</th>
-                                </tr>
+                        @if ($parameters->first()->product_waters->first() != null)
+                            <table class="table table-bordered table-hover">
+                                <thead class="sticky-top">
+                                    <tr class="text-center text-nowrap" role="row">
+                                        <th class="pt-2">TYPE</th>
+                                        <th>
+                                            READING <br>
+                                            <small class="text-danger">m³</small>
+                                        </th>
+                                        <th>
+                                            PRODUCTION <br>
+                                            <small class="text-danger">m³</small>
+                                        </th>
 
-                                <tr class="text-center text-nowrap" role="row">
-                                    <th class="pt-2">Type</th>
-                                    <th>
-                                        Reading <br>
-                                        <small class="text-danger">m³</small>
-                                    </th>
-                                    <th>
-                                        Production <br>
-                                        <small class="text-danger">m³</small>
-                                    </th>
-                                </tr>
-                            </thead>
+                                        <th class="pt-2">DATE/TIME</th>
+                                    </tr>
+                                </thead>
 
-                            @forelse ($parameters->first()->product_waters as $product_water)
-                                <tbody>
-                                    @foreach ($product_water->production_readings as $reading)
-                                        <tr class="text-center">
-                                            <td>
-                                                @if ($reading->type == 'Train')
-                                                    {{ $reading->type }} #{{ $loop->iteration }}
-                                                @else
-                                                    {{ $reading->type }}
-                                                @endif
-                                            </td>
+                                @foreach ($parameters->first()->product_waters as $product_water)
+                                    <tbody>
+                                        @foreach ($product_water->production_readings as $reading)
+                                            <tr class="text-center">
+                                                <td class="m-0 px-0">
+                                                    @if ($reading->type == 'Train')
+                                                        {{ $reading->type }} #{{ $loop->iteration }}
+                                                    @else
+                                                        {{ $reading->type }}
+                                                    @endif
+                                                </td>
 
-                                            <td class="text-nowrap">
-                                                {{ $reading->reading }}
-                                            </td>
-
-                                            <td class="text-nowrap">
-                                                @if (!$loop->parent->last)
-                                                    {{ $reading->reading -$parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
-                                                @else
+                                                <td class="m-0 px-0">
                                                     {{ $reading->reading }}
-                                                @endif
-                                            </td>
+                                                </td>
 
-                                            <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
-                                                class="text-nowrap">
-                                                @if (!$loop->first && !$loop->last)
-                                                    <span>{{ $product_water->created_at }}</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            @empty
-                                <h5 class="text-danger">*There is no information</h5>
-                            @endforelse
-                        </table>
+                                                <td class="m-0 px-0">
+                                                    @if (!$loop->parent->last)
+                                                        {{ $reading->reading - $parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
+                                                    @else
+                                                        {{ $reading->reading }}
+                                                    @endif
+                                                </td>
+
+                                                <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
+                                                    class="text-nowrap m-0 px-0">
+                                                    @if (!$loop->first && !$loop->last)
+                                                        <span>{{ $product_water->created_at }}</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                @endforeach
+                            </table>
+                        @else
+                            <div style="height: 350pt;"
+                                class="d-flex justify-content-center align-items-center text-danger">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px"
+                                    height="80px" viewBox="0 0 59.227 59.227" xml:space="preserve"
+                                    class="fill-current">
+                                    <path d="M51.586,10.029c-0.333-0.475-0.897-0.689-1.449-0.607c-0.021-0.005-0.042-0.014-0.063-0.017L27.469,6.087
+                               c-0.247-0.037-0.499-0.01-0.734,0.076L8.63,12.799c-0.008,0.003-0.015,0.008-0.023,0.011c-0.019,0.008-0.037,0.02-0.057,0.027
+                               c-0.099,0.044-0.191,0.096-0.276,0.157c-0.026,0.019-0.051,0.038-0.077,0.059c-0.093,0.076-0.178,0.159-0.249,0.254
+                               c-0.004,0.006-0.01,0.009-0.014,0.015L0.289,23.78c-0.293,0.401-0.369,0.923-0.202,1.391c0.167,0.469,0.556,0.823,1.038,0.947
+                               l6.634,1.713v16.401c0,0.659,0.431,1.242,1.062,1.435l24.29,7.422c0.008,0.004,0.017,0.001,0.025,0.005
+                               c0.13,0.036,0.266,0.059,0.402,0.06c0.003,0,0.007,0.002,0.011,0.002l0,0h0.001c0.143,0,0.283-0.026,0.423-0.067
+                               c0.044-0.014,0.085-0.033,0.13-0.052c0.059-0.022,0.117-0.038,0.175-0.068l17.43-9.673c0.477-0.265,0.772-0.767,0.772-1.312
+                               V25.586l5.896-2.83c0.397-0.19,0.69-0.547,0.802-0.973c0.111-0.427,0.03-0.88-0.223-1.241L51.586,10.029z M27.41,9.111
+                               l17.644,2.59L33.35,17.143l-18.534-3.415L27.41,9.111z M9.801,15.854l21.237,3.914l-6.242,9.364l-20.78-5.365L9.801,15.854z
+                                M10.759,43.122V28.605l14.318,3.697c0.125,0.031,0.25,0.048,0.375,0.048c0.493,0,0.965-0.244,1.248-0.668l5.349-8.023v25.968
+                               L10.759,43.122z M49.479,41.1l-14.431,8.007V25.414l2.635,5.599c0.171,0.361,0.479,0.641,0.854,0.773
+                               c0.163,0.06,0.333,0.087,0.502,0.087c0.223,0,0.444-0.05,0.649-0.146l9.789-4.698L49.479,41.1L49.479,41.1z M39.755,28.368
+                               l-4.207-8.938L49.85,12.78l5.634,8.037L39.755,28.368z" />
+                                </svg>
+                                <strong class="ms-1">NO DATA TO DISPLAY</strong>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -135,8 +203,8 @@
 
         {{-- Product Water --}}
         <div class="col-md-8">
-            <h4 class="mb-1">PRODUCT WATER</h4>
-            <div wire:loading>
+            <h5 class="mb-1">PRODUCT WATER</h5>
+            <div wire:loading class="w-100">
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
@@ -147,206 +215,276 @@
             <div wire:loading.remove class="card">
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
-                        <table class="table table-bordered table-hover">
-                            <thead class="sticky-top">
-                                <tr class="text-center text-nowrap" role="row">
-                                    <th colspan="@if ($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
-                                        SUPPLY</th>
-                                    <th colspan="8">DAYLI CHEMICAL SUPPLY</th>
-                                    <th colspan="{{ $plant->cisterns_quantity }}">Cisterns</th>
-                                    <th rowspan="2" class="pt-3">ASSIGNED BY</th>
-                                    <th rowspan="2" class="pt-3">OBSERVATION</th>
-                                    <th rowspan="2" class="pt-3">DATE/TIME</th>
-                                </tr>
+                        @if ($parameters->first()->product_waters->first() != null)
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="sticky-top">
+                                    <tr class="text-center text-nowrap" role="row">
+                                        <th colspan="@if ($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO
+                                            HOTEL
+                                            SUPPLY</th>
+                                        <th colspan="8">DAYLI CHEMICAL SUPPLY</th>
+                                        <th colspan="{{ $plant->cisterns_quantity }}">Cistern Levels</th>
+                                        <th rowspan="2" class="pt-3">ASSIGNED BY</th>
+                                        <th rowspan="2" class="pt-3">OBSERVATION</th>
+                                        <th rowspan="2" class="pt-3">OPERATIONS MANAGER OBSERVATION</th>
+                                        <th rowspan="2" class="pt-3">DATE/TIME</th>
+                                        @hasrole('Super-Admin|Operation-Manager')
+                                            <th rowspan="2" class="pt-3">ACTIONS</th>
+                                        @endhasrole
+                                    </tr>
 
-                                <tr class="text-center text-nowrap" role="row">
-                                    {{-- Init Feed line to hotel supply --}}
-                                    <th>
-                                        PH <br>
-                                        <small class="text-danger">u.
-                                            pH</small>
-                                    </th>
-                                    <th>
-                                        HARDNESS <br>
-                                        <small class="text-danger">ppm</small>
-                                    </th>
-                                    <th>
-                                        TDS <br>
-                                        <small class="text-danger">ppm</small>
-                                    </th>
-                                    <th>
-                                        H2S <br>
-                                        <small class="text-danger">ppm</small>
-                                    </th>
-                                    <th>
-                                        FREE CHLORINE <br>
-                                        <small class="text-danger">ppm</small>
-                                    </th>
-
-                                    @if ($plant->personalitation_plant->chloride == 'yes')
+                                    <tr class="text-center text-nowrap" role="row">
+                                        {{-- Init Feed line to hotel supply --}}
                                         <th>
-                                            CHLORIDES <br>
+                                            PH <br>
+                                            <small class="text-danger">u.
+                                                pH</small>
+                                        </th>
+                                        <th>
+                                            HARDNESS <br>
                                             <small class="text-danger">ppm</small>
                                         </th>
-                                    @endif
-                                    {{-- End Feed line to hotel supply --}}
-
-                                    {{-- Init Dayli chemical supply --}}
-                                    <th>
-                                        CACL2 <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        NACO3 <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        NACLO <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        ANTIS <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        NAOH <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        HCL <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        KL1 <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-                                    <th>
-                                        KL2 <br>
-                                        <small class="text-danger">Kg</small>
-                                    </th>
-
-                                    @for ($i = 0; $i < $plant->cisterns_quantity; $i++)
                                         <th>
-                                            Cistern Level #{{ $i + 1 }} <br>
-                                            <small class="text-danger">%</small>
+                                            TDS <br>
+                                            <small class="text-danger">ppm</small>
                                         </th>
-                                    @endfor
-                                    {{-- Init Dayli chemical supply --}}
-                                </tr>
-                            </thead>
-
-                            @forelse ($parameters->first()->product_waters as $product_water)
-                                <tbody>
-                                    <tr class="text-center">
-                                        {{-- Init Feed line to hotel supply --}}
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->ph }}</span>
-                                            </div>
-                                        </td>
-
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->hardness }}</span>
-                                            </div>
-                                        </td>
-
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->tds }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->h2s }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->free_chlorine }}</span>
-                                            </div>
-                                        </td>
+                                        <th>
+                                            H2S <br>
+                                            <small class="text-danger">ppm</small>
+                                        </th>
+                                        <th>
+                                            FREE CHLORINE <br>
+                                            <small class="text-danger">ppm</small>
+                                        </th>
 
                                         @if ($plant->personalitation_plant->chloride == 'yes')
-                                            <td class="text-nowrap">
-                                                <div class="d-flex flex-column">
-                                                    <span>{{ $product_water->chloride }}</span>
-                                                </div>
-                                            </td>
+                                            <th>
+                                                CHLORIDES <br>
+                                                <small class="text-danger">ppm</small>
+                                            </th>
                                         @endif
                                         {{-- End Feed line to hotel supply --}}
 
                                         {{-- Init Dayli chemical supply --}}
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->calcium_chloride }}</span>
-                                            </div>
-                                        </td>
+                                        <th>
+                                            CACL2 <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            NACO3 <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            NACLO <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            ANTIS <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            NAOH <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            HCL <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            KL1 <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
+                                        <th>
+                                            KL2 <br>
+                                            <small class="text-danger">Kg</small>
+                                        </th>
 
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->sodium_carbonate }}</span>
-                                            </div>
-                                        </td>
-
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->sodium_hypochlorite }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->antiscalant }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->sodium_hydroxide }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->hydrochloric_acid }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->kl1 }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex flex-column">
-                                                <span>{{ $product_water->chemical->kl2 }}</span>
-                                            </div>
-                                        </td>
-                                        {{-- End Dayli chemical supply --}}
-
-                                        {{-- Init Cisterns --}}
-                                        @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
-                                            <td>
-                                                <span>{{ $product_water->cisterns[$c]->capacity }}</span>
-                                            </td>
+                                        @for ($i = 0; $i < $plant->cisterns_quantity; $i++)
+                                            <th>
+                                                #{{ $i + 1 }} <br>
+                                                <small class="text-danger">%</small>
+                                            </th>
                                         @endfor
-                                        {{-- End Cisterns --}}
-
-
-                                        <td class="text-nowrap">
-                                            {{ $product_water->assignedBy->name }}
-                                        </td>
-
-                                        <td>
-                                            {{ $product_water->observations }}
-                                        </td>
-
-                                        <td class="text-nowrap">
-                                            {{ $product_water->created_at }}
-                                        </td>
+                                        {{-- Init Dayli chemical supply --}}
                                     </tr>
-                                </tbody>
-                            @empty
-                                <h5 class="text-danger">*There is no information</h5>
-                            @endforelse
-                        </table>
+                                </thead>
+
+                                @foreach ($parameters->first()->product_waters as $product_water)
+                                    <tbody>
+                                        <tr>
+                                            {{-- Init Feed line to hotel supply --}}
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->ph }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->hardness }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->tds }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->h2s }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->free_chlorine }}
+                                            </td>
+
+                                            @if ($plant->personalitation_plant->chloride == 'yes')
+                                                <td class="m-0 px-0 text-center">
+                                                    {{ $product_water->chloride }}
+                                                </td>
+                                            @endif
+                                            {{-- End Feed line to hotel supply --}}
+
+                                            {{-- Init Dayli chemical supply --}}
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->calcium_chloride }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->sodium_carbonate }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->sodium_hypochlorite }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->antiscalant }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->sodium_hydroxide }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->hydrochloric_acid }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->kl1 }}
+                                            </td>
+
+                                            <td class="m-0 px-0 text-center">
+                                                {{ $product_water->chemical->kl2 }}
+                                            </td>
+                                            {{-- End Dayli chemical supply --}}
+
+                                            {{-- Init Cisterns --}}
+                                            @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
+                                                <td class="m-0 px-0 text-center">
+                                                    {{ $product_water->cisterns[$c]->capacity }}
+                                                </td>
+                                            @endfor
+                                            {{-- End Cisterns --}}
+
+
+                                            <td class="text-nowrap m-0 px-0.1">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="avatar">
+                                                        <img class="round"
+                                                            src="{{ 'https://ui-avatars.com/api/?name=' . urlencode($product_water->assignedBy->name) . '&color=7F9CF5&background=EBF4F4' }}"
+                                                            alt="avatar" height="40" width="40">
+                                                        <span class="avatar-status-offline"></span>
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <strong>{{ $product_water->assignedBy->name }}</strong>
+                                                </div>
+                                            </td>
+
+                                            <td class="m-0 px-0 text-justify">
+                                                <p class="text-justify p-1" style="width: 500px">
+                                                    @if ($product_water->observations != null)
+                                                        {{ $product_water->observations }}
+                                                    @else
+                                                        <span class="text-danger">NO COMMENTS</span>
+                                                    @endif
+                                                </p>
+                                            </td>
+
+                                            {{-- OPERATIONS MANAGER OBSERVATIONS --}}
+                                            <td class="m-0 p-1 text-justify">
+                                                @if ($product_water->ope_mana_observation == null)
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-success" type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#addOpeManaObservation"
+                                                            wire:click='get_id_toAddOpeManaObservation({{ $product_water->id }})'>
+                                                            <div
+                                                                class="d-flex justify-content-center align-items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                    <path
+                                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                                </svg>
+                                                                <strong class="ms-1">COMMENT</strong>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                @else
+                                                    <p class="text-justify" style="width: 500px">
+                                                        {{ $product_water->ope_mana_observation }}
+                                                    </p>
+                                                @endif
+                                            </td>
+                                            {{-- OPERATIONS MANAGER OBSERVATIONS END --}}
+
+                                            <td class="text-nowrap m-0 px-0.1">
+                                                {{ $product_water->created_at }}
+                                            </td>
+
+                                            <td class="text-nowrap m-0 px-0.1">
+                                                <div class="d-flex justify-content-center align-items-center gap-1">
+                                                    <button type="button" class="btn btn-sm btn-warning"
+                                                        data-bs-toggle="modal" data-bs-target="#editParameters"
+                                                        wire:click='get_id_editParameters({{ $product_water->id }})'>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-pencil-square"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+                            </table>
+                        @else
+                            <div style="height: 350pt;"
+                                class="d-flex justify-content-center align-items-center text-danger">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px"
+                                    height="80px" viewBox="0 0 59.227 59.227" xml:space="preserve"
+                                    class="fill-current">
+                                    <path d="M51.586,10.029c-0.333-0.475-0.897-0.689-1.449-0.607c-0.021-0.005-0.042-0.014-0.063-0.017L27.469,6.087
+                               c-0.247-0.037-0.499-0.01-0.734,0.076L8.63,12.799c-0.008,0.003-0.015,0.008-0.023,0.011c-0.019,0.008-0.037,0.02-0.057,0.027
+                               c-0.099,0.044-0.191,0.096-0.276,0.157c-0.026,0.019-0.051,0.038-0.077,0.059c-0.093,0.076-0.178,0.159-0.249,0.254
+                               c-0.004,0.006-0.01,0.009-0.014,0.015L0.289,23.78c-0.293,0.401-0.369,0.923-0.202,1.391c0.167,0.469,0.556,0.823,1.038,0.947
+                               l6.634,1.713v16.401c0,0.659,0.431,1.242,1.062,1.435l24.29,7.422c0.008,0.004,0.017,0.001,0.025,0.005
+                               c0.13,0.036,0.266,0.059,0.402,0.06c0.003,0,0.007,0.002,0.011,0.002l0,0h0.001c0.143,0,0.283-0.026,0.423-0.067
+                               c0.044-0.014,0.085-0.033,0.13-0.052c0.059-0.022,0.117-0.038,0.175-0.068l17.43-9.673c0.477-0.265,0.772-0.767,0.772-1.312
+                               V25.586l5.896-2.83c0.397-0.19,0.69-0.547,0.802-0.973c0.111-0.427,0.03-0.88-0.223-1.241L51.586,10.029z M27.41,9.111
+                               l17.644,2.59L33.35,17.143l-18.534-3.415L27.41,9.111z M9.801,15.854l21.237,3.914l-6.242,9.364l-20.78-5.365L9.801,15.854z
+                                M10.759,43.122V28.605l14.318,3.697c0.125,0.031,0.25,0.048,0.375,0.048c0.493,0,0.965-0.244,1.248-0.668l5.349-8.023v25.968
+                               L10.759,43.122z M49.479,41.1l-14.431,8.007V25.414l2.635,5.599c0.171,0.361,0.479,0.641,0.854,0.773
+                               c0.163,0.06,0.333,0.087,0.502,0.087c0.223,0,0.444-0.05,0.649-0.146l9.789-4.698L49.479,41.1L49.479,41.1z M39.755,28.368
+                               l-4.207-8.938L49.85,12.78l5.634,8.037L39.755,28.368z" />
+                                </svg>
+                                <strong class="ms-1">NO DATA TO DISPLAY</strong>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -359,8 +497,8 @@
     </div>
 
     {{-- Pretreatment --}}
-    <h4 class="mb-1">PRETREATMENT</h4>
-    <div wire:loading class="col-12">
+    <h5 class="mb-1">PRETREATMENT</h5>
+    <div wire:loading class="w-100">
         <div class="card d-flex justify-content-center align-items-center col-12" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
@@ -371,265 +509,340 @@
     <div wire:loading.remove class="card">
         <div class="card-body m-0 p-0">
             <div class="rounded overflow-auto" style="height: 350pt;">
-                <table class="table table-bordered table-hover">
-                    <thead class="sticky-top">
-                        <tr class="text-center text-nowrap" role="row">
-                            <th colspan="1" rowspan="2" class="pt-3">
-                                TRAIN
-                            </th>
+                @if ($parameters->first()->pretreatments->first() != null)
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="sticky-top">
+                            <tr class="text-center text-nowrap" role="row">
+                                <th colspan="1" rowspan="2" class="pt-3">
+                                    TRAIN
+                                </th>
 
-                            @isset($plant->personalitation_plant->well_pump)
-                                @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no')
-                                    <th class="text-center" colspan="2">
-                                        Water Pumps
+                                @isset($plant->personalitation_plant->well_pump)
+                                    @if ($plant->personalitation_plant->well_pump != 'no' || $plant->personalitation_plant->feed_pump != 'no')
+                                        <th class="text-center" colspan="2">
+                                            WATER PUMPS
+                                        </th>
+                                    @endif
+                                @endisset
+
+                                <th colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
+                                    MULTIMEDIA FILTERS
+                                </th>
+
+                                <th colspan="1" rowspan="3" class="pt-5">
+                                    BACKWASH <br>
+                                    <small class="text-danger">Min</small>
+                                </th>
+
+                                <th colspan="3" rowspan="2" class="pt-3">
+                                    POLISH FILTERS
+                                </th>
+
+                                <th rowspan="3" class="pt-5">
+                                    ASSIGNED</th>
+                                <th rowspan="3" class="pt-5">
+                                    OBSERVATIONS</th>
+                                <th rowspan="3" class="pt-5">
+                                    DATE/TIME</th>
+                            </tr>
+
+                            <tr class="text-center text-nowrap" role="row">
+                                @if ($plant->personalitation_plant->well_pump != 'no')
+                                    <th colspan="2">Well Pump</th>
+                                @endif
+
+                                @if ($plant->personalitation_plant->feed_pump != 'no')
+                                    <th colspan="2">Feed Pump</th>
+                                @endif
+
+                                @for ($i = 0; $i < $plant->multimedia_filters_quantity; $i++)
+                                    <th colspan="2">Multimedia Filter #{{ $i + 1 }}</th>
+                                @endfor
+                            </tr>
+
+                            <tr class="text-center text-nowrap" role="row">
+                                <th class="pt-2">#</th>
+
+                                @if ($plant->personalitation_plant->well_pump != 'no')
+                                    <th>
+                                        AMPERAGE <br>
+                                        <small class="text-danger">A</small>
+                                    </th>
+                                    <th>
+                                        FREQUENCY <br>
+                                        <small class="text-danger">Hz</small>
                                     </th>
                                 @endif
-                            @endisset
 
-                            <th colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
-                                Multimedia Filters
-                            </th>
+                                @if ($plant->personalitation_plant->feed_pump != 'no')
+                                    <th>
+                                        AMPERAGE <br>
+                                        <small class="text-danger">A</small>
+                                    </th>
+                                    <th>
+                                        FREQUENCY <br>
+                                        <small class="text-danger">Hz</small>
+                                    </th>
+                                @endif
 
-                            <th colspan="1" rowspan="3" class="pt-5">
-                                BACKWASH <br>
-                                <small class="text-danger">Min</small>
-                            </th>
+                                @for ($i = 0; $i < $plant->multimedia_filters_quantity; $i++)
+                                    <th>
+                                        IN <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+                                    <th>
+                                        OUT <br>
+                                        <small class="text-danger">psi</small>
+                                    </th>
+                                @endfor
 
-                            <th colspan="3" rowspan="2" class="pt-3">
-                                POLISH FILTERS
-                            </th>
-
-                            <th rowspan="3" class="pt-5">
-                                ASSIGNED</th>
-                            <th rowspan="3" class="pt-5">
-                                OBSERVATIONS</th>
-                            <th rowspan="3" class="pt-5">
-                                DATE/TIME</th>
-                        </tr>
-
-                        <tr class="text-center text-nowrap" role="row">
-                            @if ($plant->personalitation_plant->well_pump != 'no')
-                                <th colspan="2">Well Pump</th>
-                            @endif
-
-                            @if ($plant->personalitation_plant->feed_pump != 'no')
-                                <th colspan="2">Feed Pump</th>
-                            @endif
-
-                            @for ($i = 0; $i < $plant->multimedia_filters_quantity; $i++)
-                                <th colspan="2">Multimedia Filter #{{ $i + 1 }}</th>
-                            @endfor
-                        </tr>
-
-                        <tr class="text-center text-nowrap" role="row">
-                            <th class="pt-2">#</th>
-
-                            @if ($plant->personalitation_plant->well_pump != 'no')
                                 <th>
-                                    Amperage <br>
-                                    <small class="text-danger">A</small>
-                                </th>
-                                <th>
-                                    Frequency <br>
-                                    <small class="text-danger">Hz</small>
-                                </th>
-                            @endif
-
-                            @if ($plant->personalitation_plant->feed_pump != 'no')
-                                <th>
-                                    Amperage <br>
-                                    <small class="text-danger">A</small>
-                                </th>
-                                <th>
-                                    Frequency <br>
-                                    <small class="text-danger">Hz</small>
-                                </th>
-                            @endif
-
-                            @for ($i = 0; $i < $plant->multimedia_filters_quantity; $i++)
-                                <th>
-                                    In <br>
+                                    IN <br>
                                     <small class="text-danger">psi</small>
                                 </th>
                                 <th>
-                                    Out <br>
+                                    OUT <br>
                                     <small class="text-danger">psi</small>
                                 </th>
-                            @endfor
+                                <th>
+                                    CHANGE
+                                </th>
+                            </tr>
+                        </thead>
 
-                            <th>
-                                In <br>
-                                <small class="text-danger">psi</small>
-                            </th>
-                            <th>
-                                Out <br>
-                                <small class="text-danger">psi</small>
-                            </th>
-                            <th>
-                                Change
-                            </th>
-                        </tr>
-                    </thead>
-
-                    @forelse ($parameters->first()->pretreatments->groupBy('group_by') as $pretreatment)
-                        <tbody>
-                            <tr class="text-center">
-                                <td>
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                        @foreach ($parameters->first()->pretreatments->groupBy('group_by') as $pretreatment)
+                            <tbody>
+                                <tr>
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
                                             <tbody>
-                                                <tr class="text-nowrap">
-                                                    <td>
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $t + 1 }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($parameters->first()->trains->where('type', 'Train') as $train)
+                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
+                                                        <td class="">
+                                                            {{ $loop->iteration }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
-
-                                @if ($plant->personalitation_plant->well_pump == 'yes')
-                                    <td colspan="2">
-                                        <table class="table">
-                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                <tbody>
-                                                    <tr class="text-nowrap">
-                                                        <td>
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $pretreatment[$t]->well_pump }}</span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $pretreatment[$t]->frecuencies_well_pump }}</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            @endfor
                                         </table>
                                     </td>
-                                @endif
 
-                                @if ($plant->personalitation_plant->feed_pump == 'yes')
-                                    <td>
-                                        <table class="table">
-                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                    @if ($plant->personalitation_plant->well_pump == 'yes')
+                                        <td class="m-0 px-0 text-center">
+                                            <table style="width: 100%">
                                                 <tbody>
-                                                    <tr class="text-nowrap">
-                                                        <td>
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $pretreatment[$t]->feed_pump }}
-                                                                    <small class="text-danger">psi</small></span>
-
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $pretreatment[$t]->frecuencies_feed_pump }}
-                                                                    <small class="text-danger">Hz</small></span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                        <tr
+                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                            <td>
+                                                                {{ $pretreatment[$loop->index]->well_pump }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
-                                            @endfor
-                                        </table>
-                                    </td>
-                                @endif
+                                            </table>
+                                        </td>
 
-                                <td colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
-                                    <table class="table">
-                                        @for ($i = 0; $i < $plant->trains->where('type', 'Train')->count(); $i++)
-                                            <tbody>
-                                                <tr>
-                                                    @foreach ($plant->pretreatments[$i]->multimedias as $mm)
+                                        <td class="m-0 px-0 text-center">
+                                            <table style="width: 100%">
+                                                <tbody>
+                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                        <tr
+                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                            <td>
+                                                                {{ $pretreatment[$loop->index]->frecuencies_well_pump }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    @endif
+
+                                    @if ($plant->personalitation_plant->feed_pump == 'yes')
+                                        <td class="m-0 px-0 text-center">
+                                            <table style="width: 100%">
+                                                <tbody>
+                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                        <tr
+                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                            <td>
+                                                                {{ $pretreatment[$loop->index]->feed_pump }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+
+                                        <td class="m-0 px-0 text-center">
+                                            <table style="width: 100%">
+                                                <tbody>
+                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                        <tr
+                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                            <td>
+                                                                {{ $pretreatment[$loop->index]->frecuencies_feed_pump }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    @endif
+
+                                    <td class="m-0 px-0 text-center" colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tr class="@if (!$loop->last) border-bottom @endif">
+                                                    @foreach ($pretreatment[$loop->index]->multimedias as $mm)
                                                         <td> {{ $mm->in }}</td>
                                                         <td> {{ $mm->out }}</td>
                                                     @endforeach
                                                 </tr>
-                                            </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
+                                            @endforeach
+                                        </table>
+                                    </td>
 
-                                <td>
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
                                             <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $pretreatment[$t]->backwash }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
+                                                        <td class="text-nowrap">
+                                                            {{ $pretreatment[$loop->index]->backwash }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
+                                        </table>
+                                    </td>
 
-                                <td colspan="3">
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
                                             <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $pretreatment[$t]->polish->first()->in }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $pretreatment[$t]->polish->first()->out }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        @foreach ($pretreatment[$t]->polish as $polish)
-                                                            @if ($polish->filter_change != null)
-                                                                {{ $loop->iteration }},
-                                                            @else
-                                                                --
-                                                            @endif
-                                                        @endforeach
-                                                    </td>
-                                                </tr>
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
+                                                        <td class="text-nowrap">
+                                                            {{ $pretreatment[$loop->index]->polish->first()->in }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
+                                        </table>
+                                    </td>
 
-                                <td class="text-nowrap">
-                                    {{ $pretreatment->last()->userCreated->name }}
-                                </td>
-
-                                <td>
-                                    <table class="table">
-                                        @foreach ($pretreatment as $pretre)
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
                                             <tbody>
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}).
-                                                        {{ $pretre->observations }}</td>
-                                                </tr>
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
+                                                        <td class="text-nowrap">
+                                                            {{ $pretreatment[$loop->index]->polish->first()->out }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
-                                        @endforeach
-                                    </table>
-                                </td>
+                                        </table>
+                                    </td>
 
-                                <td class="text-nowrap">
-                                    {{ $pretreatment->last()->created_at }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    @empty
-                        <h5 class="text-danger">*There is no information</h5>
-                    @endforelse
-                </table>
+                                    <td class="m-0 p-0">
+                                        <table style="width: 100%">
+                                            <tbody>
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td>
+                                                            <table style="width: 100%" class="table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        @foreach ($pretreatment[$loop->index]->polish as $polish)
+                                                                            <th class="text-center">
+                                                                                {{ $loop->iteration }}</th>
+                                                                        @endforeach
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+                                                                    <tr class="text-center">
+                                                                        @foreach ($pretreatment[$loop->index]->polish as $polish)
+                                                                            @if ($polish->filter_change != null)
+                                                                                <td class="text-success">YES</td>
+                                                                            @else
+                                                                                <td class="text-danger">NO</td>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <td class="text-nowrap m-0 px-0.1">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <span class="avatar">
+                                                <img class="round"
+                                                    src="{{ 'https://ui-avatars.com/api/?name=' . urlencode($pretreatment->first()->assignedBy->name) . '&color=7F9CF5&background=EBF4F4' }}"
+                                                    alt="avatar" height="40" width="40">
+                                                <span class="avatar-status-offline"></span>
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <strong>{{ $pretreatment->first()->assignedBy->name }}</strong>
+                                        </div>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-justify">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @foreach ($pretreatment as $pretre)
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td>
+                                                            <p class="text-justify" style="width: 500px">
+                                                                {{ $loop->iteration }}).
+                                                                {{ $pretre->observations }}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <td class="text-nowrap m-0 px-0.1">
+                                        {{ $pretreatment->last()->created_at }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
+                @else
+                    <div style="height: 350pt;" class="d-flex justify-content-center align-items-center text-danger">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px"
+                            viewBox="0 0 59.227 59.227" xml:space="preserve" class="fill-current">
+                            <path d="M51.586,10.029c-0.333-0.475-0.897-0.689-1.449-0.607c-0.021-0.005-0.042-0.014-0.063-0.017L27.469,6.087
+                               c-0.247-0.037-0.499-0.01-0.734,0.076L8.63,12.799c-0.008,0.003-0.015,0.008-0.023,0.011c-0.019,0.008-0.037,0.02-0.057,0.027
+                               c-0.099,0.044-0.191,0.096-0.276,0.157c-0.026,0.019-0.051,0.038-0.077,0.059c-0.093,0.076-0.178,0.159-0.249,0.254
+                               c-0.004,0.006-0.01,0.009-0.014,0.015L0.289,23.78c-0.293,0.401-0.369,0.923-0.202,1.391c0.167,0.469,0.556,0.823,1.038,0.947
+                               l6.634,1.713v16.401c0,0.659,0.431,1.242,1.062,1.435l24.29,7.422c0.008,0.004,0.017,0.001,0.025,0.005
+                               c0.13,0.036,0.266,0.059,0.402,0.06c0.003,0,0.007,0.002,0.011,0.002l0,0h0.001c0.143,0,0.283-0.026,0.423-0.067
+                               c0.044-0.014,0.085-0.033,0.13-0.052c0.059-0.022,0.117-0.038,0.175-0.068l17.43-9.673c0.477-0.265,0.772-0.767,0.772-1.312
+                               V25.586l5.896-2.83c0.397-0.19,0.69-0.547,0.802-0.973c0.111-0.427,0.03-0.88-0.223-1.241L51.586,10.029z M27.41,9.111
+                               l17.644,2.59L33.35,17.143l-18.534-3.415L27.41,9.111z M9.801,15.854l21.237,3.914l-6.242,9.364l-20.78-5.365L9.801,15.854z
+                                M10.759,43.122V28.605l14.318,3.697c0.125,0.031,0.25,0.048,0.375,0.048c0.493,0,0.965-0.244,1.248-0.668l5.349-8.023v25.968
+                               L10.759,43.122z M49.479,41.1l-14.431,8.007V25.414l2.635,5.599c0.171,0.361,0.479,0.641,0.854,0.773
+                               c0.163,0.06,0.333,0.087,0.502,0.087c0.223,0,0.444-0.05,0.649-0.146l9.789-4.698L49.479,41.1L49.479,41.1z M39.755,28.368
+                               l-4.207-8.938L49.85,12.78l5.634,8.037L39.755,28.368z" />
+                        </svg>
+                        <strong class="ms-1">NO DATA TO DISPLAY</strong>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="card-footer">
@@ -639,8 +852,8 @@
     {{-- Pretreatment end --}}
 
     {{-- Operation --}}
-    <h4 class="mb-1">OPERATION</h4>
-    <div wire:loading class="col-12">
+    <h5 class="mb-1">OPERATION</h5>
+    <div wire:loading class="w-100">
         <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
@@ -649,384 +862,510 @@
     </div>
 
     <div wire:loading.remove class="card">
-        <div class="card-body p-0 m-0">
+        <div class="card-body m-0 p-0">
             <div class="rounded overflow-auto" style="height: 350pt;">
-                <table class="table table-bordered table-hover">
-                    <thead class="sticky-top">
-                        <tr class="text-center" role="row">
-                            <th>TRAIN</th>
-                            <th
-                                colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1); @endphp @else 1 @endif">
-                                AMPERAGE</th>
-                            <th
-                                colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1); @endphp @else 1 @endif">
-                                FRECUENCIES</th>
-                            <th colspan="2">FEED</th>
-                            <th colspan="3">TDS CONCENTRATION</th>
-                            <th colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">FLOW</th>
-                            <th colspan="@php echo ($plant->trains->first()->boosters_quantity + 4); @endphp">PRESSURES</th>
-                            <th rowspan="2" class="pt-3">ASSIGNED BY</th>
-                            <th rowspan="2" class="pt-3">OBSERVATIONS</th>
-                            <th rowspan="2" class="pt-3">DATE/TIME</th>
-                        </tr>
+                @if ($parameters->first()->operations->first() != null)
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="sticky-top">
+                            <tr class="text-center" role="row">
+                                <th>TRAIN</th>
+                                <th
+                                    colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1); @endphp @else 1 @endif">
+                                    AMPERAGE</th>
+                                <th
+                                    colspan="@if ($plant->personalitation_plant->boosterc == 'yes') @php echo ($plant->trains->first()->boosters_quantity + 1); @endphp @else 1 @endif">
+                                    FRECUENCIES</th>
+                                <th colspan="2">FEED</th>
+                                <th colspan="3">TDS CONCENTRATION</th>
+                                <th colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">FLOW</th>
+                                <th colspan="@php echo ($plant->trains->first()->boosters_quantity + ($plant->personalitation_plant->boosterc == 'yes' ? 1 : 0) + 3); @endphp">PRESSURES</th>
+                                <th rowspan="2" class="pt-3">ASSIGNED BY</th>
+                                <th rowspan="2" class="pt-3">OBSERVATIONS</th>
+                                <th rowspan="2" class="pt-3">DATE/TIME</th>
+                            </tr>
 
-                        <tr class="text-center" role="row">
-                            <th class="pt-2">#</th>
+                            <tr class="text-center" role="row">
+                                <th class="pt-2">#</th>
 
-                            {{-- Init Amperage --}}
-                            <th>
-                                H.P. <br>
-                                <small class="text-danger">A</small>
-                            </th>
+                                {{-- Init Amperage --}}
+                                <th>
+                                    H.P. <br>
+                                    <small class="text-danger">A</small>
+                                </th>
 
-                            @if ($plant->personalitation_plant->boosterc == 'yes')
-                                @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
-                                    <th class="text-nowrap">
-                                        Booster #{{ $i + 1 }} <br>
-                                        <small class="text-danger">A</small>
-                                    </th>
-                                @endfor
-                            @endif
-                            {{-- End Amperage --}}
+                                @if ($plant->personalitation_plant->boosterc == 'yes')
+                                    @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                        <th class="text-nowrap">
+                                            Booster #{{ $i + 1 }} <br>
+                                            <small class="text-danger">A</small>
+                                        </th>
+                                    @endfor
+                                @endif
+                                {{-- End Amperage --}}
 
-                            {{-- Init Frequency --}}
-                            <th>
-                                H.P <br>
-                                <small class="text-danger">Hz</small>
-                            </th>
+                                {{-- Init Frequency --}}
+                                <th>
+                                    H.P <br>
+                                    <small class="text-danger">Hz</small>
+                                </th>
 
-                            @if ($plant->personalitation_plant->boosterc == 'yes')
-                                @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
-                                    <th class="text-nowrap">
-                                        Booster #{{ $i + 1 }} <br>
-                                        <small class="text-danger">A</small>
-                                    </th>
-                                @endfor
-                            @endif
-                            {{-- End Frequency --}}
+                                @if ($plant->personalitation_plant->boosterc == 'yes')
+                                    @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                        <th class="text-nowrap">
+                                            Booster #{{ $i + 1 }} <br>
+                                            <small class="text-danger">A</small>
+                                        </th>
+                                    @endfor
+                                @endif
+                                {{-- End Frequency --}}
 
-                            {{-- Init Feed --}}
-                            <th class="text-nowrap">
-                                PH <br>
-                                <small class="text-danger">U. ph</small>
-                            </th>
-                            <th>
-                                TEMPERATURE <br>
-                                <small class="text-danger">°C</small>
-                            </th>
-                            {{-- End Feed --}}
-
-                            {{-- Init TDS Concentration --}}
-                            <th class="text-nowrap">
-                                FEED <br>
-                                <small class="text-danger">ppm TDS</small>
-                            </th>
-                            <th class="text-nowrap">
-                                PERMEATE <br>
-                                <small class="text-danger">ppm TDS</small>
-                            </th>
-                            <th class="text-nowrap">
-                                REJECT <br>
-                                <small class="text-danger">ppm TDS</small>
-                            </th>
-                            {{-- End TDS Concentration --}}
-
-                            {{-- Init Flow --}}
-                            @if ($plant->personalitation_plant->boosterc == 'yes')
+                                {{-- Init Feed --}}
                                 <th class="text-nowrap">
-                                    B1+2 Out <br>
+                                    PH <br>
+                                    <small class="text-danger">U. ph</small>
+                                </th>
+                                <th>
+                                    TEMPERATURE <br>
+                                    <small class="text-danger">°C</small>
+                                </th>
+                                {{-- End Feed --}}
+
+                                {{-- Init TDS Concentration --}}
+                                <th class="text-nowrap">
+                                    FEED <br>
+                                    <small class="text-danger">ppm TDS</small>
+                                </th>
+                                <th class="text-nowrap">
+                                    PERMEATE <br>
+                                    <small class="text-danger">ppm TDS</small>
+                                </th>
+                                <th class="text-nowrap">
+                                    REJECT <br>
+                                    <small class="text-danger">ppm TDS</small>
+                                </th>
+                                {{-- End TDS Concentration --}}
+
+                                {{-- Init Flow --}}
+                                @if ($plant->personalitation_plant->boosterc == 'yes')
+                                    <th class="text-nowrap">
+                                        B1+2 Out <br>
+                                        <small class="text-danger">gpm</small>
+                                    </th>
+                                @endif
+
+                                <th>
+                                    FEED <br>
                                     <small class="text-danger">gpm</small>
                                 </th>
-                            @endif
-                            <th>
-                                FEED <br>
-                                <small class="text-danger">gpm</small>
-                            </th>
-                            <th>
-                                PERMEATE <br>
-                                <small class="text-danger">gpm</small>
-                            </th>
-                            <th>
-                                REJET <br>
-                                <small class="text-danger">gpm</small>
-                            </th>
-                            {{-- End Flow --}}
-
-                            {{-- Init Pressures --}}
-                            @if ($plant->personalitation_plant->boosterc == 'yes')
-                                <th class="text-nowrap">
-                                    B1+2 Out <br>
-                                    <small class="text-danger">psi</small>
+                                <th>
+                                    PERMEATE <br>
+                                    <small class="text-danger">gpm</small>
                                 </th>
-                                @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                <th>
+                                    REJET <br>
+                                    <small class="text-danger">gpm</small>
+                                </th>
+                                {{-- End Flow --}}
+
+                                {{-- Init Pressures --}}
+                                @if ($plant->personalitation_plant->boosterc == 'yes')
                                     <th class="text-nowrap">
-                                        PX #{{ $i + 1 }} <br>
+                                        B1+2 Out <br>
                                         <small class="text-danger">psi</small>
                                     </th>
-                                @endfor
-                            @endif
-
-                            <th class="text-nowrap">
-                                H.P. IN <br>
-                                <small class="text-danger">psi</small>
-                            </th>
-                            <th class="text-nowrap">
-                                H.P. OUT <br>
-                                <small class="text-danger">psi</small>
-                            </th>
-                            <th class="text-nowrap">
-                                REJECT <br>
-                                <small class="text-danger">psi</small>
-                            </th>
-                            {{-- End Pressures --}}
-                        </tr>
-                    </thead>
-
-                    @forelse ($parameters->first()->operations->groupBy('group_by') as $operation)
-                        <tbody>
-                            <tr class="text-center">
-                                <td>
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $t + 1 }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
-
-                                <td>
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->hp }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
-
-                                @if ($plant->personalitation_plant->boosterc == 'yes')
-                                    @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                        <td colspan="{{ $plant->trains->first()->boosters_quantity }}">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                            <td class="text-nowrap">
-                                                                <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
-                                                            </td>
-                                                        @endfor
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
+                                    @for ($i = 0; $i < $plant->trains->first()->boosters_quantity; $i++)
+                                        <th class="text-nowrap">
+                                            PX #{{ $i + 1 }} <br>
+                                            <small class="text-danger">psi</small>
+                                        </th>
                                     @endfor
                                 @endif
 
-                                <td>
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->hpF }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
+                                <th class="text-nowrap">
+                                    H.P. IN <br>
+                                    <small class="text-danger">psi</small>
+                                </th>
+                                <th class="text-nowrap">
+                                    H.P. OUT <br>
+                                    <small class="text-danger">psi</small>
+                                </th>
+                                <th class="text-nowrap">
+                                    REJECT <br>
+                                    <small class="text-danger">psi</small>
+                                </th>
+                                {{-- End Pressures --}}
+                            </tr>
+                        </thead>
 
-                                @if ($plant->personalitation_plant->boosterc == 'yes')
-                                    @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                        <td colspan="2">
-                                            <table class="table">
+                        @foreach ($parameters->first()->operations->groupBy('group_by') as $operation)
+                            <tbody>
+                                <tr>
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
                                                 <tbody>
-                                                    <tr class="text-center">
-                                                        @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                            <td class="text-nowrap">
-                                                                <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
-                                                            </td>
-                                                        @endfor
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td>
+                                                            {{ $loop->iteration }}
+                                                        </td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
-                                        </td>
-                                    @endfor
-                                @endif
+                                            @endforeach
+                                        </table>
+                                    </td>
 
-                                <td colspan="2">
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
                                             <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->ph }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->temperature }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
-
-                                <td colspan="3">
-                                    <table class="table">
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <tbody>
-                                                <tr class="text-center">
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->feed }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->permeate }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->reject }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        @endfor
-                                    </table>
-                                </td>
-
-                                <td colspan="@if ($plant->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">
-                                    <table class="table">
-                                        <tbody>
-                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                <tr class="text-center">
-                                                    @if ($plant->personalitation_plant->boosterc == 'yes')
-                                                        <td class="text-nowrap">
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $operation[$t]->boosters->first()->booster_flow }}</span>
-                                                            </div>
-                                                        </td>
-                                                    @endif
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->feed_flow }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->permeate_flow }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->reject_flow }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-                                </td>
-
-                                <td colspan="4">
-                                    <table class="table">
-                                        <tbody>
-                                            @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                                <tr class="text-center">
-                                                    @if ($plant->personalitation_plant->boosterc == 'yes')
-                                                        <td class="text-nowrap">
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $operation[$t]->boosters->first()->booster_pressures_total }}</span>
-                                                            </div>
-                                                        </td>
-                                                    @endif
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->hp_in }}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->hp_out }}</span>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">
-                                                        <div class="d-flex flex-column">
-                                                            <span>{{ $operation[$t]->reject_pressure }}</span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-                                </td>
-
-                                @if ($plant->personalitation_plant->boosterc == 'yes')
-                                    <td colspan="2">
-                                        <table class="table">
-                                            <tbody>
-                                                @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
                                                     <tr>
-                                                        @for ($b = 0; $b < $plant->trains->first()->boosters_quantity; $b++)
-                                                            <td>
-                                                                <span>{{ $operation[$t]->boosters[$b]->px }}</span>
-                                                            </td>
-                                                        @endfor
+                                                        <td
+                                                            class="@if (!$loop->last) border-bottom @endif">
+                                                            {{ $operation[$loop->index]->hp }}
+                                                        </td>
                                                     </tr>
-                                                @endfor
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </td>
-                                @endif
 
-                                <td class="text-nowrap">
-                                    {{ $operation->last()->assignedBy->name }}
-                                </td>
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        @foreach ($plant->trains->where('type', 'Train') as $train)
+                                            <td class="m-0 px-0 text-center"
+                                                colspan="{{ $plant->trains->first()->boosters_quantity }}">
+                                                <table style="width: 100%">
+                                                    <tbody>
+                                                        <tr
+                                                            class="@if (!$loop->last) border-bottom @endif">
+                                                            @for ($b = 0; $b < $operation[$loop->index]->boosters->count(); $b++)
+                                                                <td class="text-nowrap">
+                                                                    <span>{{ $operation[$loop->index]->boosters[$b]->amperage }}</span>
+                                                                </td>
+                                                            @endfor
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        @endforeach
+                                    @endif
 
-                                <td>
-                                    @foreach ($operation as $ope)
-                                        {{ $loop->iteration }}). {{ $ope->observations }}<br>
-                                    @endforeach
-                                </td>
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            <tbody>
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            <div class="d-flex flex-column">
+                                                                <span>{{ $operation[$loop->index]->hpF }}</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
 
-                                <td class="text-nowrap">
-                                    {{ $operation->last()->created_at }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    @empty
-                        <h5 class="text-danger">*There is no information</h5>
-                    @endforelse
-                </table>
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
+                                            <td class="m-0 px-0 text-center" colspan="2">
+                                                <table style="width:100%">
+                                                    <tbody>
+                                                        <tr class="text-center">
+                                                            @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                                <td class="text-nowrap">
+                                                                    <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
+                                                                </td>
+                                                            @endfor
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        @endfor
+                                    @endif
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->ph }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->temperature }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->feed }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->permeate }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->reject }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    {{-- FLOW --}}
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        <td class="m-0 px-0 text-center">
+                                            <table style="width: 100%">
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tbody>
+                                                        <tr
+                                                            class="@if (!$loop->last) border-bottom @endif">
+                                                            <td class="text-nowrap">
+                                                                {{ $operation[$loop->index]->boosters->first()->booster_flow }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </td>
+                                    @endif
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->feed_flow }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->permeate_flow }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->reject_flow }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+                                    {{-- END FLOW --}}
+
+                                    {{-- PRESSURES --}}
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        <td class="m-0 px-0 text-center">
+                                            <table style="width: 100%">
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tbody>
+                                                        <tr
+                                                            class="@if (!$loop->last) border-bottom @endif">
+                                                            <td class="text-nowrap">
+                                                                {{ $operation[$loop->index]->boosters->first()->booster_pressures_total }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </td>
+                                    @endif
+
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        <td class="m-0 px-0 text-center" colspan="2">
+                                            <table style="width: 100%">
+                                                <tbody>
+                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                        <tr>
+                                                            @for ($b = 0; $b < $plant->trains->first()->boosters_quantity; $b++)
+                                                                <td>
+                                                                    {{ $operation[$loop->index]->boosters[$b]->booster_pressures }}
+                                                                </td>
+                                                            @endfor
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    @endif
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->hp_in }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->hp_out }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 px-0 text-center">
+                                        <table style="width: 100%">
+                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                <tbody>
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$loop->index]->reject_pressure }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            @endforeach
+                                        </table>
+                                    </td>
+                                    {{-- END PRESSURES --}}
+
+                                    <td class="text-nowrap m-0 px-0.1 text-center">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <span class="avatar">
+                                                <img class="round"
+                                                    src="{{ 'https://ui-avatars.com/api/?name=' . urlencode($operation->first()->assignedBy->name) . '&color=7F9CF5&background=EBF4F4' }}"
+                                                    alt="avatar" height="40" width="40">
+                                                <span class="avatar-status-offline"></span>
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <strong>{{ $operation->first()->assignedBy->name }}</strong>
+                                        </div>
+                                    </td>
+
+                                    <td class="m-0 px-0">
+                                        <table>
+                                            <tbody>
+                                                @foreach ($operation as $oper)
+                                                    <tr
+                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                        <td>
+                                                            <p class="text-justify" style="width: 500px">
+                                                                {{ $loop->iteration }}). {{ $oper->observations }}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <td class="text-nowrap m-0 px-0.1">
+                                        {{ $operation->last()->created_at }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
+                @else
+                    <div style="height: 350pt;" class="d-flex justify-content-center align-items-center text-danger">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px"
+                            viewBox="0 0 59.227 59.227" xml:space="preserve" class="fill-current">
+                            <path d="M51.586,10.029c-0.333-0.475-0.897-0.689-1.449-0.607c-0.021-0.005-0.042-0.014-0.063-0.017L27.469,6.087
+                               c-0.247-0.037-0.499-0.01-0.734,0.076L8.63,12.799c-0.008,0.003-0.015,0.008-0.023,0.011c-0.019,0.008-0.037,0.02-0.057,0.027
+                               c-0.099,0.044-0.191,0.096-0.276,0.157c-0.026,0.019-0.051,0.038-0.077,0.059c-0.093,0.076-0.178,0.159-0.249,0.254
+                               c-0.004,0.006-0.01,0.009-0.014,0.015L0.289,23.78c-0.293,0.401-0.369,0.923-0.202,1.391c0.167,0.469,0.556,0.823,1.038,0.947
+                               l6.634,1.713v16.401c0,0.659,0.431,1.242,1.062,1.435l24.29,7.422c0.008,0.004,0.017,0.001,0.025,0.005
+                               c0.13,0.036,0.266,0.059,0.402,0.06c0.003,0,0.007,0.002,0.011,0.002l0,0h0.001c0.143,0,0.283-0.026,0.423-0.067
+                               c0.044-0.014,0.085-0.033,0.13-0.052c0.059-0.022,0.117-0.038,0.175-0.068l17.43-9.673c0.477-0.265,0.772-0.767,0.772-1.312
+                               V25.586l5.896-2.83c0.397-0.19,0.69-0.547,0.802-0.973c0.111-0.427,0.03-0.88-0.223-1.241L51.586,10.029z M27.41,9.111
+                               l17.644,2.59L33.35,17.143l-18.534-3.415L27.41,9.111z M9.801,15.854l21.237,3.914l-6.242,9.364l-20.78-5.365L9.801,15.854z
+                                M10.759,43.122V28.605l14.318,3.697c0.125,0.031,0.25,0.048,0.375,0.048c0.493,0,0.965-0.244,1.248-0.668l5.349-8.023v25.968
+                               L10.759,43.122z M49.479,41.1l-14.431,8.007V25.414l2.635,5.599c0.171,0.361,0.479,0.641,0.854,0.773
+                               c0.163,0.06,0.333,0.087,0.502,0.087c0.223,0,0.444-0.05,0.649-0.146l9.789-4.698L49.479,41.1L49.479,41.1z M39.755,28.368
+                               l-4.207-8.938L49.85,12.78l5.634,8.037L39.755,28.368z" />
+                        </svg>
+                        <strong class="ms-1">NO DATA TO DISPLAY</strong>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="card-footer">
@@ -1034,4 +1373,96 @@
         </div>
     </div>
     {{-- Operation end --}}
+
+    {{-- Modal Add Operation Manager Observation --}}
+    <div wire:ignore.self class="modal fade" id="addOpeManaObservation" tabindex="-1"
+        aria-labelledby="addOpeManaObservationLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Operation Manager Observation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form wire:submit.prevent="AddOpeManaObservation()">
+                    <div class="modal-body">
+                        {{-- Success message --}}
+                        @if (session('success'))
+                            <div class="alert alert-success mt-1 alert-validation-msg" role="alert"
+                                style="display: block;">
+                                <div class="alert-body d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                    </svg>
+                                    <span class="ms-1">
+                                        {{ session('success') }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
+                        {{-- Success message End --}}
+
+                        {{-- Error message --}}
+                        @if (session('error'))
+                            <div class="alert alert-danger mt-1 alert-validation-msg" role="alert"
+                                style="display: block;">
+                                <div class="alert-body d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                                    </svg>
+                                    <span class="ms-1">
+                                        {{ session('error') }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
+                        {{-- Error message End --}}
+
+                        {{-- Form --}}
+                        <textarea style="resize: none" class="form-control" wire:model.lazy='opeManaObservation' cols="30" rows="10"
+                            placeholder="Observation"></textarea>
+                        {{-- Form End --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Add Operation Manager Observation End --}}
+
+    {{-- Modal Edit Parameters --}}
+    <div wire:ignore.self class="modal fade" id="editParameters" tabindex="-1"
+        aria-labelledby="editParametersLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Operation Manager Observations</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form wire:submit.prevent="AddOpeManaObservation()">
+                    <div class="modal-body">
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Edit parameters --}}
 </div>

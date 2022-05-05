@@ -44,7 +44,7 @@ class Pretreatment extends Model
 
     public function assignedBy()
     {
-        return $this->belongsTo(User::class, 'id', 'user_created_at');
+        return $this->belongsTo(User::class, 'user_created_at', 'id');
     }
 
     public function multimedias()
@@ -55,9 +55,5 @@ class Pretreatment extends Model
     public function polish()
     {
         return $this->hasMany(PolishFilter::class, 'pretreatments_id', 'id');
-    }
-
-    public function userCreated(){
-        return $this->belongsTo(User::class, 'user_created_at', 'id');
     }
 }

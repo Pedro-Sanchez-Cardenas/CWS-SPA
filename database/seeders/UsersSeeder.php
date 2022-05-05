@@ -68,6 +68,15 @@ class UsersSeeder extends Seeder
         ])->assignRole('Operations-Manager');
 
         User::create([
+            'name' => 'Daniel Martinez',
+            'email' => 'aux1_ops' . $domain,
+            'phone_1' => '9993599888',
+            //'phone2' => '',
+            'companies_id' => '1',
+            'password' => Hash::make('Loy65625'),
+        ])->assignRole('Operations-Manager');
+
+        User::create([
             'name' => 'Daniel Velázquez Velázquez',
             'email' => 'admon' . $domain,
             'phone_1' => '9993337523',

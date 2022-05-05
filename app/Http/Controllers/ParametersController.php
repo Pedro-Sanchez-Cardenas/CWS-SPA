@@ -304,7 +304,7 @@ class ParametersController extends Controller
                 $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
                 $pdf->setPaper('letter', 'landscape');
                 $pdf->render();
-                return $pdf->stream();
+                return $pdf->stream($parameters->first()->name . ' REPORT - (' . $date_range . ').pdf');
             }
         } else {
             $parameters = Plant::where('id', $plant)->with(
@@ -324,9 +324,8 @@ class ParametersController extends Controller
             $pdf = PDF::loadView('TemplatesPDF.ParametersReport', compact('parameters', 'date_range'));
             $pdf->setPaper('letter', 'landscape');
             $pdf->render();
-            return $pdf->stream();
+            return $pdf->stream($parameters->first()->name . ' REPORT - (ALL).pdf');
         }
-        //return $pdf->download('parametersReport.pdf');
     }
 
     /**
