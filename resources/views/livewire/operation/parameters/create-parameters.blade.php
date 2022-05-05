@@ -26,6 +26,7 @@
         </div>
     </div>
 
+    {{-- Error Form --}}
     @if ($errors->any())
         <div class="card bg-light-warning mx-3">
             <div class="card-header">
@@ -33,11 +34,10 @@
                     <h2 class="fw-bolder mb-0 me-2">
                         You have some errors in the form
                     </h2>
-                    <p class="card-text">
+                    <div class="card-text">
                         Please check your form!
                         <br>
-                    <p class="text-danger">{{ $errors }}</p>
-                    </p>
+                    </div>
                 </div>
                 <div class="avatar bg-warning p-50 m-0">
                     <div class="avatar-content">
@@ -52,10 +52,27 @@
             </div>
         </div>
     @endif
+    {{-- Error Form End --}}
 
-    <hr>
+    {{-- Error Transaction DB --}}
+    @if (session('error'))
+        <div class="alert alert-danger mt-1 alert-validation-msg" role="alert" style="display: block;">
+            <div class="alert-body d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                </svg>
+                <span class="ms-1">
+                    {{ session('error') }}
+                </span>
+            </div>
+        </div>
+    @endif
+    {{-- Error Transaction DB End --}}
 
-    <form class="g-3 needs-validation" wire:submit.prevent="store">
+    <form class="border-top" wire:submit.prevent="store">
         {{-- Formulario que se repite segun el numero de trenes --}}
         @for ($pre = 1; $pre <= $plant->trains->where('type', 'Train')->count() * 2; $pre++)
             @if ($pre % 2 != 0)
@@ -1352,7 +1369,7 @@
                     @this.store()
                     Swal.fire({
                         position: 'center',
-                        icon: 'success',
+                        icon: 'loading',
                         title: 'Your parameters has been saved',
                         showConfirmButton: false,
                         timer: 5000
@@ -1370,6 +1387,14 @@
                     })
                 }
             })
+        });
+
+        window.addEventListener('successAlert', event => {
+
+        });
+
+        window.addEventListener('errorAlert', event => {
+
         });
     </script>
 </div>
