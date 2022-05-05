@@ -36,8 +36,8 @@
 
     <section id="body">
         <livewire:operation.plants.create-plants /> <!-- Paso de parametros por el render del componente -->
-
     </section>
+
 @endsection
 
 
