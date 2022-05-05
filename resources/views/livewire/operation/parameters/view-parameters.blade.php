@@ -216,7 +216,7 @@
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
                         @if ($parameters->first()->product_waters->first() != null)
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-sm table-bordered table-hover">
                                 <thead class="sticky-top">
                                     <tr class="text-center text-nowrap" role="row">
                                         <th colspan="@if ($plant->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO
@@ -510,7 +510,7 @@
         <div class="card-body m-0 p-0">
             <div class="rounded overflow-auto" style="height: 350pt;">
                 @if ($parameters->first()->pretreatments->first() != null)
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-sm table-bordered table-hover">
                         <thead class="sticky-top">
                             <tr class="text-center text-nowrap" role="row">
                                 <th colspan="1" rowspan="2" class="pt-3">
@@ -865,7 +865,7 @@
         <div class="card-body m-0 p-0">
             <div class="rounded overflow-auto" style="height: 350pt;">
                 @if ($parameters->first()->operations->first() != null)
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-sm table-bordered table-hover">
                         <thead class="sticky-top">
                             <tr class="text-center" role="row">
                                 <th>TRAIN</th>
@@ -1385,6 +1385,7 @@
                 </div>
                 <form wire:submit.prevent="AddOpeManaObservation()">
                     <div class="modal-body">
+                        {{-- Success message --}}
                         @if (session('success'))
                             <div class="alert alert-success mt-1 alert-validation-msg" role="alert"
                                 style="display: block;">
@@ -1402,8 +1403,32 @@
                                 </div>
                             </div>
                         @endif
+                        {{-- Success message End --}}
+
+                        {{-- Error message --}}
+                        @if (session('error'))
+                            <div class="alert alert-danger mt-1 alert-validation-msg" role="alert"
+                                style="display: block;">
+                                <div class="alert-body d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                                    </svg>
+                                    <span class="ms-1">
+                                        {{ session('error') }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
+                        {{-- Error message End --}}
+
+                        {{-- Form --}}
                         <textarea style="resize: none" class="form-control" wire:model.lazy='opeManaObservation' cols="30" rows="10"
                             placeholder="Observation"></textarea>
+                        {{-- Form End --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

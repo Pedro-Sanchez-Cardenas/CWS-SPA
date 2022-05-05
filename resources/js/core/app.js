@@ -6,6 +6,18 @@
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+import Swal from "sweetalert2";
+//De aquí en adelante definir las alertas
+window.successAlert = function (){
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your post has been saved',
+        showConfirmButton: false,
+        timer: 1900
+    })
+}
+
 window.colors = {
   solid: {
     primary: '#7367F0',

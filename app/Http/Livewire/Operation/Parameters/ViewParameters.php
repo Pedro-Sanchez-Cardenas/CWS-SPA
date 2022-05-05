@@ -51,9 +51,9 @@ class ViewParameters extends Component
             });
 
             // Success Save
-            return redirect()->back()->with('success', 'Comentario Guardado con exito!!');
+            return redirect()->back()->with('success', 'Comment saved successfully!!');
         } catch (\Exception $e) {
-            dd('ERROR TRY CATCH');
+            return redirect()->back()->with('error', 'Error saving your comment.');
         }
     }
 
