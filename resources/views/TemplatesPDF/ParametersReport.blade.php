@@ -48,11 +48,6 @@
             height: 1.3cm;
         }
 
-        img {
-            width: 90px;
-            height: 140px;
-        }
-
         .firma {
             position: absolute;
             margin: 0cm;
@@ -83,12 +78,17 @@
             padding-left: 0.3cm;
         }
 
+        .bdr {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
-        <table class="table table-bordered">
+        <table class="table table-bordered bdr">
             <tbody>
                 <td>
                     <p><small>{{ $parameters->first()->company->business_name }}</small><br>
@@ -98,7 +98,7 @@
                             <strong>C.P.#</strong>{{ $parameters->first()->company->zip }} <br>
                             <strong>TRN
                                 NUMBER/RFC:
-                            </strong>{{ $parameters->first()->company->trn_number != null? $parameters->first()->company->trn_number: $parameters->first()->company->rfc }}
+                            </strong>{{ $parameters->first()->company->trn_number != null ? $parameters->first()->company->trn_number : $parameters->first()->company->rfc }}
                         </small>
                     </p>
                     <h5>Operation Report ({{ $date_range != null ? $date_range : 'All' }})</h5>
@@ -112,7 +112,13 @@
                 </td>
 
                 <td class="td-img text-center">
-                    <img class="mt-3" src="{{ asset('storage/logo_v1.png') }}" alt="">
+                    @if ($parameters->first()->company->name == 'CWS-MEX')
+                        <img class="mt-3" style="width: 130px; height: 140px;"
+                            src="{{ asset('logo-cws.png') }}" alt="">
+                    @else
+                        <img class="mt-3" style="width: 90px; height: 140px;"
+                            src="{{ asset('logo-cws-ku3.png') }}" alt="">
+                    @endif
                 </td>
             </tbody>
         </table>
@@ -130,7 +136,7 @@
         @foreach ($parameters->first()->product_waters as $product_water)
             <strong class="text-primary">{{ $product_water->created_at->toDatestring() }}</strong>
             <h6 style="font-size: 11px">PRODUCTION READINGS</h6>
-            <table style="width: 40%;" border="1">
+            <table class="table-bordered bdr" style="width: 30%">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TYPE</th>
@@ -162,7 +168,7 @@
 
                             <td class="text-nowrap">
                                 @if (!$loop->parent->last)
-                                    {{ $reading->reading -$parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
+                                    {{ $reading->reading - $parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
                                 @else
                                     {{ $reading->reading }}
                                 @endif
@@ -180,7 +186,7 @@
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
                 PRODUCT WATER</h6>
-            <table style="width: 60%;" border="1">
+            <table class="table-bordered bdr" style="width: 60%">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th colspan="@if ($parameters->first()->personalitation_plant->chloride == 'yes') 6 @else 5 @endif">FEED LINE TO HOTEL
@@ -274,10 +280,10 @@
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
                 PRETREATMENT</h6>
-            <table style="width: 100%" border="1">
+            <table class="w-100 table-bordered bdr">
                 <thead class="text-center" style="font-size: 10px">
                     <tr role="row">
-                        <th colspan="1" rowspan="2">
+                        <th class="m-0 p-0" colspan="1" rowspan="2">
                             TRAIN
                         </th>
 
@@ -289,82 +295,84 @@
                             @endif
                         @endisset
 
-                        <th colspan="@php echo ($parameters->first()->multimedia_filters_quantity * 2); @endphp">
+                        <th class="m-0 p-0" colspan="@php echo ($parameters->first()->multimedia_filters_quantity * 2); @endphp">
                             MULTIMEDIA FILTERS
                         </th>
 
-                        <th colspan="1" rowspan="3">
+                        <th class="m-0 p-0" colspan="1" rowspan="3">
                             BACKWASH<br>
                             <small class="text-danger">Min</small>
                         </th>
 
-                        <th colspan="3" rowspan="2">
+                        <th class="m-0 p-0" colspan="3" rowspan="2">
                             POLISH FILTERS
                         </th>
                     </tr>
 
                     <tr class="text-center text-nowrap" role="row">
                         @if ($parameters->first()->personalitation_plant->well_pump != 'no')
-                            <th colspan="2">WELL PUMP</th>
+                            <th class="m-0 p-0" colspan="2">WELL PUMP</th>
                         @endif
 
                         @if ($parameters->first()->personalitation_plant->feed_pump != 'no')
-                            <th colspan="2">FEED PUMP</th>
+                            <th class="m-0 p-0" colspan="2">FEED PUMP</th>
                         @endif
 
                         @for ($i = 0; $i < $parameters->first()->multimedia_filters_quantity; $i++)
-                            <th colspan="2">#{{ $i + 1 }}</th>
+                            <th class="m-0 p-0" colspan="2">#{{ $i + 1 }}</th>
                         @endfor
                     </tr>
 
                     <tr class="text-center text-nowrap" role="row">
-                        <th class="pt-2">#</th>
+                        <th class="m-0 p-0" class="pt-2">#</th>
 
                         @if ($parameters->first()->personalitation_plant->well_pump != 'no')
-                            <th>
+                            <th class="m-0 p-0">
                                 AMPERAGE<br>
                                 <small class="text-danger">A</small>
                             </th>
-                            <th>
+
+                            <th class="m-0 p-0">
                                 FREQUENCY<br>
                                 <small class="text-danger">Hz</small>
                             </th>
                         @endif
 
                         @if ($parameters->first()->personalitation_plant->feed_pump != 'no')
-                            <th>
+                            <th class="m-0 p-0">
                                 AMPERAGE<br>
                                 <small class="text-danger">A</small>
                             </th>
-                            <th>
+
+                            <th class="m-0 p-0">
                                 FREQUENCY<br>
                                 <small class="text-danger">Hz</small>
                             </th>
                         @endif
 
                         @for ($i = 0; $i < $parameters->first()->multimedia_filters_quantity; $i++)
-                            <th>
+                            <th class="m-0 p-0">
                                 IN<br>
                                 <small class="text-danger">psi</small>
                             </th>
 
-                            <th>
+                            <th class="m-0 p-0">
                                 OUT<br>
                                 <small class="text-danger">psi</small>
                             </th>
                         @endfor
 
-                        <th>
+                        <th class="m-0 p-0">
                             IN<br>
                             <small class="text-danger">psi</small>
                         </th>
 
-                        <th>
+                        <th class="m-0 p-0">
                             OUT<br>
                             <small class="text-danger">psi</small>
                         </th>
 
-                        <th>
+                        <th class="m-0 p-0">
                             CHANGE
                         </th>
                     </tr>
@@ -376,53 +384,53 @@
                     $parameters->first()->trains->where('type', 'Train')->count();
                     $train++)
                         <tr class="text-center">
-                            <td>
+                            <td class="m-0 p-0">
                                 {{ $train + 1 }}
                             </td>
 
                             @if ($parameters->first()->personalitation_plant->well_pump == 'yes')
-                                <td>
+                                <td class="m-0 p-0">
                                     {{ $pretreatment[$banderaPretreatments]->well_pump }}
                                 </td>
 
-                                <td>
+                                <td class="m-0 p-0">
                                     {{ $pretreatment[$banderaPretreatments]->frecuencies_well_pump }}
                                 </td>
                             @endif
 
                             @if ($parameters->first()->personalitation_plant->feed_pump == 'yes')
-                                <td>
+                                <td class="m-0 p-0">
                                     {{ $pretreatment[$banderaPretreatments]->feed_pump }}
                                 </td>
 
-                                <td>
+                                <td class="m-0 p-0">
                                     {{ $pretreatment[$banderaPretreatments]->frecuencies_feed_pump }}
                                 </td>
                             @endif
 
                             @foreach ($pretreatment[$banderaPretreatments]->multimedias as $mm)
-                                <td> {{ $mm->in }}</td>
-                                <td> {{ $mm->out }}</td>
+                                <td class="m-0 p-0"> {{ $mm->in }}</td>
+                                <td class="m-0 p-0"> {{ $mm->out }}</td>
                             @endforeach
 
-                            <td>
+                            <td class="m-0 p-0">
                                 {{ $pretreatment[$banderaPretreatments]->backwash }}
                             </td>
 
-                            <td>
+                            <td class="m-0 p-0">
                                 {{ $pretreatment[$banderaPretreatments]->polish->first()->in }}
                             </td>
 
-                            <td>
+                            <td class="m-0 p-0">
                                 {{ $pretreatment[$banderaPretreatments]->polish->first()->out }}
                             </td>
 
-                            <td>
+                            <td class="m-0 p-0">
                                 @foreach ($pretreatment[$banderaPretreatments]->polish as $polish)
                                     @if ($polish->filter_change != null)
-                                        {{ $loop->iteration }},
+                                        {{ $loop->iteration }}@if(!$loop->first),@endif
                                     @else
-                                        --
+                                        --@if(!$loop->last),@endif
                                     @endif
                                 @endforeach
                             </td>
@@ -435,10 +443,9 @@
             </table>
 
 
-            <h6 style="font-size: 11px"
-                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
+            <h6 style="font-size: 11px" class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
                 OPERATION</h6>
-            <table style="width: 100%;" border="1">
+            <table class="w-100 table-bordered bdr">
                 <thead style="font-size: 10px">
                     <tr class="text-center" role="row">
                         <th>TRAIN</th>
@@ -451,7 +458,7 @@
                         <th colspan="2">FEED</th>
                         <th colspan="3">TDS CONCENTRATION</th>
                         <th colspan="@if ($parameters->first()->personalitation_plant->boosterc == 'yes') 4 @else 3 @endif">FLOW</th>
-                        <th colspan="@php echo ($parameters->first()->trains->first()->boosters_quantity + 3); @endphp">PRESSURES</th>
+                        <th colspan="@php echo ($parameters->first()->trains->first()->boosters_quantity + ($parameters->first()->personalitation_plant->boosterc == 'yes' ? 1 : 0) + 3); @endphp">PRESSURES</th>
                     </tr>
 
                     <tr class="text-center" role="row">
@@ -494,6 +501,7 @@
                             PH <br>
                             <small class="text-danger">U. ph</small>
                         </th>
+
                         <th>
                             TEMP <br>
                             <small class="text-danger">°C</small>
@@ -505,10 +513,12 @@
                             FEED <br>
                             <small class="text-danger">ppm TDS</small>
                         </th>
+
                         <th class="text-nowrap">
                             PERMEATE <br>
                             <small class="text-danger">ppm TDS</small>
                         </th>
+
                         <th class="text-nowrap">
                             REJECT <br>
                             <small class="text-danger">ppm TDS</small>
@@ -526,10 +536,12 @@
                             FEED <br>
                             <small class="text-danger">gpm</small>
                         </th>
+
                         <th>
                             PERMEATE <br>
                             <small class="text-danger">gpm</small>
                         </th>
+
                         <th>
                             REJECT <br>
                             <small class="text-danger">gpm</small>
@@ -554,10 +566,12 @@
                             H.P. IN <br>
                             <small class="text-danger">psi</small>
                         </th>
+
                         <th class="text-nowrap">
                             H.P. OUT <br>
                             <small class="text-danger">psi</small>
                         </th>
+
                         <th class="text-nowrap">
                             REJECT <br>
                             <small class="text-danger">psi</small>
@@ -583,7 +597,7 @@
                             @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
                                 @for ($b = 0; $b < $parame[$banderaTrains]->boosters->count(); $b++)
                                     <td>
-                                        {{ $parame[$banderaTrains]->boosters[$b]->frequency }}
+                                        {{ $parame[$banderaTrains]->boosters[$b]->amperage }}
                                     </td>
                                 @endfor
                             @endif
@@ -659,7 +673,7 @@
                             @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
                                 @for ($b = 0; $b < $parameters->first()->trains->first()->boosters_quantity; $b++)
                                     <td>
-                                        {{ $parame[$banderaTrains]->boosters[$b]->px }}
+                                        {{ $parame[$banderaTrains]->boosters[$b]->booster_pressures }}
                                     </td>
                                 @endfor
                             @endif
