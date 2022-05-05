@@ -132,11 +132,12 @@
                                     </tr>
                                 </thead>
 
-                                @foreach ($parameters->first()->product_waters as $product_water)
-                                    <tbody>
-                                        @foreach ($product_water->production_readings as $reading)
+                                <tbody class="m-0 p-0">
+                                    @foreach ($parameters->first()->product_waters as $product_water)
+                                        <tr class="border-primary">
+                                            @foreach ($product_water->production_readings as $reading)
                                             <tr class="text-center">
-                                                <td class="m-0 px-0">
+                                                <td class="m-0 py-0.5 px-0">
                                                     @if ($reading->type == 'Train')
                                                         {{ $reading->type }} #{{ $loop->iteration }}
                                                     @else
@@ -144,11 +145,11 @@
                                                     @endif
                                                 </td>
 
-                                                <td class="m-0 px-0">
+                                                <td class="m-0 py-0.5 px-0">
                                                     {{ $reading->reading }}
                                                 </td>
 
-                                                <td class="m-0 px-0">
+                                                <td class="m-0 py-0.5 px-0">
                                                     @if (!$loop->parent->last)
                                                         {{ $reading->reading - $parameters->first()->product_waters[$loop->parent->index + 1]->production_readings[$loop->index]->reading }}
                                                     @else
@@ -157,15 +158,16 @@
                                                 </td>
 
                                                 <td colspan="{{ $plant->trains->where('type', 'Train')->count() }}"
-                                                    class="text-nowrap m-0 px-0">
+                                                    class="text-nowrap m-0 py-0.5 px-0">
                                                     @if (!$loop->first && !$loop->last)
                                                         <span>{{ $product_water->created_at }}</span>
                                                     @endif
                                                 </td>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                @endforeach
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         @else
                             <div style="height: 350pt;"
@@ -309,81 +311,81 @@
                                     </tr>
                                 </thead>
 
-                                @foreach ($parameters->first()->product_waters as $product_water)
-                                    <tbody>
-                                        <tr>
+                                <tbody class="m-0 p-0">
+                                    @foreach ($parameters->first()->product_waters as $product_water)
+                                        <tr class="border-primary">
                                             {{-- Init Feed line to hotel supply --}}
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->ph }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->hardness }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->tds }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->h2s }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->free_chlorine }}
                                             </td>
 
                                             @if ($plant->personalitation_plant->chloride == 'yes')
-                                                <td class="m-0 px-0 text-center">
+                                                <td class="m-0 p-0 text-center">
                                                     {{ $product_water->chloride }}
                                                 </td>
                                             @endif
                                             {{-- End Feed line to hotel supply --}}
 
                                             {{-- Init Dayli chemical supply --}}
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->calcium_chloride }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->sodium_carbonate }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->sodium_hypochlorite }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->antiscalant }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->sodium_hydroxide }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->hydrochloric_acid }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->kl1 }}
                                             </td>
 
-                                            <td class="m-0 px-0 text-center">
+                                            <td class="m-0 p-0 text-center">
                                                 {{ $product_water->chemical->kl2 }}
                                             </td>
                                             {{-- End Dayli chemical supply --}}
 
                                             {{-- Init Cisterns --}}
                                             @for ($c = 0; $c < $plant->cisterns_quantity; $c++)
-                                                <td class="m-0 px-0 text-center">
+                                                <td class="m-0 p-0 text-center">
                                                     {{ $product_water->cisterns[$c]->capacity }}
                                                 </td>
                                             @endfor
                                             {{-- End Cisterns --}}
 
 
-                                            <td class="text-nowrap m-0 px-0.1">
+                                            <td class="text-nowrap m-0 px-0.5">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <span class="avatar">
                                                         <img class="round"
@@ -397,8 +399,8 @@
                                                 </div>
                                             </td>
 
-                                            <td class="m-0 px-0 text-justify">
-                                                <p class="text-justify p-1" style="width: 500px">
+                                            <td class="m-0 p-1 text-justify">
+                                                <p class="text-justify p-1" style="width: 400px">
                                                     @if ($product_water->observations != null)
                                                         {{ $product_water->observations }}
                                                     @else
@@ -430,18 +432,18 @@
                                                         </button>
                                                     </div>
                                                 @else
-                                                    <p class="text-justify" style="width: 500px">
+                                                    <p class="text-justify" style="width: 400px">
                                                         {{ $product_water->ope_mana_observation }}
                                                     </p>
                                                 @endif
                                             </td>
                                             {{-- OPERATIONS MANAGER OBSERVATIONS END --}}
 
-                                            <td class="text-nowrap m-0 px-0.1">
+                                            <td class="text-nowrap m-0 px-0.5">
                                                 {{ $product_water->created_at }}
                                             </td>
 
-                                            <td class="text-nowrap m-0 px-0.1">
+                                            <td class="text-nowrap m-0 px-0.5">
                                                 <div class="d-flex justify-content-center align-items-center gap-1">
                                                     <button type="button" class="btn btn-sm btn-warning"
                                                         data-bs-toggle="modal" data-bs-target="#editParameters"
@@ -458,8 +460,8 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                @endforeach
+                                    @endforeach
+                                </tbody>
                             </table>
                         @else
                             <div style="height: 350pt;"
@@ -610,15 +612,15 @@
                             </tr>
                         </thead>
 
-                        @foreach ($parameters->first()->pretreatments->groupBy('group_by') as $pretreatment)
-                            <tbody>
-                                <tr>
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
+                        <tbody class="m-0 p-0">
+                            @foreach ($parameters->first()->pretreatments->groupBy('group_by') as $pretreatment)
+                                <tr class="border-primary">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
                                             <tbody>
                                                 @foreach ($parameters->first()->trains->where('type', 'Train') as $train)
                                                     <tr @if (!$loop->last) class="border-bottom" @endif>
-                                                        <td class="">
+                                                        <td>
                                                             {{ $loop->iteration }}
                                                         </td>
                                                     </tr>
@@ -628,135 +630,148 @@
                                     </td>
 
                                     @if ($plant->personalitation_plant->well_pump == 'yes')
-                                        <td class="m-0 px-0 text-center">
-                                            <table style="width: 100%">
+                                        <td class="m-0 p-0 text-center">
+                                            <table class="w-100">
                                                 <tbody>
-                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                        <tr
-                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             <td>
-                                                                {{ $pretreatment[$loop->index]->well_pump }}
+                                                                {{ $pretreatment[$train]->well_pump }}
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    @endfor
                                                 </tbody>
                                             </table>
                                         </td>
 
-                                        <td class="m-0 px-0 text-center">
-                                            <table style="width: 100%">
+                                        <td class="m-0 p-0 text-center">
+                                            <table class="w-100">
                                                 <tbody>
-                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                        <tr
-                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                        $train >= 0;
+                                                        $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             <td>
-                                                                {{ $pretreatment[$loop->index]->frecuencies_well_pump }}
+                                                                {{ $pretreatment[$train]->frecuencies_well_pump }}
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    @endfor
                                                 </tbody>
                                             </table>
                                         </td>
                                     @endif
 
                                     @if ($plant->personalitation_plant->feed_pump == 'yes')
-                                        <td class="m-0 px-0 text-center">
-                                            <table style="width: 100%">
+                                        <td class="m-0 p-0 text-center">
+                                            <table class="w-100">
                                                 <tbody>
-                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                        <tr
-                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                        $train >= 0;
+                                                        $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             <td>
-                                                                {{ $pretreatment[$loop->index]->feed_pump }}
+                                                                {{ $pretreatment[$train]->feed_pump }}
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    @endfor
                                                 </tbody>
                                             </table>
                                         </td>
 
-                                        <td class="m-0 px-0 text-center">
-                                            <table style="width: 100%">
+                                        <td class="m-0 p-0 text-center">
+                                            <table class="w-100">
                                                 <tbody>
-                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                        <tr
-                                                            @if (!$loop->last) class="border-bottom" @endif>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                        $train >= 0;
+                                                        $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             <td>
-                                                                {{ $pretreatment[$loop->index]->frecuencies_feed_pump }}
+                                                                {{ $pretreatment[$train]->frecuencies_feed_pump }}
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    @endfor
                                                 </tbody>
                                             </table>
                                         </td>
                                     @endif
 
-                                    <td class="m-0 px-0 text-center" colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tr class="@if (!$loop->last) border-bottom @endif">
-                                                    @foreach ($pretreatment[$loop->index]->multimedias as $mm)
+                                    <td class="m-0 p-0 text-center" colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
+                                        <table class="w-100">
+                                            @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                $train >= 0;
+                                                $train--)
+                                                <tr class="@if($train > 0) border-bottom @endif">
+                                                    @foreach ($pretreatment[$train]->multimedias as $mm)
                                                         <td> {{ $mm->in }}</td>
                                                         <td> {{ $mm->out }}</td>
                                                     @endforeach
                                                 </tr>
-                                            @endforeach
+                                            @endfor
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
                                             <tbody>
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
-                                                        <td class="text-nowrap">
-                                                            {{ $pretreatment[$loop->index]->backwash }}
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
+                                                        <td>
+                                                            {{ $pretreatment[$train]->backwash }}
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                @endfor
                                             </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
                                             <tbody>
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
-                                                        <td class="text-nowrap">
-                                                            {{ $pretreatment[$loop->index]->polish->first()->in }}
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
+                                                        <td>
+                                                            {{ $pretreatment[$train]->polish->first()->in }}
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                @endfor
                                             </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
                                             <tbody>
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tr @if (!$loop->last) class="border-bottom" @endif>
-                                                        <td class="text-nowrap">
-                                                            {{ $pretreatment[$loop->index]->polish->first()->out }}
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
+                                                        <td>
+                                                            {{ $pretreatment[$train]->polish->first()->out }}
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                @endfor
                                             </tbody>
                                         </table>
                                     </td>
 
                                     <td class="m-0 p-0">
-                                        <table style="width: 100%">
+                                        <table class="w-100">
                                             <tbody>
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td>
-                                                            <table style="width: 100%" class="table-bordered">
+                                                            <table class="w-100 table-bordered">
                                                                 <thead>
                                                                     <tr>
-                                                                        @foreach ($pretreatment[$loop->index]->polish as $polish)
+                                                                        @foreach ($pretreatment[$train]->polish as $polish)
                                                                             <th class="text-center">
                                                                                 {{ $loop->iteration }}</th>
                                                                         @endforeach
@@ -765,7 +780,7 @@
 
                                                                 <tbody>
                                                                     <tr class="text-center">
-                                                                        @foreach ($pretreatment[$loop->index]->polish as $polish)
+                                                                        @foreach ($pretreatment[$train]->polish as $polish)
                                                                             @if ($polish->filter_change != null)
                                                                                 <td class="text-success">YES</td>
                                                                             @else
@@ -777,12 +792,12 @@
                                                             </table>
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                @endfor
                                             </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="text-nowrap m-0 px-0.1">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="avatar">
                                                 <img class="round"
@@ -796,14 +811,14 @@
                                         </div>
                                     </td>
 
-                                    <td class="m-0 px-0 text-justify">
+                                    <td class="m-0 p-1 text-justify">
                                         <table class="w-100">
                                             <tbody>
                                                 @foreach ($pretreatment as $pretre)
                                                     <tr
                                                         class="@if (!$loop->last) border-bottom @endif">
                                                         <td>
-                                                            <p class="text-justify" style="width: 500px">
+                                                            <p class="text-justify" style="width: 400px">
                                                                 {{ $loop->iteration }}).
                                                                 {{ $pretre->observations }}
                                                             </p>
@@ -814,12 +829,12 @@
                                         </table>
                                     </td>
 
-                                    <td class="text-nowrap m-0 px-0.1">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         {{ $pretreatment->last()->created_at }}
                                     </td>
                                 </tr>
-                            </tbody>
-                        @endforeach
+                            @endforeach
+                        </tbody>
                     </table>
                 @else
                     <div style="height: 350pt;" class="d-flex justify-content-center align-items-center text-danger">
@@ -997,85 +1012,51 @@
                             </tr>
                         </thead>
 
-                        @foreach ($parameters->first()->operations->groupBy('group_by') as $operation)
-                            <tbody>
-                                <tr>
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                        <tbody class="m-0 p-0">
+                            @foreach ($parameters->first()->operations->groupBy('group_by') as $operation)
+                                <tr class="border-primary">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100 h-100">
+                                            <tbody>
+                                                @foreach ($plant->trains->where('type', 'Train') as $train)
+                                                    <tr class="@if(!$loop->first) border-top @endif">
                                                         <td>
                                                             {{ $loop->iteration }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
-                                        </table>
-                                    </td>
-
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            <tbody>
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tr>
-                                                        <td
-                                                            class="@if (!$loop->last) border-bottom @endif">
-                                                            {{ $operation[$loop->index]->hp }}
-                                                        </td>
-                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
                                     </td>
 
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
+                                                        <td>
+                                                            {{ $operation[$train]->hp }}
+                                                        </td>
+                                                    </tr>
+                                                @endfor
+                                            </tbody>
+                                        </table>
+                                    </td>
+
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        @foreach ($plant->trains->where('type', 'Train') as $train)
+                                        @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                        $train >= 0;
+                                        $train--)
                                             <td class="m-0 px-0 text-center"
                                                 colspan="{{ $plant->trains->first()->boosters_quantity }}">
-                                                <table style="width: 100%">
+                                                <table class="w-100">
                                                     <tbody>
-                                                        <tr
-                                                            class="@if (!$loop->last) border-bottom @endif">
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             @for ($b = 0; $b < $operation[$loop->index]->boosters->count(); $b++)
                                                                 <td class="text-nowrap">
-                                                                    <span>{{ $operation[$loop->index]->boosters[$b]->amperage }}</span>
-                                                                </td>
-                                                            @endfor
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        @endforeach
-                                    @endif
-
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            <tbody>
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
-                                                        <td class="text-nowrap">
-                                                            <div class="d-flex flex-column">
-                                                                <span>{{ $operation[$loop->index]->hpF }}</span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </td>
-
-                                    @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        @for ($t = 0; $t < $plant->trains->where('type', 'Train')->count(); $t++)
-                                            <td class="m-0 px-0 text-center" colspan="2">
-                                                <table style="width:100%">
-                                                    <tbody>
-                                                        <tr class="text-center">
-                                                            @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
-                                                                <td class="text-nowrap">
-                                                                    <span>{{ $operation[$t]->boosters[$b]->frequency }}</span>
+                                                                    <span>{{ $operation[$train]->boosters[$b]->amperage }}</span>
                                                                 </td>
                                                             @endfor
                                                         </tr>
@@ -1085,228 +1066,281 @@
                                         @endfor
                                     @endif
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->ph }}
+                                                            <div class="d-flex flex-column">
+                                                                <span>{{ $operation[$train]->hpF }}</span>
+                                                            </div>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    @if ($plant->personalitation_plant->boosterc == 'yes')
+                                        @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                            $train >= 0;
+                                            $train--)
+                                            <td class="m-0 p-0 text-center" colspan="2">
+                                                <table class="w-100">
+                                                    <tbody>
+                                                        <tr class="@if($train > 0) border-bottom @endif">
+                                                            @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                                <td class="text-nowrap">
+                                                                    <span>{{ $operation[$ttrain]->boosters[$b]->frequency }}</span>
+                                                                </td>
+                                                            @endfor
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        @endfor
+                                    @endif
+
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->temperature }}
+                                                            {{ $operation[$train]->ph }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->feed }}
+                                                            {{ $operation[$train]->temperature }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->permeate }}
+                                                            {{ $operation[$train]->feed }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->reject }}
+                                                            {{ $operation[$train]->permeate }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
+                                                        <td class="text-nowrap">
+                                                            {{ $operation[$train]->reject }}
+                                                        </td>
+                                                    </tr>
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
                                     {{-- FLOW --}}
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <td class="m-0 px-0 text-center">
-                                            <table style="width: 100%">
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tbody>
-                                                        <tr
-                                                            class="@if (!$loop->last) border-bottom @endif">
+                                        <td class="m-0 p-0 text-center">
+                                            <table class="w-100">
+                                                <tbody>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                        $train >= 0;
+                                                        $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             <td class="text-nowrap">
-                                                                {{ $operation[$loop->index]->boosters->first()->booster_flow }}
+                                                                {{ $operation[$train]->boosters->first()->booster_flow }}
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                @endforeach
+                                                    @endfor
+                                                </tbody>
                                             </table>
                                         </td>
                                     @endif
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->feed_flow }}
+                                                            {{ $operation[$train]->feed_flow }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->permeate_flow }}
+                                                            {{ $operation[$train]->permeate_flow }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->reject_flow }}
+                                                            {{ $operation[$train]->reject_flow }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
                                     {{-- END FLOW --}}
 
                                     {{-- PRESSURES --}}
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <td class="m-0 px-0 text-center">
-                                            <table style="width: 100%">
-                                                @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                    <tbody>
-                                                        <tr
-                                                            class="@if (!$loop->last) border-bottom @endif">
+                                        <td class="m-0 p-0 text-center">
+                                            <table class="w-100">
+                                                <tbody>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                        $train >= 0;
+                                                        $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             <td class="text-nowrap">
-                                                                {{ $operation[$loop->index]->boosters->first()->booster_pressures_total }}
+                                                                {{ $operation[$train]->boosters->first()->booster_pressures_total }}
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                @endforeach
+                                                    @endfor
+                                                </tbody>
                                             </table>
                                         </td>
                                     @endif
 
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        <td class="m-0 px-0 text-center" colspan="2">
-                                            <table style="width: 100%">
+                                        <td class="m-0 p-0 text-center" colspan="2">
+                                            <table class="w-100">
                                                 <tbody>
-                                                    @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                        <tr>
+                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                        $train >= 0;
+                                                        $train--)
+                                                        <tr class="@if($train > 0) border-bottom @endif">
                                                             @for ($b = 0; $b < $plant->trains->first()->boosters_quantity; $b++)
                                                                 <td>
-                                                                    {{ $operation[$loop->index]->boosters[$b]->booster_pressures }}
+                                                                    {{ $operation[$train]->boosters[$b]->booster_pressures }}
                                                                 </td>
                                                             @endfor
                                                         </tr>
-                                                    @endforeach
+                                                    @endfor
                                                 </tbody>
                                             </table>
                                         </td>
                                     @endif
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->hp_in }}
+                                                            {{ $operation[$train]->hp_in }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
                                                 <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->hp_out }}
+                                                            {{ $operation[$train]->hp_out }}
                                                         </td>
                                                     </tr>
                                                 </tbody>
-                                            @endforeach
+                                            @endfor
                                         </table>
                                     </td>
 
-                                    <td class="m-0 px-0 text-center">
-                                        <table style="width: 100%">
-                                            @foreach ($plant->trains->where('type', 'Train') as $train)
-                                                <tbody>
-                                                    <tr
-                                                        class="@if (!$loop->last) border-bottom @endif">
+                                    <td class="m-0 p-0 text-center">
+                                        <table class="w-100">
+                                            <tbody>
+                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    $train >= 0;
+                                                    $train--)
+                                                    <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
-                                                            {{ $operation[$loop->index]->reject_pressure }}
+                                                            {{ $operation[$train]->reject_pressure }}
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            @endforeach
+                                                @endfor
+                                            </tbody>
                                         </table>
                                     </td>
                                     {{-- END PRESSURES --}}
 
-                                    <td class="text-nowrap m-0 px-0.1 text-center">
+                                    <td class="text-nowrap m-0 px-0.5 text-center">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="avatar">
                                                 <img class="round"
@@ -1320,14 +1354,14 @@
                                         </div>
                                     </td>
 
-                                    <td class="m-0 px-0">
+                                    <td class="m-0 p-1">
                                         <table>
                                             <tbody>
                                                 @foreach ($operation as $oper)
                                                     <tr
                                                         class="@if (!$loop->last) border-bottom @endif">
                                                         <td>
-                                                            <p class="text-justify" style="width: 500px">
+                                                            <p class="text-justify" style="width: 400px">
                                                                 {{ $loop->iteration }}). {{ $oper->observations }}
                                                             </p>
                                                         </td>
@@ -1337,12 +1371,12 @@
                                         </table>
                                     </td>
 
-                                    <td class="text-nowrap m-0 px-0.1">
+                                    <td class="text-nowrap m-0 px-0.5">
                                         {{ $operation->last()->created_at }}
                                     </td>
                                 </tr>
-                            </tbody>
-                        @endforeach
+                            @endforeach
+                        </tbody>
                     </table>
                 @else
                     <div style="height: 350pt;" class="d-flex justify-content-center align-items-center text-danger">

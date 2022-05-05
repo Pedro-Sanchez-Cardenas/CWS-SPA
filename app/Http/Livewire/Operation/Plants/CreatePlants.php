@@ -9,10 +9,12 @@ use App\Models\Currency;
 use App\Models\MembraneActiveArea;
 use App\Models\PersonalitationPlant;
 use App\Models\Plant;
+use App\Models\PlantContract;
 use App\Models\PlantType;
 use App\Models\PolishFilterType;
 use App\Models\Train;
 use App\Models\User;
+use App\Models\UserContract;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +25,7 @@ class UploadPhotoWithPreview extends Component
 {
     use WithFileUploads;
 
-    public $photo;
+    public $plants_cover;
 }
 
 class CreatePlants extends Component
@@ -39,8 +41,10 @@ class CreatePlants extends Component
     public $personalitations;
     public $contract;
     public $trains;
-    public $photo;
     public $multiplepdf;
+    public $plants_cover;
+
+
 
     // Costs
     public $botM3;
@@ -48,13 +52,15 @@ class CreatePlants extends Component
     public $oymM3;
     public $oymFixed;
     public $remineralisationM3;
+    public $chloride;
+    public $cover_path;
 
     protected function rules()
     {
         return [
-            'plants' => 'nullable|min:0|max:1|array:cover,handbook,name,location,type,company,country,currency,operator,manager', // We validate the array
-            'plants.cover' => ['image', 'mimes:jpg,jpeg,png'],
-            'plants.pdf' => ['mimes:pdf'],
+            'plants' => 'nullable|min:0|max:1|array:plants_cover,multiplepdf,handbook,name,location,type,company,country,currency,operator,manager', // We validate the array
+            'plants.plants_cover' => ['image', 'mimes:jpg,jpeg,png'],
+            'plants.multiplepdf' => ['mimes:pdf'],
             'plants.name' => ['required', 'string', 'min:1', 'max:100', Rule::unique('plants', 'name')],
             'plants.type' => ['required', 'integer', Rule::exists('plant_types', 'id')],
             'plants.location' => ['required', 'string', 'min:10', 'max:100'],
@@ -64,8 +70,8 @@ class CreatePlants extends Component
             'plants.operator' => ['required', 'integer', Rule::exists('users', 'id')],
             'plants.manager' => ['required', 'integer', Rule::exists('users', 'id')],
 
-            // 'cisterns' => 'nullable|min:0|max:5|array:capacity', // We validate the array
-            'cisterns.capacity.*' => ['nullable', 'numeric', 'min:0'],
+            //'cisterns' => 'nullable|min:0|max:5|array:capacity', // We validate the array
+            'cisterns.capacity' => ['nullable', 'numeric', 'min:0'],
 
             // Personalization
             'personalitations' => ['nullable', 'min:0', 'min:1', 'array:irrigation,sdi,chloride,wellPump,feedPump'], // We validate the array
@@ -94,7 +100,7 @@ class CreatePlants extends Component
             'contract.billingPeriod' => ['required', 'integer', 'between:1,4', Rule::exists('billing_periods', 'id')],
             'contract.minimumConsumption' => ['nullable', 'numeric', 'min:0'],
 
-            'trains' => 'min:1|max:5|array:capacity,tds,booster,multimediaFilsters,polishFilters,polishQuantity,mArea,mElements', // We validate the array
+            'trains' => ['nullable', 'min:1|max:5|array:capacity,tds,booster,multimediaFilsters,polishFilters,polishQuantity,mArea,mElements'], // We validate the array
             'trains.capacity.*' => ['required', 'integer', 'min:0'],
             'trains.tds.*' => ['required', 'integer', 'min:0'],
             'trains.booster.*' => ['required', 'integer'],
@@ -113,7 +119,7 @@ class CreatePlants extends Component
 
     public function store()
     {
-        dd("test");
+        dd($this->trains);
         /*try {*/
         //DB::transaction(function () {
         PersonalitationPlant::create([
@@ -122,10 +128,10 @@ class CreatePlants extends Component
             'chloride' => $this->personalitations['chloride'],
             'well_pump' => $this->personalitations['wellPump'],
             'feed_pump' => $this->personalitations['feedPump'],
-            'boosterc' => 0,
-            'feed_flow' => 0,
-            'permeate_flow' => 0,
-            'reject_flow'  => 0
+            'boosterc' => 'no',
+            'feed_flow' => 'no',
+            'permeate_flow' => 'no',
+            'reject_flow'  => 'no'
         ]);
 
         $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
@@ -133,18 +139,21 @@ class CreatePlants extends Component
         Plant::create([
             'name' => $this->plants['name'],
             'location' => $this->plants['location'],
-            'cover_path' => $this->plants['cover'], // nullable
+            // nullable'multiplepdf' => $this->plants['plants.multiplepdf'],
+            'cover_path' => $this->plants['plants_cover'], // nullable
             'installed_capacity' => 0,
             'design_limit' => 0,
+            'cisterns' => $this->cisterns['capacity'],
 
-            'polish_filter_types_id' => $this->trains['polishFilters'],
-            'polish_filters_quantity' => $this->trains['polishQuantity'],
+            'polish_filter_types_id' => 1,
+            'polish_filters_quantity' => 0,
 
-            'multimedia_filters_quantity' => $this->trains['multimediaFilsters'],
+            'multimedia_filters_quantity' => 0,
             'cisterns_quantity' => 0,
+            'cisterns' => 0,
 
             'companies_id' => $this->plants['company'],
-            'clients_id' => 0,
+            'clients_id' => 1,
             'personalitation_plants_id' => $idPersonalitationPlant->id,
             'countries_id' => $this->plants['country'],
             'plant_types_id' => $this->plants['type'],
@@ -153,15 +162,17 @@ class CreatePlants extends Component
             'user_created_at',
         ]);
 
+
         $idPlant = Plant::latest('id')->first();
 
-        for ($t = 0; $t < count($this->trains); $t++) {
+        for ($t = 0; $t < count($this->trainIndex); $t++) {
             Train::create([
                 'plants_id' => $idPlant->id,
                 'capacity' => $this->trains['capacity'][$t],
                 'boosters_quantity' => $this->trains['booster'][$t],
                 'tds' => $this->trains['tds'][$t],
                 'status' => 'Enable',
+
                 'type' => 'Train',
                 'membrane_active_areas_id' => $this->trains['mArea'][$t],
                 'membrane_elements' => $this->trains['mElements'][$t],

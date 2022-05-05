@@ -1,6 +1,5 @@
 <div>
-    {{ $errors }}
-    <form wire:submit.prevent="store" method="POST">
+    <form wire:submit.prevent="store">
         <section>
             <div class="row">
                 <div class="col-md-6">
@@ -12,12 +11,12 @@
                             <div class="input-group ">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <input type="file" wire:model="photo" class="form-control"
+                                        <input type="file" wire:model="plants.plants_cover" class="form-control"
                                             livewire-upload-progress accept="image/gif,image/jpeg,image/jpg,image/png"
                                             name="files[]" id="file">
                                         <br>
-                                        @if ($photo)
-                                            <img width="545x" height="250" src="{{ $photo->temporaryUrl() }}">
+                                        @if ($plants_cover)
+                                            <img width="545x" height="250" src="{{ $plants_cover->temporaryUrl() }}">
                                             <br><br>
                                             <input type="button" value="Delate image" class="col-md-12" />
                                         @endif
@@ -40,7 +39,7 @@
                                 <div class="col-md-12">
                                     <div class="table-responsive">
                                         <input type="file" name="files[]" id="inputFile" multiple class="form-control"
-                                            accept=".pdf" wire:model="multiplepdf">
+                                            accept=".pdf" wire:model="plants.multiplepdf">
                                         <br>
                                         <ul id="listaDeArchivos">
                                         </ul>
@@ -52,6 +51,7 @@
                 </div>
             </div>
         </section>
+
         <section class="card">
             <div class="card-header">
                 <h4 class="card-title">Plant Data</h4>
@@ -270,7 +270,7 @@
         <section class="row">
             <div class="col-md-6">
                 <div class="card" x-data="cisterns()" x-cloak>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center" wire:ignore>
                         <div class="card-header">
                             <h4 class="card-title">Cisterns</h4>
                         </div>
@@ -289,7 +289,7 @@
                             Add Cistern
                         </button>
                     </div>
-                    <div class="card-body" wire:ignore>
+                    <div class="card-body">
                         <div class="text-danger text-center" x-show="cisterns.length == 0">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
@@ -316,8 +316,8 @@
                                             </svg>
                                         </span>
                                         <input :id="index" type="text" step="0.01" class="form-control"
-                                            placeholder="0.0 lt" :x-model="index"wire:model="cisterns"
-                                            wire:ignore>
+                                            placeholder="0.0 lt" :x-model="index" wire:ignore
+                                            wire:model="cisterns.capacity">
                                     </div>
                                     @error('cisterns.capacity')
                                         <span class="text-danger">{{ $message }}</span>
@@ -625,7 +625,7 @@
                                     </span>
                                     <select
                                         class="form-select @error('contract.billingDay') border border-danger @enderror"
-                                        id="billingDay" wire:model="contract.billingDay">
+                                        id="paymenttypes" wire:model="contract.billingDay">
                                         <option value="">SELECT BILLING DAY</option>
                                         @for ($i = 1; $i < 32; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -637,7 +637,7 @@
                                 @enderror
                             </div>
                             <div class="col-6">
-                                <label for="contract.billingPeriod" class="form-label"> period</label>
+                                <label for="contract.billingPeriod" class="form-label">Payment types</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error('billingPeriod') border border-danger @enderror"
@@ -697,10 +697,10 @@
                 </div>
             </div>
         </section>
-        <section id="trains">
-            <livewire:operation.plants.trains /> <!-- Paso de parametros por el render del componente trains -->
-        </section>
-        <button wire:offline.attr="disabled" class="btn btn-success col-12 waves-effect waves-float waves-light">
+
+        <livewire:operation.plants.trains />
+
+        <button type="submit" class="btn btn-success col-12 waves-effect waves-float waves-light">
             <div class="d-flex justify-content-center align-items-center font-weight-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -711,6 +711,7 @@
             </div>
         </button>
     </form>
+
     @push('jsLivewire')
         <script>
             function cisterns() {
