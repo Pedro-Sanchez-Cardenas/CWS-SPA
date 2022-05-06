@@ -120,7 +120,7 @@ class CreatePlants extends Component
 
     public function store()
     {
-
+        dd($this->trains);
         /*try {*/
         //DB::transaction(function () {
         PersonalitationPlant::create([
