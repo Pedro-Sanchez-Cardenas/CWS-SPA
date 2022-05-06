@@ -1,4 +1,4 @@
-<div wire:poll.300000ms>
+<div wire:poll.60000ms>
     {{-- Data Filters --}}
     <div class="row">
         <div class="col-lg-4 col-12">
@@ -103,7 +103,7 @@
         {{-- Production Reading --}}
         <div class="col-md-4">
             <h5 class="mb-1">PRODUCTION READINGS</h5>
-            <div wire:loading class="w-100">
+            <div wire:loading wire:target='date_range' class="w-100">
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <div wire:loading.remove class="card">
+            <div wire:loading.remove wire:target='date_range' class="card">
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
                         @if ($parameters->first()->product_waters->first() != null)
@@ -206,7 +206,7 @@
         {{-- Product Water --}}
         <div class="col-md-8">
             <h5 class="mb-1">PRODUCT WATER</h5>
-            <div wire:loading class="w-100">
+            <div wire:loading wire:target='date_range' class="w-100">
                 <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <br>
@@ -214,7 +214,7 @@
                 </div>
             </div>
 
-            <div wire:loading.remove class="card">
+            <div wire:loading.remove wire:target='date_range' class="card">
                 <div class="card-body m-0 p-0">
                     <div class="rounded overflow-auto" style="height: 350pt;">
                         @if ($parameters->first()->product_waters->first() != null)
@@ -416,7 +416,7 @@
                                                         <button class="btn btn-success" type="button"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#addOpeManaObservation"
-                                                            wire:click='get_id_toAddOpeManaObservation({{ $product_water->id }})'>
+                                                            wire:click="get_id_toAddOpeManaObservation({{ $product_water->id }})">
                                                             <div
                                                                 class="d-flex justify-content-center align-items-center">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -500,7 +500,7 @@
 
     {{-- Pretreatment --}}
     <h5 class="mb-1">PRETREATMENT</h5>
-    <div wire:loading class="w-100">
+    <div wire:loading wire:target='date_range' class="w-100">
         <div class="card d-flex justify-content-center align-items-center col-12" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
@@ -508,7 +508,7 @@
         </div>
     </div>
 
-    <div wire:loading.remove class="card">
+    <div wire:loading.remove wire:target='date_range' class="card">
         <div class="card-body m-0 p-0">
             <div class="rounded overflow-auto" style="height: 350pt;">
                 @if ($parameters->first()->pretreatments->first() != null)
@@ -868,7 +868,7 @@
 
     {{-- Operation --}}
     <h5 class="mb-1">OPERATION</h5>
-    <div wire:loading class="w-100">
+    <div wire:loading wire:target='date_range' class="w-100">
         <div class="card d-flex justify-content-center align-items-center" style="height: 530px;">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <br>
@@ -876,7 +876,7 @@
         </div>
     </div>
 
-    <div wire:loading.remove class="card">
+    <div wire:loading.remove wire:target='date_range' class="card">
         <div class="card-body m-0 p-0">
             <div class="rounded overflow-auto" style="height: 350pt;">
                 @if ($parameters->first()->operations->first() != null)
@@ -1477,7 +1477,7 @@
     {{-- Modal Edit Parameters --}}
     <div wire:ignore.self class="modal fade" id="editParameters" tabindex="-1"
         aria-labelledby="editParametersLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Operation Manager Observations</h5>
