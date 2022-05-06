@@ -1054,7 +1054,7 @@
                                                 <table class="w-100">
                                                     <tbody>
                                                         <tr class="@if($train > 0) border-bottom @endif">
-                                                            @for ($b = 0; $b < $operation[$loop->index]->boosters->count(); $b++)
+                                                            @for ($b = 0; $b < $operation[$train]->boosters->count(); $b++)
                                                                 <td class="text-nowrap">
                                                                     <span>{{ $operation[$train]->boosters[$b]->amperage }}</span>
                                                                 </td>

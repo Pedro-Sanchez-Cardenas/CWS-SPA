@@ -49,10 +49,6 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     /* Route Operation */
     Route::group(['prefix' => 'operation'], function () {
-
-        //Route::post('plants/{company}', [PlantController::class, 'index'])->name('index');
-        Route::resource('plants', PlantController::class)->parameters(['plants' => 'company']);
-
         Route::get('plants/{company}', [PlantController::class, 'index'])->name('plants.index');
         Route::resource('plants', PlantController::class)->except('index');
 
