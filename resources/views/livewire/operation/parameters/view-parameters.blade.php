@@ -1,4 +1,4 @@
-<div wire:poll.60000ms>
+<div wire:poll.300000ms>
     {{-- Data Filters --}}
     <div class="row">
         <div class="col-lg-4 col-12">
