@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Operation\Plants;
 
+use App\Models\Cistern;
 use Livewire\Component;
 use App\Models\Company;
 use App\Models\Country;
@@ -70,7 +71,7 @@ class CreatePlants extends Component
             'plants.operator' => ['required', 'integer', Rule::exists('users', 'id')],
             'plants.manager' => ['required', 'integer', Rule::exists('users', 'id')],
 
-            //'cisterns' => 'nullable|min:0|max:5|array:capacity', // We validate the array
+            'cisterns' => 'nullable|min:0|max:5|array:capacity', // We validate the array
             'cisterns.capacity' => ['nullable', 'numeric', 'min:0'],
 
             // Personalization
@@ -119,7 +120,11 @@ class CreatePlants extends Component
 
     public function store()
     {
+<<<<<<< HEAD
+
+=======
         dd($this->trains);
+>>>>>>> dev
         /*try {*/
         //DB::transaction(function () {
         PersonalitationPlant::create([
@@ -135,7 +140,7 @@ class CreatePlants extends Component
         ]);
 
         $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
-
+        dd($this->cisterns);
         Plant::create([
             'name' => $this->plants['name'],
             'location' => $this->plants['location'],
@@ -143,7 +148,7 @@ class CreatePlants extends Component
             'cover_path' => $this->plants['plants_cover'], // nullable
             'installed_capacity' => 0,
             'design_limit' => 0,
-            'cisterns' => $this->cisterns['capacity'],
+            'capacity' => $this->cisterns['cisterns.capacity'],
 
             'polish_filter_types_id' => 1,
             'polish_filters_quantity' => 0,
@@ -160,6 +165,36 @@ class CreatePlants extends Component
             'operator' => $this->plants['operator'], //nullable
             'manager' => $this->plants['manager'], // nullable
             'user_created_at',
+        ]);
+        dd($this->cisterns);
+
+        $plantId = Cistern::latest('id')->first();
+        Cistern::create([
+            'plant_id' => $plantId->id,
+
+        ]);
+
+
+        $plantId = Plant::latest('id')->first();
+
+        PlantContract::create([
+            'plant_id' => $plantId->id,
+            'bot_m3' => $this->botM3,
+            'bot_fixed' => $this->botFixed,
+            'oym_m3' => $this->oymM3,
+            'oym_fixed' => $this->oymFixed,
+            'remineralitation' => $this->remineralisationM3,
+            'total_m3 ' => 0,
+            'total_month'  => 0,
+            'years' => $this->plants['contract.yearsOfContract'],
+            'from' => $this->plants['contract.from'],
+            'till' => $this->plants['contract.till'], //nullable
+            'minimun_consumption' => $this->plants['contract.minimumConsumption'],
+            'billing_day' => $this->plants['contract.billingDay'], // nullable
+            //'payment_types_id' => $this->plants['contract.billingPeriod'], // nullable
+            'user_created_at',
+
+
         ]);
 
 
