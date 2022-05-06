@@ -633,9 +633,9 @@
                                         <td class="m-0 p-0 text-center">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
-                                                    $train >= 0;
-                                                    $train--)
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
+                                                        $train >= 0;
+                                                        $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
                                                             <td>
                                                                 {{ $pretreatment[$train]->well_pump }}
@@ -649,7 +649,7 @@
                                         <td class="m-0 p-0 text-center">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                         $train >= 0;
                                                         $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
@@ -667,7 +667,7 @@
                                         <td class="m-0 p-0 text-center">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                         $train >= 0;
                                                         $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
@@ -683,7 +683,7 @@
                                         <td class="m-0 p-0 text-center">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                         $train >= 0;
                                                         $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
@@ -699,13 +699,13 @@
 
                                     <td class="m-0 p-0 text-center" colspan="@php echo ($plant->multimedia_filters_quantity * 2); @endphp">
                                         <table class="w-100">
-                                            @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                            @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                 $train >= 0;
                                                 $train--)
                                                 <tr class="@if($train > 0) border-bottom @endif">
                                                     @foreach ($pretreatment[$train]->multimedias as $mm)
-                                                        <td> {{ $mm->in }}</td>
-                                                        <td> {{ $mm->out }}</td>
+                                                        <td>{{ $mm->in }}</td>
+                                                        <td>{{ $mm->out }}</td>
                                                     @endforeach
                                                 </tr>
                                             @endfor
@@ -715,7 +715,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -731,7 +731,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -747,7 +747,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -763,7 +763,7 @@
                                     <td class="m-0 p-0">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1016,7 +1016,7 @@
                             @foreach ($parameters->first()->operations->groupBy('group_by') as $operation)
                                 <tr class="border-primary">
                                     <td class="m-0 p-0 text-center">
-                                        <table class="w-100 h-100">
+                                        <table class="w-100">
                                             <tbody>
                                                 @foreach ($plant->trains->where('type', 'Train') as $train)
                                                     <tr class="@if(!$loop->first) border-top @endif">
@@ -1032,7 +1032,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1046,7 +1046,7 @@
                                     </td>
 
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                        @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                         $train >= 0;
                                         $train--)
                                             <td class="m-0 px-0 text-center"
@@ -1069,7 +1069,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1085,16 +1085,16 @@
                                     </td>
 
                                     @if ($plant->personalitation_plant->boosterc == 'yes')
-                                        @for ($train = $plant->first()->trains->where('type', 'Train')->count();
-                                            $train >= 0;
-                                            $train--)
+                                        @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
+                                        $train >= 0;
+                                        $train--)
                                             <td class="m-0 p-0 text-center" colspan="2">
                                                 <table class="w-100">
                                                     <tbody>
                                                         <tr class="@if($train > 0) border-bottom @endif">
-                                                            @for ($b = 0; $b < $operation[$t]->boosters->count(); $b++)
+                                                            @for ($b = 0; $b < $operation[$train]->boosters->count(); $b++)
                                                                 <td class="text-nowrap">
-                                                                    <span>{{ $operation[$ttrain]->boosters[$b]->frequency }}</span>
+                                                                    <span>{{ $operation[$train]->boosters[$b]->frequency }}</span>
                                                                 </td>
                                                             @endfor
                                                         </tr>
@@ -1107,7 +1107,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1123,7 +1123,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1139,7 +1139,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1155,7 +1155,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1171,7 +1171,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1189,9 +1189,9 @@
                                         <td class="m-0 p-0 text-center">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
-                                                        $train >= 0;
-                                                        $train--)
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
+                                                    $train >= 0;
+                                                    $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
                                                             <td class="text-nowrap">
                                                                 {{ $operation[$train]->boosters->first()->booster_flow }}
@@ -1206,7 +1206,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1222,7 +1222,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1238,9 +1238,9 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
-                                                    $train >= 0;
-                                                    $train--)
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
+                                                $train >= 0;
+                                                $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
                                                         <td class="text-nowrap">
                                                             {{ $operation[$train]->reject_flow }}
@@ -1257,7 +1257,7 @@
                                         <td class="m-0 p-0 text-center">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                         $train >= 0;
                                                         $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
@@ -1275,7 +1275,7 @@
                                         <td class="m-0 p-0 text-center" colspan="2">
                                             <table class="w-100">
                                                 <tbody>
-                                                    @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                    @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                         $train >= 0;
                                                         $train--)
                                                         <tr class="@if($train > 0) border-bottom @endif">
@@ -1294,7 +1294,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
@@ -1309,7 +1309,7 @@
 
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
-                                            @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                            @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                 <tbody>
@@ -1326,7 +1326,7 @@
                                     <td class="m-0 p-0 text-center">
                                         <table class="w-100">
                                             <tbody>
-                                                @for ($train = $plant->first()->trains->where('type', 'Train')->count();
+                                                @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
