@@ -761,14 +761,14 @@
                                     </td>
 
                                     <td class="m-0 p-0">
-                                        <table class="w-100">
+                                        <table class="w-100 table-sm">
                                             <tbody>
                                                 @for ($train = ($parameters->first()->trains->where('type', 'Train')->count()-1);
                                                     $train >= 0;
                                                     $train--)
                                                     <tr class="@if($train > 0) border-bottom @endif">
                                                         <td>
-                                                            <table class="w-100 table-bordered">
+                                                            <table class="table-sm table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         @foreach ($pretreatment[$train]->polish as $polish)
