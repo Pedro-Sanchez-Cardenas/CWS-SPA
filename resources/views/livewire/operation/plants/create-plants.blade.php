@@ -625,7 +625,7 @@
                                     </span>
                                     <select
                                         class="form-select @error('contract.billingDay') border border-danger @enderror"
-                                        id="paymenttypes" wire:model="contract.billingDay">
+                                        id="billingDay" wire:model="contract.billingDay">
                                         <option value="">SELECT BILLING DAY</option>
                                         @for ($i = 1; $i < 32; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
@@ -637,7 +637,7 @@
                                 @enderror
                             </div>
                             <div class="col-6">
-                                <label for="contract.billingPeriod" class="form-label">Payment types</label>
+                                <label for="contract.billingPeriod" class="form-label">billingPeriod</label>
                                 <div class="input-group">
                                     <span
                                         class="input-group-text @error('billingPeriod') border border-danger @enderror"
