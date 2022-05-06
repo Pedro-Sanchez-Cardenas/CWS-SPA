@@ -120,11 +120,7 @@ class CreatePlants extends Component
 
     public function store()
     {
-<<<<<<< HEAD
 
-=======
-        dd($this->trains);
->>>>>>> dev
         /*try {*/
         //DB::transaction(function () {
         PersonalitationPlant::create([
@@ -140,7 +136,7 @@ class CreatePlants extends Component
         ]);
 
         $idPersonalitationPlant = PersonalitationPlant::latest('id')->first();
-        dd($this->cisterns);
+
         Plant::create([
             'name' => $this->plants['name'],
             'location' => $this->plants['location'],
@@ -166,12 +162,10 @@ class CreatePlants extends Component
             'manager' => $this->plants['manager'], // nullable
             'user_created_at',
         ]);
-        dd($this->cisterns);
-
         $plantId = Cistern::latest('id')->first();
         Cistern::create([
             'plant_id' => $plantId->id,
-
+            'capacity' => $this->cisterns['cisterns.capacity'],
         ]);
 
 
