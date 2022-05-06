@@ -7,9 +7,11 @@ use App\Models\ProductWater;
 use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class ViewParameters extends Component
 {
+    use WithPagination;
 
     public Plant $plant;
     public $date_range;
@@ -30,7 +32,7 @@ class ViewParameters extends Component
     {
         $dates = explode(" ", $this->date_range);
         return view('livewire.operation.parameters.view-parameters', [
-            'parameters' => empty($this->date_range) ? (Plant::where('id', $this->plant->id)->with('product_waters', 'pretreatments', 'operations')->get()) : ((count($dates) > 2) ? $this->query() : Plant::where('id', $this->plant->id)->with('product_waters', 'pretreatments', 'operations')->get()),
+            'parameters' => empty($this->date_range) ? (Plant::where('id', $this->plant->id)->with(['product_waters', 'pretreatments', 'operations'])->get()) : ((count($dates) > 2) ? $this->query_range() : $this->query_one_date()),
         ]);
     }
 
@@ -64,7 +66,32 @@ class ViewParameters extends Component
         $this->edit_parameters_id = $id;
     }
 
-    public function query()
+    public function query_one_date()
+    {
+        $dates = explode(" ", $this->date_range);
+            $parameters = Plant::where('id', $this->plant->id)->with(
+                [
+                    'product_waters' => function ($query) {
+                        $dates = explode(" ", $this->date_range);
+
+                        $query->whereDate('created_at', '=', $dates[0]);
+                    },
+                    'pretreatments' => function ($query) {
+                        $dates = explode(" ", $this->date_range);
+
+                        $query->whereDate('created_at', '=', $dates[0]);
+                    },
+                    'operations' => function ($query) {
+                        $dates = explode(" ", $this->date_range);
+
+                        $query->whereDate('created_at', '=', $dates[0]);
+                    }
+                ]
+            )->get();
+            return $parameters;
+    }
+
+    public function query_range()
     {
         $dates = explode(" ", $this->date_range);
         if (count($dates) > 2) {
