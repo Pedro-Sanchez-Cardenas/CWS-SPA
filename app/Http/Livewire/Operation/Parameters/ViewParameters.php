@@ -51,6 +51,8 @@ class ViewParameters extends Component
             });
 
             // Success Save
+            $this->reset('opeManaObservation');
+
             return redirect()->back()->with('success', 'Comment saved successfully!!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error saving your comment.');
@@ -62,7 +64,7 @@ class ViewParameters extends Component
         $this->edit_parameters_id = $id;
     }
 
-    private function query()
+    public function query()
     {
         $dates = explode(" ", $this->date_range);
         if (count($dates) > 2) {
