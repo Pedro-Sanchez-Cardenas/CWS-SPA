@@ -27,7 +27,7 @@ class PlantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company)
+    public function index($company = null)
     {
         if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
 
