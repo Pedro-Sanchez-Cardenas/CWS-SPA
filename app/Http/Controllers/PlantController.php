@@ -27,18 +27,14 @@ class PlantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company = null)
+    public function index($company)
     {
         if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
 
-            if ($company != null) {
-                $companies = Company::where('name', $company)->first();
+            $companies = Company::where('name', $company)->first();
 
 
-                $plants = Plant::where('companies_id', $companies->id)->get();
-            } else {
-                $plants = Plant::all();
-            }
+            $plants = Plant::where('companies_id', $companies->id)->get();
         } else if (Auth::user()->getRoleNames()->first() == 'Manager') {
 
             $plants = Plant::where('manager', Auth::id())->get();
@@ -210,11 +206,11 @@ class PlantController extends Controller
         $countries = Country::all();
         $currency = Currency::all();
         $polishFilterTypes = PolishFilterType::all();
-        $billings = BillingPeriod::all();
+        // $billings = BillingPeriod::all();
 
         $attendants = User::role('Operator')->get();
         $managers = User::role('Manager')->get();
-        return view('plants.edit', compact('plant', 'plantTypes', 'countries', 'currency', 'polishFilterTypes', 'billings', 'managers', 'attendants'));
+        return view('plants.edit', compact('plant', 'plantTypes', 'countries', 'currency', 'polishFilterTypes', 'managers', 'attendants'));
     }
 
     /**
