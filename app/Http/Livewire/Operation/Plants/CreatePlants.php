@@ -44,6 +44,7 @@ class CreatePlants extends Component
     public $trains;
     public $multiplepdf;
     public $plants_cover;
+    public $years;
 
 
 
@@ -120,7 +121,7 @@ class CreatePlants extends Component
 
     public function store()
     {
-
+        //dd($this->plants);
         /*try {*/
         //DB::transaction(function () {
         PersonalitationPlant::create([
@@ -144,14 +145,14 @@ class CreatePlants extends Component
             'cover_path' => $this->plants['plants_cover'], // nullable
             'installed_capacity' => 0,
             'design_limit' => 0,
-            'capacity' => $this->cisterns['cisterns.capacity'],
+            //'capacity' => $this->cisterns['cisterns.capacity'],
 
             'polish_filter_types_id' => 1,
-            'polish_filters_quantity' => 0,
+            'polish_filters_quantity' => 2,
 
-            'multimedia_filters_quantity' => 0,
-            'cisterns_quantity' => 0,
-            'cisterns' => 0,
+            'multimedia_filters_quantity' => 2,
+            'cisterns_quantity' => 2,
+            'cisterns' => 2,
 
             'companies_id' => $this->plants['company'],
             'clients_id' => 1,
@@ -162,11 +163,11 @@ class CreatePlants extends Component
             'manager' => $this->plants['manager'], // nullable
             'user_created_at',
         ]);
-        $plantId = Cistern::latest('id')->first();
-        Cistern::create([
-            'plant_id' => $plantId->id,
-            'capacity' => $this->cisterns['cisterns.capacity'],
-        ]);
+        //$plantId = Cistern::latest('id')->first();
+        // Cistern::create([
+        // 'plant_id' => $plantId->id = null,
+        // 'capacity' => $this->cisterns['cisterns.capacity'],
+        //  ]); --}
 
 
         $plantId = Plant::latest('id')->first();
@@ -180,11 +181,11 @@ class CreatePlants extends Component
             'remineralitation' => $this->remineralisationM3,
             'total_m3 ' => 0,
             'total_month'  => 0,
-            'years' => $this->plants['contract.yearsOfContract'],
-            'from' => $this->plants['contract.from'],
-            'till' => $this->plants['contract.till'], //nullable
-            'minimun_consumption' => $this->plants['contract.minimumConsumption'],
-            'billing_day' => $this->plants['contract.billingDay'], // nullable
+            'years' => $this->contract['yearsOfContract'],
+            'from' => $this->contract['from'],
+            'till' => $this->contract['till'], //nullable
+            'minimun_consumption' => $this->contract['minimumConsumption'],
+            'billing_day' => $this->contract['billingDay'], // nullable
             //'payment_types_id' => $this->plants['contract.billingPeriod'], // nullable
             'user_created_at',
 
