@@ -35,7 +35,7 @@
     </section>
 
     <section id="header">
-        <div class="row">
+        <div class="row match-height">
             <div class="col">
                 <div class="card text-center">
                     <div class="card-body">
