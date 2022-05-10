@@ -32,6 +32,72 @@
         <div class="col match-height">
             <div class="row">
                 <div class="card">
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h5 class="m-0 p-0">PLANT STATUS</h5>
+                        </div>
+
+                        <div class="card-body py-0">
+                            <div class="row mt-1">
+                                <div class="col border rounded py-1">
+                                    <h6 class="mb-1">TRAINS</h6>
+
+                                    <div class="d-flex border-top">
+                                        @foreach ($parameters->first()->trains->where('type', 'Train') as $train)
+                                            <div class="col border rounded py-1">
+                                                <div class="d-flex justify-content-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-code"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M6.646 5.646a.5.5 0 1 1 .708.708L5.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zm2.708 0a.5.5 0 1 0-.708.708L10.293 8 8.646 9.646a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z" />
+                                                        <path
+                                                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="text-center pt-1">
+                                                    <h6>TRAIN # {{ $loop->iteration }}</h6>
+                                                    <small class="text-success">ENABLE</small>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                        <div class="col border rounded py-1">
+                                            <div class="d-flex justify-content-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-code"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M6.646 5.646a.5.5 0 1 1 .708.708L5.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zm2.708 0a.5.5 0 1 0-.708.708L10.293 8 8.646 9.646a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z" />
+                                                    <path
+                                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+                                                </svg>
+                                            </div>
+                                            <div class="text-center pt-1">
+                                                <h6>IRRIGATION</h6>
+                                                <small class="text-success">ENABLE</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3 border rounded p-1">
+                                    <h6 class="mb-1">CISTERNS</h6>
+
+                                    <div class="d-grid gap-1 p-1 border-top">
+                                        @for ($cistern = 0; $cistern < $parameters->first()->cisterns_quantity ; $cistern++)
+                                            <div class="border rounded px-1">
+                                                {{ $cistern + 1 }} - <small class="text-success">ENABLE</small>
+                                            </div>
+                                        @endfor
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title">DATA FILTERS</h5>
@@ -94,56 +160,6 @@
                                     </optgroup>
                                 </select>
                             </div> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="card">
-                    <div class="card">
-                        <div class="card-header border-bottom">
-                            <h5 class="m-0 p-0">PLANT STATUS</h5>
-                        </div>
-
-                        <div class="card-body py-0">
-                            <div class="row mt-1 gap-1">
-                                <div class="col border rounded p-1">
-                                    <h6 class="mb-1">TRAINS</h6>
-
-                                    <div class="row gap-1 p-1 border-top">
-                                        @foreach ($parameters->first()->trains->where('type', 'Train') as $train)
-                                            <div class="col border rounded p-1">
-                                                <div class="d-flex justify-content-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-code"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M6.646 5.646a.5.5 0 1 1 .708.708L5.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zm2.708 0a.5.5 0 1 0-.708.708L10.293 8 8.646 9.646a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z" />
-                                                        <path
-                                                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
-                                                    </svg>
-                                                </div>
-                                                <div class="text-center pt-1">
-                                                    <h6>TRAIN # {{ $loop->iteration }}</h6>
-                                                    <small class="text-success">ENABLE</small>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                                <div class="col-3 border rounded p-1">
-                                    <h6 class="mb-1">CISTERNS</h6>
-
-                                    <div class="d-grid gap-1 p-1 border-top">
-                                        @for ($cistern = 0; $cistern < $parameters->first()->cisterns_quantity ; $cistern++)
-                                            <div class="border rounded">
-                                                1
-                                            </div>
-                                        @endfor
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
