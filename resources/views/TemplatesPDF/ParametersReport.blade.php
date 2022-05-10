@@ -125,11 +125,11 @@
     </header>
 
     @php
-        $parame = $parameters->first()->operations;
-        $banderaTrains = 0;
-
         $pretreatment = $parameters->first()->pretreatments;
-        $banderaPretreatments = 0;
+        $banderaPretreatments = ($parameters->first()->pretreatments->count() - 1);
+
+        $operation = $parameters->first()->operations;
+        $banderaOperations = ($parameters->first()->operations->count() - 1);
     @endphp
 
     <main>
@@ -179,9 +179,11 @@
             </table>
 
             <div class="observations">
-                <span>Observations:</span>
+                <strong>Observations:</strong>
+                <p class="p-1">
+                    {{ $product_water->ope_mana_observation }}
+                </p>
             </div>
-
 
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
@@ -275,7 +277,6 @@
                     </tr>
                 </tbody>
             </table>
-
 
             <h6 style="font-size: 11px"
                 class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-2': 'mt-4' }}">
@@ -378,6 +379,7 @@
                     </tr>
                 </thead>
 
+
                 <tbody style="font-size: 10px">
                     @for ($train = 0;
                     $train <
@@ -428,22 +430,27 @@
                             <td class="m-0 p-0">
                                 @foreach ($pretreatment[$banderaPretreatments]->polish as $polish)
                                     @if ($polish->filter_change != null)
-                                        {{ $loop->iteration }}@if(!$loop->first),@endif
+                                        {{ $loop->iteration }}@if (!$loop->first)
+                                            ,
+                                        @endif
                                     @else
-                                        --@if(!$loop->last),@endif
+                                        --@if (!$loop->last)
+                                            ,
+                                        @endif
                                     @endif
                                 @endforeach
                             </td>
                         </tr>
                         @php
-                            $banderaPretreatments++;
+                            $banderaPretreatments--;
                         @endphp
                     @endfor
                 </tbody>
             </table>
 
 
-            <h6 style="font-size: 11px" class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
+            <h6 style="font-size: 11px"
+                class="{{ $parameters->first()->trains->where('type', 'Train')->count() == 2? 'mt-3': 'mt-4' }}">
                 OPERATION</h6>
             <table class="w-100 table-bordered bdr">
                 <thead style="font-size: 10px">
@@ -591,95 +598,95 @@
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->hp }}
+                                {{ $operation[$banderaOperations]->hp }}
                             </td>
 
                             @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
-                                @for ($b = 0; $b < $parame[$banderaTrains]->boosters->count(); $b++)
+                                @for ($b = 0; $b < $operation[$banderaOperations]->boosters->count(); $b++)
                                     <td>
-                                        {{ $parame[$banderaTrains]->boosters[$b]->amperage }}
+                                        {{ $operation[$banderaOperations]->boosters[$b]->amperage }}
                                     </td>
                                 @endfor
                             @endif
 
                             <td>
-                                {{ $parame[$banderaTrains]->hpF }}
+                                {{ $operation[$banderaOperations]->hpF }}
                             </td>
 
                             @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
-                                @for ($b = 0; $b < $parame[$banderaTrains]->boosters->count(); $b++)
+                                @for ($b = 0; $b < $operation[$banderaOperations]->boosters->count(); $b++)
                                     <td>
-                                        {{ $parame[$banderaTrains]->boosters[$b]->frequency }}
+                                        {{ $operation[$banderaOperations]->boosters[$b]->frequency }}
                                     </td>
                                 @endfor
                             @endif
 
                             <td>
-                                {{ $parame[$banderaTrains]->ph }}
+                                {{ $operation[$banderaOperations]->ph }}
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->temperature }}
+                                {{ $operation[$banderaOperations]->temperature }}
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->feed }}
+                                {{ $operation[$banderaOperations]->feed }}
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->permeate }}
+                                {{ $operation[$banderaOperations]->permeate }}
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->reject }}
-                            </td>
-
-                            @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
-                                <td>
-                                    {{ $parame[$banderaTrains]->boosters->first()->booster_flow }}
-                                </td>
-                            @endif
-
-                            <td>
-                                {{ $parame[$banderaTrains]->feed_flow }}
-                            </td>
-
-                            <td>
-                                {{ $parame[$banderaTrains]->permeate_flow }}
-                            </td>
-
-                            <td>
-                                {{ $parame[$banderaTrains]->reject_flow }}
+                                {{ $operation[$banderaOperations]->reject }}
                             </td>
 
                             @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
                                 <td>
-                                    {{ $parame[$banderaTrains]->boosters->first()->booster_pressures_total }}
+                                    {{ $operation[$banderaOperations]->boosters->first()->booster_flow }}
                                 </td>
                             @endif
 
                             <td>
-                                {{ $parame[$banderaTrains]->hp_in }}
+                                {{ $operation[$banderaOperations]->feed_flow }}
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->hp_out }}
+                                {{ $operation[$banderaOperations]->permeate_flow }}
                             </td>
 
                             <td>
-                                {{ $parame[$banderaTrains]->reject_pressure }}
+                                {{ $operation[$banderaOperations]->reject_flow }}
+                            </td>
+
+                            @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
+                                <td>
+                                    {{ $operation[$banderaOperations]->boosters->first()->booster_pressures_total }}
+                                </td>
+                            @endif
+
+                            <td>
+                                {{ $operation[$banderaOperations]->hp_in }}
+                            </td>
+
+                            <td>
+                                {{ $operation[$banderaOperations]->hp_out }}
+                            </td>
+
+                            <td>
+                                {{ $operation[$banderaOperations]->reject_pressure }}
                             </td>
 
                             @if ($parameters->first()->personalitation_plant->boosterc == 'yes')
                                 @for ($b = 0; $b < $parameters->first()->trains->first()->boosters_quantity; $b++)
                                     <td>
-                                        {{ $parame[$banderaTrains]->boosters[$b]->booster_pressures }}
+                                        {{ $operation[$banderaOperations]->boosters[$b]->booster_pressures }}
                                     </td>
                                 @endfor
                             @endif
                         </tr>
                         @php
-                            $banderaTrains++;
+                            $banderaOperations--;
                         @endphp
                     @endfor
                 </tbody>
