@@ -316,8 +316,7 @@
                                             </svg>
                                         </span>
                                         <input :id="index" type="text" step="0.01" class="form-control"
-                                            placeholder="0.0 lt" :x-model="index" wire:ignore
-                                            wire:model="cisterns.capacity">
+                                            placeholder="0.0 lt" :x-model="index" wire:model="cisterns.capacity">
                                     </div>
                                     @error('cisterns.capacity')
                                         <span class="text-danger">{{ $message }}</span>
@@ -653,12 +652,14 @@
                                         </svg>
                                     </span>
                                     <select
-                                        class="form-select @error('contract.billingPeriod') border border-danger @enderror"
-                                        id="contract.billingPeriod" wire:model="contract.billingPeriod">
-                                        <option value="">SELECT BILLING PERIOD</option>
-                                        <option value="1">Monthly</option>
-                                        <option value="2">Bimonthly</option>
-                                        <option value="3">Quarterly</option>}
+                                        class="form-select @error('contract.paymenttypes') border border-danger @enderror"
+                                        id="contract.paymenttypes" wire:model="contract.paymenttypes">
+                                        <option value="">payment types</option>
+                                        <option value="1">Weekly</option>
+                                        <option value="2">Quarterly</option>
+                                        <option value="3">Monthly</option>
+                                        <option value="3">Biweekly</option>
+                                        <option value="3">Bimonthly</option>
                                         <option value="4">Biannual</option>
 
                                     </select>
