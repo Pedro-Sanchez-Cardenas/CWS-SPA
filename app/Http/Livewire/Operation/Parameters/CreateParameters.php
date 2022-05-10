@@ -20,12 +20,13 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\URL;
 use PHPUnit\Framework\Constraint\Operator;
+use Throwable;
 
 class CreateParameters extends Component
 {
     public Plant $plant;
 
-    protected $listeners = ['confirmParameters'];
+    protected $listeners = ['confirmParameters', 'successAlert', 'redirec', 'errorAlert'];
 
     public $back;
 
@@ -390,15 +391,18 @@ class CreateParameters extends Component
                 // Product Water end
             });
 
-            // Success Save
-            sleep(2);
-
-            $uri = explode('/', $this->back);
-
-            return redirect()->route('plants.index', end($uri));
-        } catch (\Exception $e) {
-            dd('ERROR TRY CATCH');
+            // Show sweetAlert Success
+            $this->dispatchBrowserEvent('successAlert');
+        } catch (Throwable $e) {
+            $this->dispatchBrowserEvent('errorAlert', ['error' => $e]);
         }
+    }
+
+    public function redirec(){
+        sleep(0.5);
+        $uri = explode('/', $this->back);
+
+        return redirect()->route('plants.index', end($uri));
     }
 
     public function render()
