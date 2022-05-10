@@ -49,10 +49,11 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     /* Route Operation */
     Route::group(['prefix' => 'operation'], function () {
-        Route::post('plants/{company}', [PlantController::class, 'index'])->name('plants.index');
+        Route::get('plants/{company}', [PlantController::class, 'index'])->name('plants.index');
         Route::resource('plants', PlantController::class)->except('index');
 
         Route::get('parameters/{id}/create', [ParametersController::class, 'create'])->name('parameters.create');
+        Route::get('parameters/exportPDF/{id}/{date_range?}', [ParametersController::class, 'exportPDF'])->name('parameters.pdf');
         Route::resource('parameters', ParametersController::class)->except('index', 'create')->parameters(['parameters' => 'company']);
     });
     /* Route Operation */
