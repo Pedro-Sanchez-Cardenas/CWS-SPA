@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     /* Route Operation */
     Route::group(['prefix' => 'operation'], function () {
-        Route::get('plants/{company}', [PlantController::class, 'index'])->name('plants.index');
+        Route::get('plants/{company?}', [PlantController::class, 'index'])->name('plants.index');
         Route::resource('plants', PlantController::class)->except('index');
 
         Route::get('parameters/{id}/create', [ParametersController::class, 'create'])->name('parameters.create');

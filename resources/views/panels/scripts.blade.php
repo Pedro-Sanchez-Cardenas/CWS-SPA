@@ -25,4 +25,5 @@
 
 @stack('modals')
 @livewireScripts
+<script defer src="{{ asset(mix('vendors/js/alpinejs/mask.js')) }}"></script>
 <script defer src="{{ asset(mix('vendors/js/alpinejs/alpine.js')) }}"></script>

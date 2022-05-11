@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Operation\Parameters;
 
-use Illuminate\Validation\Rule;
 use App\Models\Booster;
 use App\Models\Chemical;
 use App\Models\Cistern;
@@ -18,8 +17,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Illuminate\Support\Facades\URL;
-use PHPUnit\Framework\Constraint\Operator;
 use Throwable;
 
 class CreateParameters extends Component
@@ -56,7 +53,7 @@ class CreateParameters extends Component
     public $free_chlorine;
     public $chloride;
     public $reading, $irrigation, $municipal;
-    public $tank;
+    public $tanks;
     public $calcium_chloride, $sodium_carbonate, $sodium_hypochloride, $antiscalant, $sodium_hydroxide, $hydrochloric_acid, $kl1, $kl2;
 
     public $observations;
@@ -71,26 +68,26 @@ class CreateParameters extends Component
         return [
             'pump' => 'nullable|min:0|array:well,feed,wellf,feedf', // We validate the array
             // Amperage
-            'pump.well.*' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'pump.feed.*' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'pump.well.*' => ['sometimes', 'required', 'string'],
+            'pump.feed.*' => ['sometimes', 'required', 'string'],
 
             // Frecuencies
-            'pump.wellf.*' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'pump.feedf.*' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'pump.wellf.*' => ['sometimes', 'required', 'string'],
+            'pump.feedf.*' => ['sometimes', 'required', 'string'],
             // Fin Array pump
 
             'mm' => 'required|min:1|array:in,out', // We validate the array
-            'mm.in.*.*' => ['required', 'numeric', 'min:0'],
-            'mm.out.*.*' => ['required', 'numeric', 'min:0'],
+            'mm.in.*.*' => ['required', 'string'],
+            'mm.out.*.*' => ['required', 'string'],
             // Fin mm array
 
             'backwash' => 'required|min:1|array', // We validate the array
-            'backwash.*' => ['required', 'integer', 'min:0'],
+            'backwash.*' => ['required', 'integer', 'min:0', 'max:10000'],
             // Fin de Backwash array
 
             'pf' => 'required|min:2|array:in,out', // We validate the array
-            'pf.in.*' => ['required', 'numeric', 'min:0'],
-            'pf.out.*' => ['required', 'numeric', 'min:0'],
+            'pf.in.*' => ['required', 'string'],
+            'pf.out.*' => ['required', 'string'],
 
             'filters' => 'nullable|min:0|array',
             'filters.*.*' => ['nullable'],
@@ -100,58 +97,58 @@ class CreateParameters extends Component
 
             // Operacion
             'hp' => 'required|min:4|array:amp,fre,in,out', // We validate the array
-            'hp.amp.*' => ['required', 'numeric', 'min:0'],
-            'hp.fre.*' => ['required', 'numeric', 'min:0'],
-            'hp.in.*' => ['required', 'numeric', 'min:0'],
-            'hp.out.*' => ['required', 'numeric', 'min:0'],
+            'hp.amp.*' => ['required', 'string'],
+            'hp.fre.*' => ['required', 'string'],
+            'hp.in.*' => ['required', 'string'],
+            'hp.out.*' => ['required', 'string'],
 
             'sdi' => 'nullable|min:0|array', // We validate the array
             'sdi.*' => [
                 'sometimes',
                 'required',
-                'numeric'
+                'string'
             ],
 
             'booster' => 'nullable|min:0|array', // We validate the array
-            'booster.amp.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'booster.fre.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'booster.co.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'booster.cp.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'booster.pre.*.*' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'booster.amp.*.*' => ['sometimes', 'required', 'string'],
+            'booster.fre.*.*' => ['sometimes', 'required', 'string'],
+            'booster.co.*.*' => ['sometimes', 'required', 'string'],
+            'booster.cp.*.*' => ['sometimes', 'required', 'string'],
+            'booster.pre.*.*' => ['sometimes', 'required', 'string'],
 
             'px' => 'nullable|min:0|array',
-            'px.*.*' => ['sometimes', 'numeric', 'min:0'],
+            'px.*.*' => ['sometimes', 'string'],
 
             'ph' => 'required|min:2|array:ope,pro', // We validate the array
-            'ph.ope.*' => ['required', 'numeric', 'min:0'],
-            'ph.pro.*' => ['required', 'numeric', 'min:0'],
+            'ph.ope.*' => ['required', 'string'],
+            'ph.pro.*' => ['required', 'string'],
 
             'temperature' => 'required|min:1|array', // We validate the array
-            'temperature.*' => ['required', 'numeric', 'min:0'],
+            'temperature.*' => ['required', 'string'],
 
             'feed' => 'required|min:1|array:ope,flo', // We validate the array
-            'feed.ope.*' => ['required', 'numeric', 'min:0'],
-            'feed.flo.*' => ['nullable', 'numeric', 'min:0'],
+            'feed.ope.*' => ['required', 'string'],
+            'feed.flo.*' => ['nullable', 'string'],
 
             'permeate' => 'required|min:1|array:ope,flo', // We validate the array
-            'permeate.ope.*' => ['required', 'numeric', 'min:0'],
-            'permeate.flo.*' => ['nullable', 'numeric', 'min:0'],
+            'permeate.ope.*' => ['required', 'string'],
+            'permeate.flo.*' => ['nullable', 'string'],
 
             'reject' => 'required|min:1|array:ope,pre,flo', // We validate the array
-            'reject.ope.*' => ['required', 'numeric', 'min:0'],
-            'reject.pre.*' => ['required', 'numeric', 'min:0'],
-            'reject.flo.*' => ['nullable', 'numeric', 'min:0'],
+            'reject.ope.*' => ['required', 'string'],
+            'reject.pre.*' => ['required', 'string'],
+            'reject.flo.*' => ['nullable', 'string'],
 
             // Agua Producto
-            'hardness' => ['required', 'numeric', 'min:0'],
+            'hardness' => ['required', 'string'],
 
-            'tds' => ['required', 'numeric', 'min:0'],
+            'tds' => ['required', 'string'],
 
-            'h2s' => ['required', 'numeric', 'min:0'],
+            'h2s' => ['required', 'string'],
 
-            'free_chlorine' => 'nullable|numeric|min:0',
+            'free_chlorine' => 'nullable|string|min:0',
 
-            'chloride' => 'nullable|numeric|min:0',
+            'chloride' => 'nullable|string|min:0',
 
             'observations' => 'nullable|array:pre,ope,prw', // We validate the array
             'observations.pre.*' => ['nullable', 'string', 'min:5', 'max:350'],
@@ -159,30 +156,30 @@ class CreateParameters extends Component
             'observations.prw' => ['nullable', 'string', 'min:5', 'max:350'],
 
             'reading' => 'required|min:1|array', // We validate the array
-            'reading.*' => ['required', 'numeric', 'min:0'],
+            'reading.*' => ['required', 'string'],
 
-            'irrigation' => ['nullable', 'numeric', 'min:0'],
+            'irrigation' => ['nullable', 'string'],
 
-            'municipal' => ['required', 'numeric', 'min:0'],
+            'municipal' => ['required', 'string'],
 
-            'tank' => 'required|min:0|array',
-            'tank.*' => ['required', 'integer', 'min:0', 'max:100'],
+            'tanks' => 'required|min:0|array',
+            'tanks.*' => ['required', 'integer', 'min:0', 'max:100'],
 
-            'calcium_chloride' => ['required', 'numeric', 'min:0'],
+            'calcium_chloride' => ['required', 'string'],
 
-            'sodium_carbonate' => ['required', 'numeric', 'min:0'],
+            'sodium_carbonate' => ['required', 'string'],
 
-            'sodium_hypochloride' => ['required', 'numeric', 'min:0'],
+            'sodium_hypochloride' => ['required', 'string'],
 
-            'antiscalant' => ['required', 'numeric', 'min:0'],
+            'antiscalant' => ['required', 'string'],
 
-            'sodium_hydroxide' => ['required', 'numeric', 'min:0'],
+            'sodium_hydroxide' => ['required', 'string'],
 
-            'hydrochloric_acid' => ['required', 'numeric', 'min:0'],
+            'hydrochloric_acid' => ['required', 'string'],
 
-            'kl1' => ['required', 'numeric', 'min:0'],
+            'kl1' => ['required', 'string'],
 
-            'kl2' => ['required', 'numeric', 'min:0'],
+            'kl2' => ['required', 'string'],
 
             /*
             'typeUser' => [
@@ -206,8 +203,8 @@ class CreateParameters extends Component
 
     public function store()
     {
-        try {
-            DB::transaction(function () {
+       /* try {
+            DB::transaction(function () {*/
                 $trains = Train::where('plants_id', $this->plant->id)
                     ->where('type', 'Train')
                     ->get();
@@ -369,7 +366,7 @@ class CreateParameters extends Component
                 for ($ci = 1; $ci <= $this->plant->cisterns_quantity; $ci++) {
                     Cistern::create([
                         'product_waters_id' => $productWater->id,
-                        'capacity' => $this->tank[$ci],
+                        'capacity' => $this->tanks[$ci],
                         'status' => 'Enabled'
                     ]);
                 }
@@ -389,13 +386,13 @@ class CreateParameters extends Component
                 ]);
                 // Chemicals end
                 // Product Water end
-            });
+            /*});
 
             // Show sweetAlert Success
             $this->dispatchBrowserEvent('successAlert');
         } catch (Throwable $e) {
             $this->dispatchBrowserEvent('errorAlert', ['error' => $e]);
-        }
+        }*/
     }
 
     public function redirec(){

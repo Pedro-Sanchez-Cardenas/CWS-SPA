@@ -30,11 +30,14 @@ class PlantController extends Controller
     public function index($company = null)
     {
         if ((Auth::user()->getRoleNames()[0] == 'Super-Admin') || (Auth::user()->getRoleNames()[0] == 'Director') || (Auth::user()->getRoleNames()[0] == 'Operations-Manager') || (Auth::user()->getRoleNames()[0] == 'Administrative-Manager')) {
+            if ($company != null) {
 
-            $companies = Company::where('name', $company)->first();
+                $companies = Company::where('name', $company)->first();
 
-
-            $plants = Plant::where('companies_id', $companies->id)->get();
+                $plants = Plant::where('companies_id', $companies->id)->get();
+            } else {
+                $plants = Plant::all();
+            }
         } else if (Auth::user()->getRoleNames()->first() == 'Manager') {
 
             $plants = Plant::where('manager', Auth::id())->get();
