@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class UploadPhotoWithPreview extends Component
 {
     use WithFileUploads;
@@ -186,7 +187,7 @@ class CreatePlants extends Component
             'till' => $this->contract['till'], //nullable
             'minimun_consumption' => $this->contract['minimumConsumption'],
             'billing_day' => $this->contract['billingDay'], // nullable
-            //'payment_types_id' => $this->plants['contract.billingPeriod'], // nullable
+            'payment_types_id' => $this->plants['contract.paymenttypes'], // nullable
             'user_created_at',
 
 

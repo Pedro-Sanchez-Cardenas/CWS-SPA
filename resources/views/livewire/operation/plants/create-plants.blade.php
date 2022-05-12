@@ -569,9 +569,9 @@
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                     </svg>
                                 </span>
-                                <select
+                                <select type="number" id="cmb_dias"
                                     class="form-select @error('contract.yearsOfContract') border border-danger @enderror"
-                                    wire:model="contract.yearsOfContract" id="contract.yearsOfContract">
+                                    wire:model="contract.yearsOfContract" onchange="cmb_dias();">
                                     <option value="">SELECT YEARS</option>
                                     @for ($i = 1; $i < 17; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -586,7 +586,7 @@
                         <div class="row mb-2">
                             <div class="col-6">
                                 <label class="form-label" for="from">From</label>
-                                <input type="text" id="from" wire:model="contract.from"
+                                <input type="text" id="from" wire:model="contract.from" id="dt_fecha_nacimiento"
                                     class="form-control flatpickr-basic @error('contract.from') border border-danger @enderror"
                                     placeholder="YYYY-MM-DD" />
                                 @error('contract.from')
@@ -595,14 +595,27 @@
                             </div>
 
 
-                            <div class="col-6">
-                                <label class="form-label" for="till">Till</label>
-                                <input type="text" id="till" wire:model="contract.till"
-                                    class="form-control flatpickr-basic @error('contract.till') border border-danger @enderror"
-                                    placeholder="YYYY-MM-DD" />
+                            <div class="col-md-6">
+                                <label for="Till" class="form-label">Till</label>
+                                <div class="input-group">
+                                    <span
+                                        class="input-group-text @error('contract.till') border border-danger @enderror">
+                                        <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-search @error('contract.till') text-danger @enderror">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                        </svg>
+                                    </span>
+                                    <input type="text" id="dt_fecha_siguiente_etapa"
+                                        class="form-control @error('contract.Till') border border-danger @enderror"
+                                        wire:model="contract.till" for="dt_fecha_siguiente_etapa">
+                                </div>
                                 @error('contract.till')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
+
                             </div>
                         </div>
 
@@ -611,7 +624,7 @@
                                 <label for="contract.billingDay" class="form-label">Billing Day</label>
                                 <div class="input-group">
                                     <span
-                                        class="input-group-text @error('billingPeriod') border border-danger @enderror"
+                                        class="input-group-text @error('contract.billingDay') border border-danger @enderror"
                                         id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                             height="16" fill="currentColor" class="bi bi-calendar-event"
                                             viewBox="0 0 16 16">
@@ -619,7 +632,7 @@
                                                 d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
                                             <path
                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-                                                class="@error('billingPeriod') border border-danger @enderror" />
+                                                class="@error('contract.billingDay') border border-danger @enderror" />
                                         </svg>
                                     </span>
                                     <select
@@ -636,13 +649,13 @@
                                 @enderror
                             </div>
                             <div class="col-6">
-                                <label for="contract.billingPeriod" class="form-label">billingPeriod</label>
+                                <label for="contract.paymenttypes" class="form-label">paymenttypes</label>
                                 <div class="input-group">
                                     <span
-                                        class="input-group-text @error('billingPeriod') border border-danger @enderror"
+                                        class="input-group-text @error('paymenttypes') border border-danger @enderror"
                                         id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                             height="16" fill="currentColor"
-                                            class="bi bi-calendar-week @error('billingPeriod') text-danger @enderror"
+                                            class="bi bi-calendar-week @error('paymenttypes') text-danger @enderror"
                                             viewBox="0 0 16 16">
                                             <path
                                                 d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
@@ -876,5 +889,25 @@
         let index = $(this).data('index');
         archivosParaSubir.splice(index, 1);
         actualizarListaDeArchivos();
+    });
+</script>
+
+
+
+<button id="calcular">Calcular</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    //Al hacer click en el botón... (Debes cambiar esta acción en tu proyecto)
+    $("#calcular").on("click", function() {
+        //Obtener la fecha de nacimiento
+        let fecha = $("#dt_fecha_nacimiento").val();
+        //Obtener la cantidad de días
+        let dias = $("#cmb_dias").val();
+        //Calcular la sumatoria
+        let fecha2 = moment(fecha).add(dias, 'years').format('DD/MM/YYYY');
+        //Asignar la nueva fecha al input siguiente etapa
+        $("#dt_fecha_siguiente_etapa").val(fecha2);
     });
 </script>
