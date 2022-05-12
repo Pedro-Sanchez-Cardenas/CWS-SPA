@@ -24,7 +24,7 @@
 
             <div class="row">
                 <div class="col text-center">
-                    <div class="display-5" wire:poll.1000ms>{{ now()->toTimeString() }}</div>
+                    <div class="display-5" id="time"></div>
 
                     <div class="h4">{{ now()->toDateString() }}</div>
                 </div>

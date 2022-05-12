@@ -89,6 +89,7 @@
 @section('vendor-script')
 <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/extensions/moment.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
@@ -98,6 +99,13 @@
 
 <!-- Page js files -->
 <script>
+
+    function getHour(){
+        let time = moment().format('LTS');
+        $('#time').text(time);
+    }
+    setInterval(getHour, 1000);
+
     function parameters() {
             return {
                 step: 1,
