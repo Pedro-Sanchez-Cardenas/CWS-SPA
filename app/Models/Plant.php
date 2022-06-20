@@ -27,7 +27,6 @@ class Plant extends Model
 
         'multimedia_filters_quantity',
         'cisterns_quantity',
-
         'companies_id',
         'clients_id',
         'personalitation_plants_id',
