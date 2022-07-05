@@ -20,3 +20,7 @@ supervisord.log
 supervisord.pid
 
 .DS_Store
+
+resources/vendors/js/forms/cleave/addons/cleave-phone.ao.js
+
+resources/vendors/js/forms/cleave/addons/cleave-phone.ar.js

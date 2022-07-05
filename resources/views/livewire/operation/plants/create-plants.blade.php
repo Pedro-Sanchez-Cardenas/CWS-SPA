@@ -1,5 +1,6 @@
 <div>
     <form wire:submit.prevent="store">
+        <!--Image -->
         <section>
             <div class="row">
                 <div class="col-md-6">
@@ -20,7 +21,7 @@
                                             <br><br>
                                             <input type="button" value="Delate image" class="col-md-12" />
                                         @endif
-                                        @error('photo')
+                                        @error('plants_cover')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -51,14 +52,14 @@
                 </div>
             </div>
         </section>
-
+        <!-- Plant Data-->
         <section class="card">
             <div class="card-header">
                 <h4 class="card-title">Plant Data</h4>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 mb-2">
+                    <div class="col-md-4 mb-2">
                         <label for="name" class="form-label">Plant name</label>
                         <div class="input-group">
                             <span class="input-group-text @error('plants.name') border border-danger @enderror">
@@ -266,7 +267,7 @@
                 </div>
             </div>
         </section>
-
+        <!--Ciaterns and from personalitation -->
         <section class="row">
             <div class="col-md-6">
                 <div class="card" x-data="cisterns()" x-cloak>
@@ -316,7 +317,7 @@
                                             </svg>
                                         </span>
                                         <input :id="index" type="text" step="0.01" class="form-control"
-                                            placeholder="0.0 lt" :x-model="index" wire:model="cisterns.capacity">
+                                            placeholder="0.0 lt" :x-model="index" wire:ignore="cisterns.capacity">
                                     </div>
                                     @error('cisterns.capacity')
                                         <span class="text-danger">{{ $message }}</span>
@@ -374,16 +375,13 @@
                                         wire:model.lazy="personalitations.feedPump">
                                     <label class="form-check-label" for="feedPump">Feed Pump</label>
                                 </div>
-
                                 <br>
-
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" id="customSwitch1"
                                         wire:model.lazy="personalitations.chloride">
                                     <label class="form-check-label" for="customSwitch1">Chloride</label>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="form-check form-switch">
                                     <input type="checkbox" class="form-check-input" id="sdi"
@@ -400,7 +398,7 @@
                 </div>
             </div>
         </section>
-
+        <!--Costs and contract-->
         <section class="row">
             <div class="col-md-6">
                 <div class="card" x-data="costs()" x-cloak>
@@ -555,13 +553,12 @@
 
                     <div class="card-body">
                         <div class="row mb-2 ">
-                            <label for="contract.yearsOfContract" class="form-label">Years of contract</label>
+                            <label for="contract.years" class="form-label">Years of contract</label>
                             <div class="input-group ">
-                                <span
-                                    class="input-group-text @error('contract.yearsOfContract') border border-danger @enderror"
+                                <span class="input-group-text @error('contract.years') border border-danger @enderror"
                                     id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                         height="16" fill="currentColor"
-                                        class="bi bi-calendar-check @error('contract.yearsOfContract') text-danger @enderror"
+                                        class="bi bi-calendar-check @error('contract.years') text-danger @enderror"
                                         viewBox="0 0 16 16">
                                         <path
                                             d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
@@ -569,16 +566,16 @@
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                     </svg>
                                 </span>
-                                <select type="number" id="cmb_dias"
-                                    class="form-select @error('contract.yearsOfContract') border border-danger @enderror"
-                                    wire:model="contract.yearsOfContract" onchange="cmb_dias();">
+                                <select type="number" id="years"
+                                    class="form-select @error('years') border border-danger @enderror"
+                                    wire:model="contract.years" onchange="getYear()">
                                     <option value="">SELECT YEARS</option>
                                     @for ($i = 1; $i < 17; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
                                 </select>
                             </div>
-                            @error('contract.yearsOfContract')
+                            @error('years')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -586,36 +583,23 @@
                         <div class="row mb-2">
                             <div class="col-6">
                                 <label class="form-label" for="from">From</label>
-                                <input type="text" id="from" wire:model="contract.from" id="dt_fecha_nacimiento"
-                                    class="form-control flatpickr-basic @error('contract.from') border border-danger @enderror"
-                                    placeholder="YYYY-MM-DD" />
-                                @error('contract.from')
+                                <input type="text" id="from" wire:model="contract.from"
+                                    class="form-control flatpickr-basic @error('from') border border-danger @enderror"
+                                    placeholder="YYYY-MM-DD" onchange="getYear()" />
+                                @error('from')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
 
-                            <div class="col-md-6">
-                                <label for="Till" class="form-label">Till</label>
-                                <div class="input-group">
-                                    <span
-                                        class="input-group-text @error('contract.till') border border-danger @enderror">
-                                        <svg xmlns="http://www.w3.org/2000/svg" widplantNameth="14" height="14"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-search @error('contract.till') text-danger @enderror">
-                                            <circle cx="11" cy="11" r="8"></circle>
-                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        </svg>
-                                    </span>
-                                    <input type="text" id="dt_fecha_siguiente_etapa"
-                                        class="form-control @error('contract.Till') border border-danger @enderror"
-                                        wire:model="contract.till" for="dt_fecha_siguiente_etapa">
-                                </div>
-                                @error('contract.till')
+                            <div class="col-6">
+                                <label class="till-label" for="till">Till</label>
+                                <input type="text" id="till" wire:ignore="till"
+                                    class="form-control flatpickr-basic @error('till') border border-danger @enderror"
+                                    placeholder="YYYY-MM-DD" />
+                                @error('till')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-
                             </div>
                         </div>
 
@@ -649,24 +633,24 @@
                                 @enderror
                             </div>
                             <div class="col-6">
-                                <label for="contract.paymenttypes" class="form-label">paymenttypes</label>
+                                <label for="payment_types_id" class="form-label">paymenttypes</label>
                                 <div class="input-group">
                                     <span
-                                        class="input-group-text @error('paymenttypes') border border-danger @enderror"
+                                        class="input-group-text @error('payment_types_id') border border-danger @enderror"
                                         id="basic-addon-search1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                             height="16" fill="currentColor"
-                                            class="bi bi-calendar-week @error('paymenttypes') text-danger @enderror"
+                                            class="bi bi-calendar-week @error('payment_types_id') text-danger @enderror"
                                             viewBox="0 0 16 16">
                                             <path
                                                 d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
-                                                @error('contract.billingPeriod') border border-danger @enderror" />
+                                                @error('payment_types_id') border border-danger @enderror" />
                                             <path
                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                         </svg>
                                     </span>
                                     <select
-                                        class="form-select @error('contract.paymenttypes') border border-danger @enderror"
-                                        id="contract.paymenttypes" wire:model="contract.paymenttypes">
+                                        class="form-select @error('contract.payment_types_id') border border-danger @enderror"
+                                        id="contract.payment_types_id" wire:model="contract.payment_types_id">
                                         <option value="">payment types</option>
                                         <option value="1">Weekly</option>
                                         <option value="2">Quarterly</option>
@@ -677,7 +661,7 @@
 
                                     </select>
                                 </div>
-                                @error('contract.billingPeriod')
+                                @error('payment_types_id')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -711,19 +695,6 @@
                 </div>
             </div>
         </section>
-
-        <livewire:operation.plants.trains />
-
-        <button type="submit" class="btn btn-success col-12 waves-effect waves-float waves-light">
-            <div class="d-flex justify-content-center align-items-center font-weight-bold">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-plus-lg" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                </svg>
-                <span>CREATE PLANT</span>
-            </div>
-        </button>
     </form>
 
     @push('jsLivewire')
@@ -855,59 +826,60 @@
             }
         </script>
     @endpush
-</div>
-{{-- Script cdn multiple file --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script>
-    var inputFile = $("#inputFile");
-    var listaDeArchivos = $("#listaDeArchivos");
-    var archivosParaSubir = [];
+    {{-- Script cdn multiple file --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    function actualizarListaDeArchivos() {
-        let listaHtml = archivosParaSubir.map(function(item, index) {
-            return `<li>
+    <script>
+        var inputFile = $("#inputFile");
+        var listaDeArchivos = $("#listaDeArchivos");
+        var archivosParaSubir = [];
+
+        function actualizarListaDeArchivos() {
+            let listaHtml = archivosParaSubir.map(function(item, index) {
+                return `<li>
       ${item.name} 
+      
       <button data-index="${index}" class="file-list-eliminar">Eliminar</button>
     </li>`;
+            });
+            listaDeArchivos.html(listaHtml);
+        }
+
+        inputFile.on('change', function(e) {
+            let files = e.target.files;
+
+            if (files.length == 0) return;
+
+            files = Array.from(files);
+            archivosParaSubir = files;
+            actualizarListaDeArchivos();
+            $(this).val('');
         });
-        listaDeArchivos.html(listaHtml);
-    }
 
-    inputFile.on('change', function(e) {
-        let files = e.target.files;
+        $(document).on("click", ".file-list-eliminar", function() {
+            let index = $(this).data('index');
+            archivosParaSubir.splice(index, 1);
+            actualizarListaDeArchivos();
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        /* Script's para calcular la fecha de finalizacion del contrato */
+        function getYear() {
+            let inicio = document.getElementById("from").value;
+            let years = document.getElementById("years").value;
+            if (years == "" | inicio == "") {
 
-        if (files.length == 0) return;
+            } else {
 
-        files = Array.from(files);
-        archivosParaSubir = files;
-        actualizarListaDeArchivos();
-        $(this).val('');
-    });
+                if (years == 17) {
+                    document.getElementById("till").value = "Undefined";
+                } else {
+                    let tillC = moment(inicio).add(years, 'years').format('yyyy-MM-DD');
+                    document.getElementById("till").value = tillC;
+                }
+            }
 
-    $(document).on("click", ".file-list-eliminar", function() {
-        let index = $(this).data('index');
-        archivosParaSubir.splice(index, 1);
-        actualizarListaDeArchivos();
-    });
-</script>
-
-
-
-<button id="calcular">Calcular</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script>
-    //Al hacer click en el botón... (Debes cambiar esta acción en tu proyecto)
-    $("#calcular").on("click", function() {
-        //Obtener la fecha de nacimiento
-        let fecha = $("#dt_fecha_nacimiento").val();
-        //Obtener la cantidad de días
-        let dias = $("#cmb_dias").val();
-        //Calcular la sumatoria
-        let fecha2 = moment(fecha).add(dias, 'years').format('DD/MM/YYYY');
-        //Asignar la nueva fecha al input siguiente etapa
-        $("#dt_fecha_siguiente_etapa").val(fecha2);
-    });
-</script>
+        }
+    </script>
